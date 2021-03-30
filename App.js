@@ -4,25 +4,12 @@ import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 export default function App() {
 
-  const axios = require('axios');
+  
   const [message, setMessage] = useState('Tu pojawi się wiadomość');
   const [sendId, setSendId] = useState(0);
-  
+  const { getAccountInfo } = require('./clientRequests/getAccountInfo');
 
-const getFromDB = () => {
-  if(parseInt(sendId)){
-  axios.post('http://192.168.1.80:8080', {
-      id: parseInt(sendId)
-  })
-  .then(res => {
-      const {Imie, Nazwisko} =  res.data;
-      setMessage(`użytkownik: ${Imie} ${Nazwisko}`);
-  })
-  .catch(error => {
-      console.error(error)
-  })
-}
-}
+
   
 
   return (
@@ -35,7 +22,7 @@ const getFromDB = () => {
         setSendId(val);
       }}
       />
-      <Button onPress={getFromDB} title='Prześlij'/>
+      <Button onPress={async () => {setMessage( (await getAccountInfo(sendId)).Imie ) }} title='Prześlij'/>
     </View>
   );
 }
