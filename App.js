@@ -22,7 +22,7 @@ export default function App() {
         setSendId(val);
       }}
       />
-      <Button onPress={async () => {setMessage( (await getAccountInfo(sendId)).Imie ) }} title='Prześlij'/>
+      <Button onPress={async () => {setMessage(await getAccountInfo(sendId)) }} title='Prześlij'/>
     </View>
   );
 }
