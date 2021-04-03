@@ -7,7 +7,7 @@ export default function Report({route, navigation}){
 
     const { id } = route.params;
     const [message, setMessage] = useState('Tu pojawi się wiadomość');
-    const { getAccountInfo } = require('../clientRequests/Creq_getAccountInfo');
+    const Creq_lib = require('../clientRequests/Creq_lib');
 
     
     const osoba = {id: 1, name: 'yoshi'};
@@ -17,7 +17,7 @@ export default function Report({route, navigation}){
 
 
     useEffect(() => {
-        getAccountInfo(id)
+        Creq_lib.getAccountReport(id)
         .then((resolve) => {
             setRows(resolve);
         })

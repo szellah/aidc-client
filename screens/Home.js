@@ -1,14 +1,31 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, View, TextInput, Button } from 'react-native';
+import NotificationBox from '../components/NotificationBox';
 
 export default function Home({ navigation }){
 
     
     const [sendId, setSendId] = useState(0);
-    const { getAccountInfo } = require('../clientRequests/Creq_getAccountInfo');
+    const [notificationVisibility, setNotificationVisibility] = useState(false);
+    const Creq_lib = require('../clientRequests/Creq_lib');
+    const [notificationContent, setNotificationContent ] =useState({});
+
+    const displayNotificaiton = () => {
+
+        Creq_lib.test(sendId)
+        .then(resolve => setNotificationContent(resolve))
+        .then(setNotificationVisibility(true));
+
+    }
 
     return(
     <View style={styles.container}>
+
+        <NotificationBox 
+        visibility={notificationVisibility} 
+        VisibilityHandler={ setNotificationVisibility } 
+        content={notificationContent}
+        />
 
       <TextInput
       style={styles.input} 
@@ -17,7 +34,8 @@ export default function Home({ navigation }){
         setSendId(val);
       }}
       />
-      <Button onPress={ () => {navigation.push("Report", {id: sendId})}} title='Prześlij'/>
+      <Button onPress={ () => {navigation.push("Report", {id: sendId})}} title='Raport'/>
+      <Button onPress={ displayNotificaiton } title='Powiadomienie'/>
     </View>
     )
 }

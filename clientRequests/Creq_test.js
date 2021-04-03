@@ -1,10 +1,10 @@
 const axios = require('axios');
 const { serverURL } = require('./serverInfo');
 
-function Creq_getAccountInfo (reqId){
+function Creq_test (reqId){
 return new Promise((resolve, reject) => {
     if(parseInt(reqId)){
-    axios.post(`${serverURL}/getAccountInfo`, {
+    axios.post(`${serverURL}/test`, {
         id: parseInt(reqId)
     })
     .then(res => {
@@ -23,5 +23,5 @@ else{
 }
 
   module.exports={
-    Creq_getAccountInfo,
+    Creq_test,
 };
