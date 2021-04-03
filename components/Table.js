@@ -4,8 +4,8 @@ import {View, Text, StyleSheet} from 'react-native';
 export default function Table( {rows} ){
     return (
         <View>
-            {rows.map((row) => (
-                 <View style={styles.row} key={row.id}>{row.fields.map((field) => <Text>{field}</Text>)}</View>
+            {rows.map(({key, fields}) => (
+                 <View style={styles.row} key={key}>{fields.map((field) => <Text>{field}</Text>)}</View>
              ))}
         </View>
     )
