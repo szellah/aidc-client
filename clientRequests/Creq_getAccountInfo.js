@@ -8,9 +8,8 @@ return new Promise((resolve, reject) => {
         id: parseInt(reqId)
     })
     .then(res => {
-        const {Name, Surname} =  res.data;
         console.log(res.data);
-        resolve(`${Name} ${Surname}`);
+        resolve(res.data);
     })
     .catch(error => {
         console.error(error)

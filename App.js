@@ -1,46 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import React, {useState} from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from "@react-navigation/stack";
+import Home from "./screens/Home";
+import Report from './screens/Report';
 
 export default function App() {
 
-  
-  const [message, setMessage] = useState('Tu pojawi się wiadomość');
-  const [sendId, setSendId] = useState(0);
-  const { getAccountInfo } = require('./clientRequests/getAccountInfo');
-
-
-  
+  const Stack = createStackNavigator();
 
   return (
-    <View style={styles.container}>
-      <Text>{message}</Text>
-      <TextInput
-      style={styles.input} 
-      placeholder='wpisz tu liczbę'
-      onChangeText={(val) => {
-        setSendId(val);
-      }}
-      />
-      <Button onPress={async () => {setMessage(await getAccountInfo(sendId)) }} title='Prześlij'/>
-    </View>
+    <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen name="Home" 
+          component={Home} 
+          options={{title:'Strona Główna'}}
+          />
+          <Stack.Screen name="Report" component={Report} />
+        </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    borderColor: 'rgba(0,0,0,0.2)',
-    borderWidth: 1,
-    borderStyle: 'dashed',
-    borderRadius: 5,
-    padding: 10,
-    marginVertical:10,
-  },
-});
