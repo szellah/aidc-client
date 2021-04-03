@@ -34,8 +34,9 @@ export default function Home({ navigation }){
         setSendId(val);
       }}
       />
-      <Button onPress={ () => {navigation.push("Report", {id: sendId})}} title='Raport'/>
-      <Button onPress={ displayNotificaiton } title='Powiadomienie'/>
+      <View style={styles.button} ><Button onPress={ () => {navigation.push("Report", {id: sendId})}} title='Raport'/></View>
+      <View style={styles.button} ><Button onPress={ displayNotificaiton } title='Powiadomienie'/></View>
+
     </View>
     )
 }
@@ -56,4 +57,7 @@ const styles = StyleSheet.create({
       padding: 10,
       marginVertical:10,
     },
+    button: {
+        marginVertical: 5,
+    }
   });
