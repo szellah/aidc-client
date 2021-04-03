@@ -4,7 +4,23 @@ by SGGW WZIM Inf. 2019/gr.4
 </br>
 >Sprawdź również [AIDC-SERVER](https://github.com/szellah/aidc-server)
 
-
+</br></br>
+# Spis treści
+- [Sposób działania](#sposób-działania)
+- [Nazewnictwo](#nazewnictwo)
+- [Potrzebne oprogramowanie](#potrzebne-oprogramowanie)
+- [Instalacja](#instalacja)
+  - [Node.js](#nodejs)
+  - [Android Studio](#android-studio)
+  - [Expo CLI](#expo-cli)
+  - [React Navigation](#react-navigation)
+  - [axios.js](#axiosjs)
+- [Konfiguracja](#konfiguracja)
+  - [Podmiana adresu serwera](#podmiana-adresu-serwera)
+  - [Tworzenie maszyny wirtualnej AVD](#tworzenie-maszyny-wirtualnej-avd)
+- [Testowanie](#testowanie)
+- [Materiały Pomocnicze](#materiały-pomocnicze)
+</br></br></br>
 
 # Klient wraz z graficznym UI do aplikacji aidc
 Jedno z dwóch głónych repozytoriów związanych z projektem AIDC (Automatic identification and data capture). To dokładne repozytorium zajmuje się kliencką częścią oprogramowania. Jest to mianowicie interfejs graficzny oraz szereg funkcji łaczących go z serwerem. Całośc projektu jest tworzona w języku JavaScript z powodów jego popularności na rynku pracy, przedewszystkim w branży aplikacji mobilnych oraz łatwemu przekazywaniu danych nadsyłąnych przez serwer.
@@ -110,5 +126,5 @@ Jeżeli w czymkolwiek pojawi się problem odsyłam do odpowiednich dokumentacji 
 - [Axios.js on Github](https://github.com/axios/axios#axios)
 </br></br>
 
-W szczególności polecam Dokumentacje React Native i Navigation. Zapraszam również na ten kanał na [YouTube](https://www.youtube.com/channel/UCW5YeuERMmlnqo4oq8vwUpg)
+W szczególności polecam Dokumentacje React Native i Navigation.</br>Zapraszam również na ten kanał na [YouTube](https://www.youtube.com/channel/UCW5YeuERMmlnqo4oq8vwUpg)
 
