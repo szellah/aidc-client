@@ -4,12 +4,14 @@ import NotificationBox from '../components/NotificationBox';
 
 export default function Home({ navigation }){
 
-    
+    const Creq_lib = require('../clientRequests/Creq_lib');
+
     const [sendId, setSendId] = useState(0);
     const [notificationVisibility, setNotificationVisibility] = useState(false);
-    const Creq_lib = require('../clientRequests/Creq_lib');
     const [notificationContent, setNotificationContent ] =useState({});
 
+
+    {/* Wiązanka obietnic (Promise) która wpierw pobiera dane, następnie wstawia je do wiadomości i pod koniec ją wyświetla */}
     const displayNotificaiton = () => {
 
         Creq_lib.test(sendId)
@@ -21,12 +23,15 @@ export default function Home({ navigation }){
     return(
     <View style={styles.container}>
 
+        {/* Pudełko w którym mogą się pojawić powiadomienia */}
         <NotificationBox 
         visibility={notificationVisibility} 
         VisibilityHandler={ setNotificationVisibility } 
         content={notificationContent}
         />
 
+
+        {/* Input tekstowy */}
       <TextInput
       style={styles.input} 
       placeholder='wpisz tu liczbę'

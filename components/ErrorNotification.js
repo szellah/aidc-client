@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, View, Modal, TouchableOpacity } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
+/** Powidaominie typy Błąd */
 
 export default function ErrorNotification({ VisibilityHandler, message }) {
     return(

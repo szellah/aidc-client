@@ -1,6 +1,8 @@
 const axios = require('axios');
 const { serverURL } = require('./serverInfo');
 
+/** W przyszłości możliwe że dojdzie do standaryzacji Creq */
+
 function Creq_getAccountInfo (reqId){
 return new Promise((resolve, reject) => {
     if(parseInt(reqId)){

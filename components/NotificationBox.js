@@ -7,7 +7,7 @@ import ErrorNotification from './ErrorNotification';
 export default function NotificationBox({visibility, VisibilityHandler, content }){
 
 
-
+/** Warunkowe otwieranie jednego z powiadomień (Błędu/ Informacji)  w obiekcie typu Modal */
     return(
         <Modal
         visible={visibility}

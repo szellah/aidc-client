@@ -10,12 +10,10 @@ export default function Report({route, navigation}){
     const Creq_lib = require('../clientRequests/Creq_lib');
 
     
-    const osoba = {id: 1, name: 'yoshi'};
-
-
     const [rows, setRows] = useState([]);
 
 
+    /* Funkcja która się odpali tylko przy zmianie danych */
     useEffect(() => {
         Creq_lib.getAccountReport(id)
         .then((resolve) => {
@@ -28,6 +26,7 @@ export default function Report({route, navigation}){
     
 
     return (
+        /** Renderowanie warunkowe tabeli */
         <View>
              { rows && <Table rows={rows} />}
         </View>

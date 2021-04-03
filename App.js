@@ -10,6 +10,7 @@ export default function App() {
   const Stack = createStackNavigator();
 
   return (
+    /* Nawigacja podstawowa, w stylu Stosu */
     <NavigationContainer>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" 
