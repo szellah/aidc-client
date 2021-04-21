@@ -20,5 +20,6 @@ export default function App() {
           <Stack.Screen name="Report" component={Report} />
         </Stack.Navigator>
     </NavigationContainer>
+    //Daniel 19:30
   );
 }
