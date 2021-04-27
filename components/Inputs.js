@@ -1,64 +1,133 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Touchable } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, StyleSheet, View, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { Ionicons } from '@expo/vector-icons';
 
-export const PoleHaslo = () => {
+
+//Input oraz QRbutton z którego dziedziczą różne inputy, dla reacta się na to mówi "zawieranie"
+
+export const Input = ({icon, placeholder, color, size, displayQRButton, pressHandler}) => {
 	return (
-		<View style={styles.iconContainer_2}>
+		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
 			<Icon
-				name="lock"
-				color="#000"
-				size={30}
+				style={styles.inputIcon}
+				name={icon}
+				size={24}
 				color="#fcfefc"
-				style={{ marginRight: 10 }}
 			/>
 			<TextInput
-				style={styles.inputStyle}
+				style={styles.inputText}
 				autoCorrect={false}
-				placeholder="Hasło"
+				placeholder={placeholder}
+				placeholderTextColor="rgba(0,0,0,0.4)"
+				multiline={size=="large"}
 			/>
+			{displayQRButton&&(<QRButton pressHandler={pressHandler}/>)}
 		</View>
+	);
+}
+
+export const QRButton = ({pressHandler}) => {
+	return(
+		<View style={{justifyContent:'center'}}>
+			<TouchableOpacity 
+			onPress={() => {
+				pressHandler();
+			}}
+			>
+				<Ionicons 
+				name="qr-code-outline" 
+				size={26} 
+				color="#fcfefc" 
+				/>
+			</TouchableOpacity>
+		</View>
+	);
+}
+
+//Gotowe Inputy
+
+export const NameInput = () => {
+	return(
+		<Input
+		icon="archive"
+        placeholder="nazwa"
+		color="yellow"
+		/>
+	);
+}
+
+export const LoginInput = () => {
+	return (
+		<Input
+		icon="user"
+        placeholder="login"
+		color="blue"
+		/>
 	);
 };
 
-export const PoleLogin = () => {
+export const PasswordInput = () => {
 	return (
-		<View style={styles.iconContainer_2}>
-			<Icon
-				name="user"
-				color="#000"
-				size={30}
-				color="#fcfefc"
-				style={{ marginRight: 10 }}
-			/>
-			<TextInput
-				style={styles.inputStyle}
-				autoCorrect={false}
-				placeholder="Login"
-			/>
-		</View>
+		<Input
+		icon="lock"
+        placeholder="hasło"
+		color="blue"
+		size="small"
+		/>
 	);
 };
 
-export const LokalizacjaRaport = () => {
+//duży input
+
+export const DescriptionInput = () => {
 	return (
-		<View style={styles.iconContainer_1}>
-			<Icon
-				name="map-marker"
-				color="#000"
-				size={32}
-				color="#fcfefc"
-				style={{ marginRight: 10 }}
-			/>
-			<TextInput
-				style={styles.inputStyle}
-				autoCorrect={false}
-				placeholder="Lokalizacja"
-			/>
-		</View>
+		<Input
+		icon="file"
+		color="yellow"
+		placeholder="opis"
+		size="large"
+		/>
+	);
+}
+
+//inputy korzystające z QR button
+
+export const ArticleCodeInput = ({pressHandler}) => {
+	return (
+		<Input
+		icon="search"
+		placeholder="kod"
+		color="yellow"
+		displayQRButton={true}
+		pressHandler={pressHandler}
+		/>
+	);
+}
+
+export const LocationCodeInput = ({pressHandler}) => {
+	return (
+		<Input
+		icon="map-marker"
+        placeholder="lokalizacja"
+		color="yellow"
+		displayQRButton={true}
+		pressHandler={pressHandler}
+		/>
 	);
 };
+
+//select, jeszcze nie zrobiony, usuniemy później Polekategoria
+
+export const CategorySelect = () => {
+	return (
+		<Input
+		icon="folder"
+		placeholder="kategoria"
+		color="yellow"
+		/>
+	);
+}
 
 export const PoleKategoria = () => {
 	return (
@@ -79,138 +148,54 @@ export const PoleKategoria = () => {
 	);
 };
 
-export const PoleKod = () => {
-	return (
-		<View style={styles.iconContainer_1}>
-			<Icon
-				name="search"
-				color="#000"
-				size={27}
-				color="#fcfefc"
-				style={{ marginRight: 10 }}
-			/>
-			<TextInput
-				style={styles.inputStyle}
-				autoCorrect={false}
-				placeholder="Kod"
-			/>
-			<TouchableOpacity>
-				<Icon
-					name="qrcode"
-					color="#000"
-					size={27}
-					color="#fcfefc"
-					style={{ marginRight: 10 }}
-				/>
-			</TouchableOpacity>
-		</View>
-	);
-};
 
-export const PoleLokalizacja = () => {
-	return (
-		<View style={styles.iconContainer_1}>
-			<Icon
-				name="map-marker"
-				color="#000"
-				size={30}
-				color="#fcfefc"
-				style={{ marginRight: 10 }}
-			/>
-			<TextInput
-				style={styles.inputStyle}
-				autoCorrect={false}
-				placeholder="Lokalizacja"
-			/>
-			<TouchableOpacity>
-				<Icon
-					name="qrcode"
-					color="#000"
-					size={27}
-					color="#fcfefc"
-					style={{ marginRight: 10 }}
-				/>
-			</TouchableOpacity>
-		</View>
-	);
-};
 
-export const PoleNazwa = () => {
-	return (
-		<View style={styles.iconContainer_1}>
-			<Icon
-				name="archive"
-				color="#000"
-				size={28}
-				color="#fcfefc"
-				style={{ marginRight: 10 }}
-			/>
-			<TextInput
-				style={styles.inputStyle}
-				autoCorrect={false}
-				placeholder="Nazwa"
-			/>
-		</View>
-	);
-};
 
-export const PoleOpis = () => {
-	return (
-		<View style={styles.iconContainer_1}>
-			<Icon
-				name="file"
-				color="#000"
-				size={28}
-				color="#fcfefc"
-				style={{ marginRight: 10 }}
-			/>
-			<TextInput
-				style={styles.inputStyle}
-				autoCorrect={false}
-				placeholder="Opis"
-			/>
-		</View>
-	);
-};
+
+
+//style
 
 const styles = StyleSheet.create({
-	NiebIn: {
-		backgroundColor: '#8fa5be',
-		borderColor: '#eff2f6',
-	},
-	PomaIn: {
-		backgroundColor: '#fec786',
-		borderColor: '#fec786',
-	},
-	iconContainer_1: {
-		flexDirection: 'row',
-		borderBottomWidth: 1,
-		width: '100%',
-		height: '100%',
-		paddingVertical: '3%',
-		paddingHorizontal: 13,
-		borderWidth: 1,
-		borderRadius: 25,
-		fontSize: 16,
-    	backgroundColor: '#fec786',
-		borderColor: '#fec786',
-	},
-	iconContainer_2: {
-		flexDirection: 'row',
-		borderBottomWidth: 1,
-		width: '100%',
-		height: '100%',
-		paddingVertical: '3%',
-		paddingHorizontal: 13,
-		borderWidth: 1,
-		borderRadius: 25,
-		fontSize: 16,
-    	backgroundColor: '#8fa5be',
-		borderColor: '#8fa5be',
-	},
-	inputStyle: {
+	inputText: {
+		textAlignVertical: 'top',
+		marginLeft: '5%',
+		color: '#faf3ea',
 		flex: 1,
 		width: "100%",
+		fontSize: 22,
 	},
+	inputBox:{
+		width: "86%",
+     	marginHorizontal: "7%",
+      	marginVertical: "4%",
+		flexDirection: 'row',
+		paddingVertical: 7,
+		paddingHorizontal: 15,
+		borderWidth: 1,
+		borderRadius: 28,
+	},
+	inputIcon:{
+		marginTop: 3,
+	},
+	inputSmall:{
+		height: 49,
+	},
+	inputLarge:{
+		height: 170
+	}, 
+	inputBlue:{
+		backgroundColor: '#8fa5be',
+		borderColor: '#eff2f6'
+	},
+	inputYellow:{
+		backgroundColor: '#ffc06f',
+		borderColor: '#ffc06f'
+	}
+
+
 });
-//import {PoleHaslo, PoleLogin, LokalizacjaRaport, PoleKategoria, PoleKod, PoleLokalizacja, PoleNazwa, } from './Buttons.js';
+
+
+//tablice asocjacyjne, pozwalające na proceduralne dobieranie stylów
+const colors = {yellow: styles.inputYellow, blue: styles.inputBlue};
+const sizes = {small: styles.inputSmall, large: styles.inputLarge};
