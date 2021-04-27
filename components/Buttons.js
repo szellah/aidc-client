@@ -1,110 +1,119 @@
 import React from "react";
-import { View, Button, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 
-const AppButton_Dodaj = ({ onPress, title }) => (
-    <TouchableOpacity onPress={onPress} style={styles.appButtonContainer_dodaj}>
-      <Text style={styles.appButtonText}>{title}</Text>
+
+//Elementy po których się pseudo dziediczy, dla reacta się na to mówi "zawieranie"
+export const Button = ({ title, color, size, pressHandler }) => {
+  return(
+    <TouchableOpacity 
+    onPress={() => {
+      pressHandler();
+    }}>
+      <View style={[styles.buttonBox, colors[color], sizes[size]['button'] ]}>
+        <Text style={[styles.buttonText, sizes[size]['text'] ]}>{title}</Text>
+      </View>
     </TouchableOpacity>
   );
-export const Dodaj = () => {
-	return (
-      <View>
-        <AppButton_Dodaj style={styles.Dodaj} title="Dodaj" size="sm" backgroundColor="#007bff" />
-      </View>
-	);
 }
 
-const AppButton_Eksportuj = ({ onPress, title }) => (
-    <TouchableOpacity onPress={onPress} style={styles.appButtonContainer_eksportuj}>
-      <Text style={styles.appButtonText}>{title}</Text>
-    </TouchableOpacity>
-  );
-export const Eksportuj = () => {
-	return (
-      <View>
-        <AppButton_Eksportuj style={styles.Eksportuj} title="Eksportuj" size="sm" backgroundColor="#007bff" />
-      </View>
-	);
-};
+//Przyciski niebieskie
 
-const AppButton_Wyloguj = ({ onPress, title }) => (
-    <TouchableOpacity onPress={onPress} style={styles.appButtonContainer_wyloguj}>
-      <Text style={styles.appButtonText}>{title}</Text>
-    </TouchableOpacity>
+export const EditButton = ({pressHandler}) => {
+  return(
+    <Button
+    title="Edytuj"
+    color="blue"
+    size="small"
+    pressHandler={pressHandler}
+    />
   );
-export const Wyloguj = () => {
-	return (
-      <View>
-        <AppButton_Wyloguj style={styles.Wyloguj} title="Wyloguj" size="sm" backgroundColor="#007bff" />
-      </View>
-	);
-};
+}
 
-const AppButton_Zaloguj = ({ onPress, title }) => (
-    <TouchableOpacity onPress={onPress} style={styles.appButtonContainer_zaloguj}>
-      <Text style={styles.appButtonText}>{title}</Text>
-    </TouchableOpacity>
+export const DeleteButton = ({pressHandler}) => {
+  return(
+    <Button
+    title="Usuń"
+    color="blue"
+    size="small"
+    pressHandler={pressHandler}
+    />
   );
-export const Zaloguj = () => {
-	return (
-      <View>
-        <AppButton_Zaloguj style={styles.Zaloguj} title="Zaloguj" size="sm" backgroundColor="#007bff" />
-      </View>
-	);
-};
+}
+
+//przyciski żółte
+
+export const LoginButton = ({pressHandler}) => {
+  return(
+    <Button
+    title="Zaloguj"
+    color="yellow"
+    size="large"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
+export const ExportButton = ({pressHandler}) => {
+  return(
+    <Button
+    title="Eksportuj"
+    color="yellow"
+    size="large"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
+//przyciski zielone
+
+export const LogoutButton = ({pressHandler}) => {
+  return(
+    <Button
+    title="Wyloguj"
+    color="green"
+    size="small"
+    pressHandler={pressHandler}
+    />
+  );
+}
 
 const styles = StyleSheet.create({
-      Zaloguj:{
-          backgroundColor: "#ff8c1a",
-      },
-      Eksportuj:{
-          backgroundColor: "#ff8c1a",
-      },
-      appButtonContainer_dodaj: {
-        width: 150,
-        height: '33%',
-        backgroundColor: "#8fa5be",
+      buttonBox:{
         borderRadius: 40,
-        paddingVertical: 5,
-        paddingHorizontal: 10,
-        alignSelf: "flex-end",
-        marginBottom: 20,
+        flexDirection: 'row',
+        justifyContent: 'center'
       },
-      appButtonContainer_eksportuj: {
-        width: 150,
-        height: '33%',
-        backgroundColor: "#fec786",
-        borderRadius: 40,
-        paddingVertical: 5,
-        paddingHorizontal: 5,
-        alignSelf: "flex-end",
-        margin:'5%'
-      },
-      appButtonContainer_wyloguj: {
-        width: 150,
-        height: '33%',
-        backgroundColor: "#B6B6B4",
-        borderRadius: 40,
-        paddingVertical: 5,
-        paddingHorizontal: 10,
-        alignSelf: "flex-end",
-        marginBottom: 20,
-      },
-      appButtonContainer_zaloguj: {
-        width: 150,
-        height: '33%',
-        backgroundColor: "#fec786",
-        borderRadius: 40,
-        paddingVertical: 5,
-        paddingHorizontal: 10,
-        alignSelf: "flex-end",
-        marginTop: 30,
-      },
-      appButtonText: {
-        fontSize: 20,
-        color: "#fff",
-        alignSelf: "center",
+      buttonText:{
+        color: "#ffffff",
         textTransform: "uppercase"
-      }
+      },//buttonColor
+      buttonBlue:{
+        backgroundColor: "#8fa5be",
+      },
+      buttonYellow:{
+        backgroundColor: "#ffc06f",
+      },
+      buttonGreen:{
+        backgroundColor: "#b3b7ba",
+      },//buttonSize
+      textSmall:{
+        fontSize: 23,
+      },
+      buttonSmall:{
+        width: 160,
+        paddingVertical: 3,
+      },
+      textLarge:{
+        fontSize: 28,
+      },
+      buttonLarge:{
+        paddingHorizontal: 23,
+        paddingVertical: 5,
+      },
+
+
   });
 
+  //tablice asocjacyjne, pozwalające na proceduralne dobieranie stylów
+  const colors = {yellow: styles.buttonYellow, blue: styles.buttonBlue, green: styles.buttonGreen};
+  const sizes = {small: {text: styles.textSmall, button: styles.buttonSmall}, large: {text: styles.textLarge, button: styles.buttonLarge} };
