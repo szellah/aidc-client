@@ -1,68 +1,102 @@
-import React, {useState} from 'react';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
-import NotificationBox from '../components/NotificationBox';
+import React from "react";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  ImageBackground,
+  Image,
+} from "react-native";
 
-export default function Home({ navigation }){
+import ChooseSectionButton from "../components/ChooseSectionButton";
+import SectionsMenu from "../components/SectionsMenu";
 
-    const Creq_lib = require('../clientRequests/Creq_lib');
+export default function Home({ navigation }) {
+  const Logout = () => {
+    // tymczasowo, aby łatwiej się poruszać
+    navigation.navigate("Login");
+  };
 
-    const [sendId, setSendId] = useState(0);
-    const [notificationVisibility, setNotificationVisibility] = useState(false);
-    const [notificationContent, setNotificationContent ] =useState({});
-
-
-    {/* Wiązanka obietnic (Promise) która wpierw pobiera dane, następnie wstawia je do wiadomości i pod koniec ją wyświetla */}
-    const displayNotificaiton = () => {
-
-        Creq_lib.test(sendId)
-        .then(resolve => setNotificationContent(resolve))
-        .then(setNotificationVisibility(true));
-
-    }
-
-    return(
-    <View style={styles.container}>
-
-        {/* Pudełko w którym mogą się pojawić powiadomienia */}
-        <NotificationBox 
-        visibility={notificationVisibility} 
-        VisibilityHandler={ setNotificationVisibility } 
-        content={notificationContent}
+  // poszczególne sekcje do menu
+  const Sections = () => {
+    return (
+      <>
+        <ChooseSectionButton
+          srcImg={require("../assets/homePage/TOWARButton.png")}
+          PressHandler={() => {
+            navigation.navigate("Dodawanie");
+          }}
         />
+        <ChooseSectionButton
+          srcImg={require("../assets/homePage/LOKALIZACJAButton.png")}
+          PressHandler={() => {
+            navigation.navigate("Login");
+          }}
+        />
+        <ChooseSectionButton
+          srcImg={require("../assets/homePage/UŻYTKOWNICYButton.png")}
+          PressHandler={() => {
+            navigation.navigate("Raport");
+          }}
+        />
+        <ChooseSectionButton
+          srcImg={require("../assets/homePage/USTAWIENIAButton.png")}
+          PressHandler={() => {
+            navigation.navigate("Login");
+          }}
+        />
+      </>
+    );
+  };
 
-
-        {/* Input tekstowy */}
-      <TextInput
-      style={styles.input} 
-      placeholder='wpisz tu liczbę'
-      onChangeText={(val) => {
-        setSendId(val);
-      }}
-      />
-      <View style={styles.button} ><Button onPress={ () => {navigation.push("Report", {id: sendId})}} title='Raport'/></View>
-      <View style={styles.button} ><Button onPress={ displayNotificaiton } title='Powiadomienie'/></View>
-
+  return (
+    <View style={styles.wrapper}>
+      <ImageBackground
+        // nie znalazłem tła w plikach, więc dałem "tło dodawanie"
+        source={require("../assets/homePage/tempBackground.png")}
+        style={styles.imageBackground}
+      >
+        <View style={{ alignSelf: "flex-end" }}>
+          <TouchableOpacity onPress={Logout} style={styles.logout}>
+            <Image
+              style={styles.imgButton}
+              source={require("../assets/homePage/WYLOGUJButton.png")}
+            />
+          </TouchableOpacity>
+        </View>
+        <View
+          style={{
+            marginTop: "auto",
+            marginBottom: "auto",
+            paddingBottom: styles.logout.marginTop,
+            maxWidth: 340,
+            maxHeight: 440,
+          }}
+        >
+          <SectionsMenu>
+            <Sections />
+          </SectionsMenu>
+        </View>
+      </ImageBackground>
     </View>
-    )
+  );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'column',
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    input: {
-      borderColor: 'rgba(0,0,0,0.2)',
-      borderWidth: 1,
-      borderStyle: 'dashed',
-      borderRadius: 5,
-      padding: 10,
-      marginVertical:10,
-    },
-    button: {
-        marginVertical: 5,
-    }
-  });
+  wrapper: {
+    flexGrow: 1,
+  },
+  imageBackground: {
+    flex: 1,
+    resizeMode: "cover",
+    alignItems: "center",
+  },
+  logout: {
+    marginTop: 40,
+    marginRight: 40,
+    maxWidth: 150,
+  },
+  imgButton: {
+    resizeMode: "contain",
+    maxWidth: "100%",
+  },
+});
