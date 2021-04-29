@@ -8,7 +8,7 @@ const kliknij = (text) => {
     console.log(text);
 }
 
-export default function Home({navigation}){
+export default function Test({navigation}){
     return(
         <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={{flex: 1}}>
 
