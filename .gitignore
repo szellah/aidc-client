@@ -12,8 +12,8 @@ jsdoc.json
 route/homeStack.js
 screens/Test.js
 
-doc/** /*
-
+docs/*
+.vscode/*
 
 
 # macOS
