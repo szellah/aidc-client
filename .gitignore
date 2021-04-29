@@ -10,8 +10,7 @@ npm-debug.*
 web-build/
 Test.js
 jsdoc.json
-route/homeStack.js
-screens/Test.js
+
 doc/*
 
 
