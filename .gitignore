@@ -8,8 +8,11 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+jsdoc.json
+route/homeStack.js
+screens/Test.js
 
-doc/*
+doc/** /*
 
 
 
