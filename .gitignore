@@ -9,6 +9,12 @@ npm-debug.*
 *.orig.*
 web-build/
 Test.js
+jsdoc.json
+route/homeStack.js
+screens/Test.js
+doc/*
+
+
 
 # macOS
 .DS_Store
