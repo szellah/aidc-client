@@ -3,7 +3,7 @@ import {createAppContainer} from 'react-navigation';
 import Home from '../screens/Home.js';
 import Login from '../screens/Login.js';
 import Dodawanie from '../screens/Dodawanie.js';
-import Raport from '../screens/Raport.js';
+import Report from '../screens/Report.js';
 import Test from '../screens/Test'
 
 
@@ -18,12 +18,8 @@ const screens = {
     Home: {
         screen: Home
     },
-  
-    
-
-    
     Raport: {
-        screen: Raport
+        screen: Report
     },
 }
 
