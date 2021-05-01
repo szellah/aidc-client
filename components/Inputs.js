@@ -5,7 +5,12 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 //Input oraz QRbutton z którego dziedziczą różne inputy, dla reacta się na to mówi "zawieranie"
-
+/**
+ * 
+ * @function
+ * 
+ * @param {string} icon Ze to ikona 
+ */
 export const Input = ({icon, placeholder, color, size, displayQRButton, pressHandler}) => {
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
