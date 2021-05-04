@@ -11,8 +11,8 @@ import {
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import NotificationBox from "../components/NotificationBox";
-import {PoleHaslo, PoleLogin} from '../components/Inputs.js';
-import {Zaloguj} from '../components/Buttons.js';
+import {PasswordInput, LoginInput} from '../components/Inputs.js';
+import {LoginButton} from '../components/Buttons.js';
 
 export default function Login({ navigation }) {
   const Creq_lib = require("../clientRequests/Creq_lib");
@@ -71,16 +71,16 @@ export default function Login({ navigation }) {
               />
               <View style={styles.inputContainer}>
                 <View style={styles.Login}>
-                  <PoleLogin/>
+                  <LoginInput/>
                 </View>
                 <View style={styles.Login}>
-                  <PoleHaslo/>
+                  <PasswordInput/>
                 </View>
                 {/* tutaj wstawić nowe inputy */}
               </View>
             </View>
             <View style={styles.bottContainer}>
-              <Zaloguj/>
+              <LoginButton/>
               <TouchableOpacity
                 onPress={ForgotPassword}
               >

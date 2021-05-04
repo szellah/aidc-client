@@ -3,11 +3,18 @@ import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 
 
 //Elementy po których się pseudo dziediczy, dla reacta się na to mówi "zawieranie"
-export const Button = ({ title, color, size, pressHandler }) => {
+export const Button = ({ navigation, destination, title, color, size, pressHandler }) => {
   return(
     <TouchableOpacity 
     onPress={() => {
-      pressHandler();
+      if(navigation != null)
+      {
+        navigation.navigate(destination);
+      }
+      else
+      {
+        pressHandler();
+      }
     }}>
       <View style={[styles.buttonBox, colors[color], sizes[size]['button'] ]}>
         <Text style={[styles.buttonText, sizes[size]['text'] ]}>{title}</Text>
@@ -59,6 +66,41 @@ export const ExportButton = ({pressHandler}) => {
     title="Eksportuj"
     color="yellow"
     size="large"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
+export const ChangeButton = ({pressHandler}) => {
+  return(
+    <Button
+    title="Zmień"
+    color="yellow"
+    size="small"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
+export const CancelButton = ({pressHandler, navigation}) => {
+  return(
+    <Button
+    title="Anuluj"
+    color="yellow"
+    size="small"
+    navigation={navigation}
+    destination="Ustawienia"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
+export const DeletYellowButton = ({pressHandler}) => {
+  return(
+    <Button
+    title="Usuń"
+    color="yellow"
+    size="small"
     pressHandler={pressHandler}
     />
   );

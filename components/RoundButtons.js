@@ -1,10 +1,11 @@
 import React from "react";
-import { Feather } from '@expo/vector-icons';
+import { Feather, Foundation, Ionicons } from '@expo/vector-icons';
 import { View, StyleSheet, TouchableOpacity, Text, Dimensions} from "react-native";
 
 
 //Element po którym pseudo dziedziczy, dla reacta się na to mówi "zawieranie"
-export const RoundButton = ({navigation, destination, icon, title, color}) => {
+export const RoundButton = ({navigation, destination, icon, familyOfIcons, title, color}) => {
+    
     return(
         <TouchableOpacity
         onPress={() => {
@@ -14,7 +15,10 @@ export const RoundButton = ({navigation, destination, icon, title, color}) => {
 
             <View style={styles.buttonBox}>
                 <View style={[ styles.button, colors[color] ]}>
-                    <Feather name={icon} size={Dimensions.get('window').width * 0.18} color="white" />
+                    <Icon 
+                    familyOfIcons = {familyOfIcons}
+                    icon = {icon}
+                    />
                 </View>
                 <Text
                 style={[ styles.buttonText, textColors[color] ]}
@@ -25,6 +29,17 @@ export const RoundButton = ({navigation, destination, icon, title, color}) => {
 
         </TouchableOpacity>
     )
+}
+
+export const Icon = ({familyOfIcons, icon}) => {
+    if(familyOfIcons == null)
+        return(<Feather name={icon} size={Dimensions.get('window').width * 0.18} color="white" />)
+    else
+    if(familyOfIcons == "Foundation")
+        return(<Foundation name={icon} size={Dimensions.get('window').width * 0.25} color="white" />)
+    else
+    if(familyOfIcons == "Ionicons")
+            return(<Ionicons name={icon} size={Dimensions.get('window').width * 0.25} color="white" />)
 }
 
 
@@ -72,12 +87,51 @@ export const SettingsButton = ({navigation}) => {
         navigation={navigation}
         color="sand"
         icon="settings"
-        destination="Raport"
+        destination="Ustawienia"
         title="Ustawienia"
         />
     )
 }
 
+//poszczególne przyciski ustawień
+export const ChangePasswordButton = ({navigation}) => {
+    return(
+        <RoundButton
+        navigation={navigation}
+        color="yellow"
+        familyOfIcons="Foundation"
+        icon="lock"
+        destination="ZmienHaslo"
+        title="Zmień hasło"
+        />
+    )
+}
+
+export const InformationButton = ({navigation}) => {
+    return(
+        <RoundButton
+        navigation={navigation}
+        color="gray"
+        familyOfIcons="Ionicons"
+        icon="information-circle-outline"
+        destination="ZmienHaslo"
+        title="Informacje"
+        />
+    )
+}
+
+export const DeleteAccountButton = ({navigation}) => {
+    return(
+        <RoundButton
+        navigation={navigation}
+        color="blue"
+        familyOfIcons="Foundation"
+        icon="x-circle"
+        destination="UsunKonto"
+        title="Usuń konto"
+        />
+    )
+}
 
 //style
 const styles = StyleSheet.create({

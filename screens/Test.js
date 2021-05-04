@@ -1,8 +1,8 @@
 import React from "react";
 import { ImageBackground } from "react-native";
-import {LogoutButton} from "../components/Buttons"
-import {Tray} from '../components/Trays'
-import {LocationButton, UsersButton, SettingsButton, PackageButton} from '../components/RoundButtons'
+import {LogoutButton} from "../components/Buttons";
+import {Tray} from '../components/Trays';
+import {LocationButton, UsersButton, SettingsButton, PackageButton} from '../components/RoundButtons';
 
 const kliknij = (text) => {
     console.log(text);

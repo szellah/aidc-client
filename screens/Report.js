@@ -1,7 +1,7 @@
 import React, {Component, useState} from "react";
 import { Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
-import {LokalizacjaRaport} from '../components/Inputs.js';
-import {Eksportuj} from '../components/Buttons.js';
+import {LocationCodeInput} from '../components/Inputs.js';
+import {ExportButton} from '../components/Buttons.js';
 import {Table} from '../components/Table.js';
 import { ScrollView } from "react-native-gesture-handler";
 import {PasekNawigacyjny,PasekNawigacyjnyInfo} from '../components/PasekNawigacyjny.js';
@@ -24,7 +24,7 @@ export default function App(){
       </View>
       
       <View style={styles.nazwa}>
-        <LokalizacjaRaport/>
+        <LocationCodeInput/>
       </View>
 
       <View style={styles.tabelka}>
@@ -32,7 +32,7 @@ export default function App(){
       </View>
       
       <View style={styles.button}>
-        <Eksportuj/>
+        <ExportButton/>
       </View>
     </View>
   </ImageBackground>

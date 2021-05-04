@@ -4,7 +4,10 @@ import Home from '../screens/Home.js';
 import Login from '../screens/Login.js';
 import Dodawanie from '../screens/Dodawanie.js';
 import Report from '../screens/Report.js';
-import Test from '../screens/Test'
+import Test from '../screens/Test';
+import Settings from '../screens/Settings';
+import DeleteAccount from '../screens/DeleteAccount';
+import ChangePassword from '../screens/ChangePassword';
 
 
 const screens = {
@@ -20,6 +23,15 @@ const screens = {
     },
     Raport: {
         screen: Report
+    },
+    Ustawienia: {
+        screen: Settings
+    },
+    UsunKonto: {
+        screen: DeleteAccount
+    },
+    ZmienHaslo: {
+        screen: ChangePassword
     },
 }
 

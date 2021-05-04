@@ -6,7 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 //Input oraz QRbutton z którego dziedziczą różne inputy, dla reacta się na to mówi "zawieranie"
 
-export const Input = ({icon, placeholder, color, size, displayQRButton, pressHandler}) => {
+export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler}) => {
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
 			<Icon
@@ -19,7 +19,7 @@ export const Input = ({icon, placeholder, color, size, displayQRButton, pressHan
 				style={styles.inputText}
 				autoCorrect={false}
 				placeholder={placeholder}
-				placeholderTextColor="rgba(0,0,0,0.4)"
+				placeholderTextColor={placeholderTextColor == null ? "rgba(0,0,0,0.4)" : placeholderTextColor}
 				multiline={size=="large"}
 			/>
 			{displayQRButton&&(<QRButton pressHandler={pressHandler}/>)}
@@ -72,6 +72,66 @@ export const PasswordInput = () => {
 		<Input
 		icon="lock"
         placeholder="hasło"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+export const EnterOldPasswordInput = () => {
+	return (
+		<Input
+		icon="lock"
+        placeholder="podaj stare hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+export const EnterNewPasswordInput = () => {
+	return (
+		<Input
+		icon="lock"
+        placeholder="podaj nowe hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+export const RepeatNewPasswordInput = () => {
+	return (
+		<Input
+		icon="lock"
+        placeholder="powtórz nowe hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+export const EnterPasswordInput = () => {
+	return (
+		<Input
+		icon="lock"
+        placeholder="podaj hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+export const RepeatPasswordInput = () => {
+	return (
+		<Input
+		icon="lock"
+        placeholder="powtórz hasło"
+		placeholderTextColor="white"
 		color="blue"
 		size="small"
 		/>

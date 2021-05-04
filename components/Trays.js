@@ -39,15 +39,22 @@ const styles = StyleSheet.create({
       trayCompact:{
         width: "100%",
       },
+      trayCompactMarginTop:{
+        width: "100%",
+        marginTop: "15%",
+      },
       trayLoose:{
         width: "86%",
         marginHorizontal: "7%",
         marginVertical: '4%'
+      },
+      trayBottom:{
+        position: "absolute",
+        top: "110%",
+        width: "100%",
       }
-
-
   });
 
   //tablice asocjacyjne, pozwalające na proceduralne dobieranie stylów
   const spreads = {center: styles.trayCenter, left: styles.trayLeft, right: styles.trayRight, even: styles.trayEven};
-  const compositions = {compact: styles.trayCompact, loose: styles.trayLoose};
+  const compositions = {compact: styles.trayCompact, compactMarginTop: styles.trayCompactMarginTop, loose: styles.trayLoose, bottom: styles.traybottom};
