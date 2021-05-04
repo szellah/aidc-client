@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
 
   //tablice asocjacyjne, pozwalające na proceduralne dobieranie stylów
   const spreads = {center: styles.trayCenter, left: styles.trayLeft, right: styles.trayRight, even: styles.trayEven};
-  const compositions = {compact: styles.trayCompact, compactMarginTop: styles.trayCompactMarginTop, loose: styles.trayLoose, bottom: styles.traybottom};
+  const compositions = {compact: styles.trayCompact, compactMarginTop: styles.trayCompactMarginTop, loose: styles.trayLoose, bottom: styles.trayBottom};
