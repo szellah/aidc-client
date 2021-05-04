@@ -3,7 +3,10 @@ import { StyleSheet, Text, View, Modal, Dimensions, TouchableOpacity, TouchableW
 import { Entypo } from '@expo/vector-icons';
 
 /** Powiadomienie typu informacyjne oraz o błędzie w jednym komponencie. */
-
+//Komponent powiadomienie, który zawiera się w komponentach powiadomienia Informacyjnego i Błędu
+//visibiltyHandler object funkcja której zadaniem jest zmiana widoczności powiadomienia
+//message string wiadomość którą chcemy wyświetlić
+//color string szata koloryczna z listy kolorów: red, orange
 export function Notification({ visibilityHandler, message, color }) {
 	return (
 		<View style={[styles.notification, colors[color]['container'] ]}>
@@ -25,6 +28,9 @@ export function Notification({ visibilityHandler, message, color }) {
 	);
 }
 
+//Powiadomienie Informacyjne, o łagodniejszym kolorze z własną logiką 
+//visibiltyHandler object funkcja której zadaniem jest zmiana widoczności powiadomienia
+//message string wiadomość którą chcemy wyświetlić
 export function InfoNotification({visibilityHandler, message}){
 	return(
 		<Notification
@@ -35,6 +41,9 @@ export function InfoNotification({visibilityHandler, message}){
 	);
 }
 
+//Powiadomienie Błędu, o ostrzejszym kolorze z własną logiką 
+//visibiltyHandler object funkcja której zadaniem jest zmiana widoczności powiadomienia
+//message string wiadomość którą chcemy wyświetlić
 export function ErrorNotification({visibilityHandler, message}){
 	return(
 		<Notification
@@ -45,8 +54,14 @@ export function ErrorNotification({visibilityHandler, message}){
 	);
 }
 
+//Ekran powiadomień, w którym pojawiają się powiadomienia, jest przyciemniony dla doatkowego efektu. Po naciśnięciu na niego powaidomienie znika.
+//W ekranie dochodzi do warunkowego otwierania jednego z powiadomień (Błędu/ Informacji)  w obiekcie typu Modal
+//To jakie powiadomienie się pojawi zależy od wartości content.error, która jest informacją od serwera odnośnie tego czy doszło do błedu. 
+//Niekiedy ta wartość jest również ustawiana na telefonie w moemencie wystapienia problemu z wykonaniem danej operacji, np. braku połączenia.
+//visibility bool informacja czy ekran powiadomień ma się wyświetlać czy nie
+//visibiltyHandler object funkcja której zadaniem jest zmiana widoczności powiadomienia
+//content object stworzony zazwyczaj na serwerze pakiet danych z informacjami odnośnie wystąpienia błędów oraz danymi przesłanymi przez serwer.
 export function NotificationBox({visibility, visibilityHandler, content }) {
-	/** Warunkowe otwieranie jednego z powiadomień (Błędu/ Informacji)  w obiekcie typu Modal */
 	return (
 		<Modal visible={visibility} transparent={true} animationType="fade">
 			
@@ -100,4 +115,5 @@ const styles = StyleSheet.create({
 	},
 });
 
+//Tablica asocjacyjna pozwalająca na proceduralne zmieny szaty grtaficznej powiadomienia
 const colors = { orange: {text: styles.textOrange, container: styles.notificationInfo } , red: { text: styles.textRed, container: styles.notificationError } };
