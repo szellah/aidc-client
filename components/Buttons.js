@@ -76,6 +76,26 @@ export const LogoutButton = ({pressHandler}) => {
     />
   );
 }
+export const SaveButton = ({pressHandler}) => {
+    return(
+      <Button
+      title="Zapisz"
+      color="blue"
+      size="small"
+      pressHandler={pressHandler}
+      />
+    );
+  }
+  export const CancelButton = ({pressHandler}) => {
+    return(
+      <Button
+      title="Anuluj"
+      color="blue"
+      size="small"
+      pressHandler={pressHandler}
+      />
+    );
+  }
 
 const styles = StyleSheet.create({
       buttonBox:{

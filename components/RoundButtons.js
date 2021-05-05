@@ -77,6 +77,28 @@ export const SettingsButton = ({navigation}) => {
         />
     )
 }
+export const InfoButton = ({navigation}) => {
+    return(
+        <RoundButton
+        navigation={navigation}
+        color="gray"
+        icon="info"
+        destination="Raport"
+        title="Informacje"
+        />
+    )
+}
+export const PlusButton = ({navigation}) => {
+    return(
+        <RoundButton
+        navigation={navigation}
+        color="sand"
+        icon="plus"
+        destination="Raport"
+        title="Dodaj"
+        />
+    )
+}
 
 
 //style
