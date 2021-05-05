@@ -1,6 +1,7 @@
 import React from "react";
 import {Text, View, StyleSheet, TouchableOpacity,
     Image, Dimensions, } from "react-native";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
 /* Pasek nawigacyjny */
 
@@ -14,14 +15,14 @@ import {Text, View, StyleSheet, TouchableOpacity,
 export const PasekNawigacyjny = ({navigation} /* Obiekt do nawigacji */) => {
   return (
     <View style={styles.header}>
-        <TouchableOpacity
+        <TouchableHighlight
             /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
             <Image source={require("../assets/homeIcon.png")} style={styles.home}/>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </TouchableHighlight>
+        <TouchableHighlight
             /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
             <Image source={require("../assets/itemIcon.png")} style={styles.item}/>
-        </TouchableOpacity>
+        </TouchableHighlight>
         <Image source={require("../assets/pusty2Icon.png")} style={styles.pusty}/>
         
     </View>
@@ -31,18 +32,18 @@ export const PasekNawigacyjny = ({navigation} /* Obiekt do nawigacji */) => {
 export const PasekNawigacyjnyInfo = ({navigation} /* Obiekt do nawigacji */) => {
   return (
     <View style={styles.header}>
-        <TouchableOpacity
+        <TouchableHighlight
             /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
             <Image source={require("../assets/homeIcon.png")} style={styles.home}/>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </TouchableHighlight>
+        <TouchableHighlight
             /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
             <Image source={require("../assets/itemIcon.png")} style={styles.item}/>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </TouchableHighlight>
+        <TouchableHighlight
             /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
             <Image source={require("../assets/infoIcon.png")} style={styles.info}/>
-        </TouchableOpacity>
+        </TouchableHighlight>
         <Image source={require("../assets/pustyIcon.png")} style={styles.pusty}/>
   </View>
   );

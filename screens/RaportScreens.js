@@ -16,7 +16,7 @@ const {width, height} = Dimensions.get("window");
 // route - obiekt do przekazywania danych miedzy ekranami
 
 
-export default function RaportBudynek({navigation, route}) {
+export function RaportBudynek({navigation, route}) {
   const [budText, setBudText] = useState("budynek");
   return (
     <MenuProvider>
