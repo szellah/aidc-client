@@ -58,7 +58,8 @@ const {width, height} = Dimensions.get("window");
 const styles = StyleSheet.create({
   header: {
     width: "100%",
-    height: "100%",
+    // height: "100%",
+    height: height * 0.065,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",

@@ -5,8 +5,7 @@ import { Button, Text, View, TextInput, StyleSheet, Platform, TouchableHighlight
 import {MenuProvider} from 'react-native-popup-menu';
 import {Menu, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-menu';
 import { AntDesign } from '@expo/vector-icons'; 
-
-
+import {PasekNawigacyjny} from "../ProjektAIDC/components/PasekNawigacyjny";
 
 
 // Wymiary okna
@@ -16,12 +15,13 @@ const {width, height} = Dimensions.get("window");
 // route - obiekt do przekazywania danych miedzy ekranami
 
 
-export default function RaportBudynek({navigation, route}) {
+export function RaportBudynek({navigation, route}) {
   const [budText, setBudText] = useState("budynek");
   return (
     <MenuProvider>
       <ImageBackground source={require("../ProjektAIDC/assets/tlo_raport.png")} style={styles.tlo}>
         <View style={styles.container}>
+          <PasekNawigacyjny navigation={navigation}/>
           <Image
             source={require("../ProjektAIDC/assets/raportPage/raportTytul.png")}
             style={styles.raport}
@@ -49,6 +49,7 @@ export function RaportKategoria({navigation, route}) {
     <MenuProvider>
       <ImageBackground source={require("../ProjektAIDC/assets/tlo_raport.png")} style={styles.tlo}>
         <View style={styles.container}>
+          <PasekNawigacyjny navigation={navigation}/>
           <Image
             source={require("../ProjektAIDC/assets/raportPage/raportTytul.png")}
             style={styles.raport}
@@ -76,6 +77,7 @@ export function RaportPietro({navigation, route}) {
     <MenuProvider>
       <ImageBackground source={require("../ProjektAIDC/assets/tlo_raport.png")} style={styles.tlo}>
         <View style={styles.container}>
+          <PasekNawigacyjny navigation={navigation}/>
           <Image
             source={require("../ProjektAIDC/assets/raportPage/raportTytul.png")}
             style={styles.raport}
@@ -96,7 +98,7 @@ export function RaportPietro({navigation, route}) {
 }
 
 
-export function RaportPokoj({navigation, route}) {
+export default function RaportPokoj({navigation, route}) {
   const [budText, setBudText] = useState("budynek");
   const [pietroText, setPietroText] = useState("piętro");
   const [pokojText, setPokojText] = useState("pokój");
@@ -104,6 +106,7 @@ export function RaportPokoj({navigation, route}) {
     <MenuProvider>
       <ImageBackground source={require("../ProjektAIDC/assets/tlo_raport.png")} style={styles.tlo}>
         <View style={styles.container}>
+          <PasekNawigacyjny navigation={navigation}/>
           <Image
             source={require("../ProjektAIDC/assets/raportPage/raportTytul.png")}
             style={styles.raport}
@@ -130,6 +133,7 @@ export function RaportWedlugLista({navigation, route}) {
     <MenuProvider>
       <ImageBackground source={require("../ProjektAIDC/assets/tlo_raport.png")} style={styles.tlo}>
         <View style={styles.container}>
+          <PasekNawigacyjny navigation={navigation}/>
           <Image
             source={require("../ProjektAIDC/assets/raportPage/raportTytul.png")}
             style={styles.raport}
@@ -438,7 +442,7 @@ const sporzadzBtnStyles = StyleSheet.create({
     height: height * 0.1,
   },
   sporzadzBtnPokoj: {
-    marginTop: 80,
+    marginTop: 40,
     width: width * 0.4,
     height: height * 0.1,
   },
