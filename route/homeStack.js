@@ -41,5 +41,5 @@ const screens = {
   },
 };
 
-const HomeStack = createStackNavigator(screens, { headerMode: "none" });
+const HomeStack = createStackNavigator(screens);
 export default createAppContainer(HomeStack);
