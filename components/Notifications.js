@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
 		backgroundColor: '#faf3ea',
 	},
 	notificationError:{
-		backgroundColor: '#faf300',
+		backgroundColor: '#d07474',
 	},
 	text:{
 		fontSize: 24,
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
 		color: 'orange',
 	},
 	textRed: {
-		color: 'tomato',
+		color: 'white',
 	},
 	cross: {
 		textAlign: 'right',
