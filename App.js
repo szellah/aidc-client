@@ -1,7 +1,8 @@
 import React from 'react';
-import Navigator from './route/homeStack.js';
-import Notifications from './components/Notifications';
+import Navigator from "./route/homeStack.js"
 
 export default function App() {
-	return <Notifications message="Zmieniono dane konta" color="orange" />;
+  return (
+    <Navigator/>
+  );
 }
