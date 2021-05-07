@@ -97,6 +97,41 @@ export const ConfirmButton = ({ pressHandler }) => {
   );
 };
 
+export const ChangeButton = ({pressHandler}) => {
+  return(
+    <Button
+    title="Zmień"
+    color="yellow"
+    size="small"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
+export const CancelButton = ({pressHandler, navigation}) => {
+  return(
+    <Button
+    title="Anuluj"
+    color="yellow"
+    size="small"
+    navigation={navigation}
+    destination="Ustawienia"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
+export const DeletYellowButton = ({pressHandler}) => {
+  return(
+    <Button
+    title="Usuń"
+    color="yellow"
+    size="small"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
 //przyciski zielone
 
 export const LogoutButton = ({ pressHandler }) => {

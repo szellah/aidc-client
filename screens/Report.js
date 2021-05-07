@@ -1,16 +1,8 @@
-import React, { Component, useState } from "react";
-import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ImageBackground,
-  TextInput,
-} from "react-native";
-import { LocationCodeInput } from "../components/Inputs.js";
-import { ExportButton } from "../components/Buttons.js";
-import { Table } from "../components/Table.js";
+import React, {Component, useState} from "react";
+import { Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
+import {LocationCodeInput} from '../components/Inputs.js';
+import {ExportButton} from '../components/Buttons.js';
+import {Table} from '../components/Table.js';
 import { ScrollView } from "react-native-gesture-handler";
 import {
   PasekNawigacyjny,

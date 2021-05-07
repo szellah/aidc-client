@@ -1,41 +1,37 @@
 import React from "react";
-import { Feather } from "@expo/vector-icons";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  Dimensions,
-  Image,
-} from "react-native";
+import { Feather, Foundation, Ionicons } from '@expo/vector-icons';
+import { View, StyleSheet, TouchableOpacity, Text, Dimensions} from "react-native";
+
 
 //Element po którym pseudo dziedziczy, dla reacta się na to mówi "zawieranie"
-export const RoundButton = ({
-  navigation,
-  destination,
-  icon,
-  title,
-  color,
-}) => {
-  return (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate(destination);
-      }}
-    >
-      <View style={styles.buttonBox}>
-        <View style={[styles.button, colors[color]]}>
-          <Feather
-            name={icon}
-            size={Dimensions.get("window").width * 0.18}
-            color="white"
-          />
-        </View>
-        <Text style={[styles.buttonText, textColors[color]]}>{title}</Text>
-      </View>
-    </TouchableOpacity>
-  );
-};
+export const RoundButton = ({navigation, destination, icon, familyOfIcons, title, color}) => {
+    
+    return(
+        <TouchableOpacity
+        onPress={() => {
+            navigation.navigate(destination);
+          }}
+        >
+
+            <View style={styles.buttonBox}>
+                <View style={[ styles.button, colors[color] ]}>
+                    <Icon 
+                    familyOfIcons = {familyOfIcons}
+                    icon = {icon}
+                    />
+                </View>
+                <Text
+                style={[ styles.buttonText, textColors[color] ]}
+                >
+                    {title}
+                </Text>
+            </View>
+          </TouchableOpacity>
+    );
+}
+
+
+
 
 // CustomRoundButton to przycisk który potrzebuje specjalnej grafiki (takiej której nie ma w "@expo/vector-icons")
 export const CustomRoundButton = ({
@@ -79,6 +75,17 @@ export const PackageButton = ({ navigation }) => {
     />
   );
 };
+
+export const Icon = ({familyOfIcons, icon}) => {
+    if(familyOfIcons == null)
+        return(<Feather name={icon} size={Dimensions.get('window').width * 0.18} color="white" />)
+    else
+    if(familyOfIcons == "Foundation")
+        return(<Foundation name={icon} size={Dimensions.get('window').width * 0.25} color="white" />)
+    else
+    if(familyOfIcons == "Ionicons")
+            return(<Ionicons name={icon} size={Dimensions.get('window').width * 0.25} color="white" />)
+}
 
 export const LocationButton = ({ navigation }) => {
   return (
@@ -141,6 +148,57 @@ export const AddArticleButton = ({ navigation }) => {
   );
 };
 
+export const SettingsButton = ({navigation}) => {
+    return(
+        <RoundButton
+        navigation={navigation}
+        color="sand"
+        icon="settings"
+        destination="Ustawienia"
+        title="Ustawienia"
+        />
+    )
+}
+
+//poszczególne przyciski ustawień
+export const ChangePasswordButton = ({navigation}) => {
+    return(
+        <RoundButton
+        navigation={navigation}
+        color="yellow"
+        familyOfIcons="Foundation"
+        icon="lock"
+        destination="ZmienHaslo"
+        title="Zmień hasło"
+        />
+    )
+}
+
+export const InformationButton = ({navigation}) => {
+    return(
+        <RoundButton
+        navigation={navigation}
+        color="gray"
+        familyOfIcons="Ionicons"
+        icon="information-circle-outline"
+        destination="ZmienHaslo"
+        title="Informacje"
+        />
+    )
+}
+
+export const DeleteAccountButton = ({navigation}) => {
+    return(
+        <RoundButton
+        navigation={navigation}
+        color="blue"
+        familyOfIcons="Foundation"
+        icon="x-circle"
+        destination="UsunKonto"
+        title="Usuń konto"
+        />
+    )
+}
 // przycisk "Odtowaruj"
 export const RemoveStockedArticleButton = ({ navigation }) => {
   return (
