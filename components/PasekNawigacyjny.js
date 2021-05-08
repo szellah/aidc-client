@@ -1,6 +1,13 @@
 import React from "react";
-import {Text, View, StyleSheet, TouchableOpacity,
-    Image, Dimensions, } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+  ImageBackground,
+} from "react-native";
 
 /* Pasek nawigacyjny */
 
@@ -10,41 +17,59 @@ import {Text, View, StyleSheet, TouchableOpacity,
         </Stack.Screen>
 */
 
-export const PasekNawigacyjny = ({navigation} /* Obiekt do nawigacji */) => {
+export const PasekNawigacyjny = ({ navigation } /* Obiekt do nawigacji */) => {
   return (
     <View style={styles.header}>
-        <TouchableOpacity
-            /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-            <Image source={require("../assets/homeIcon.png")} style={styles.home}/>
-        </TouchableOpacity>
-        <TouchableOpacity
-            /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-            <Image source={require("../assets/itemIcon.png")} style={styles.item}/>
-        </TouchableOpacity>
-        <Image source={require("../assets/pusty2Icon.png")} style={styles.pusty}/>
-        
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image source={require("../assets/homeIcon.png")} style={styles.home} />
+      </TouchableOpacity>
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image source={require("../assets/itemIcon.png")} style={styles.item} />
+      </TouchableOpacity>
+      <Image
+        source={require("../assets/pusty2Icon.png")}
+        style={styles.pusty}
+      />
     </View>
   );
-}
+};
 
-export const PasekNawigacyjnyInfo = ({navigation} /* Obiekt do nawigacji */) => {
+// Pasek nawigacyjny w menu "Towar (ArticleMenu)"
+export const PasekNawigacyjnyArticleMenu = (
+  { navigation } /* Obiekt do nawigacji */
+) => {
   return (
-    <View style={styles.header}>
-        <TouchableOpacity
-            /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-            <Image source={require("../assets/homeIcon.png")} style={styles.home}/>
-        </TouchableOpacity>
-        <TouchableOpacity
-            /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-            <Image source={require("../assets/itemIcon.png")} style={styles.item}/>
-        </TouchableOpacity>
-        <TouchableOpacity
-            /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-            <Image source={require("../assets/infoIcon.png")} style={styles.info}/>
-        </TouchableOpacity>
-        <Image source={require("../assets/pustyIcon.png")} style={styles.pusty}/>
-  </View>
+    <ImageBackground
+      source={require("../assets/navigationBase.png")}
+      style={[styles.header, { height: height * 0.065 }]}
+    >
+      <TouchableOpacity
+        style={{
+          maxHeight: "100%",
+          flex: 1,
+          flexDirection: "row",
+        }}
+        onPress={() => navigation.navigate("Home")}
+      >
+        <Image
+          source={require("../assets/homeIcon.png")}
+          style={{ maxHeight: "100%", width: 50 }}
+        />
+        <Image
+          source={require("../assets/pustyNav.png")}
+          style={{ maxHeight: "100%", maxWidth: 200, resizeMode: "stretch" }}
+        />
+      </TouchableOpacity>
+      <Text style={{ fontSize: 22, marginHorizontal: 15, color: "white" }}>
+        Towar
+      </Text>
+    </ImageBackground>
   );
+
 }
 export const PasekNawigacyjnyMenuLokalizacji = ({navigation} /* Obiekt do nawigacji */) => {
     return (
@@ -103,11 +128,37 @@ export const PasekNawigacyjnyMenuLokalizacji = ({navigation} /* Obiekt do nawiga
     );
   }
 
+};
+
+
+export const PasekNawigacyjnyInfo = (
+  { navigation } /* Obiekt do nawigacji */
+) => {
+  return (
+    <View style={styles.header}>
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image source={require("../assets/homeIcon.png")} style={styles.home} />
+      </TouchableOpacity>
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image source={require("../assets/itemIcon.png")} style={styles.item} />
+      </TouchableOpacity>
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image source={require("../assets/infoIcon.png")} style={styles.info} />
+      </TouchableOpacity>
+      <Image source={require("../assets/pustyIcon.png")} style={styles.pusty} />
+    </View>
+  );
+};
 
 /* Pobiera wymiary okna */
 
-const {width, height} = Dimensions.get("window");
-
+const { width, height } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   header: {
