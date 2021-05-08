@@ -1,4 +1,32 @@
-import React from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: RoundButtons.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: RoundButtons.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
 import { Feather } from '@expo/vector-icons';
 import { View, StyleSheet, TouchableOpacity, Text, Dimensions} from "react-native";
 
@@ -24,24 +52,24 @@ import { View, StyleSheet, TouchableOpacity, Text, Dimensions} from "react-nativ
  */
 export const RoundButton = ({navigation, destination, icon, title, color}) => {
     return(
-        <TouchableOpacity
+        &lt;TouchableOpacity
         onPress={() => {
             navigation.navigate(destination);
           }}
         >
 
-            <View style={styles.buttonBox}>
-                <View style={[ styles.button, colors[color] ]}>
-                    <Feather name={icon} size={Dimensions.get('window').width * 0.18} color="white" />
-                </View>
-                <Text
+            &lt;View style={styles.buttonBox}>
+                &lt;View style={[ styles.button, colors[color] ]}>
+                    &lt;Feather name={icon} size={Dimensions.get('window').width * 0.18} color="white" />
+                &lt;/View>
+                &lt;Text
                 style={[ styles.buttonText, textColors[color] ]}
                 >
                     {title}
-                </Text>
-            </View>
+                &lt;/Text>
+            &lt;/View>
 
-        </TouchableOpacity>
+        &lt;/TouchableOpacity>
     )
 }
 
@@ -53,13 +81,13 @@ export const RoundButton = ({navigation, destination, icon, title, color}) => {
  * @property {string} icon   -Nazwa ikony z pakietu Feather. https://icons.expo.fyi
  * @property {string} destination -Nazwa ekranu do którego ma prowadzić nas po wciśnięciu przycisku. Należy się upewnieć czy ekran znajduje się w tym samym kontenerze nawigacji co ekran.
  * @property {string} title -Napis który wyświetliu się pod przyciskiem.
- 
+ * @returns {string} 
  */
 
 //poszczególne przyciski menu
 export const PackageButton = ({navigation}) => {
     return(
-        <RoundButton
+        &lt;RoundButton
         navigation={navigation}
         color="yellow"
         icon="package"
@@ -76,12 +104,12 @@ export const PackageButton = ({navigation}) => {
  * @property {string} icon   -Nazwa ikony z pakietu Feather. https://icons.expo.fyi
  * @property {string} destination -Nazwa ekranu do którego ma prowadzić nas po wciśnięciu przycisku. Należy się upewnieć czy ekran znajduje się w tym samym kontenerze nawigacji co ekran.
  * @property {string} title -Napis który wyświetliu się pod przyciskiem.
-
+ * @returns {string} 
  */
 
 export const LocationButton = ({navigation}) => {
     return(
-        <RoundButton
+        &lt;RoundButton
         navigation={navigation}
         color="gray"
         icon="map-pin"
@@ -99,12 +127,12 @@ export const LocationButton = ({navigation}) => {
  * @property {string} icon   -Nazwa ikony z pakietu Feather. https://icons.expo.fyi
  * @property {string} destination -Nazwa ekranu do którego ma prowadzić nas po wciśnięciu przycisku. Należy się upewnieć czy ekran znajduje się w tym samym kontenerze nawigacji co ekran.
  * @property {string} title -Napis który wyświetliu się pod przyciskiem.
- 
+ * @returns {string} 
  */
 
 export const UsersButton = ({navigation}) => {
     return(
-        <RoundButton
+        &lt;RoundButton
         navigation={navigation}
         color="blue"
         icon="users"
@@ -121,11 +149,11 @@ export const UsersButton = ({navigation}) => {
  * @property {string} icon   -Nazwa ikony z pakietu Feather. https://icons.expo.fyi
  * @property {string} destination -Nazwa ekranu do którego ma prowadzić nas po wciśnięciu przycisku. Należy się upewnieć czy ekran znajduje się w tym samym kontenerze nawigacji co ekran.
  * @property {string} title -Napis który wyświetliu się pod przyciskiem.
-
+ * @returns {string} 
  */
 export const SettingsButton = ({navigation}) => {
     return(
-        <RoundButton
+        &lt;RoundButton
         navigation={navigation}
         color="sand"
         icon="settings"
@@ -270,4 +298,26 @@ const colors = {yellow: styles.buttonYellow, gray: styles.buttonGray, blue: styl
    * Tablica Asocjacyjna, pozwalające na proceduralne dobieranie kolorów tekstu
    * @type {Array}
    */
-const textColors = {yellow: styles.textYellow, gray: styles.textGray, blue: styles.textBlue, sand: styles.textSand}
+const textColors = {yellow: styles.textYellow, gray: styles.textGray, blue: styles.textBlue, sand: styles.textSand}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#button">button</a></li><li><a href="global.html#buttonBlue">buttonBlue</a></li><li><a href="global.html#buttonBox">buttonBox</a></li><li><a href="global.html#buttonGray">buttonGray</a></li><li><a href="global.html#buttonSand">buttonSand</a></li><li><a href="global.html#buttonText">buttonText</a></li><li><a href="global.html#buttonYellow">buttonYellow</a></li><li><a href="global.html#colors">colors</a></li><li><a href="global.html#LocationButton">LocationButton</a></li><li><a href="global.html#PackageButton">PackageButton</a></li><li><a href="global.html#RoundButton">RoundButton</a></li><li><a href="global.html#SettingsButton">SettingsButton</a></li><li><a href="global.html#textBlue">textBlue</a></li><li><a href="global.html#textColors">textColors</a></li><li><a href="global.html#textGray">textGray</a></li><li><a href="global.html#textSand">textSand</a></li><li><a href="global.html#textYellow">textYellow</a></li><li><a href="global.html#UsersButton">UsersButton</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat May 08 2021 12:07:16 GMT+0200 (czas środkowoeuropejski letni)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
