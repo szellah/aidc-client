@@ -1,102 +1,80 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  ImageBackground,
-  Image,
-} from "react-native";
-
-import ChooseSectionButton from "../components/ChooseSectionButton";
-import SectionsMenu from "../components/SectionsMenu";
-
-export default function Home({ navigation }) {
-  const Logout = () => {
-    // tymczasowo, aby łatwiej się poruszać
-    navigation.navigate("Login");
-  };
-
-  // poszczególne sekcje do menu
-  const Sections = () => {
-    return (
-      <>
-        <ChooseSectionButton
-          srcImg={require("../assets/homePage/TOWARButton.png")}
-          PressHandler={() => {
-            navigation.navigate("Dodawanie");
-          }}
-        />
-        <ChooseSectionButton
-          srcImg={require("../assets/homePage/LOKALIZACJAButton.png")}
-          PressHandler={() => {
-            navigation.navigate("Login");
-          }}
-        />
-        <ChooseSectionButton
-          srcImg={require("../assets/homePage/UŻYTKOWNICYButton.png")}
-          PressHandler={() => {
-            navigation.navigate("Raport");
-          }}
-        />
-        <ChooseSectionButton
-          srcImg={require("../assets/homePage/USTAWIENIAButton.png")}
-          PressHandler={() => {
-            navigation.navigate("Login");
-          }}
-        />
-      </>
-    );
-  };
-
-  return (
-    <View style={styles.wrapper}>
-      <ImageBackground
-        // nie znalazłem tła w plikach, więc dałem "tło dodawanie"
-        source={require("../assets/homePage/tempBackground.png")}
-        style={styles.imageBackground}
-      >
-        <View style={{ alignSelf: "flex-end" }}>
-          <TouchableOpacity onPress={Logout} style={styles.logout}>
-            <Image
-              style={styles.imgButton}
-              source={require("../assets/homePage/WYLOGUJButton.png")}
-            />
-          </TouchableOpacity>
-        </View>
-        <View
-          style={{
-            marginTop: "auto",
-            marginBottom: "auto",
-            paddingBottom: styles.logout.marginTop,
-            maxWidth: 340,
-            maxHeight: 440,
-          }}
-        >
-          <SectionsMenu>
-            <Sections />
-          </SectionsMenu>
-        </View>
-      </ImageBackground>
-    </View>
-  );
+import { ImageBackground } from "react-native";
+import {LogoutButton} from "../components/Buttons"
+import {Tray} from '../components/Trays'
+import {LocationButton, UsersButton, SettingsButton, PackageButton} from '../components/RoundButtons'
+/**
+ * Przycisk Kliknij
+ * @param {string} text  - tekst przycisku
+ * @returns {string} - Całość tekstu
+ */
+const kliknij = (text) => {
+    console.log(text);
 }
+/**
+ * Główny ekran po zalogowaniu = Home
+ * @function Home
+ * @param {object} navigation przejście między ekranami
+ * @returns {object} ekran 
+ */
+export default function Home({navigation})
+{
+    return(
+       /**
+     * Umieszczenie grafiki i przycisków na ekranie 
+     */
+    /**
+     *  Dodawanie tła na ekran
+     * @param {object} source
+     */
+    /**
+     * Ustawienie przycisków 
+     *  @param {object} spread 
+     */
+    /**
+     * Ustawienie przycisku Wyloguj na ekranie
+     * @param {object} LogoutButton  
+     */
+    /**
+     *  Ustawienie przycisku przejścia na ekranie
+     * @param {object} PackageButton
+     */
+    /**
+     * Ustawienie przycisku Lokalizacja na ekranie
+     * @param {object} LocationButton 
+     */
+    /**
+     * Ustawienie przycisku Użytkownicy na ekranie
+     * @param {object} UsersButton 
+     */
+    /**
+     * Ustawienie przycisku Ustawień na ekranie
+     *  @param {object} SettingsButton 
+     */
+        <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={{flex: 1}}>
+  
+        <Tray spread="right" composition="loose">
+            <LogoutButton/>
+        </Tray>
+        <Tray spread="center" composition="compact">
+         
+            <PackageButton
+            navigation={navigation}
+            />
+            <LocationButton
+            navigation={navigation}
+            />
+        </Tray>
+        <Tray spread="center" composition="compact">
+            <UsersButton
+            navigation={navigation}
+            />
+            <SettingsButton
+            navigation={navigation}
+            />
+        </Tray>
 
-const styles = StyleSheet.create({
-  wrapper: {
-    flexGrow: 1,
-  },
-  imageBackground: {
-    flex: 1,
-    resizeMode: "cover",
-    alignItems: "center",
-  },
-  logout: {
-    marginTop: 40,
-    marginRight: 40,
-    maxWidth: 150,
-  },
-  imgButton: {
-    resizeMode: "contain",
-    maxWidth: "100%",
-  },
-});
+
+        </ImageBackground>
+    )
+}
