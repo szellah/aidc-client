@@ -213,6 +213,30 @@ export const AddStockedArticleButton = ({ navigation }) => {
   );
 };
 
+
+export const InfoButton = ({navigation}) => {
+    return(
+        <RoundButton
+        navigation={navigation}
+        color="gray"
+        icon="info"
+        destination="Raport"
+        title="Informacje"
+        />
+    )
+}
+export const PlusButton = ({navigation}) => {
+    return(
+        <RoundButton
+        navigation={navigation}
+        color="sand"
+        icon="plus"
+        destination="Raport"
+        title="Dodaj"
+        />
+    )
+}
+
 // Przyciski w Zarządzaniu (Managment)
 export const ArticleInformationButton = ({ navigation }) => {
   return (
@@ -225,6 +249,7 @@ export const ArticleInformationButton = ({ navigation }) => {
     />
   );
 };
+
 
 export const ReportsButton = ({ navigation }) => {
   return (

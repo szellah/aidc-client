@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Ionicons } from '@expo/vector-icons';
 
 
+
 //Input oraz QRbutton z którego dziedziczą różne inputy, dla reacta się na to mówi "zawieranie"
 
 export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler}) => {
@@ -184,6 +185,33 @@ export const CategorySelect = () => {
 		<Input
 		icon="folder"
 		placeholder="kategoria"
+		color="yellow"
+		/>
+	);
+}
+export const BuildingSelect = () => {
+	return (
+		<Input
+		icon="building"
+		placeholder="budynek"
+		color="yellow"
+		/>
+	);
+}
+export const FloorsSelect = () => {
+	return (
+		<Input
+		icon="align-justify"
+		placeholder="piętro"
+		color="yellow"
+		/>
+	);
+}
+export const RoomSelect = () => {
+	return (
+		<Input
+		icon="square-o"
+		placeholder="pokój"
 		color="yellow"
 		/>
 	);

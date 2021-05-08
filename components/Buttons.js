@@ -130,6 +130,7 @@ export const LogoutButton = ({ pressHandler }) => {
       pressHandler={pressHandler}
     />
   );
+
 };
 
 const styles = StyleSheet.create({
@@ -177,3 +178,4 @@ const sizes = {
   small: { text: styles.textSmall, button: styles.buttonSmall },
   large: { text: styles.textLarge, button: styles.buttonLarge },
 };
+
