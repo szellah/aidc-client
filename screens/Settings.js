@@ -2,7 +2,7 @@ import React, {Component, useState} from "react";
 import { Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
 import {Tray} from '../components/Trays';
 import {PasekNawigacyjny, PasekNawigacyjnyInfo} from '../components/PasekNawigacyjny.js';
-import {ChangePasswordButton, DeleteAccountButton, InformationButton} from '../components/RoundButtons';
+import {ChangePasswordButton, DeleteAccountButton, AccountInformationButton} from '../components/RoundButtons';
 
 const kliknij = (text) => {
     console.log(text);
@@ -22,7 +22,7 @@ export default function Settings({navigation}){
         <ChangePasswordButton
         navigation={navigation}
         />
-        <InformationButton
+        <AccountInformationButton
         navigation={navigation}
         />
       </Tray>

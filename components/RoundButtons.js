@@ -1,6 +1,6 @@
 import React from "react";
 import { Feather, Foundation, Ionicons } from '@expo/vector-icons';
-import { View, StyleSheet, TouchableOpacity, Text, Dimensions} from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Image} from "react-native";
 
 
 //Element po którym pseudo dziedziczy, dla reacta się na to mówi "zawieranie"
@@ -117,7 +117,7 @@ export const SettingsButton = ({ navigation }) => {
       navigation={navigation}
       color="sand"
       icon="settings"
-      destination="Raport"
+      destination="Settings"
       title="Ustawienia"
     />
   );
@@ -148,17 +148,6 @@ export const AddArticleButton = ({ navigation }) => {
   );
 };
 
-export const SettingsButton = ({navigation}) => {
-    return(
-        <RoundButton
-        navigation={navigation}
-        color="sand"
-        icon="settings"
-        destination="Ustawienia"
-        title="Ustawienia"
-        />
-    )
-}
 
 //poszczególne przyciski ustawień
 export const ChangePasswordButton = ({navigation}) => {
@@ -168,20 +157,20 @@ export const ChangePasswordButton = ({navigation}) => {
         color="yellow"
         familyOfIcons="Foundation"
         icon="lock"
-        destination="ZmienHaslo"
+        destination="AccountChangePassword"
         title="Zmień hasło"
         />
     )
 }
 
-export const InformationButton = ({navigation}) => {
+export const AccountInformationButton = ({navigation}) => {
     return(
         <RoundButton
         navigation={navigation}
         color="gray"
         familyOfIcons="Ionicons"
         icon="information-circle-outline"
-        destination="ZmienHaslo"
+        destination="AccountInformation"
         title="Informacje"
         />
     )
@@ -194,7 +183,7 @@ export const DeleteAccountButton = ({navigation}) => {
         color="blue"
         familyOfIcons="Foundation"
         icon="x-circle"
-        destination="UsunKonto"
+        destination="DeleteAccount"
         title="Usuń konto"
         />
     )
@@ -225,14 +214,14 @@ export const AddStockedArticleButton = ({ navigation }) => {
 };
 
 // Przyciski w Zarządzaniu (Managment)
-export const InformationButton = ({ navigation }) => {
+export const ArticleInformationButton = ({ navigation }) => {
   return (
     <RoundButton
       navigation={navigation}
       color="blue"
       icon="info"
-      destination="Information"
-      title=""
+      destination="ScanArticle"
+      title="Informacje"
     />
   );
 };

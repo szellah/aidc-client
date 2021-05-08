@@ -108,19 +108,6 @@ export const ChangeButton = ({pressHandler}) => {
   );
 }
 
-export const CancelButton = ({pressHandler, navigation}) => {
-  return(
-    <Button
-    title="Anuluj"
-    color="yellow"
-    size="small"
-    navigation={navigation}
-    destination="Ustawienia"
-    pressHandler={pressHandler}
-    />
-  );
-}
-
 export const DeletYellowButton = ({pressHandler}) => {
   return(
     <Button

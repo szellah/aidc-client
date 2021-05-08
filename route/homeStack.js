@@ -9,7 +9,10 @@ import Test from "../screens/Test";
 import ArticleMenu from "../screens/ArticleMenu";
 import Managment from "../screens/Managment";
 import ScanLocation from "../screens/ScanLocation";
-import ScanArticle from "../screens/ScanArticle.js";
+import ScanArticle from "../screens/ScanArticle";
+import Settings from "../screens/Settings";
+import ChangePassword from "../screens/ChangePassword";
+import DeleteAccount from "../screens/DeleteAccount";
 
 const screens = {
   Test: {
@@ -39,6 +42,15 @@ const screens = {
   ScanArticle: {
     screen: ScanArticle,
   },
+  Settings:{
+    screen: Settings,
+  },
+  AccountChangePassword:{
+    screen: ChangePassword,
+  },
+  DeleteAccount: {
+    screen: DeleteAccount,
+  }
 };
 
 const HomeStack = createStackNavigator(screens);

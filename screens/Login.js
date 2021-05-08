@@ -10,7 +10,7 @@ import {
 	Text,
 } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import NotificationBox from '../components/NotificationBox';
+import { NotificationBox } from '../components/Notifications';
 import { PasswordInput, LoginInput } from '../components/Inputs.js';
 import { LoginButton } from '../components/Buttons.js';
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { ImageBackground, StyleSheet } from "react-native";
 import { Tray } from "../components/Trays";
-import { InformationButton, ReportsButton } from "../components/RoundButtons";
+import { ArticleInformationButton, ReportsButton } from "../components/RoundButtons";
 
 import { PasekNawigacyjny } from "../components/PasekNawigacyjny.js";
 
@@ -18,7 +18,7 @@ export default function Managment({ navigation }) {
       >
         {/* Przyciski w menu "Zarządzanie (Managment)" nawigujące do nowych sekcji  */}
         <Tray spread="center" composition="compact">
-          <InformationButton navigation={navigation} />
+          <ArticleInformationButton navigation={navigation} />
         </Tray>
         <Tray spread="center" composition="compact">
           <ReportsButton navigation={navigation} />
