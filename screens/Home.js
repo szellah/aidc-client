@@ -6,51 +6,33 @@ import {LocationButton, UsersButton, SettingsButton, PackageButton} from '../com
 /**
  * Przycisk Kliknij
  * @param {string} text  - tekst przycisku
- * @returns {string} - Całość tekstu
+ 
  */
 const kliknij = (text) => {
     console.log(text);
 }
-/**
- * Główny ekran po zalogowaniu = Home
- * @function Home
- * @param {object} navigation przejście między ekranami
- * @returns {object} ekran 
- */
+  /**
+    * Główny ekran po zalogowaniu = Home
+    * @function Home
+    * @param {object} navigation przejście między ekranami
+    
+    * @param {object} source Dodawanie tła na ekran
+   
+     *  @param {object} spread Ustawienie przycisków 
+ 
+     * @param {object} LogoutButton  Ustawienie przycisku Wyloguj na ekranie
+   
+     * @param {object} PackageButton Ustawienie przycisku przejścia na ekranie
+
+     * @param {object} LocationButton Ustawienie przycisku Lokalizacja na ekranie
+     
+     * @param {object} UsersButton  Ustawienie przycisku Użytkownicy na ekranie
+     * @param {object} SettingsButton Ustawienie przycisku Ustawień na ekranie
+     */
 export default function Home({navigation})
 {
     return(
-       /**
-     * Umieszczenie grafiki i przycisków na ekranie 
-     */
-    /**
-     *  Dodawanie tła na ekran
-     * @param {object} source
-     */
-    /**
-     * Ustawienie przycisków 
-     *  @param {object} spread 
-     */
-    /**
-     * Ustawienie przycisku Wyloguj na ekranie
-     * @param {object} LogoutButton  
-     */
-    /**
-     *  Ustawienie przycisku przejścia na ekranie
-     * @param {object} PackageButton
-     */
-    /**
-     * Ustawienie przycisku Lokalizacja na ekranie
-     * @param {object} LocationButton 
-     */
-    /**
-     * Ustawienie przycisku Użytkownicy na ekranie
-     * @param {object} UsersButton 
-     */
-    /**
-     * Ustawienie przycisku Ustawień na ekranie
-     *  @param {object} SettingsButton 
-     */
+      
         <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={{flex: 1}}>
   
         <Tray spread="right" composition="loose">
