@@ -126,7 +126,7 @@ export const PasekNawigacyjnyMenuLokalizacji = ({navigation} /* Obiekt do nawiga
           
       </View>
     );
-  }
+  
 
 };
 

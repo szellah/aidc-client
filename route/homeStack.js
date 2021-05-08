@@ -14,6 +14,8 @@ import ScanArticle from "../screens/ScanArticle";
 import Settings from "../screens/Settings";
 import ChangePassword from "../screens/ChangePassword";
 import DeleteAccount from "../screens/DeleteAccount";
+import LocalisationMenu from "../screens/LocalisationMenu";
+import LocalisationEditDelete from "../screens/LocalisationEditDelete";
 
 const screens = {
   Test: {
@@ -51,7 +53,13 @@ const screens = {
   },
   DeleteAccount: {
     screen: DeleteAccount,
-  }
+  },
+  LocalisationMenu: {
+    screen: LocalisationMenu,
+  },
+  LocalisationEditDelete: {
+    screen: LocalisationEditDelete,
+  },
 };
 
 const HomeStack = createStackNavigator(screens);

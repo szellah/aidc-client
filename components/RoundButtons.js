@@ -93,7 +93,7 @@ export const LocationButton = ({ navigation }) => {
       navigation={navigation}
       color="gray"
       icon="map-pin"
-      destination="Raport"
+      destination="LocalisationMenu"
       title="Lokalizacja"
     />
   );
@@ -214,24 +214,24 @@ export const AddStockedArticleButton = ({ navigation }) => {
 };
 
 
-export const InfoButton = ({navigation}) => {
+export const LocationInformationButton = ({navigation}) => {
     return(
         <RoundButton
         navigation={navigation}
         color="gray"
         icon="info"
-        destination="Raport"
+        destination="ScanLocation"
         title="Informacje"
         />
     )
 }
-export const PlusButton = ({navigation}) => {
+export const LocationAddNewButton = ({navigation}) => {
     return(
         <RoundButton
         navigation={navigation}
         color="sand"
         icon="plus"
-        destination="Raport"
+        destination="LocalisationEditDelete"
         title="Dodaj"
         />
     )
