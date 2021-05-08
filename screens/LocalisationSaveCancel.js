@@ -1,38 +1,32 @@
-import React, {Component, useState} from "react";
-import {Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
+import React from "react";
+import {StyleSheet, View, ImageBackground} from "react-native";
 import {CancelButton,SaveButton} from '../components/Buttons.js';
-import {PanelLokalizacjiZapiszAnuluj, PasekNawigacyjnyInfo} from '../components/PasekNawigacyjny.js';
+import {PanelLokalizacjiZapiszAnuluj} from '../components/PasekNawigacyjny.js';
 import {FloorsSelect,BuildingSelect ,ArticleCodeInput,RoomSelect} from '../components/Inputs.js';
+import {Tray} from '../components/Trays';
 
 export default function App(){
   return (
-    <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={styles.Tło}>
-    <View style={styles.Tło}>
-     
+    <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={{flex: 1}}>
+
     <View style={styles.paseknagorze}>
         < PanelLokalizacjiZapiszAnuluj/>
-      </View>
-      <View style={styles.select} >
-        <BuildingSelect/>
-      </View>
-      <View style={styles.select} >
-        <FloorsSelect/>
-      </View>
-      <View style={styles.select} >
-        <RoomSelect/>
-      </View>
-      <View style={styles.select} >
-        <ArticleCodeInput/>
-      </View>
-     
-     
-      <View style={styles.save}>
-        <SaveButton/>
-      </View>
-      <View style={styles.cancel}>
-        <CancelButton/>
-      </View>
     </View>
+
+    <View style={{marginTop: '15%'}}>
+
+      <BuildingSelect/>
+      <FloorsSelect/>
+      <RoomSelect/>
+      <ArticleCodeInput/>
+     
+      <Tray composition='loose' spread='even'>
+        <SaveButton/>
+        <CancelButton/>        
+      </Tray>
+
+    </View>
+
     </ImageBackground>
   );
 }

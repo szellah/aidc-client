@@ -141,7 +141,7 @@ export const BuildingSelect = () => {
 export const FloorsSelect = () => {
 	return (
 		<Input
-		icon="layers"
+		icon="align-justify"
 		placeholder="piętro"
 		color="yellow"
 		/>
@@ -150,7 +150,7 @@ export const FloorsSelect = () => {
 export const RoomSelect = () => {
 	return (
 		<Input
-		icon="door-open"
+		icon="square-o"
 		placeholder="pokój"
 		color="yellow"
 		/>

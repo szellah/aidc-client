@@ -75,7 +75,7 @@ export const PasekNawigacyjnyMenuLokalizacji = ({navigation} /* Obiekt do nawiga
           </TouchableOpacity>
           <TouchableOpacity
               /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-              <Image source={require("../assets/infoicon.png")} style={styles.localization}/>
+              <Image source={require("../assets/infoIcon.png")} style={styles.localization}/>
           </TouchableOpacity>
           <Image source={require("../assets/Informacje.png")} style={styles.infoekran2}/>
           
