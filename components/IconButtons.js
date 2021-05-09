@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Image} from "react-native";
 
-export const IconButton = () => {
+export const IconButton = ({ navigation, destination, src, title, color}) => {
     return(
         <TouchableOpacity
         onPress={() => {
@@ -11,10 +11,12 @@ export const IconButton = () => {
 
             <View style={styles.buttonBox}>
                 <View style={[ styles.button, colors[color] ]}>
-                    <Icon 
-                    familyOfIcons = {familyOfIcons}
-                    icon = {icon}
-                    />
+                    <Image
+                    source={src}
+                    style={{
+                    maxWidth: Dimensions.get("window").width * 0.18,
+                    resizeMode: "contain",
+                    }}/>
                 </View>
                 <Text
                 style={[ styles.buttonText, textColors[color] ]}
