@@ -1,28 +1,30 @@
 import React, {Component, useState} from "react";
 import { Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
-import {Tray} from '../components/Trays';
-import {PasekNawigacyjny, PasekNawigacyjnyInfo} from '../components/PasekNawigacyjny.js';
-import {ChangePasswordButton, DeleteAccountButton, AccountInformationButton} from '../components/RoundButtons';
+import {Tray} from '../../components/Trays';
+import {PasekNawigacyjny, PasekNawigacyjnyInfo} from '../../components/PasekNawigacyjny.js';
+import {ChangePasswordButton, DeleteAccountButton, AccountInfoButton} from '../../components/RoundButtons';
+import { Container } from "../../components/Containers";
 
 const kliknij = (text) => {
     console.log(text);
 }
 
-export default function Settings({navigation}){
+export default function SettingsMenu({navigation}){
   return (
   //<ScrollView>
-  <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={styles.Tło}>
-    <View style={styles.bezeksportu}>
+  <ImageBackground source={require('../../assets/tlo_dodawanie.png')} style={styles.Tło}>
 
       <View style={styles.paseknagorze}>
         <PasekNawigacyjnyInfo/>
       </View>
 
-      <Tray spread="center" composition="compactMarginTop">
+
+<Container spread="center" composition="loose">
+      <Tray spread="center" composition="compact">
         <ChangePasswordButton
         navigation={navigation}
         />
-        <AccountInformationButton
+        <AccountInfoButton
         navigation={navigation}
         />
       </Tray>
@@ -31,8 +33,8 @@ export default function Settings({navigation}){
         navigation={navigation}
         />
       </Tray>
+</Container>
 
-    </View>
   </ImageBackground>
   //</ScrollView>
   );

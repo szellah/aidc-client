@@ -1,19 +1,19 @@
 import React, {Component, useState} from "react";
 import { Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
-import {LocationCodeInput} from '../components/Inputs.js';
-import {ExportButton} from '../components/Buttons.js';
-import {Table} from '../components/Table.js';
+import {LocationCodeInput} from '../../components/Inputs.js';
+import {ExportButton} from '../../components/Buttons.js';
+import {Table} from '../../components/Table.js';
 import { ScrollView } from "react-native-gesture-handler";
 import {
   PasekNawigacyjny,
   PasekNawigacyjnyInfo,
-} from "../components/PasekNawigacyjny.js";
+} from "../../components/PasekNawigacyjny.js";
 
 export default function App() {
   return (
     //<ScrollView>
     <ImageBackground
-      source={require("../assets/tlo_raport.png")}
+      source={require("../../assets/tlo_raport.png")}
       style={styles.Tło}
     >
       <View style={styles.bezeksportu}>
@@ -22,7 +22,7 @@ export default function App() {
         </View>
 
         <View style={styles.naglowek}>
-          <Image source={require("../assets/raport.png")} style={styles.h1} />
+          <Image source={require("../../assets/raport.png")} style={styles.h1} />
         </View>
 
         <View style={styles.nazwa}>

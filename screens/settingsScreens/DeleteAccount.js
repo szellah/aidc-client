@@ -1,35 +1,39 @@
 import React, {Component, useState} from "react";
 import { Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
-import {Tray} from '../components/Trays';
-import {PasekNawigacyjny,PasekNawigacyjnyInfo} from '../components/PasekNawigacyjny.js';
-import {DeletYellowButton, CancelButton} from "../components/Buttons";
-import {EnterPasswordInput, RepeatPasswordInput} from '../components/Inputs.js';
+import {Tray} from '../../components/Trays';
+import {PasekNawigacyjny,PasekNawigacyjnyInfo} from '../../components/PasekNawigacyjny.js';
+import {DeletYellowButton, CancelButton} from "../../components/Buttons";
+import {EnterPasswordInput, RepeatPasswordInput} from '../../components/Inputs.js';
+import { Container } from "../../components/Containers";
 
 export default function DeleteAccount({navigation}){
   return (
   //<ScrollView>
-  <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={styles.Tło}>
-    <View style={styles.bezeksportu}>
+  <ImageBackground source={require('../../assets/tlo_dodawanie.png')} style={styles.Tło}>
 
       <View style={styles.paseknagorze}>
         <PasekNawigacyjnyInfo/>
       </View>
 
-      <Tray spread="center" composition="compactMarginTop"></Tray>
-      <Tray spread="center" composition="compactMarginTop">
+
+    <Container composition="loose" spread="top">
+      <Tray spread="center" composition="compact">
         <EnterPasswordInput/>
       </Tray>
       <Tray spread="center" composition="compact">
         <RepeatPasswordInput/>
       </Tray>
-      <Tray spread="even" composition="bottom">
+    </Container>
+
+    <Container composition="loose" spread="bottom">
+      <Tray spread="even" composition="compact">
         <CancelButton 
         navigation={navigation}
         />
         <DeletYellowButton/>
       </Tray>
+    </Container>
 
-    </View>
   </ImageBackground>
   //</ScrollView>
   );

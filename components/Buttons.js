@@ -119,6 +119,17 @@ export const DeletYellowButton = ({pressHandler}) => {
   );
 }
 
+export const ChangePasswordButton = ({pressHandler}) => {
+  return(
+    <Button
+    title="Zmień Hasło"
+    color="yellow"
+    size="large"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
 //przyciski zielone
 
 export const LogoutButton = ({ pressHandler }) => {

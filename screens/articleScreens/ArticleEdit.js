@@ -14,63 +14,64 @@ import {
   LocationCodeInput,
   ArticleCodeInput,
   DescriptionInput,
-} from "../components/Inputs.js";
-import { EditButton, DeleteButton } from "../components/Buttons.js";
-import { PasekNawigacyjny } from "../components/PasekNawigacyjny.js";
+} from "../../components/Inputs.js";
+import { SaveButton, CancelButton } from "../../components/Buttons.js";
+import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 import { ScrollView } from "react-native-gesture-handler";
+import { Container } from "../../components/Containers.js";
+import { Tray } from "../../components/Trays.js";
 
-export default function ArticlePanelEdit({ navigation }) {
+export default function ArticleEdit({ navigation }) {
   const [Name, SetName] = useState("");
   const [Category, SetCategory] = useState("");
   const [LocationCode, SetLocationCode] = useState("");
   const [ArticleCode, SetArticleCode] = useState("");
   const [Description, SetDescription] = useState("");
 
-  const Edit = () => {};
-  const Delete = () => {};
+  const Save = () => {};
+  const Cancel = () => {
+    navigation.navigate("ArticleMenu");
+  };
 
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
+    <Container composition="compact" spread="center">
+    <Tray composition="compact" spread="center">
+  <PasekNawigacyjny />
+</Tray>
     <ScrollView>
       <ImageBackground
-        source={require("../assets/tlo_dodawanie.png")}
+        source={require("../../assets/tlo_dodawanie.png")}
         style={styles.bckg}
       >
-        <View style={styles.bckg}>
-          <View style={styles.nav}>
-            <PasekNawigacyjny />
-          </View>
-          <View style={styles.name}>
+
+
+            
+
             <NameInput />
-          </View>
 
-          <View style={styles.name}>
             <CategorySelect />
-          </View>
 
-          <View style={styles.name}>
             <LocationCodeInput pressHandler={() => {}} />
-          </View>
 
-          <View style={styles.name}>
             <ArticleCodeInput pressHandler={() => {}} />
-          </View>
 
-          <View style={styles.description}>
             <DescriptionInput />
-          </View>
 
-          <View style={styles.buttons}>
-            <View>
-              <EditButton pressHandler={Edit} />
-            </View>
-            <View>
-              <DeleteButton pressHandler={Delete} />
-            </View>
-          </View>
-        </View>
+            <Container composition="compact" spread="bottom">
+              <Tray composition="loose" spread="even">
+
+                <SaveButton pressHandler={Save} />
+              
+                <CancelButton pressHandler={Cancel} />
+                
+              </Tray>
+            </Container>
+
+        
       </ImageBackground>
-    </ScrollView>
+      </ScrollView>
+      </Container>
   );
 }
 

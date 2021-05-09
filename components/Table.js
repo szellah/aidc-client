@@ -1,17 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useRef} from 'react';
-import { StyleSheet, Text, View, FlatList, ScrollView, Animated} from 'react-native';
+import { StyleSheet, Text, View, FlatList, ScrollView, Animated, TouchableOpacity} from 'react-native';
 
-export function Table() {
+//Komponent wyświetlający tabelkę, o trzech kolumnach (może potem wiecej ale tego nie zapisujcie w dokumentacji)
+//korzysta on z mapowania tablicy elementów wchodzących na obiekty JSX, czyli innymi słowy dla każdego elemntu w tablicy tworzy on wiersz w postaci xml
+//dodatkowo posiada on skomplikowana logikę aktualizowania wysokości paska przesuwania
+//toDisplay array object - tablica elementów do wyświetlenia w tabelce, informacje do zapasania w angłówkach muszą się znajdować w elemencie tablicy o key == header
+//clickable bool - informacja o tym czy wiersze mają być klikalne
+//pressHandler function - jeżeli wiersze są klikalne to pressHandler jest funkcją wykonywaną dla każdego wiersza po naciśnięciu
+export function Table({toDisplay, clickable, pressHandler}) {
 
-  const [things, setThings] = useState([
-    { category: 'mebel', name: 'fotel', added: '21.01.2021', id: '1'},
-    { category: 'mebel1', name: 'fotel', added: '21.01.2021', id: '2'},
-    { category: 'mebel2', name: 'fotel', added: '21.01.2021', id: '3'},
-    { category: 'mebel3', name: 'fotel', added: '21.01.2021', id: '4'},
-    { category: 'mebel4', name: 'fotel', added: '21.01.2021', id: '5'},
-    { category: 'mebel5', name: 'fotel', added: '21.01.2021', id: '6'},
-  ])
+
+  function isHeader(value){
+    return value.id=='header';
+  }
+
+  function isNotHeader(value){
+    return value.id!='header';
+  }
+
+  const topRow = (toDisplay.filter(isHeader))[0];
+
+  toDisplay = toDisplay.filter(isNotHeader);
+
+  const [things, setThings] = useState(toDisplay)
 
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
@@ -38,12 +50,13 @@ export function Table() {
     extrapolate: 'clamp'
   });
 
+
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <Text style={styles.topColumnLeft}>kategoria</Text>
-        <Text style={styles.topColumnCenter}>nazwa</Text>
-        <Text style={styles.topColumnLeftRight}>dodano</Text>
+        <Text style={styles.topColumnLeft}>{topRow.column1}</Text>
+        <Text style={styles.topColumnCenter}>{topRow.column2}</Text>
+        <Text style={styles.topColumnLeftRight}>{topRow.column3}</Text>
       </View>
       <View style={styles.listContainer}>
         <ScrollView
@@ -67,19 +80,15 @@ export function Table() {
           { things.map((item) => {
             return (
               <View key={item.id}>
-                <View style={
-                  { backgroundColor: item.id % 2 != 0 ? '#cacccd' : '#cdd0d3',
-                    width: '95%',
-                    flexDirection: 'row',
-                    marginVertical: 2,
-                    marginLeft:10,
-                    height: 50,
-                  }
-                  }>
-                  <Text style={styles.columnLeft}>{item.category}</Text>
-                  <Text style={styles.columnCenter}>{item.name}</Text>
-                  <Text style={styles.columnRight}>{item.added}</Text>
+                <TouchableOpacity disabled={!clickable} onPress={()=>{pressHandler(item.id)}}>
+
+                  <View style={[styles.row, rowColor[item.id % 2] ]}>
+                      <Text style={[styles.columnLeft, styles.textColumn]}>{item.column1}</Text>
+                      <Text style={[styles.columnCenter, styles.textColumn]}>{item.column2}</Text>
+                      <Text style={[styles.columnRight, styles.textColumn]}>{item.column3}</Text>
                   </View>
+
+                  </TouchableOpacity>
               </View>
             )
           })}
@@ -103,11 +112,13 @@ export function Table() {
 
 const styles = StyleSheet.create({
 container: {
-  width: '100%',
+  width: '90%',
   backgroundColor: '#e1e3e4',
   padding: 5,
   flex: 1,
   borderRadius: 30,
+  alignSelf: "center",
+  marginVertical: 10,
 },
 listContainer: {
   marginTop:  10,
@@ -117,21 +128,18 @@ listContainer: {
 },
 columnLeft: {
   width: '32%',
-  textAlign: 'left',
   paddingLeft: 5,
   paddingVertical: 10,
   fontSize: 20,
 },
 columnRight: {
   width: '31%',
-  textAlign: 'left',
   paddingLeft: 5,
   paddingVertical: 10,
   fontSize: 20,
 },
 columnCenter: {
   width: '37%',
-  textAlign: 'left',
   paddingLeft: 5,
   paddingVertical: 10,
   fontSize: 20,
@@ -178,4 +186,25 @@ topColumnCenter: {
   color: 'white',
   paddingVertical: 4,
 },
+textColumn:{
+  color: 'white',
+  textAlign: 'center',
+},
+row:{ 
+width: '95%',
+flexDirection: 'row',
+marginVertical: 2,
+marginLeft:10,
+height: 50,
+},
+rowDark:{
+  backgroundColor:  '#cacccd', 
+},
+rowLight:{
+  backgroundColor: '#cdd0d3',
+}
 });
+
+
+//tablica nie asocjacyjna, ale liczbowa, trzymająca kolory
+const rowColor = [ styles.rowDark, styles.rowLight];
