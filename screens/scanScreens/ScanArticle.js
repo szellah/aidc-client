@@ -2,20 +2,20 @@ import React, { useState } from "react";
 import {
   Image,
   ImageBackground,
+  KeyboardAvoidingView,
   StyleSheet,
   View,
-  KeyboardAvoidingView,
 } from "react-native";
-import { Tray } from "../components/Trays";
+import { Tray } from "../../components/Trays";
 import { ScrollView } from "react-native-gesture-handler";
 
-import { LocationCodeInput } from "../components/Inputs";
-import { ConfirmButton } from "../components/Buttons";
+import { ArticleCodeInput } from "../../components/Inputs";
+import { ConfirmButton } from "../../components/Buttons";
 
-import { PasekNawigacyjny } from "../components/PasekNawigacyjny.js";
+import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 
-export default function ScanLocation({ navigation }) {
-  const [LocationCode, SetLocationCode] = useState("");
+export default function ScanArticle({ navigation }) {
+  const [ArticleCode, SetArticleCode] = useState("");
 
   const Confirm = () => {};
   return (
@@ -34,11 +34,12 @@ export default function ScanLocation({ navigation }) {
         }}
       >
         <Tray composition="compact">
-          {/* Pasek nawigujący do poprzednich sekcji */}
+          {/* Pasek nawigujący do sekcji */}
           <PasekNawigacyjny navigation={navigation} />
         </Tray>
+
         <ImageBackground
-          source={require("../assets/locationPage/background.png")}
+          source={require("../../assets/locationPage/background.png")}
           style={{
             minHeight: "100%",
             flex: 1,
@@ -48,7 +49,7 @@ export default function ScanLocation({ navigation }) {
           <View style={{ alignItems: "center" }}>
             <View style={{ maxHeight: 160, marginBottom: 10 }}>
               <Image
-                source={require("../assets/locationPage/qr.png")}
+                source={require("../../assets/locationPage/qr.png")}
                 style={{
                   maxWidth: "100%",
                   maxHeight: "100%",
@@ -56,11 +57,11 @@ export default function ScanLocation({ navigation }) {
                 }}
               />
             </View>
-
             <View>
-              <LocationCodeInput pressHandler={() => {}} />
+              <ArticleCodeInput pressHandler={() => {}} />
             </View>
           </View>
+
           <Tray spread="center" composition="compact">
             <ConfirmButton pressHandler={Confirm} />
           </Tray>

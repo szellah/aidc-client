@@ -139,6 +139,67 @@ export const RepeatPasswordInput = () => {
 	);
 };
 
+export const UserFirstnameInput = () => {
+	return(
+		<Input
+		icon="user"
+        placeholder="imię"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserSurnameInput = () => {
+	return(
+		<Input
+		icon="user"
+        placeholder="nazwisko"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserStateInput = () => {
+	return(
+		<Input
+		icon="folder"
+        placeholder="stan"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserRankInput = () => {
+	return(
+		<Input
+		icon="folder"
+        placeholder="ranga"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserLoginInput = () => {
+	return(
+		<Input
+		icon="user"
+        placeholder="login"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserEmailInput = () => {
+	return(
+		<Input
+		icon="envelope"
+        placeholder="e-mail"
+		color="yellow"
+		/>
+	);
+}
+
+
 //duży input
 
 export const DescriptionInput = () => {

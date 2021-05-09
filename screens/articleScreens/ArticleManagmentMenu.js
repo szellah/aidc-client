@@ -1,11 +1,11 @@
 import React from "react";
 import { ImageBackground, StyleSheet } from "react-native";
-import { Tray } from "../components/Trays";
-import { ArticleInformationButton, ReportsButton } from "../components/RoundButtons";
+import { Tray } from "../../components/Trays";
+import { ArticleInfoButton, ReportsButton } from "../../components/RoundButtons";
 
-import { PasekNawigacyjny } from "../components/PasekNawigacyjny.js";
+import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 
-export default function Managment({ navigation }) {
+export default function ArticleManagmentMenu({ navigation }) {
   return (
     <>
       <Tray composition="compact">
@@ -13,12 +13,12 @@ export default function Managment({ navigation }) {
         <PasekNawigacyjny />
       </Tray>
       <ImageBackground
-        source={require("../assets/tlo_dodawanie.png")}
+        source={require("../../assets/tlo_dodawanie.png")}
         style={{ flex: 1, justifyContent: "center" }}
       >
         {/* Przyciski w menu "Zarządzanie (Managment)" nawigujące do nowych sekcji  */}
         <Tray spread="center" composition="compact">
-          <ArticleInformationButton navigation={navigation} />
+          <ArticleInfoButton navigation={navigation} />
         </Tray>
         <Tray spread="center" composition="compact">
           <ReportsButton navigation={navigation} />

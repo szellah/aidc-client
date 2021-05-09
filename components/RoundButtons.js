@@ -93,7 +93,7 @@ export const LocationButton = ({ navigation }) => {
       navigation={navigation}
       color="gray"
       icon="map-pin"
-      destination="LocalisationMenu"
+      destination="LocationMenu"
       title="Lokalizacja"
     />
   );
@@ -105,7 +105,7 @@ export const UsersButton = ({ navigation }) => {
       navigation={navigation}
       color="blue"
       icon="users"
-      destination="Raport"
+      destination="UsersMenu"
       title="Użytkownicy"
     />
   );
@@ -163,14 +163,14 @@ export const ChangePasswordButton = ({navigation}) => {
     )
 }
 
-export const AccountInformationButton = ({navigation}) => {
+export const AccountInfoButton = ({navigation}) => {
     return(
         <RoundButton
         navigation={navigation}
         color="gray"
         familyOfIcons="Ionicons"
-        icon="information-circle-outline"
-        destination="AccountInformation"
+        icon="Information-circle-outline"
+        destination="AccountInfo"
         title="Informacje"
         />
     )
@@ -214,7 +214,7 @@ export const AddStockedArticleButton = ({ navigation }) => {
 };
 
 
-export const LocationInformationButton = ({navigation}) => {
+export const LocationInfoButton = ({navigation}) => {
     return(
         <RoundButton
         navigation={navigation}
@@ -231,14 +231,14 @@ export const LocationAddNewButton = ({navigation}) => {
         navigation={navigation}
         color="sand"
         icon="plus"
-        destination="LocalisationEditDelete"
+        destination="LocationEditDelete"
         title="Dodaj"
         />
     )
 }
 
 // Przyciski w Zarządzaniu (Managment)
-export const ArticleInformationButton = ({ navigation }) => {
+export const ArticleInfoButton = ({ navigation }) => {
   return (
     <RoundButton
       navigation={navigation}
@@ -263,6 +263,30 @@ export const ReportsButton = ({ navigation }) => {
   );
 };
 
+export const UsersInfoButton = ({navigation}) => {
+  return (
+    <RoundButton
+      navigation={navigation}
+      color="blue"
+      icon="info"
+      destination="UsersTable"
+      title="Informacje"
+    />
+  );
+};
+
+export const UserAddNewButton = ({navigation}) => {
+  return (
+    <RoundButton
+      navigation={navigation}
+      color="yellow"
+      icon="plus"
+      destination="UserPanelSave"
+      title="Dodaj Nowego"
+    />
+  );
+};
+
 //style
 const styles = StyleSheet.create({
   buttonBox: {
@@ -274,6 +298,7 @@ const styles = StyleSheet.create({
     height: Dimensions.get("window").width * 0.4,
     borderRadius: Math.ceil(Dimensions.get("window").width * 0.4),
     alignItems: "center",
+    alignSelf: "center",
     justifyContent: "center",
   },
   buttonText: {

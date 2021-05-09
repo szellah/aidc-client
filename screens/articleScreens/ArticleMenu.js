@@ -1,14 +1,14 @@
 import React from "react";
 import { ImageBackground, StyleSheet } from "react-native";
-import { Tray } from "../components/Trays";
+import { Tray } from "../../components/Trays";
 import {
   AddArticleButton,
   ManagmentButton,
   RemoveStockedArticleButton,
   AddStockedArticleButton,
-} from "../components/RoundButtons";
+} from "../../components/RoundButtons";
 
-import { PasekNawigacyjnyArticleMenu } from "../components/PasekNawigacyjny.js";
+import { PasekNawigacyjnyArticleMenu } from "../../components/PasekNawigacyjny.js";
 
 export default function ArticleMenu({ navigation }) {
   return (
@@ -19,7 +19,7 @@ export default function ArticleMenu({ navigation }) {
       </Tray>
 
       <ImageBackground
-        source={require("../assets/tlo_dodawanie.png")}
+        source={require("../../assets/tlo_dodawanie.png")}
         style={{ flex: 1, justifyContent: "center" }}
       >
         {/* Przyciski w menu "Towar (Article)" nawigujące do nowych sekcji */}

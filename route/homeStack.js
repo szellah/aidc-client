@@ -3,32 +3,36 @@ import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import Home from "../screens/Home.js";
 import Login from "../screens/Login.js";
-import ArticlePanelSave from "../screens/ArticlePanelSave";
-import ArticlePanelEdit from "../screens/ArticlePanelEdit";
-import Report from "../screens/Report.js";
+import ArticleEdit from "../screens/articleScreens/ArticleEdit";
+import ArticleInfo from "../screens/articleScreens/ArticleInfo";
+import Report from "../screens/articleScreens/Report";
 import Test from "../screens/Test";
-import ArticleMenu from "../screens/ArticleMenu";
-import Managment from "../screens/Managment";
-import ScanLocation from "../screens/ScanLocation";
-import ScanArticle from "../screens/ScanArticle";
-import Settings from "../screens/Settings";
-import ChangePassword from "../screens/ChangePassword";
-import DeleteAccount from "../screens/DeleteAccount";
-import LocalisationMenu from "../screens/LocalisationMenu";
-import LocalisationEditDelete from "../screens/LocalisationEditDelete";
+import ArticleMenu from "../screens/articleScreens/ArticleMenu";
+import ArticleManagmentMenu from "../screens/articleScreens/ArticleManagmentMenu";
+import ScanLocation from "../screens/scanScreens/ScanLocation";
+import ScanArticle from "../screens/scanScreens/ScanArticle";
+import SettingsMenu from "../screens/settingsScreens/SettingsMenu";
+import ChangePassword from "../screens/settingsScreens/ChangePassword";
+import DeleteAccount from "../screens/settingsScreens/DeleteAccount";
+import LocationMenu from "../screens/locationScreens/LocationMenu";
+import LocationInfo from "../screens/locationScreens/LocationInfo";
+import UsersMenu from "../screens/userScreens/UsersMenu";
+import UserInfo from "../screens/userScreens/UserInfo";
+import UserEdit from "../screens/userScreens/UserEdit";
+import UsersTable from "../screens/userScreens/UsersTable";
 
 const screens = {
+  Home: {
+    screen: Home,
+  },
   Test: {
     screen: Test,
   },
   ArticlePanelSave: {
-    screen: ArticlePanelSave,
+    screen: ArticleEdit,
   },
   ArticlePanelEdit: {
-    screen: ArticlePanelEdit,
-  },
-  Home: {
-    screen: Home,
+    screen: ArticleInfo,
   },
   Raport: {
     screen: Report,
@@ -37,7 +41,7 @@ const screens = {
     screen: ArticleMenu,
   },
   Managment: {
-    screen: Managment,
+    screen: ArticleManagmentMenu,
   },
   ScanLocation: {
     screen: ScanLocation,
@@ -46,7 +50,7 @@ const screens = {
     screen: ScanArticle,
   },
   Settings:{
-    screen: Settings,
+    screen: SettingsMenu,
   },
   AccountChangePassword:{
     screen: ChangePassword,
@@ -54,12 +58,24 @@ const screens = {
   DeleteAccount: {
     screen: DeleteAccount,
   },
-  LocalisationMenu: {
-    screen: LocalisationMenu,
+  LocationMenu: {
+    screen: LocationMenu,
   },
-  LocalisationEditDelete: {
-    screen: LocalisationEditDelete,
+  LocationEditDelete: {
+    screen: LocationInfo,
   },
+  UsersMenu:{
+    screen: UsersMenu,
+  },
+  UserPanelEdit:{
+    screen: UserInfo,
+  },
+  UserPanelSave:{
+    screen: UserEdit,
+  },
+  UsersTable:{
+    screen: UsersTable,
+  }
 };
 
 const HomeStack = createStackNavigator(screens);
