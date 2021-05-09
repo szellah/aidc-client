@@ -4,7 +4,8 @@ import Home from '../screens/Home.js';
 import Login from '../screens/Login.js';
 import Dodawanie from '../screens/Dodawanie.js';
 import Report from '../screens/Report.js';
-import Test from '../screens/Test'
+import {RaportBudynek} from '../screens/RaportScreens';
+import Test from '../screens/Test';
 
 
 const screens = {
@@ -19,7 +20,7 @@ const screens = {
         screen: Home
     },
     Raport: {
-        screen: Report
+        screen: RaportBudynek
     },
 }
 

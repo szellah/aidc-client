@@ -5,7 +5,7 @@ import { Button, Text, View, TextInput, StyleSheet, Platform, TouchableHighlight
 import {MenuProvider} from 'react-native-popup-menu';
 import {Menu, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-menu';
 import { AntDesign } from '@expo/vector-icons'; 
-import {PasekNawigacyjny} from "../ProjektAIDC/components/PasekNawigacyjny";
+import {PasekNawigacyjny} from "../components/PasekNawigacyjny";
 
 
 // Wymiary okna
@@ -19,21 +19,21 @@ export function RaportBudynek({navigation, route}) {
   const [budText, setBudText] = useState("budynek");
   return (
     <MenuProvider>
-      <ImageBackground source={require("../ProjektAIDC/assets/tlo_raport.png")} style={styles.tlo}>
+      <ImageBackground source={require("../assets/tlo_raport.png")} style={styles.tlo}>
         <View style={styles.container}>
           <PasekNawigacyjny navigation={navigation}/>
           <Image
-            source={require("../ProjektAIDC/assets/raportPage/raportTytul.png")}
+            source={require("../assets/raportPage/raportTytul.png")}
             style={styles.raport}
           />
           <View style={styles.wedlugContainer}>
-            <Image source={require("../ProjektAIDC/assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/>
+            <Image source={require("../assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/>
             <Text style={styles.wedlugTekst}>budynek</Text>
           </View>
           <MenuComponentE1 setBudTextCallBack={setBudText} budTextProp={budText}/>
           <View style={styles.sporzadzWrapper}>
             <TouchableOpacity>
-              <Image source={require("../ProjektAIDC/assets/raportPage/sporzadzBtn.png")} style={sporzadzBtnStyles.sporzadzBtnBudynek} resizeMode="contain"></Image>
+              <Image source={require("../assets/raportPage/sporzadzBtn.png")} style={sporzadzBtnStyles.sporzadzBtnBudynek} resizeMode="contain"></Image>
             </TouchableOpacity>
           </View>
         </View> 
@@ -47,21 +47,21 @@ export function RaportKategoria({navigation, route}) {
   const [kategoriaText, setKategoriaText] = useState("kategoria");
   return (
     <MenuProvider>
-      <ImageBackground source={require("../ProjektAIDC/assets/tlo_raport.png")} style={styles.tlo}>
+      <ImageBackground source={require("../assets/tlo_raport.png")} style={styles.tlo}>
         <View style={styles.container}>
           <PasekNawigacyjny navigation={navigation}/>
           <Image
-            source={require("../ProjektAIDC/assets/raportPage/raportTytul.png")}
+            source={require("../assets/raportPage/raportTytul.png")}
             style={styles.raport}
           />
           <View style={styles.wedlugContainer}>
-            <Image source={require("../ProjektAIDC/assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/>
+            <Image source={require("../assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/>
             <Text style={styles.budynekTekst}>kategoria</Text>
           </View>
           <MenuComponentE2 setKategoriaTextCallBack={setKategoriaText} katTextCallBack={kategoriaText}/>
           <View style={styles.sporzadzWrapper}>
             <TouchableOpacity>
-              <Image source={require("../ProjektAIDC/assets/raportPage/sporzadzBtn.png")} style={sporzadzBtnStyles.sporzadzBtnKategoria} resizeMode="contain"></Image>
+              <Image source={require("../assets/raportPage/sporzadzBtn.png")} style={sporzadzBtnStyles.sporzadzBtnKategoria} resizeMode="contain"></Image>
             </TouchableOpacity>
           </View>
         </View> 
@@ -75,21 +75,21 @@ export function RaportPietro({navigation, route}) {
   const [pietroText, setPietroText] = useState("piętro");
   return (
     <MenuProvider>
-      <ImageBackground source={require("../ProjektAIDC/assets/tlo_raport.png")} style={styles.tlo}>
+      <ImageBackground source={require("../assets/tlo_raport.png")} style={styles.tlo}>
         <View style={styles.container}>
           <PasekNawigacyjny navigation={navigation}/>
           <Image
-            source={require("../ProjektAIDC/assets/raportPage/raportTytul.png")}
+            source={require("../assets/raportPage/raportTytul.png")}
             style={styles.raport}
           />
           <View style={styles.wedlugContainer}>
-            <Image source={require("../ProjektAIDC/assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/>
+            <Image source={require("../assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/>
             <Text style={styles.wedlugTekst}>piętro</Text>
           </View>
           <MenuComponentE3 setBudTextCallBack={setBudText} budTextProp={budText}/>
           <MenuComponentE31 setPietroTextCallBack={setPietroText} pietroTextProp={pietroText}/>
           <TouchableOpacity style={sporzadzBtnStyles.touchablePietro}>
-            <Image source={require("../ProjektAIDC/assets/raportPage/sporzadzBtn.png")} style={sporzadzBtnStyles.sporzadzBtnPietro} resizeMode="contain"></Image>
+            <Image source={require("../assets/raportPage/sporzadzBtn.png")} style={sporzadzBtnStyles.sporzadzBtnPietro} resizeMode="contain"></Image>
           </TouchableOpacity>
         </View> 
       </ImageBackground>
@@ -104,22 +104,22 @@ export function RaportPokoj({navigation, route}) {
   const [pokojText, setPokojText] = useState("pokój");
   return (
     <MenuProvider>
-      <ImageBackground source={require("../ProjektAIDC/assets/tlo_raport.png")} style={styles.tlo}>
+      <ImageBackground source={require("../assets/tlo_raport.png")} style={styles.tlo}>
         <View style={styles.container}>
           <PasekNawigacyjny navigation={navigation}/>
           <Image
-            source={require("../ProjektAIDC/assets/raportPage/raportTytul.png")}
+            source={require("../assets/raportPage/raportTytul.png")}
             style={styles.raport}
           />
           <View style={styles.wedlugContainer}>
-            <Image source={require("../ProjektAIDC/assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/>
+            <Image source={require("../assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/>
             <Text style={styles.wedlugTekst}>pokój</Text>
           </View>
           <MenuComponentE3 setBudTextCallBack={setBudText} budTextProp={budText}/>
           <MenuComponentE31 setPietroTextCallBack={setPietroText} pietroTextProp={pietroText}/>
           <MenuComponentE4 setPokojTextCallBack={setPokojText} pokojTextProp={pokojText}/>
           <TouchableOpacity style={sporzadzBtnStyles.touchablePokoj}>
-            <Image source={require("../ProjektAIDC/assets/raportPage/sporzadzBtn.png")} style={sporzadzBtnStyles.sporzadzBtnPokoj} resizeMode="contain"></Image>
+            <Image source={require("../assets/raportPage/sporzadzBtn.png")} style={sporzadzBtnStyles.sporzadzBtnPokoj} resizeMode="contain"></Image>
           </TouchableOpacity>
         </View> 
       </ImageBackground>
@@ -131,20 +131,20 @@ export function RaportWedlugLista({navigation, route}) {
   const [wgTekst, setWgTekst] = useState("według");
   return (
     <MenuProvider>
-      <ImageBackground source={require("../ProjektAIDC/assets/tlo_raport.png")} style={styles.tlo}>
+      <ImageBackground source={require("../assets/tlo_raport.png")} style={styles.tlo}>
         <View style={styles.container}>
           <PasekNawigacyjny navigation={navigation}/>
           <Image
-            source={require("../ProjektAIDC/assets/raportPage/raportTytul.png")}
+            source={require("../assets/raportPage/raportTytul.png")}
             style={styles.raport}
           />
           <View style={styles.wedlugContainer}>
-            <Image source={require("../ProjektAIDC/assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/>
+            <Image source={require("../assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/>
             <Text style={styles.wedlugTekst}>według</Text>
           </View>
           <MenuComponentE5 setWgTextCallBack={setWgTekst} wgTekstProp={wgTekst}/>
           <TouchableOpacity style={sporzadzBtnStyles.touchableWedlug}>
-            <Image source={require("../ProjektAIDC/assets/raportPage/sporzadzBtn.png")} style={sporzadzBtnStyles.sporzadzBtnWedlug} resizeMode="contain"></Image>
+            <Image source={require("../assets/raportPage/sporzadzBtn.png")} style={sporzadzBtnStyles.sporzadzBtnWedlug} resizeMode="contain"></Image>
           </TouchableOpacity>
         </View> 
       </ImageBackground>
@@ -158,22 +158,48 @@ export function RaportWedlugLista({navigation, route}) {
 
 export function MenuComponentE1(props) {
 
+
+  const options = [
+    {name: 'budynek 1', value: '113', id:'1'},
+    {name: 'budynek 2', value: '113', id:'2'},
+    {name: 'budynek 3', value: '113', id:'3'}
+  ];
+
+  const myStyles ={optionWrapper: {height: 30, backgroundColor: "darkgray", marginLeft: 5, marginTop: 5, marginRight: 5, marginBottom: 1}, optionText: {fontSize: 18, color: "#faf3ea"}};
+  const budStyles = {optionWrapper: {height: 60, backgroundColor: "lightgray", marginLeft: 5, marginTop: 5, marginRight: 5, marginBottom: 5}, optionText: {fontSize: 22, color: "#faf3ea"}};
+  const menuStyles = {marginLeft: 70, marginTop: 10, backgroundColor: "lightgray", borderBottomLeftRadius: 10, borderBottomRightRadius: 10, borderTopLeftRadius: 20, borderTopRightRadius: 20};
   return (
         <Menu>
           <MenuTrigger>
             <View style={styles.budynekContainer}>
-              <Image source={require("../ProjektAIDC/assets/raportPage/iconBudynek.png")} style={styles.Icons}/>
+              <Image source={require("../assets/raportPage/iconBudynek.png")} style={styles.Icons}/>
               <Text style={styles.budynekTekst}>{props.budTextProp}</Text>
             </View>
           </MenuTrigger>
-          <MenuOptions optionsContainerStyle={{marginLeft: 70, marginTop: 10, backgroundColor: "lightgray", borderBottomLeftRadius: 10, borderBottomRightRadius: 10, borderTopLeftRadius: 20, borderTopRightRadius: 20}}>
-            <MenuOption text={props.budTextProp} customStyles={{optionWrapper: {height: 60, backgroundColor: "lightgray", marginLeft: 5, marginTop: 5, marginRight: 5, marginBottom: 5}, optionText: {fontSize: 22, color: "#faf3ea"}}}/>
-            <MenuOption onSelect={() => props.setBudTextCallBack("budynek 1")} customStyles={{optionWrapper: {height: 30, backgroundColor: "silver", marginLeft: 5, marginTop: 5, marginRight: 5, marginBottom: 1}, optionText: {fontSize: 18, color: "#faf3ea"}}} text={"budynek 1"}>
-            </MenuOption>
-            <MenuOption onSelect={() => props.setBudTextCallBack("budynek 2")} customStyles={{optionWrapper: {height: 30, backgroundColor: "darkgray", marginLeft: 5, marginTop: 5, marginRight: 5, marginBottom: 1}, optionText: {fontSize: 18, color: "#faf3ea"}}} text={"budynek 2"}>
-            </MenuOption>
-            <MenuOption onSelect={() => props.setBudTextCallBack("budynek 3")} customStyles={{optionWrapper: {height: 30, backgroundColor: "silver", marginLeft: 5, marginTop: 5, marginRight: 5, marginBottom: 1}, optionText: {fontSize: 18, color: "#faf3ea"}}} text={"budynek 3"}>
-            </MenuOption>
+          <MenuOptions optionsContainerStyle={menuStyles}>
+            
+            <MenuOption 
+            text={props.budTextProp} 
+            customStyles={budStyles}
+            />
+
+            {options.map((item) => {
+              return (
+
+               <MenuOption 
+               key={item.id} 
+               onSelect={() => {
+                 props.setBudTextCallBack(item.name);
+                 
+                }}
+               customStyles={myStyles} 
+               text={item.name}
+               />
+
+              );
+            })}
+
+
           </MenuOptions>
         </Menu>
   );
@@ -185,7 +211,7 @@ export function MenuComponentE2(props) {
     <Menu>
       <MenuTrigger>
         <View style={styles.budynekContainer}>
-          {/* <Image source={require("../ProjektAIDC/assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/> */}
+          {/* <Image source={require("../assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/> */}
           <AntDesign name={"folder1"} size={40} color={"white"} style={{marginTop: 15, marginLeft: 15}}/>
           <Text style={styles.kategoriaTekst}>{props.katTextCallBack}</Text>
         </View>
@@ -209,7 +235,7 @@ export function MenuComponentE3(props) {
     <Menu>
       <MenuTrigger>
         <View style={styles.budynekContainer}>
-          <Image source={require("../ProjektAIDC/assets/raportPage/iconBudynek.png")} style={styles.Icons}/>
+          <Image source={require("../assets/raportPage/iconBudynek.png")} style={styles.Icons}/>
           <Text style={styles.budynekTekst}>{props.budTextProp}</Text>
         </View>
       </MenuTrigger>
@@ -232,7 +258,7 @@ export function MenuComponentE31(props) {
     <Menu>
       <MenuTrigger>
         <View style={styles.budynekContainer}>
-          <Image source={require("../ProjektAIDC/assets/raportPage/iconPietro.png")} style={styles.Icons}/>
+          <Image source={require("../assets/raportPage/iconPietro.png")} style={styles.Icons}/>
           <Text style={styles.budynekTekst}>{props.pietroTextProp}</Text>
         </View>
       </MenuTrigger>
@@ -254,7 +280,7 @@ export function MenuComponentE4(props) {
     <Menu>
       <MenuTrigger>
         <View style={styles.budynekContainer}>
-          <Image source={require("../ProjektAIDC/assets/raportPage/iconPokoj.png")} style={styles.Icons}/>
+          <Image source={require("../assets/raportPage/iconPokoj.png")} style={styles.Icons}/>
           <Text style={styles.budynekTekst}>{props.pokojTextProp}</Text>
         </View>
       </MenuTrigger>
@@ -277,7 +303,7 @@ export function MenuComponentE5(props) {
     <Menu>
       <MenuTrigger>
         <View style={styles.budynekContainer}>
-          <Image source={require("../ProjektAIDC/assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/>
+          <Image source={require("../assets/raportPage/iconSporzRaportu.png")} style={styles.Icons}/>
           <Text style={styles.budynekTekst}>{props.wgTekstProp}</Text>
         </View>
       </MenuTrigger>
