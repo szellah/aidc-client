@@ -1,9 +1,23 @@
+//@ts-check
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useRef} from 'react';
 import { StyleSheet, Text, View, FlatList, ScrollView, Animated} from 'react-native';
 
+/**
+ * Tworzenie tablicy
+ * @function Table
+ * @returns {Object} - Zwraca ukończoną tablicę
+ */
 export function Table() {
-
+  
+  /**
+   * @typedef {array} 
+   * @name Przedmiot
+   * @property {string} category - Kategoria
+   * @property {string} name - Nazwa
+   * @property {string} added - Data dodania
+   * @property {string|number} id - ID
+   */
   const [things, setThings] = useState([
     { category: 'mebel', name: 'fotel', added: '21.01.2021', id: '1'},
     { category: 'mebel1', name: 'fotel', added: '21.01.2021', id: '2'},
@@ -101,6 +115,39 @@ export function Table() {
 
 }
 
+/**
+ * Funkcja z React Native do stworzenia akruszu stylów
+ * @function
+ * @name styles
+ * @param {object} container - Container
+ * @param {object} listContainer - List container
+ * @param {object} columnLeft - Lewa kolumna
+ * @param {object} columnRight - Prawa kolumna
+ * @param {object} columnCenter - Środkowa kolumna
+ * @param {object} top - Góra
+ * @param {object} topColumnLeftRight - Kolumna na górze lewo i prawo?
+ * @param {object} topColumnLeft - Kolumna na górze po lewo
+ * @param {object} topColumnCenter - Kolumna na górze po środku
+ * 
+ * @property {string} width - Szerokość
+ * @property {string} backgroundColor - Kolor tła
+ * @property {number} padding - Wolna przestrzeń obok elementu
+ * @property {number} flex - Ułożenie elementu
+ * @property {number} borderRadius - Zasięg obramowania
+ * @property {number} marginTop - Margines (góra)
+ * @property {string} flexDirection - Kierunek elementu
+ * @property {number} marginBottom - Margines (dół)
+ * @property {string} textAlign - Położenie tekstu
+ * @property {number} paddingLeft - Wolna przestrzeń obok elementu (lewo)
+ * @property {number} paddingVertical - Wolna przestrzeń obok elementu (wertykalnie)
+ * @property {number} fontSize - Rozmiar czcionki
+ * @property {number} borderLeftWidth - Szerokość obramowania (lewo)
+ * @property {number} borderRightWidth - Szerokość obramowania (prawo)
+ * @property {string} borderColor - Kolor obramowania
+ * @property {number} height - Wysokość
+ * @property {string} color - Kolor elementu
+ * @property {string} borderLeftColor - Kolor obramowania (lewo)
+ */
 const styles = StyleSheet.create({
 container: {
   width: '100%',

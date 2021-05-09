@@ -1,8 +1,8 @@
   
 {
     "source": {
-      "include": ["./"],
-      "includePattern": "Trays.js",
+      "include": ["components"],
+      "includePattern": "Table.js",
       "excludePattern": "(node_modules/|docs)"
     },
     "plugins": ["plugins/markdown"],
