@@ -1,68 +1,62 @@
-import React, {useState} from 'react';
-import { StyleSheet, View, TextInput, Button } from 'react-native';
-import NotificationBox from '../components/NotificationBox';
+import React from "react";
+import { ImageBackground } from "react-native";
+import {LogoutButton} from "../components/Buttons"
+import {Tray} from '../components/Trays'
+import {LocationButton, UsersButton, SettingsButton, PackageButton} from '../components/RoundButtons'
+/**
+ * Przycisk Kliknij
+ * @param {string} text  - tekst przycisku
+ 
+ */
+const kliknij = (text) => {
+    console.log(text);
+}
+  /**
+    * Główny ekran po zalogowaniu = Home
+    * @function Home
+    * @param {object} navigation przejście między ekranami
+    
+    * @param {object} source Dodawanie tła na ekran
+   
+     *  @param {object} spread Ustawienie przycisków 
+ 
+     * @param {object} LogoutButton  Ustawienie przycisku Wyloguj na ekranie
+   
+     * @param {object} PackageButton Ustawienie przycisku przejścia na ekranie
 
-export default function Home({ navigation }){
-
-    const Creq_lib = require('../clientRequests/Creq_lib');
-
-    const [sendId, setSendId] = useState(0);
-    const [notificationVisibility, setNotificationVisibility] = useState(false);
-    const [notificationContent, setNotificationContent ] =useState({});
-
-
-    {/* Wiązanka obietnic (Promise) która wpierw pobiera dane, następnie wstawia je do wiadomości i pod koniec ją wyświetla */}
-    const displayNotificaiton = () => {
-
-        Creq_lib.test(sendId)
-        .then(resolve => setNotificationContent(resolve))
-        .then(setNotificationVisibility(true));
-
-    }
-
+     * @param {object} LocationButton Ustawienie przycisku Lokalizacja na ekranie
+     
+     * @param {object} UsersButton  Ustawienie przycisku Użytkownicy na ekranie
+     * @param {object} SettingsButton Ustawienie przycisku Ustawień na ekranie
+     */
+export default function Home({navigation})
+{
     return(
-    <View style={styles.container}>
+      
+        <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={{flex: 1}}>
+  
+        <Tray spread="right" composition="loose">
+            <LogoutButton/>
+        </Tray>
+        <Tray spread="center" composition="compact">
+         
+            <PackageButton
+            navigation={navigation}
+            />
+            <LocationButton
+            navigation={navigation}
+            />
+        </Tray>
+        <Tray spread="center" composition="compact">
+            <UsersButton
+            navigation={navigation}
+            />
+            <SettingsButton
+            navigation={navigation}
+            />
+        </Tray>
 
-        {/* Pudełko w którym mogą się pojawić powiadomienia */}
-        <NotificationBox 
-        visibility={notificationVisibility} 
-        VisibilityHandler={ setNotificationVisibility } 
-        content={notificationContent}
-        />
 
-
-        {/* Input tekstowy */}
-      <TextInput
-      style={styles.input} 
-      placeholder='wpisz tu liczbę'
-      onChangeText={(val) => {
-        setSendId(val);
-      }}
-      />
-      <View style={styles.button} ><Button onPress={ () => {navigation.push("Report", {id: sendId})}} title='Raport'/></View>
-      <View style={styles.button} ><Button onPress={ displayNotificaiton } title='Powiadomienie'/></View>
-
-    </View>
+        </ImageBackground>
     )
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      flexDirection: 'column',
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    input: {
-      borderColor: 'rgba(0,0,0,0.2)',
-      borderWidth: 1,
-      borderStyle: 'dashed',
-      borderRadius: 5,
-      padding: 10,
-      marginVertical:10,
-    },
-    button: {
-        marginVertical: 5,
-    }
-  });

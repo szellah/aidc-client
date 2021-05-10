@@ -28,5 +28,11 @@
     "@babel/core": "^7.9.0",
     "jsdoc": "^3.6.6"
   },
-  "private": true
+  "private": true,
+  "name": "Projekt1",
+  "description": "by SGGW WZIM Inf. 2019/gr.4\r </br>\r >Sprawdź również [AIDC-SERVER](https://github.com/szellah/aidc-server)",
+  "version": "1.0.0",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
