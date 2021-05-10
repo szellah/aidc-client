@@ -6,7 +6,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
+
     "doc": "jsdoc -c jsdoc.json"
+
   },
   "dependencies": {
     "@react-native-community/masked-view": "0.1.10",
@@ -29,7 +31,7 @@
     "jsdoc": "^3.6.6"
   },
   "private": true,
-  "name": "Projekt1",
+  "name": "projekt",
   "description": "by SGGW WZIM Inf. 2019/gr.4\r </br>\r >Sprawdź również [AIDC-SERVER](https://github.com/szellah/aidc-server)",
   "version": "1.0.0",
   "keywords": [],

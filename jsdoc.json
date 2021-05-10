@@ -2,7 +2,8 @@
     "source": {
 
       "include": ["screens"],
- "includePattern": ".js$", 
+	  "includePattern": ".",
+
       "excludePattern": "(node_modules/|docs)"
     },
     "plugins": ["plugins/markdown"],
@@ -15,4 +16,5 @@
       "destination": "./docs/",
         "templete": "./custom"
     }
+
   }
