@@ -43,9 +43,7 @@ const styles = StyleSheet.create({
         width: "86%",
         marginHorizontal: "7%",
         marginVertical: '4%'
-      }
-
-
+      },
   });
 
   //tablice asocjacyjne, pozwalające na proceduralne dobieranie stylów

@@ -4,9 +4,10 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Ionicons } from '@expo/vector-icons';
 
 
+
 //Input oraz QRbutton z którego dziedziczą różne inputy, dla reacta się na to mówi "zawieranie"
 
-export const Input = ({icon, placeholder, color, size, displayQRButton, pressHandler}) => {
+export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler}) => {
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
 			<Icon
@@ -19,7 +20,7 @@ export const Input = ({icon, placeholder, color, size, displayQRButton, pressHan
 				style={styles.inputText}
 				autoCorrect={false}
 				placeholder={placeholder}
-				placeholderTextColor="rgba(0,0,0,0.4)"
+				placeholderTextColor={placeholderTextColor == null ? "rgba(0,0,0,0.4)" : placeholderTextColor}
 				multiline={size=="large"}
 			/>
 			{displayQRButton&&(<QRButton pressHandler={pressHandler}/>)}
@@ -78,6 +79,127 @@ export const PasswordInput = () => {
 	);
 };
 
+export const EnterOldPasswordInput = () => {
+	return (
+		<Input
+		icon="lock"
+        placeholder="podaj stare hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+export const EnterNewPasswordInput = () => {
+	return (
+		<Input
+		icon="lock"
+        placeholder="podaj nowe hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+export const RepeatNewPasswordInput = () => {
+	return (
+		<Input
+		icon="lock"
+        placeholder="powtórz nowe hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+export const EnterPasswordInput = () => {
+	return (
+		<Input
+		icon="lock"
+        placeholder="podaj hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+export const RepeatPasswordInput = () => {
+	return (
+		<Input
+		icon="lock"
+        placeholder="powtórz hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+export const UserFirstnameInput = () => {
+	return(
+		<Input
+		icon="user"
+        placeholder="imię"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserSurnameInput = () => {
+	return(
+		<Input
+		icon="user"
+        placeholder="nazwisko"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserStateInput = () => {
+	return(
+		<Input
+		icon="folder"
+        placeholder="stan"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserRankInput = () => {
+	return(
+		<Input
+		icon="folder"
+        placeholder="ranga"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserLoginInput = () => {
+	return(
+		<Input
+		icon="user"
+        placeholder="login"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserEmailInput = () => {
+	return(
+		<Input
+		icon="envelope"
+        placeholder="e-mail"
+		color="yellow"
+		/>
+	);
+}
+
+
 //duży input
 
 export const DescriptionInput = () => {
@@ -124,6 +246,33 @@ export const CategorySelect = () => {
 		<Input
 		icon="folder"
 		placeholder="kategoria"
+		color="yellow"
+		/>
+	);
+}
+export const BuildingSelect = () => {
+	return (
+		<Input
+		icon="building"
+		placeholder="budynek"
+		color="yellow"
+		/>
+	);
+}
+export const FloorsSelect = () => {
+	return (
+		<Input
+		icon="align-justify"
+		placeholder="piętro"
+		color="yellow"
+		/>
+	);
+}
+export const RoomSelect = () => {
+	return (
+		<Input
+		icon="square-o"
+		placeholder="pokój"
 		color="yellow"
 		/>
 	);
