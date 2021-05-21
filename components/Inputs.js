@@ -7,21 +7,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 //Input oraz QRbutton z którego dziedziczą różne inputy, dla reacta się na to mówi "zawieranie"
 
-<<<<<<< HEAD
-/**
- * Początkowy Input, z którego będą dziedziczyć kolejne inputy w aplikacji.
- * 	@function
- * 	@param {string} icon - zmienna zaimportowana z react-native-vector-icons/FontAwesome
- *  @param {var} placeholder - placeholder do zarezerowania potrzebnego miejsca 
- *  @param {var} placeholderTextColor - kolor dla stworzonego placeholdera
- *  @param {string} color - kolor zapisany w postaci hexadecymalnej
- *  @param {number} size - rozmiar ikony
- *  @param {var} displayQRButton - Sposób wyświetlania przycisku QR
- *  @param {JSX} pressHandler - Zdarzenie wywoływanie podczas wczytania przycisku QR 
- */
-
-=======
->>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler}) => {
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
@@ -124,17 +109,6 @@ export const PasswordInput = () => {
 	);
 };
 
-<<<<<<< HEAD
-/**
- * Input ,w którym podajemy stare hasło użytkownika.
- * @function
- * 
- * 
- */
-
-
-=======
->>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 export const EnterOldPasswordInput = () => {
 	return (
 		<Input
@@ -147,17 +121,6 @@ export const EnterOldPasswordInput = () => {
 	);
 };
 
-<<<<<<< HEAD
-/**
- * Input ,w którym wpisujemy nowe hasło dla bieżącego użytkownika.
- * @function
- * 
- * 
- */
-
-
-=======
->>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 export const EnterNewPasswordInput = () => {
 	return (
 		<Input
@@ -170,17 +133,6 @@ export const EnterNewPasswordInput = () => {
 	);
 };
 
-<<<<<<< HEAD
-/**
- * Input, w którym potwierdzamy nowe hasło, aby dokonać ostatecznej zmiany.
- * @function
- * 
- * 
- */
-
-
-=======
->>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 export const RepeatNewPasswordInput = () => {
 	return (
 		<Input
@@ -193,17 +145,6 @@ export const RepeatNewPasswordInput = () => {
 	);
 };
 
-<<<<<<< HEAD
-/**
- * Input, w którym potwierdzamy obecne hasło.
- * @function
- * 
- * 
- */
-
-
-=======
->>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 export const EnterPasswordInput = () => {
 	return (
 		<Input
@@ -216,17 +157,6 @@ export const EnterPasswordInput = () => {
 	);
 };
 
-<<<<<<< HEAD
-/**
- * Input, w którym wpisujemy ponownie obecne hasło.
- * @function
- * 
- * 
- */
-
-
-=======
->>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 export const RepeatPasswordInput = () => {
 	return (
 		<Input
@@ -239,8 +169,6 @@ export const RepeatPasswordInput = () => {
 	);
 };
 
-<<<<<<< HEAD
-=======
 export const UserFirstnameInput = () => {
 	return(
 		<Input
@@ -302,7 +230,6 @@ export const UserEmailInput = () => {
 }
 
 
->>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 //duży input
 
 /**
@@ -553,14 +480,4 @@ const styles = StyleSheet.create({
 
 
 const colors = {yellow: styles.inputYellow, blue: styles.inputBlue};
-<<<<<<< HEAD
-
-/**
- * Tablica asocacyjna umożliwiająca wybranie rozmiaru
- * @type {{small:number, large:number }}
- * 
- */
-
-=======
->>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 const sizes = {small: styles.inputSmall, large: styles.inputLarge};
