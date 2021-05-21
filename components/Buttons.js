@@ -2,7 +2,21 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 
 //Elementy po których się pseudo dziediczy, dla reacta się na to mówi "zawieranie"
-export const Button = ({ title, color, size, pressHandler }) => {
+/**
+ * Przycisk podstawowy, taki który zawierany jest w innych i pozweala na duże dopasowanie.<br>
+ * Pozwala na dobranie tytułu, koloru, rozmiaru tak by elementy<br>
+ * go zawierające mogły jak najlepiej oddawać wygląd prototypowy.<br>
+ * Posiada również możliwość przekazania funkcji która zadziała po jego naciśnięciu.
+ * @function
+ * @param {string} title -tytuł wyświetlany na przycisku
+ * @param {string} color -kolor przycisku, do wyboru yellow, green i blue
+ * @param {string} size - rozmiar przycisku, do wyboru small i large
+ * @param {function} pressHandler - funkcja wywołana po naciśnięciu przycisku
+ * 
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Root Components
+ */export const Button = ({ title, color, size, pressHandler }) => {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -17,7 +31,14 @@ export const Button = ({ title, color, size, pressHandler }) => {
 };
 
 //Przyciski niebieskie
-
+/**
+ * Niebieski przycisk z napisem "Edytuj"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
 export const EditButton = ({ pressHandler }) => {
   return (
     <Button
@@ -29,6 +50,14 @@ export const EditButton = ({ pressHandler }) => {
   );
 };
 
+/**
+ * Niebieski przycisk z napisem "Usuń"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
 export const DeleteButton = ({ pressHandler }) => {
   return (
     <Button
@@ -40,6 +69,14 @@ export const DeleteButton = ({ pressHandler }) => {
   );
 };
 
+/**
+ * Niebieski przycisk z napisem "Zapisz"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
 export const SaveButton = ({ pressHandler }) => {
   return (
     <Button
@@ -51,6 +88,14 @@ export const SaveButton = ({ pressHandler }) => {
   );
 };
 
+/**
+ * Niebieski przycisk z napisem "Anuluj"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
 export const CancelButton = ({ pressHandler }) => {
   return (
     <Button
@@ -63,7 +108,14 @@ export const CancelButton = ({ pressHandler }) => {
 };
 
 //przyciski żółte
-
+/**
+ * Żółty duży przycisk z napisem "Zaloguj"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
 export const LoginButton = ({ pressHandler }) => {
   return (
     <Button
@@ -75,6 +127,14 @@ export const LoginButton = ({ pressHandler }) => {
   );
 };
 
+/**
+ * Żółty duży przycisk z napisem "Eksportuj"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
 export const ExportButton = ({ pressHandler }) => {
   return (
     <Button
@@ -86,6 +146,14 @@ export const ExportButton = ({ pressHandler }) => {
   );
 };
 
+/**
+ * Żółty duży przycisk z napisem "Zatwierdź"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
 export const ConfirmButton = ({ pressHandler }) => {
   return (
     <Button
@@ -97,6 +165,14 @@ export const ConfirmButton = ({ pressHandler }) => {
   );
 };
 
+/**
+ * Żółty przycisk z napisem "Zmień"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
 export const ChangeButton = ({pressHandler}) => {
   return(
     <Button
@@ -108,6 +184,14 @@ export const ChangeButton = ({pressHandler}) => {
   );
 }
 
+/**
+ * Żółty przycisk z napisem "Usuń"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
 export const DeletYellowButton = ({pressHandler}) => {
   return(
     <Button
@@ -119,6 +203,14 @@ export const DeletYellowButton = ({pressHandler}) => {
   );
 }
 
+/**
+ * Żółty duży przycisk z napisem "Zamień Hasło"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
 export const ChangePasswordButton = ({pressHandler}) => {
   return(
     <Button
@@ -131,7 +223,14 @@ export const ChangePasswordButton = ({pressHandler}) => {
 }
 
 //przyciski zielone
-
+/**
+ * Zielony przycisk z napisem "Wyloguj"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
 export const LogoutButton = ({ pressHandler }) => {
   return (
     <Button
@@ -144,20 +243,7 @@ export const LogoutButton = ({ pressHandler }) => {
 
 };
 
-/**
- * Style
- * @typedef (Object) styles
- * @property {number} borderRadius odstęp
- * @property {string} flexDirection układ
- * @property {string} justifyContent umiejscowienie zawartości 
- * @property {string} color kolor
- * @property {string} textTransform wielkość liter
- * @property {string} backgroundColor kolor wypełnienia
- * @property {number} fontSize wielkość czcionki
- * @property {number} width szerokość
- * @property {number} paddingVertical odstęp w pionie
- * @property {number} paddingHorizontal odstęp w poziomie 
- */
+
 const styles = StyleSheet.create({
   buttonBox: {
     borderRadius: 40,

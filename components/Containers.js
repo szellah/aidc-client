@@ -1,9 +1,19 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 
-//Takie kontenery zastępujące kolumny, dzięki którym łatwiej o układanie rzeczy na ekranie w pionie
-//spread string - informacja o tym jak wewnątrz obiektu mają być rozrzucone elementy, wybierane z listy [top, bottom, center, even]
-//composition string - wielkości marginesów wybierane z listy [comapct, loose]
+/**
+ * Container to kontener zastępujący kolumnę, dzięki któremu łatwiej o układanie rzeczy na ekranie.<br>
+ * Wszystkie elementy UI działają niczym stos. By móc ten stos przesuwać  ustawić wertykalnie potrzebny jest Container <br>
+ * bo może ich być więcej niż jeden w wierszu. Do tego potrzebyn jest tray.
+ *
+ * @function
+ * @param {string} spread - Rozrzucenie elmementów wewnątrz Tray, do wyboru top, bottom, center, even
+ * @param {string} composition - Kompozycja marginesów wybierane z listy [comapct, loose]
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Root Components
+ */
 export const Container = ({spread, composition, children}) => {
   return(
     <View style={[ styles.containerBox, spreads[spread] , compositions[composition] ]}>

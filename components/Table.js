@@ -2,12 +2,27 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useRef} from 'react';
 import { StyleSheet, Text, View, FlatList, ScrollView, Animated, TouchableOpacity} from 'react-native';
 
-//Komponent wyświetlający tabelkę, o trzech kolumnach (może potem wiecej ale tego nie zapisujcie w dokumentacji)
+//Komponent wyświetlający tabelkę, o trzech kolumnach
 //korzysta on z mapowania tablicy elementów wchodzących na obiekty JSX, czyli innymi słowy dla każdego elemntu w tablicy tworzy on wiersz w postaci xml
 //dodatkowo posiada on skomplikowana logikę aktualizowania wysokości paska przesuwania
 //toDisplay array object - tablica elementów do wyświetlenia w tabelce, informacje do zapasania w angłówkach muszą się znajdować w elemencie tablicy o key == header
 //clickable bool - informacja o tym czy wiersze mają być klikalne
 //pressHandler function - jeżeli wiersze są klikalne to pressHandler jest funkcją wykonywaną dla każdego wiersza po naciśnięciu
+/**
+ * 
+ * Komponent wyświetlający tabelkę, o trzech kolumnach<br>
+ * korzysta on z mapowania tablicy elementów wchodzących na obiekty JSX, <br>
+ * czyli innymi słowy dla każdego elemntu w tablicy tworzy on wiersz w postaci xml<br>
+ * dodatkowo posiada on skomplikowana logikę aktualizowania wysokości paska przesuwania<br>
+ * 
+ * @param {Array} toDisplay - tablica elementów do wyświetlenia w tabelce, informacje do zapasania w angłówkach muszą się znajdować w elemencie tablicy o key równym 'header'
+ * @param {boolean} clickable - informacja o tym czy wiersze mają być klikalne
+ * @param {function} pressHandler - jeżeli wiersze są klikalne to pressHandler jest funkcją wykonywaną dla każdego wiersza po naciśnięciu
+ * 
+ * @returns {JSX} zwraca tabelę jako element JSX
+ * 
+ * @category Root Components
+ */
 export function Table({toDisplay, clickable, pressHandler}) {
 
 

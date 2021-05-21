@@ -3,7 +3,21 @@ import { Feather, Foundation, Ionicons } from '@expo/vector-icons';
 import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Image} from "react-native";
 
 
-//Element po którym pseudo dziedziczy, dla reacta się na to mówi "zawieranie"
+/**
+ * Okrągły przycisk, zwykle używany w menu do nawigacji między ekranami aplikacji. <br>
+ * Najlepiej ułożyc je w obiektach typu Tray, nie więcej niż po dwa w jednym.
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * @param {string} destination -Nazwa ekranu do którego ma prowadzić nas po wciśnięciu przycisku. Należy się upewnieć czy ekran znajduje się w tym samym kontenerze nawigacji co ekran.
+ * @param {string} icon - Nazwa ikony z pakietu ikon expo, o wybranej rodzinie. https://icons.expo.fyi
+ * @param {string} [familyOfIcons] - Nazwa czcionki fontowej do wyboru: Ionics, Foundation (jeżeli nie wpiszemy żadnej wyświetli się Feather)
+ * @param {string} title -Napis który wyświetliu się pod przyciskiem.
+ * @param {string} color -Kolor przycisku: blue, yellow, sand, gray.
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Root Components
+ */
 export const RoundButton = ({navigation, destination, icon, familyOfIcons, title, color}) => {
     
     return(
@@ -33,7 +47,21 @@ export const RoundButton = ({navigation, destination, icon, familyOfIcons, title
 
 
 
-// CustomRoundButton to przycisk który potrzebuje specjalnej grafiki (takiej której nie ma w "@expo/vector-icons")
+// 
+/**
+ * CustomRoundButton to przycisk który potrzebuje specjalnej grafiki (takiej której nie ma w "@expo/vector-icons"). <br>
+ * Najlepiej ułożyc je w obiektach typu Tray, nie więcej niż po dwa w jednym.
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * @param {string} destination -Nazwa ekranu do którego ma prowadzić nas po wciśnięciu przycisku. Należy się upewnieć czy ekran znajduje się w tym samym kontenerze nawigacji co ekran.
+ * @param {string} src - Ścieżka do ikony .png
+ * @param {string} title -Napis który wyświetliu się pod przyciskiem.
+ * @param {string} color -Kolor przycisku: blue, yellow, sand, gray.
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Root Components
+ */
 export const CustomRoundButton = ({
   navigation,
   destination,
@@ -64,6 +92,16 @@ export const CustomRoundButton = ({
 };
 
 //poszczególne przyciski menu
+
+/**
+ * Przycisk nawigujący do menu Towaru
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const PackageButton = ({ navigation }) => {
   return (
     <RoundButton
@@ -76,6 +114,16 @@ export const PackageButton = ({ navigation }) => {
   );
 };
 
+/**
+ * Przycisk nawigujący do menu 
+ * @function
+ * @param {string} familyOfIcons -Nazwa czcionki ikonowej
+ * @param {string} icon -Nazwa ikony w czcionce
+ * 
+ * @returns {JSX} zwraca ikonę jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const Icon = ({familyOfIcons, icon}) => {
     if(familyOfIcons == null)
         return(<Feather name={icon} size={Dimensions.get('window').width * 0.18} color="white" />)
@@ -87,6 +135,15 @@ export const Icon = ({familyOfIcons, icon}) => {
             return(<Ionicons name={icon} size={Dimensions.get('window').width * 0.25} color="white" />)
 }
 
+/**
+ * Przycisk nawigujący do menu Lokalizacji
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const LocationButton = ({ navigation }) => {
   return (
     <RoundButton
@@ -99,6 +156,15 @@ export const LocationButton = ({ navigation }) => {
   );
 };
 
+/**
+ * Przycisk nawigujący do menu Użytkowników
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const UsersButton = ({ navigation }) => {
   return (
     <RoundButton
@@ -111,6 +177,15 @@ export const UsersButton = ({ navigation }) => {
   );
 };
 
+/**
+ * Przycisk nawigujący do menu Ustawień
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const SettingsButton = ({ navigation }) => {
   return (
     <RoundButton
@@ -124,6 +199,15 @@ export const SettingsButton = ({ navigation }) => {
 };
 
 // Przyciski w sekcji "Towar (ArticleMenu)"
+/**
+ * Przycisk nawigujący do menu Towar/Zarządzanie 
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const ManagmentButton = ({ navigation }) => {
   return (
     <CustomRoundButton
@@ -136,6 +220,15 @@ export const ManagmentButton = ({ navigation }) => {
   );
 };
 
+/**
+ * Przycisk nawigujący do ekranu Towar/Dodaj Nowy
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const AddArticleButton = ({ navigation }) => {
   return (
     <RoundButton
@@ -150,6 +243,16 @@ export const AddArticleButton = ({ navigation }) => {
 
 
 //poszczególne przyciski ustawień
+
+/**
+ * Przycisk nawigujący do ekran Ustawienia/Zmień hasło
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const ChangePasswordButton = ({navigation}) => {
     return(
         <RoundButton
@@ -163,6 +266,15 @@ export const ChangePasswordButton = ({navigation}) => {
     )
 }
 
+/**
+ * Przycisk nawigujący do ekranu Ustawienia/Informacje
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const AccountInfoButton = ({navigation}) => {
     return(
         <RoundButton
@@ -176,6 +288,15 @@ export const AccountInfoButton = ({navigation}) => {
     )
 }
 
+/**
+ * Przycisk nawigujący do ekranu Ustwaienia/Usuń konto
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const DeleteAccountButton = ({navigation}) => {
     return(
         <RoundButton
@@ -188,7 +309,17 @@ export const DeleteAccountButton = ({navigation}) => {
         />
     )
 }
+
 // przycisk "Odtowaruj"
+/**
+ * Przycisk nawigujący do ekranu Towar/Odtowaruj
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const RemoveStockedArticleButton = ({ navigation }) => {
   return (
     <CustomRoundButton
@@ -201,6 +332,15 @@ export const RemoveStockedArticleButton = ({ navigation }) => {
   );
 };
 // przycisk "Dotowaruj"
+/**
+ * Przycisk nawigujący do ekranu Towar/Dotowaruj
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const AddStockedArticleButton = ({ navigation }) => {
   return (
     <CustomRoundButton
@@ -213,7 +353,15 @@ export const AddStockedArticleButton = ({ navigation }) => {
   );
 };
 
-
+/**
+ * Przycisk nawigujący do ekranu Lokalizacja/Informacje
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const LocationInfoButton = ({navigation}) => {
     return(
         <RoundButton
@@ -225,6 +373,16 @@ export const LocationInfoButton = ({navigation}) => {
         />
     )
 }
+
+/**
+ * Przycisk nawigujący do ekranu Lokalizacja/Dodaj nową
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const LocationAddNewButton = ({navigation}) => {
     return(
         <RoundButton
@@ -238,6 +396,16 @@ export const LocationAddNewButton = ({navigation}) => {
 }
 
 // Przyciski w Zarządzaniu (Managment)
+
+/**
+ * Przycisk nawigujący do ekranu Towar/Informacje
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const ArticleInfoButton = ({ navigation }) => {
   return (
     <RoundButton
@@ -250,7 +418,15 @@ export const ArticleInfoButton = ({ navigation }) => {
   );
 };
 
-
+/**
+ * Przycisk nawigujący do ekranu Towar/Raporty
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const ReportsButton = ({ navigation }) => {
   return (
     <CustomRoundButton
@@ -263,6 +439,15 @@ export const ReportsButton = ({ navigation }) => {
   );
 };
 
+/**
+ * Przycisk nawigujący do ekranu Użytkownicy/Informacje
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const UsersInfoButton = ({navigation}) => {
   return (
     <RoundButton
@@ -275,6 +460,15 @@ export const UsersInfoButton = ({navigation}) => {
   );
 };
 
+/**
+ * Przycisk nawigujący do ekranu Użytkownicy/Dodaj nowego
+ * @function
+ * @param {object} navigation -Przekazywany obiekt nawigacyjny
+ * 
+ * @returns {JSX} zwraca przycisk nawigacyjny jako element JSX
+ * 
+ * @category Round Buttons
+ */
 export const UserAddNewButton = ({navigation}) => {
   return (
     <RoundButton
