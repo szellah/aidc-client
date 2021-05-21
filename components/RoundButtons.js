@@ -281,7 +281,7 @@ export const AccountInfoButton = ({navigation}) => {
         navigation={navigation}
         color="gray"
         familyOfIcons="Ionicons"
-        icon="Information-circle-outline"
+        icon="information-circle-outline"
         destination="AccountInfo"
         title="Informacje"
         />
