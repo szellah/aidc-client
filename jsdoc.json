@@ -1,9 +1,7 @@
 {
     "source": {
-
-      "include": ["components"],
-"includePattern": ".", 
-
+      "include": ["./"],
+      "includePattern": "Trays.js",
       "excludePattern": "(node_modules/|docs)"
     },
     "plugins": ["plugins/markdown"],
@@ -16,5 +14,4 @@
       "destination": "./docs/",
         "templete": "./custom"
     }
-
   }
