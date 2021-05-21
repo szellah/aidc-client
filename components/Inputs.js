@@ -5,8 +5,6 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 
-//Input oraz QRbutton z którego dziedziczą różne inputy, dla reacta się na to mówi "zawieranie"
-
 export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler}) => {
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
@@ -27,12 +25,6 @@ export const Input = ({icon, placeholder, placeholderTextColor, color, size, dis
 		</View>
 	);
 }
-/**
- * Komponent wyswietlający przycisk QR
- * @function
- * @param {var} pressHandler - Wywołanie zdarzenia podczas użycia przycisku QR
- * 
- */
 
 
 
@@ -56,11 +48,6 @@ export const QRButton = ({pressHandler}) => {
 }
 
 //Gotowe Inputy
-/**
- * Input dla podania Nazwy
- * @function
- * 
- */
 
 
 export const NameInput = () => {
@@ -72,12 +59,7 @@ export const NameInput = () => {
 		/>
 	);
 }
-/**
- * Input, w którym podajemy login użytkownika.
- * @function
- * 
- * 
- */
+
 
 export const LoginInput = () => {
 	return (
@@ -89,12 +71,6 @@ export const LoginInput = () => {
 	);
 };
 
-/**
- * Input, w którym podajemy poprawne hasło wymagane do zalogowania.
- * @function
- * 
- * 
- */
 
 
 
@@ -232,12 +208,6 @@ export const UserEmailInput = () => {
 
 //duży input
 
-/**
- * Input, w którym podajemy opis 
- * @function
- * 
- * 
- */
 
 
 export const DescriptionInput = () => {
@@ -253,13 +223,7 @@ export const DescriptionInput = () => {
 
 //inputy korzystające z QR button
 
-/**
- * Input do odczytania kodu QR danego artykułu
- * @function
- * @param {var} pressHandler - Event potrzebny do wywołania inputu dla danego artykułu
- * 
- * 
- */
+
 
 export const ArticleCodeInput = ({pressHandler}) => {
 	return (
@@ -272,13 +236,6 @@ export const ArticleCodeInput = ({pressHandler}) => {
 		/>
 	);
 }
-/**
- * Input do sprawdzania lokalizacji danego przedmiotu
- * @function
- * @param {var} pressHandler - Zdarzenie wywołane podczas uruchomienia inputu
- * 
- * 
- */
 
 
 export const LocationCodeInput = ({pressHandler}) => {
@@ -295,11 +252,6 @@ export const LocationCodeInput = ({pressHandler}) => {
 
 //select, jeszcze nie zrobiony, usuniemy później Polekategoria
 
-
-/**
- * Funkcja umożliwiająca wybranie danego artykułu
- * @function
- */
 
 
 export const CategorySelect = () => {
@@ -339,10 +291,6 @@ export const RoomSelect = () => {
 	);
 }
 
-/**
- * Funkcja umożliwiająca wybranie danego budynku
- * @function
- */
 
 export const BuildingSelect = () => {
 	return (
@@ -354,12 +302,6 @@ export const BuildingSelect = () => {
 	);
 }
 
-/**
- * Funkcja służąca do wybrania danego piętra w budynku
- * @function
- */
-
-
 export const FloorsSelect = () => {
 	return (
 		<Input
@@ -370,11 +312,6 @@ export const FloorsSelect = () => {
 	);
 }
 
-/**
- * Funkcja służąca do wybrania danego pokoju na wybranym piętrze
- * @function
- */
-
 export const RoomSelect = () => {
 	return (
 		<Input
@@ -384,12 +321,6 @@ export const RoomSelect = () => {
 		/>
 	);
 }
-
-/**
- * Funkcja służąca do wyboru danej kategorii przedmiotów
- * @function
- * 
- */
 
 
 
@@ -419,13 +350,6 @@ export const PoleKategoria = () => {
 
 //style
 
-/**
- * Stworzony arkusz stylów
- * @type {{inputText: {textAlignVertical: string, marginLeft:string, color: string,flex: number, width: string, fontsize: number},
- * InputBox: {width: string, marginHorizontal: string, marginVertical: string, flexDirection: string, paddingVertical:number, paddingHorizontal: 15, borderWidth: number, borderRadius: number},
- * inputIcon:{marginTop:3}, inputSmall:{ height: 49}, inputLarge:{height: 170}, inputBlue:{ backgroundColor: string, borderColor:string}, inputYellow: {backgroundColor: string, borderColor: string}		
- * }}
- */
 
 const styles = StyleSheet.create({
 	inputText: {
@@ -468,15 +392,6 @@ const styles = StyleSheet.create({
 });
 
 
-
-
-//tablice asocjacyjne, pozwalające na proceduralne dobieranie stylów
-
-/**
- * Tablica asocacyjna umożliwiająca wybranie koloru
- * @type {{yellow:string, blue:string }}
- * 
- */
 
 
 const colors = {yellow: styles.inputYellow, blue: styles.inputBlue};
