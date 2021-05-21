@@ -1,10 +1,9 @@
 import React, {Component, useState} from "react";
 import {Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
 import tlo from "../assets/homePage/tempBackground.png";
-import {PoleNazwa, PoleKategoria, PoleLokalizacja, PoleKod, PoleOpis} from '../components/Inputs.js';
+import {NameInput, PoleKategoria, LocationCodeInput, ArticleCodeInput, DescriptionInput} from '../components/Inputs.js';
 import {Dodaj} from '../components/Buttons.js';
 import {PasekNawigacyjny} from '../components/PasekNawigacyjny.js';
-import {ChooseSectionButton} from '../components/ChooseSectionButton';
 
 /** 
  * Funkcja odpowiadająca za rozmieszczanie elementów na ekranie dodawania
@@ -12,34 +11,33 @@ import {ChooseSectionButton} from '../components/ChooseSectionButton';
  */
 export default function App(){
   return (
-    <ImageBackground source={require('../assets/tlo dodawanie.png')} style={styles.Tło}>
+    <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={styles.Tło}>
     <View style={styles.Tło}>
       <View style={styles.paseknagorze}>
         <PasekNawigacyjny/>
       </View>
       <View style={styles.nazwa}>
-        <PoleNazwa/>
+        <NameInput/>
       </View>
         
       <View style={styles.nazwa}>
         {/*<PoleKategoria/>*/}
-        <ChooseSectionButton />
       </View>
 
       <View style={styles.nazwa}>
-        <PoleLokalizacja/>
+        <LocationCodeInput/>
       </View>
 
       <View style={styles.nazwa}>
-        <PoleKod/>
+        <ArticleCodeInput/>
       </View>
 
       <View style={styles.opis}>
-        <PoleOpis/>
+        <DescriptionInput/>
       </View>
 
       <View style={styles.button}>
-        <Dodaj/>
+        {/*<Dodaj/>*/}
       </View>
 
     </View>

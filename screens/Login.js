@@ -13,48 +13,23 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { NotificationBox } from '../components/Notifications';
 import { PasswordInput, LoginInput } from '../components/Inputs.js';
 import { LoginButton } from '../components/Buttons.js';
-    /**
-     * Ekran logowania 
-     * @function Login
- 	 * @param {object} navigation  przejście między ekranami
- 	
-     * @param {string} require  Creq_lib
-  	 
-	 * @param {string} useState  Nazwa użytkownika - Username
-	  
-	 * @param {string} useState Hasło użytkownika - password
-	
-	 * @param {boolean} useState Widoczność powiadomień  - notificationVisibility
-	 
-	 
-	 * @param {Array<string>} useState Treść powiadomienia - notificationContent
-	 
-	 * @param {object} ForgotPassword  Przycisk - Zapomniałem Hasło - zapomniałem hasła - przypominanie
-	
-	 * @param {object} SendLoginData - zapytanie i sprawdzenie danych
- 	
- 	* @param {object} styles Kreator stylu  - kreowanie wyglądu ekranu i przycisków
-	*
-	*/
-export default function Login({ navigation }) {
-	
-	const Creq_lib = require('../clientRequests/Creq_lib');
-    
-	const [username, SetUsername] = useState('');
-	
-	const [password, SetPassword] = useState('');
-	
-	const [notificationVisibility, setNotificationVisibility] = useState(false);
 
+export default function Login({ navigation }) {
+	const Creq_lib = require('../clientRequests/Creq_lib');
+
+	const [username, SetUsername] = useState('');
+	const [password, SetPassword] = useState('');
+	const [notificationVisibility, setNotificationVisibility] = useState(false);
 	const [notificationContent, setNotificationContent] = useState({});
 
-
+	// do zrobienia
 	const ForgotPassword = () => {
 		console.log('do zrobienia');
 	};
 
 	const SendLoginData = () => {
-	
+		// zapytanie do serwera aby sprawdził dane i wygenerował token
+		// do zrobienia token
 		Creq_lib.login(username, password).then((resolve) => {
 			setNotificationContent(resolve);
 			setNotificationVisibility(resolve.error != null);

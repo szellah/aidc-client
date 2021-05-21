@@ -7,6 +7,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 //Input oraz QRbutton z którego dziedziczą różne inputy, dla reacta się na to mówi "zawieranie"
 
+<<<<<<< HEAD
 /**
  * Początkowy Input, z którego będą dziedziczyć kolejne inputy w aplikacji.
  * 	@function
@@ -19,6 +20,8 @@ import { Ionicons } from '@expo/vector-icons';
  *  @param {JSX} pressHandler - Zdarzenie wywoływanie podczas wczytania przycisku QR 
  */
 
+=======
+>>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler}) => {
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
@@ -121,6 +124,7 @@ export const PasswordInput = () => {
 	);
 };
 
+<<<<<<< HEAD
 /**
  * Input ,w którym podajemy stare hasło użytkownika.
  * @function
@@ -129,6 +133,8 @@ export const PasswordInput = () => {
  */
 
 
+=======
+>>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 export const EnterOldPasswordInput = () => {
 	return (
 		<Input
@@ -141,6 +147,7 @@ export const EnterOldPasswordInput = () => {
 	);
 };
 
+<<<<<<< HEAD
 /**
  * Input ,w którym wpisujemy nowe hasło dla bieżącego użytkownika.
  * @function
@@ -149,6 +156,8 @@ export const EnterOldPasswordInput = () => {
  */
 
 
+=======
+>>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 export const EnterNewPasswordInput = () => {
 	return (
 		<Input
@@ -161,6 +170,7 @@ export const EnterNewPasswordInput = () => {
 	);
 };
 
+<<<<<<< HEAD
 /**
  * Input, w którym potwierdzamy nowe hasło, aby dokonać ostatecznej zmiany.
  * @function
@@ -169,6 +179,8 @@ export const EnterNewPasswordInput = () => {
  */
 
 
+=======
+>>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 export const RepeatNewPasswordInput = () => {
 	return (
 		<Input
@@ -181,6 +193,7 @@ export const RepeatNewPasswordInput = () => {
 	);
 };
 
+<<<<<<< HEAD
 /**
  * Input, w którym potwierdzamy obecne hasło.
  * @function
@@ -189,6 +202,8 @@ export const RepeatNewPasswordInput = () => {
  */
 
 
+=======
+>>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 export const EnterPasswordInput = () => {
 	return (
 		<Input
@@ -201,6 +216,7 @@ export const EnterPasswordInput = () => {
 	);
 };
 
+<<<<<<< HEAD
 /**
  * Input, w którym wpisujemy ponownie obecne hasło.
  * @function
@@ -209,6 +225,8 @@ export const EnterPasswordInput = () => {
  */
 
 
+=======
+>>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 export const RepeatPasswordInput = () => {
 	return (
 		<Input
@@ -221,6 +239,70 @@ export const RepeatPasswordInput = () => {
 	);
 };
 
+<<<<<<< HEAD
+=======
+export const UserFirstnameInput = () => {
+	return(
+		<Input
+		icon="user"
+        placeholder="imię"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserSurnameInput = () => {
+	return(
+		<Input
+		icon="user"
+        placeholder="nazwisko"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserStateInput = () => {
+	return(
+		<Input
+		icon="folder"
+        placeholder="stan"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserRankInput = () => {
+	return(
+		<Input
+		icon="folder"
+        placeholder="ranga"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserLoginInput = () => {
+	return(
+		<Input
+		icon="user"
+        placeholder="login"
+		color="yellow"
+		/>
+	);
+}
+
+export const UserEmailInput = () => {
+	return(
+		<Input
+		icon="envelope"
+        placeholder="e-mail"
+		color="yellow"
+		/>
+	);
+}
+
+
+>>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 //duży input
 
 /**
@@ -298,6 +380,33 @@ export const CategorySelect = () => {
 		<Input
 		icon="folder"
 		placeholder="kategoria"
+		color="yellow"
+		/>
+	);
+}
+export const BuildingSelect = () => {
+	return (
+		<Input
+		icon="building"
+		placeholder="budynek"
+		color="yellow"
+		/>
+	);
+}
+export const FloorsSelect = () => {
+	return (
+		<Input
+		icon="align-justify"
+		placeholder="piętro"
+		color="yellow"
+		/>
+	);
+}
+export const RoomSelect = () => {
+	return (
+		<Input
+		icon="square-o"
+		placeholder="pokój"
 		color="yellow"
 		/>
 	);
@@ -444,6 +553,7 @@ const styles = StyleSheet.create({
 
 
 const colors = {yellow: styles.inputYellow, blue: styles.inputBlue};
+<<<<<<< HEAD
 
 /**
  * Tablica asocacyjna umożliwiająca wybranie rozmiaru
@@ -451,4 +561,6 @@ const colors = {yellow: styles.inputYellow, blue: styles.inputBlue};
  * 
  */
 
+=======
+>>>>>>> 1b663ccfc82caf1f79036e59c0a0eb591742fc69
 const sizes = {small: styles.inputSmall, large: styles.inputLarge};

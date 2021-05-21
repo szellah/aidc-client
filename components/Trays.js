@@ -2,6 +2,10 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 
 //Takie kontenery zastępujące wiersze, dzięki którym łatwiej o układanie rzeczy na ekranie
+/**
+ * Siema co tam
+ * @param {string} spread - takie coś, dowiesz się kiedys
+ */
 export const Tray = ({spread, composition, children}) => {
   return(
     <View style={[ styles.trayBox, spreads[spread] , compositions[composition] ]}>
@@ -39,9 +43,7 @@ const styles = StyleSheet.create({
         width: "86%",
         marginHorizontal: "7%",
         marginVertical: '4%'
-      }
-
-
+      },
   });
 
   //tablice asocjacyjne, pozwalające na proceduralne dobieranie stylów
