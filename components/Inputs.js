@@ -7,6 +7,24 @@ import { Ionicons } from '@expo/vector-icons';
 
 //Input oraz QRbutton z którego dziedziczą różne inputy, dla reacta się na to mówi "zawieranie"
 
+/**
+ * Początkowy Input, który jest zawierany we wszystkich innych imputach.<br>
+ * Można wybrać mu ikonę, napis wypełniający, kolor, rozmiar i inne.<br>
+ * Posiada również możliwość przekazania funkcji do wykonania, po naciścięciu przycisku QR.
+ * 	@function
+ * 	@param {string} icon - nazwa ikony z czcionki FontAwesome
+ *  @param {string} placeholder - nazwa wyświetlająca się przed wpisaniem wartości do Inputa
+ *  @param {string} [placeholderTextColor] - kolor placeholdera w formię stringa css
+ *  @param {string} color - kolor inputa, do wybour yellow i blue
+ *  @param {string} size - rozmiar inputa, do wyboru small ilarge
+ *  @param {boolean} [displayQRButton] - czy przycisk QR ma zostac wyświetlony
+ *  @param {function} pressHandler - funkcja wywoływana podczas naciśnięcia przycisku QR 
+ * 
+ * 	@returns {JSX} zwraca input jako element JSX
+ * 
+ * 	@category Root Components
+ */
+
 export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler}) => {
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
@@ -28,6 +46,18 @@ export const Input = ({icon, placeholder, placeholderTextColor, color, size, dis
 	);
 }
 
+/**
+ * 
+ * Przycisk pozwalający na wywołanie przekazanej inputowi funkcji.<br>
+ * Zazwyczaj będzie to wyświetlenie ekrany skanowania.
+ * @function
+ * @param {funciton} pressHandler - Funkcja do wywołania po naciśnięciu przycisku QR
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const QRButton = ({pressHandler}) => {
 	return(
 		<View style={{justifyContent:'center'}}>
@@ -47,7 +77,15 @@ export const QRButton = ({pressHandler}) => {
 }
 
 //Gotowe Inputy
-
+/**
+ * Input dla podania Nazwy Artykułu
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const NameInput = () => {
 	return(
 		<Input
@@ -57,7 +95,15 @@ export const NameInput = () => {
 		/>
 	);
 }
-
+/**
+ * Input, w którym podajemy login użytkownika.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const LoginInput = () => {
 	return (
 		<Input
@@ -68,6 +114,15 @@ export const LoginInput = () => {
 	);
 };
 
+/**
+ * Input, w którym podajemy poprawne hasło wymagane do zalogowania.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const PasswordInput = () => {
 	return (
 		<Input
@@ -79,6 +134,15 @@ export const PasswordInput = () => {
 	);
 };
 
+/**
+ * Input ,w którym podajemy stare hasło użytkownika.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const EnterOldPasswordInput = () => {
 	return (
 		<Input
@@ -91,6 +155,15 @@ export const EnterOldPasswordInput = () => {
 	);
 };
 
+/**
+ * Input ,w którym wpisujemy nowe hasło dla bieżącego użytkownika.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const EnterNewPasswordInput = () => {
 	return (
 		<Input
@@ -103,6 +176,15 @@ export const EnterNewPasswordInput = () => {
 	);
 };
 
+/**
+ * Input, w którym potwierdzamy nowe hasło, aby dokonać ostatecznej zmiany.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const RepeatNewPasswordInput = () => {
 	return (
 		<Input
@@ -115,6 +197,15 @@ export const RepeatNewPasswordInput = () => {
 	);
 };
 
+/**
+ * Input, w którym potwierdzamy obecne hasło.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const EnterPasswordInput = () => {
 	return (
 		<Input
@@ -127,6 +218,15 @@ export const EnterPasswordInput = () => {
 	);
 };
 
+/**
+ * Input, w którym wpisujemy ponownie obecne hasło.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const RepeatPasswordInput = () => {
 	return (
 		<Input
@@ -138,7 +238,17 @@ export const RepeatPasswordInput = () => {
 		/>
 	);
 };
+////////////////////////////////////////////////
 
+/**
+ * Input dla podania Imienia Użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const UserFirstnameInput = () => {
 	return(
 		<Input
@@ -149,6 +259,15 @@ export const UserFirstnameInput = () => {
 	);
 }
 
+/**
+ * Input dla podania Nazwiska użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const UserSurnameInput = () => {
 	return(
 		<Input
@@ -159,6 +278,15 @@ export const UserSurnameInput = () => {
 	);
 }
 
+/**
+ * Input dla podania Stanu użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const UserStateInput = () => {
 	return(
 		<Input
@@ -169,6 +297,15 @@ export const UserStateInput = () => {
 	);
 }
 
+/**
+ * Input dla podania Rangi Uzytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const UserRankInput = () => {
 	return(
 		<Input
@@ -179,6 +316,15 @@ export const UserRankInput = () => {
 	);
 }
 
+/**
+ * Input dla podania Login Użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const UserLoginInput = () => {
 	return(
 		<Input
@@ -189,6 +335,15 @@ export const UserLoginInput = () => {
 	);
 }
 
+/**
+ * Input dla podania Email Użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const UserEmailInput = () => {
 	return(
 		<Input
@@ -199,9 +354,17 @@ export const UserEmailInput = () => {
 	);
 }
 
-
 //duży input
 
+/**
+ * Duży input, w którym podajemy opis 
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const DescriptionInput = () => {
 	return (
 		<Input
@@ -215,6 +378,16 @@ export const DescriptionInput = () => {
 
 //inputy korzystające z QR button
 
+/**
+ * Input do odczytania kodu QR danego artykułu
+ * @function
+ * @param {function} pressHandler - funkcja wywoływana podczas naciśnięcia przycisku QR 
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const ArticleCodeInput = ({pressHandler}) => {
 	return (
 		<Input
@@ -227,6 +400,16 @@ export const ArticleCodeInput = ({pressHandler}) => {
 	);
 }
 
+/**
+ * Input do sprawdzania lokalizacji danego przedmiotu
+ * @function
+ * @param {function} pressHandler - funkcja wywoływana podczas naciśnięcia przycisku QR
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const LocationCodeInput = ({pressHandler}) => {
 	return (
 		<Input
@@ -241,6 +424,15 @@ export const LocationCodeInput = ({pressHandler}) => {
 
 //select, jeszcze nie zrobiony, usuniemy później Polekategoria
 
+/**
+ * Select do wybrania kategorii po jakiej tworzony będzie raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const CategorySelect = () => {
 	return (
 		<Input
@@ -250,6 +442,16 @@ export const CategorySelect = () => {
 		/>
 	);
 }
+
+/**
+ * Select do wybrania budynku z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const BuildingSelect = () => {
 	return (
 		<Input
@@ -259,6 +461,16 @@ export const BuildingSelect = () => {
 		/>
 	);
 }
+
+/**
+ * Select do wybrania piętra z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const FloorsSelect = () => {
 	return (
 		<Input
@@ -268,6 +480,16 @@ export const FloorsSelect = () => {
 		/>
 	);
 }
+
+/**
+ * Select do wybrania pokoju z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const RoomSelect = () => {
 	return (
 		<Input
@@ -277,6 +499,9 @@ export const RoomSelect = () => {
 		/>
 	);
 }
+
+
+
 
 export const PoleKategoria = () => {
 	return (
@@ -296,8 +521,6 @@ export const PoleKategoria = () => {
 		</View>
 	);
 };
-
-
 
 
 
@@ -346,5 +569,7 @@ const styles = StyleSheet.create({
 
 
 //tablice asocjacyjne, pozwalające na proceduralne dobieranie stylów
+
 const colors = {yellow: styles.inputYellow, blue: styles.inputBlue};
+
 const sizes = {small: styles.inputSmall, large: styles.inputLarge};
