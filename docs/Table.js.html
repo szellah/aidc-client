@@ -1,47 +1,59 @@
-//@ts-check
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Table.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Table.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//@ts-check
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useRef} from 'react';
-import { StyleSheet, Text, View, FlatList, ScrollView, Animated, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, FlatList, ScrollView, Animated} from 'react-native';
 
-
-//Komponent wyświetlający tabelkę, o trzech kolumnach
-//korzysta on z mapowania tablicy elementów wchodzących na obiekty JSX, czyli innymi słowy dla każdego elemntu w tablicy tworzy on wiersz w postaci xml
-//dodatkowo posiada on skomplikowana logikę aktualizowania wysokości paska przesuwania
-//toDisplay array object - tablica elementów do wyświetlenia w tabelce, informacje do zapasania w angłówkach muszą się znajdować w elemencie tablicy o key == header
-//clickable bool - informacja o tym czy wiersze mają być klikalne
-//pressHandler function - jeżeli wiersze są klikalne to pressHandler jest funkcją wykonywaną dla każdego wiersza po naciśnięciu
 /**
- * 
- * Komponent wyświetlający tabelkę, o trzech kolumnach<br>
- * korzysta on z mapowania tablicy elementów wchodzących na obiekty JSX, <br>
- * czyli innymi słowy dla każdego elemntu w tablicy tworzy on wiersz w postaci xml<br>
- * dodatkowo posiada on skomplikowana logikę aktualizowania wysokości paska przesuwania<br>
- * 
- * @param {Array} toDisplay - tablica elementów do wyświetlenia w tabelce, informacje do zapasania w angłówkach muszą się znajdować w elemencie tablicy o key równym 'header'
- * @param {boolean} clickable - informacja o tym czy wiersze mają być klikalne
- * @param {function} pressHandler - jeżeli wiersze są klikalne to pressHandler jest funkcją wykonywaną dla każdego wiersza po naciśnięciu
- * 
- * @returns {JSX} zwraca tabelę jako element JSX
- * 
- * @category Root Components
+ * Tworzenie tablicy
+ * @function Table
+ * @returns {Object} - Zwraca ukończoną tablicę
  */
-export function Table({toDisplay, clickable, pressHandler}) {
-
-
-  function isHeader(value){
-    return value.id=='header';
-  }
-
-  function isNotHeader(value){
-    return value.id!='header';
-  }
-
-  const topRow = (toDisplay.filter(isHeader))[0];
-
-  toDisplay = toDisplay.filter(isNotHeader);
-
-  const [things, setThings] = useState(toDisplay)
-
+export function Table() {
+  
+  /**
+   * @typedef {array} 
+   * @name Przedmiot
+   * @property {string} category - Kategoria
+   * @property {string} name - Nazwa
+   * @property {string} added - Data dodania
+   * @property {string|number} id - ID
+   */
+  const [things, setThings] = useState([
+    { category: 'mebel', name: 'fotel', added: '21.01.2021', id: '1'},
+    { category: 'mebel1', name: 'fotel', added: '21.01.2021', id: '2'},
+    { category: 'mebel2', name: 'fotel', added: '21.01.2021', id: '3'},
+    { category: 'mebel3', name: 'fotel', added: '21.01.2021', id: '4'},
+    { category: 'mebel4', name: 'fotel', added: '21.01.2021', id: '5'},
+    { category: 'mebel5', name: 'fotel', added: '21.01.2021', id: '6'},
+  ])
 
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
   const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
@@ -68,16 +80,15 @@ export function Table({toDisplay, clickable, pressHandler}) {
     extrapolate: 'clamp'
   });
 
-
   return (
-    <View style={styles.container}>
-      <View style={styles.top}>
-        <Text style={styles.topColumnLeft}>{topRow.column1}</Text>
-        <Text style={styles.topColumnCenter}>{topRow.column2}</Text>
-        <Text style={styles.topColumnLeftRight}>{topRow.column3}</Text>
-      </View>
-      <View style={styles.listContainer}>
-        <ScrollView
+    &lt;View style={styles.container}>
+      &lt;View style={styles.top}>
+        &lt;Text style={styles.topColumnLeft}>kategoria&lt;/Text>
+        &lt;Text style={styles.topColumnCenter}>nazwa&lt;/Text>
+        &lt;Text style={styles.topColumnLeftRight}>dodano&lt;/Text>
+      &lt;/View>
+      &lt;View style={styles.listContainer}>
+        &lt;ScrollView
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
           onContentSizeChange={height => {
@@ -97,22 +108,26 @@ export function Table({toDisplay, clickable, pressHandler}) {
         >
           { things.map((item) => {
             return (
-              <View key={item.id}>
-                <TouchableOpacity disabled={!clickable} onPress={()=>{pressHandler(item.id)}}>
-
-                  <View style={[styles.row, rowColor[item.id % 2] ]}>
-                      <Text style={[styles.columnLeft, styles.textColumn]}>{item.column1}</Text>
-                      <Text style={[styles.columnCenter, styles.textColumn]}>{item.column2}</Text>
-                      <Text style={[styles.columnRight, styles.textColumn]}>{item.column3}</Text>
-                  </View>
-
-                  </TouchableOpacity>
-              </View>
+              &lt;View key={item.id}>
+                &lt;View style={
+                  { backgroundColor: item.id % 2 != 0 ? '#cacccd' : '#cdd0d3',
+                    width: '95%',
+                    flexDirection: 'row',
+                    marginVertical: 2,
+                    marginLeft:10,
+                    height: 50,
+                  }
+                  }>
+                  &lt;Text style={styles.columnLeft}>{item.category}&lt;/Text>
+                  &lt;Text style={styles.columnCenter}>{item.name}&lt;/Text>
+                  &lt;Text style={styles.columnRight}>{item.added}&lt;/Text>
+                  &lt;/View>
+              &lt;/View>
             )
           })}
-        </ScrollView>
-          <View style={{ height: '100%', width: 27, backgroundColor: '#d5d6d7', borderRadius: 20}}>
-              <Animated.View
+        &lt;/ScrollView>
+          &lt;View style={{ height: '100%', width: 27, backgroundColor: '#d5d6d7', borderRadius: 20}}>
+              &lt;Animated.View
                 style={{
                   width: 27,
                   borderRadius: 20,
@@ -121,9 +136,9 @@ export function Table({toDisplay, clickable, pressHandler}) {
                   transform: [{ translateY: scrollIndicatorPosition }]
                 }}
               />
-          </View>
-      </View>
-    </View>
+          &lt;/View>
+      &lt;/View>
+    &lt;/View>
 );
 
 }
@@ -163,13 +178,11 @@ export function Table({toDisplay, clickable, pressHandler}) {
  */
 const styles = StyleSheet.create({
 container: {
-  width: '90%',
+  width: '100%',
   backgroundColor: '#e1e3e4',
   padding: 5,
   flex: 1,
   borderRadius: 30,
-  alignSelf: "center",
-  marginVertical: 10,
 },
 listContainer: {
   marginTop:  10,
@@ -179,18 +192,21 @@ listContainer: {
 },
 columnLeft: {
   width: '32%',
+  textAlign: 'left',
   paddingLeft: 5,
   paddingVertical: 10,
   fontSize: 20,
 },
 columnRight: {
   width: '31%',
+  textAlign: 'left',
   paddingLeft: 5,
   paddingVertical: 10,
   fontSize: 20,
 },
 columnCenter: {
   width: '37%',
+  textAlign: 'left',
   paddingLeft: 5,
   paddingVertical: 10,
   fontSize: 20,
@@ -237,25 +253,26 @@ topColumnCenter: {
   color: 'white',
   paddingVertical: 4,
 },
-textColumn:{
-  color: 'white',
-  textAlign: 'center',
-},
-row:{ 
-width: '95%',
-flexDirection: 'row',
-marginVertical: 2,
-marginLeft:10,
-height: 50,
-},
-rowDark:{
-  backgroundColor:  '#cacccd', 
-},
-rowLight:{
-  backgroundColor: '#cdd0d3',
-}
-});
+});</code></pre>
+        </article>
+    </section>
 
 
-//tablica nie asocjacyjna, ale liczbowa, trzymająca kolory
-const rowColor = [ styles.rowDark, styles.rowLight];
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#styles">styles</a></li><li><a href="global.html#Table">Table</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Mon May 10 2021 18:07:08 GMT+0200 (czas środkowoeuropejski letni)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

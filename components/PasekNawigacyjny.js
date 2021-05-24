@@ -1,4 +1,5 @@
 import React from "react";
+
 import {
   Text,
   View,
@@ -8,6 +9,7 @@ import {
   Dimensions,
   ImageBackground,
 } from "react-native";
+
 
 /* Pasek nawigacyjny */
 
@@ -20,6 +22,7 @@ import {
 export const PasekNawigacyjny = ({ navigation } /* Obiekt do nawigacji */) => {
   return (
     <View style={styles.header}>
+
       <TouchableOpacity
       /* Nawigacja onPress={() => navigation.navigate("ekran")} */
       >
@@ -34,6 +37,7 @@ export const PasekNawigacyjny = ({ navigation } /* Obiekt do nawigacji */) => {
         source={require("../assets/pusty2Icon.png")}
         style={styles.pusty}
       />
+
     </View>
   );
 };
@@ -43,6 +47,7 @@ export const PasekNawigacyjnyArticleMenu = (
   { navigation } /* Obiekt do nawigacji */
 ) => {
   return (
+
     <ImageBackground
       source={require("../assets/navigationBase.png")}
       style={[styles.header, { height: height * 0.065 }]}
@@ -68,6 +73,7 @@ export const PasekNawigacyjnyArticleMenu = (
         Towar
       </Text>
     </ImageBackground>
+
   );
 
 }
@@ -163,7 +169,8 @@ const { width, height } = Dimensions.get("window");
 const styles = StyleSheet.create({
   header: {
     width: "100%",
-    height: "100%",
+    // height: "100%",
+    height: height * 0.065,
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "row",

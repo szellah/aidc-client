@@ -1,5 +1,6 @@
 {
     "source": {
+
       "include": ["./components","./README.md"],
       "includePattern": ".js",
       "excludePattern": "(node_modules/|docs)"
