@@ -64,6 +64,18 @@ export const ExportButton = ({pressHandler}) => {
   );
 }
 
+
+export const CreateButton = ({pressHandler}) => {
+  return(
+    <Button
+    title="Sporządź"
+    color="yellow"
+    size="large"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
 //przyciski zielone
 
 export const LogoutButton = ({pressHandler}) => {

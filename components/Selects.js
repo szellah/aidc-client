@@ -1,11 +1,6 @@
 import React, {useState} from "react";
-import { Button, Text, View, TextInput, StyleSheet, Platform, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback,
-   TouchableWithoutFeedback, SectionList, FlatList, Image, Dimensions, ImageStore, ImageBackground, TouchableHighlightBase} from "react-native";
-import {MenuProvider} from 'react-native-popup-menu';
-import {Menu, MenuOptions, MenuOption, MenuTrigger, renderers} from 'react-native-popup-menu';
-import { AntDesign } from '@expo/vector-icons'; 
-import {PasekNawigacyjny} from "../components/PasekNawigacyjny";
-import { ScrollView } from "react-native-gesture-handler";
+import { Text, StyleSheet, TouchableOpacity, ScrollView, Image, Dimensions} from "react-native";
+import {Menu, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-menu';
 
 const {width, height} = Dimensions.get("window");
 
@@ -62,6 +57,68 @@ export default function Select({changeHandler, placeholder, options, src, color}
 
     );
   }
+
+  export const CategorySelect = ({changeHandler, options}) => {
+    return (
+      <Select 
+        changeHandler={changeHandler}
+        placeholder="Kategoria"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconBudynek.png")}
+        />
+    );
+  }
+
+  export const BuildingSelect = ({changeHandler, options}) => {
+    return (
+      <Select 
+        changeHandler={changeHandler}
+        placeholder="Budynek"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconBudynek.png")}
+        />
+    );
+  }
+
+  export const FloorSelect = ({changeHandler, options}) => {
+    return (
+      <Select 
+        changeHandler={changeHandler}
+        placeholder="Piętro"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconPietro.png")}
+        />
+    );
+  }
+
+  export const RoomSelect = ({changeHandler, options}) => {
+    return (
+      <Select 
+        changeHandler={changeHandler}
+        placeholder="Pokój"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconPokoj.png")}
+        />
+    );
+  }
+
+  export const ReportSelect = ({changeHandler, options}) => {
+    return (
+      <Select 
+        changeHandler={changeHandler}
+        placeholder="Według"
+        options={options}
+        color="yellow"
+        src={require("../assets/raportPage/iconSporzRaportu.png")}
+        />
+    );
+  }
+  
+  
   
 
   const styles = StyleSheet.create({
