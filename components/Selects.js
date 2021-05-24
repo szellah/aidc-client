@@ -58,6 +58,16 @@ export default function Select({changeHandler, placeholder, options, src, color}
     );
   }
 
+
+  /**
+ * Select do wybrania kategorii po jakiej tworzony będzie raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
   export const CategorySelect = ({changeHandler, options}) => {
     return (
       <Select 
@@ -70,6 +80,15 @@ export default function Select({changeHandler, placeholder, options, src, color}
     );
   }
 
+  /**
+ * Select do wybrania budynku z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
   export const BuildingSelect = ({changeHandler, options}) => {
     return (
       <Select 
@@ -82,6 +101,15 @@ export default function Select({changeHandler, placeholder, options, src, color}
     );
   }
 
+  /**
+ * Select do wybrania piętra z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
   export const FloorSelect = ({changeHandler, options}) => {
     return (
       <Select 
@@ -94,6 +122,15 @@ export default function Select({changeHandler, placeholder, options, src, color}
     );
   }
 
+  /**
+ * Select do wybrania pokoju z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
   export const RoomSelect = ({changeHandler, options}) => {
     return (
       <Select 
@@ -106,6 +143,20 @@ export default function Select({changeHandler, placeholder, options, src, color}
     );
   }
 
+  /**
+ * Select do wybrania według czego zostanie sporządzony raport
+ * -kategorii
+ * -budynku
+ * -piętra
+ * -pokoju
+ * 
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
   export const ReportSelect = ({changeHandler, options}) => {
     return (
       <Select 
