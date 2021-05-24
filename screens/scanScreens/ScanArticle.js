@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   ImageBackground,
   KeyboardAvoidingView,
   StyleSheet,
+  Text,
   View,
 } from "react-native";
 import { Tray } from "../../components/Trays";
@@ -14,8 +15,16 @@ import { ConfirmButton } from "../../components/Buttons";
 
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 
-export default function ScanArticle({ navigation }) {
-  const [ArticleCode, SetArticleCode] = useState("");
+export default function ScanArticle({ navigation , route}) {
+  const [articleCode, setArticleCode] = useState("kod");
+
+
+  
+  useEffect(() => {
+    if(navigation.getParam('qrcode'))
+      setArticleCode(navigation.getParam('qrcode'));
+  },[navigation.getParam('qrcode')]);
+
 
   const Confirm = () => {};
   return (
@@ -58,7 +67,10 @@ export default function ScanArticle({ navigation }) {
               />
             </View>
             <View>
-              <ArticleCodeInput pressHandler={() => {}} />
+              <ArticleCodeInput 
+              pressHandler={() => {navigation.navigate('Scan',{ previousScreen: 'ScanArticle' })}} 
+              text={articleCode}
+              />
             </View>
           </View>
 

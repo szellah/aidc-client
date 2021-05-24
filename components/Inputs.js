@@ -388,11 +388,11 @@ export const DescriptionInput = () => {
  * @category Inputs
  * 
  */
-export const ArticleCodeInput = ({pressHandler}) => {
+export const ArticleCodeInput = ({pressHandler, text}) => {
 	return (
 		<Input
 		icon="search"
-		placeholder="kod"
+		placeholder={text}
 		color="yellow"
 		displayQRButton={true}
 		pressHandler={pressHandler}
@@ -410,11 +410,11 @@ export const ArticleCodeInput = ({pressHandler}) => {
  * @category Inputs
  * 
  */
-export const LocationCodeInput = ({pressHandler}) => {
+export const LocationCodeInput = ({pressHandler, text}) => {
 	return (
 		<Input
 		icon="map-marker"
-        placeholder="lokalizacja"
+        placeholder={text}
 		color="yellow"
 		displayQRButton={true}
 		pressHandler={pressHandler}

@@ -20,6 +20,7 @@ import UsersMenu from "../screens/userScreens/UsersMenu";
 import UserInfo from "../screens/userScreens/UserInfo";
 import UserEdit from "../screens/userScreens/UserEdit";
 import UsersTable from "../screens/userScreens/UsersTable";
+import Scan from "../screens/scanScreens/Scan";
 
 const screens = {
   Home: {
@@ -75,6 +76,9 @@ const screens = {
   },
   UsersTable:{
     screen: UsersTable,
+  },
+  Scan:{
+    screen: Scan,
   }
 };
 

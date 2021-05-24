@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   ImageBackground,
@@ -14,8 +14,13 @@ import { ConfirmButton } from "../../components/Buttons";
 
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 
-export default function ScanLocation({ navigation }) {
-  const [LocationCode, SetLocationCode] = useState("");
+export default function ScanLocation({ navigation, route }) {
+  const [locationCode, setLocationCode] = useState("lokalizacja");
+
+  useEffect(() => {
+    if(navigation.getParam('qrcode'))
+    setLocationCode(navigation.getParam('qrcode'));
+  },[navigation.getParam('qrcode')]);
 
   const Confirm = () => {};
   return (
@@ -58,7 +63,10 @@ export default function ScanLocation({ navigation }) {
             </View>
 
             <View>
-              <LocationCodeInput pressHandler={() => {}} />
+              <LocationCodeInput
+               pressHandler={() => {navigation.navigate('Scan',{ previousScreen: 'ScanLocation' })}} 
+               text={locationCode}
+               />
             </View>
           </View>
           <Tray spread="center" composition="compact">
