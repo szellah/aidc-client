@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { Button, Text, View, TextInput, StyleSheet, Platform, TouchableHighlight, TouchableOpacity, TouchableNativeFeedback,
    TouchableWithoutFeedback, SectionList, FlatList, Image, Dimensions, ImageStore, ImageBackground, TouchableHighlightBase} from "react-native";
-import {MenuProvider, renderers} from 'react-native-popup-menu';
-import {Menu, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-menu';
+import {MenuProvider} from 'react-native-popup-menu';
+import {Menu, MenuOptions, MenuOption, MenuTrigger, renderers} from 'react-native-popup-menu';
 import { AntDesign } from '@expo/vector-icons'; 
 import {PasekNawigacyjny} from "../components/PasekNawigacyjny";
 import { ScrollView } from "react-native-gesture-handler";
@@ -17,11 +17,12 @@ export default function Select({changeHandler, placeholder, options, src, color}
     return (
 
           <Menu>
-
+            
             <MenuTrigger style={[styles.selectBox, selectColor[color]]}>
                 <Image source={src} style={styles.Icons}/>
                 <Text style={styles.selectText}>{selectText}</Text>
             </MenuTrigger>
+            
 
             <MenuOptions optionsContainerStyle={styles.options}>
 
@@ -31,8 +32,11 @@ export default function Select({changeHandler, placeholder, options, src, color}
               {options.map((item) => {
                 return (
   
-                 <MenuOption 
+                 <TouchableOpacity
                  key={item.id} 
+                 >
+                 <MenuOption 
+                 
 
                  onSelect={() => {
                     setSelectText(item.name);
@@ -47,6 +51,7 @@ export default function Select({changeHandler, placeholder, options, src, color}
 
                   text={item.name}
                  />
+                 </TouchableOpacity>
   
                 );
               })}
@@ -87,7 +92,8 @@ export default function Select({changeHandler, placeholder, options, src, color}
       resizeMode: "contain",
     },
     options: {
-      marginLeft: 70,
+      marginTop: -(38+height * 0.04),
+      marginLeft: '20%',
       backgroundColor: "#e4e4e4", 
       padding: 5,
       paddingBottom: 10,
@@ -104,6 +110,7 @@ export default function Select({changeHandler, placeholder, options, src, color}
     optionWrapper: {
         paddingVertical: 2,
         marginVertical: 0.5,
+        paddingHorizontal: 20,
     }, 
     optionText: {
         fontSize: 19, 

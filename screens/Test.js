@@ -34,12 +34,44 @@ export default function Test({navigation}){
         <MenuProvider>
 
 
-        <ArticleCodeInput/>   
 
-<ArticleCodeInput/>   
 
-<ArticleCodeInput/>   
+        <Select 
+        changeHandler={setBuildingId}
+        placeholder="Budynek"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconBudynek.png")}
+        />
 
+        <Select 
+        changeHandler={setBuildingId}
+        placeholder="Budynek"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconBudynek.png")}
+        />
+        <Select 
+        changeHandler={setBuildingId}
+        placeholder="Budynek"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconBudynek.png")}
+        />
+        <Select 
+        changeHandler={setBuildingId}
+        placeholder="Budynek"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconBudynek.png")}
+        />
+        <Select 
+        changeHandler={setBuildingId}
+        placeholder="Budynek"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconBudynek.png")}
+        />
         <Select 
         changeHandler={setBuildingId}
         placeholder="Budynek"
