@@ -20,6 +20,7 @@ import UserInfo from "../screens/userScreens/UserInfo";
 import UserEdit from "../screens/userScreens/UserEdit";
 import UsersTable from "../screens/userScreens/UsersTable";
 import Scan from "../screens/scanScreens/Scan";
+import CreateReport from "../screens/articleScreens/CreateReport";
 
 const screens = {
   Home: {
@@ -78,7 +79,11 @@ const screens = {
   },
   Scan:{
     screen: Scan,
+  },
+  Report:{
+    screen: CreateReport,
   }
+
 };
 
 const HomeStack = createStackNavigator(screens);

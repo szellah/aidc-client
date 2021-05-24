@@ -433,7 +433,7 @@ export const ReportsButton = ({ navigation }) => {
       navigation={navigation}
       color="yellow"
       src={require("../assets/managmentPage/notepad.png")}
-      destination=""
+      destination="Report"
       title="Raporty"
     />
   );

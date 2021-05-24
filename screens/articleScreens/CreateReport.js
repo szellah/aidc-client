@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import { ImageBackground, Text , View} from "react-native";
-import {CreateButton} from "../components/Buttons"
-import {Tray} from '../components/Trays'
-import {BuildingSelect, FloorSelect, RoomSelect, CategorySelect, ReportSelect} from "../components/Selects";
+import {CreateButton} from "../../components/Buttons"
+import {Tray} from '../../components/Trays'
+import {Container} from '../../components/Containers'
+import {BuildingSelect, FloorSelect, RoomSelect, CategorySelect, ReportSelect} from "../../components/Selects";
 import {MenuProvider} from 'react-native-popup-menu';
 
 
@@ -56,13 +57,13 @@ export default function Test({navigation}){
 
 
     return(
-        <ImageBackground source={require('../assets/tlo_raport.png')} style={{flex: 1}}>
+        <ImageBackground source={require('../../assets/tlo_raport.png')} style={{flex: 1}}>
 
 
 
-
-<Tray composition='loose' spread='center'>
-            <Text>RAPORT</Text>
+<Container composition='compact' spread='top'>
+        <Tray composition='loose' spread='center'>
+            <Text style={{fontSize: 40, color: 'white', marginBottom: '17%'}}>RAPORT</Text>
         </Tray>
         <MenuProvider>
 
@@ -92,12 +93,16 @@ export default function Test({navigation}){
         />}
 
 
-    <View style={{flex:1, flexDirection:'column', justifyContent: 'flex-end'}}>
-        <Tray composition='loose' spread='center'>
-            <CreateButton/>
-        </Tray>
-        </View>
-        </MenuProvider>
+    <Container composition='loose' spread='bottom'>
+            <Tray composition='loose' spread='center'>
+                <CreateButton
+                pressHandler={() => {navigation.navigate('Raport')}}
+                />
+            </Tray>
+    </Container>
+    </MenuProvider>
+ </Container>
+        
         </ImageBackground>
     )
 }
