@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> components/Trays.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,76 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>components/Trays.js</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { View, StyleSheet } from "react-native";
+
+/**
+ * Tray to kontener zastępujący wiersz, dzięki któremu łatwiej o układanie rzeczy na ekranie.&lt;br>
+ * Wszystkie elementy UI działają niczym stos. Przyciski tego same w sobie nie potrafią &lt;br>
+ * bo może ich być więcej niż jeden w wierszu. Do tego potrzebyn jest tray.
+ * @function
+ * @param {string} spread - Rozrzucenie elmementów wewnątrz Tray, do wyboru center, even, left, right
+ * @param {string} composition - Kompozycja marginesów dookoła Tray, do wyboru loose, compact
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Root Components
+ */
+export const Tray = ({spread, composition, children}) => {
+  return(
+    &lt;View style={[ styles.trayBox, spreads[spread] , compositions[composition] ]}>
+      {children}
+    &lt;/View>
+  );
+}
 
 
-    <h3> </h3>
 
+const styles = StyleSheet.create({
+        //tray
+      trayBox:{
+        flexDirection: 'row', 
+        width: "92%",
+      },
+      //traySpread
+      trayCenter:{
+        justifyContent: 'center'
+      },
+      trayLeft: {
+        justifyContent: 'flex-start'        
+      },
+      trayRight: {
+        justifyContent: 'flex-end'
+      },
+      trayEven: {
+        justifyContent: 'space-evenly'
+      },
+      //margins
+      trayCompact:{
+        width: "100%",
+      },
+      trayLoose:{
+        width: "86%",
+        marginHorizontal: "7%",
+        marginVertical: '4%'
+      },
+  });
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+  //tablice asocjacyjne, pozwalające na proceduralne dobieranie stylów
+  const spreads = {center: styles.trayCenter, left: styles.trayLeft, right: styles.trayRight, even: styles.trayEven};
+  const compositions = {compact: styles.trayCompact, loose: styles.trayLoose};</code></pre>
+        </article>
+    </section>
 
 
 
