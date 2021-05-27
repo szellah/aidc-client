@@ -18,7 +18,7 @@ const kliknij = (text) => {
  * - Wyświetlenie informacji o koncie użytkownika
  * - Przejście do ekranu zmiany haseł
  * - Rozpoczęcie procesu usuwania konta
- * @function
+ * @function SettingsMenu
  * @param {object} navigation Pozwala na przenosznie się między ekranami
  *
  * @category Screens
@@ -26,7 +26,7 @@ const kliknij = (text) => {
  * @returns {JSX} Zwraca ekran ustawień w postaci elmentu JSX
  */
 
-export const SettingsMenu = ({navigation}) => {
+export default function SettingsMenu({navigation}){
   return (
   //<ScrollView>
   <ImageBackground source={require('../../assets/tlo_dodawanie.png')} style={styles.Tło}>

@@ -13,7 +13,7 @@ import { Container } from "../../components/Containers";
  * - Wpisać bieżące hasło
  * - Wpisać dwukrotnie nowe hasło
  * - Zatwierdzić bądź anulować operację
- * @function
+ * @function ChangePassword
  * @param {object} navigation Pozwala na przenosznie się między ekranami
  *
  * @category Screens
@@ -21,7 +21,7 @@ import { Container } from "../../components/Containers";
  * @returns {JSX} Zwraca ekran zmiany hasła w postaci elmentu JSX
  */
 
-export const ChangePassword = ({navigation}) => {
+export default function ChangePassword({navigation}){
   return (
   //<ScrollView>
   <ImageBackground source={require('../../assets/tlo_dodawanie.png')} style={styles.Tło}>

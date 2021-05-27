@@ -12,7 +12,7 @@ import { Container } from "../../components/Containers";
  * Należy:
  * - Wpisać dwukronie hasło użytkownika
  * - Zatwierdzić bądź anulować operację
- * @function
+ * @function DeleteAccount
  * @param {object} navigation Pozwala na przenosznie się między ekranami
  *
  * @category Screens
@@ -20,7 +20,7 @@ import { Container } from "../../components/Containers";
  * @returns {JSX} Zwraca ekran usuwania konta w postaci elmentu JSX
  */
 
-export const DeleteAccount = ({navigation}) => {
+export default function DeleteAccount({navigation}){
   return (
   //<ScrollView>
   <ImageBackground source={require('../../assets/tlo_dodawanie.png')} style={styles.Tło}>
