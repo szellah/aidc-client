@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
 	StyleSheet,
 	View,
@@ -13,6 +13,9 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { NotificationBox } from '../components/Notifications';
 import { PasswordInput, LoginInput } from '../components/Inputs.js';
 import { LoginButton } from '../components/Buttons.js';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
 
 export default function Login({ navigation }) {
 	const Creq_lib = require('../clientRequests/Creq_lib');
@@ -22,25 +25,32 @@ export default function Login({ navigation }) {
 	const [notificationVisibility, setNotificationVisibility] = useState(false);
 	const [notificationContent, setNotificationContent] = useState({});
 
+
 	// do zrobienia
 	const ForgotPassword = () => {
 		console.log('do zrobienia');
 	};
 
+
+	// Zapisuje pobrane dane(token i obiekt zalogowanego usera do urzadzenia)
 	const SendLoginData = () => {
-		// zapytanie do serwera aby sprawdził dane i wygenerował token
-		// do zrobienia token
-		Creq_lib.login(username, password).then((resolve) => {
+		Creq_lib.login(username, password).then(async (resolve) => {
+			console.log(resolve.message);
 			setNotificationContent(resolve);
-			setNotificationVisibility(resolve.error != null);
-			if (resolve.error == null) {
-				SetUsername('');
-				SetPassword('');
-				// tymczasowo, aby łatwiej się poruszać
+			setNotificationVisibility(resolve.error != false);
+			if (resolve.error == false) {
+				SetUsername(username);
+				SetPassword(password);				
+				await AsyncStorage.setItem("token", resolve.message[0].token);
+				await AsyncStorage.setItem("user", JSON.stringify(resolve.message[0]));
 				navigation.navigate('Home');
 			}
 		});
 	};
+
+
+
+
 
 	return (
 		<ScrollView
@@ -58,7 +68,7 @@ export default function Login({ navigation }) {
 					<NotificationBox
 						visibility={notificationVisibility}
 						content={notificationContent}
-						VisibilityHandler={() => setNotificationVisibility(false)}
+						visibilityHandler={setNotificationVisibility}
 					></NotificationBox>
 					<ImageBackground
 						source={require('../assets/loginPage/LoginBackground.png')}
@@ -71,16 +81,18 @@ export default function Login({ navigation }) {
 							/>
 							<View style={styles.inputContainer}>
 								<View style={styles.Login}>
-									<LoginInput />
+									{/* Do pobierania danych z inputow */}
+									<LoginInput textInputHandler={SetUsername}/>
 								</View>
 								<View style={styles.Login}>
-									<PasswordInput />
+									{/* Do pobierania danych z inputow */}
+									<PasswordInput textInputHandler={SetPassword}/>
 								</View>
 								{/* tutaj wstawić nowe inputy */}
 							</View>
 						</View>
 						<View style={styles.bottContainer}>
-							<LoginButton />
+							<LoginButton pressHandler={SendLoginData}/>
 							<TouchableOpacity onPress={ForgotPassword}>
 								<Text style={{ fontSize: 16, color: '#a2b9d4' }}>
 									Zapomniałem(am) hasła

@@ -1,5 +1,7 @@
-const serverURL = "https://projektio.loca.lt";
+// const serverURL = "https://projektio.loca.lt";
 
-module.exports = {
-  serverURL: serverURL,
-};
+
+
+// module.exports = {
+//   serverURL: serverURL,
+// };

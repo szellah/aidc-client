@@ -25,7 +25,9 @@ import { Ionicons } from '@expo/vector-icons';
  * 	@category Root Components
  */
 
-export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler}) => {
+export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler, textInputHandler}) => {
+
+	// Znam tylko czytanie wartosci input'a przez onChangeText uzylem textInputHandler, jesli to ma byc jakos inaczej zrobione to zmienic
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
 			<Icon
@@ -40,6 +42,8 @@ export const Input = ({icon, placeholder, placeholderTextColor, color, size, dis
 				placeholder={placeholder}
 				placeholderTextColor={placeholderTextColor == null ? "rgba(0,0,0,0.4)" : placeholderTextColor}
 				multiline={size=="large"}
+				// onChangeText={(text) => {loginPressHandler(text)}}
+				onChangeText={typeof(textInputHandler) === typeof(Function) ? (text) => {textInputHandler(text)} : () => {}}
 			/>
 			{displayQRButton&&(<QRButton pressHandler={pressHandler}/>)}
 		</View>
@@ -104,12 +108,13 @@ export const NameInput = () => {
  * @category Inputs
  * 
  */
-export const LoginInput = () => {
+export const LoginInput = ({textInputHandler}) => {
 	return (
 		<Input
 		icon="user"
         placeholder="login"
 		color="blue"
+		textInputHandler={textInputHandler}
 		/>
 	);
 };
@@ -123,13 +128,14 @@ export const LoginInput = () => {
  * @category Inputs
  * 
  */
-export const PasswordInput = () => {
+export const PasswordInput = ({textInputHandler}) => {
 	return (
 		<Input
 		icon="lock"
         placeholder="hasło"
 		color="blue"
 		size="small"
+		textInputHandler={textInputHandler}
 		/>
 	);
 };

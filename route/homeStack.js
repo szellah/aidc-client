@@ -22,6 +22,9 @@ import UserEdit from "../screens/userScreens/UserEdit";
 import UsersTable from "../screens/userScreens/UsersTable";
 
 const screens = {
+  Login: {
+    screen: Login,
+  },
   Home: {
     screen: Home,
   },
