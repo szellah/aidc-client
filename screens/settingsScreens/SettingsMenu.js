@@ -5,11 +5,28 @@ import {PasekNawigacyjny, PasekNawigacyjnyInfo} from '../../components/PasekNawi
 import {ChangePasswordButton, DeleteAccountButton, AccountInfoButton} from '../../components/RoundButtons';
 import { Container } from "../../components/Containers";
 
+/**
+ * @function
+ * @param {object} text
+ */
 const kliknij = (text) => {
     console.log(text);
 }
+/**
+ * Ekran ustawień<br>
+ * Pozwala na:
+ * - Wyświetlenie informacji o koncie użytkownika
+ * - Przejście do ekranu zmiany haseł
+ * - Rozpoczęcie procesu usuwania konta
+ * @function
+ * @param {object} navigation Pozwala na przenosznie się między ekranami
+ *
+ * @category Screens
+ *
+ * @returns {JSX} Zwraca ekran ustawień w postaci elmentu JSX
+ */
 
-export default function SettingsMenu({navigation}){
+export const SettingsMenu = ({navigation}) => {
   return (
   //<ScrollView>
   <ImageBackground source={require('../../assets/tlo_dodawanie.png')} style={styles.Tło}>

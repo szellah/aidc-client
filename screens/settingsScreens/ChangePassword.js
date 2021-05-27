@@ -6,7 +6,22 @@ import {EnterNewPasswordInput, EnterOldPasswordInput, RepeatNewPasswordInput} fr
 import {ChangeButton, CancelButton} from "../../components/Buttons";
 import { Container } from "../../components/Containers";
 
-export default function ChangePassword({navigation}){
+/**
+ * Ekran zmiany hasła<br>
+ * Wyświetla się po wywołaniu w ekranie ustawień<br>
+ * Należy:
+ * - Wpisać bieżące hasło
+ * - Wpisać dwukrotnie nowe hasło
+ * - Zatwierdzić bądź anulować operację
+ * @function
+ * @param {object} navigation Pozwala na przenosznie się między ekranami
+ *
+ * @category Screens
+ *
+ * @returns {JSX} Zwraca ekran zmiany hasła w postaci elmentu JSX
+ */
+
+export const ChangePassword = ({navigation}) => {
   return (
   //<ScrollView>
   <ImageBackground source={require('../../assets/tlo_dodawanie.png')} style={styles.Tło}>
