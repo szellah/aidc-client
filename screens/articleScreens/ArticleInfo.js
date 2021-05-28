@@ -18,6 +18,7 @@ import {
 import { EditButton, DeleteButton } from "../../components/Buttons.js";
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 import { ScrollView } from "react-native-gesture-handler";
+import { Container } from "../../components/Containers.js";
 
 export default function ArticleInfo({ navigation }) {
   const [Name, SetName] = useState("");
@@ -31,43 +32,35 @@ export default function ArticleInfo({ navigation }) {
 
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
-    <Container composition="compact" spread="center">
-    <Tray composition="compact" spread="center">
-  <PasekNawigacyjny />
-</Tray>
     <ScrollView>
+      <Tray composition="compact" spread="center">
+        <PasekNawigacyjny />
+      </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
         style={styles.bckg}
       >
+        <Container>
+          <NameInput />
 
+          <CategorySelect />
 
-            
+          <LocationCodeInput pressHandler={() => {}} />
 
-            <NameInput />
+          <ArticleCodeInput pressHandler={() => {}} />
 
-            <CategorySelect />
+          <DescriptionInput />
 
-            <LocationCodeInput pressHandler={() => {}} />
-
-            <ArticleCodeInput pressHandler={() => {}} />
-
-            <DescriptionInput />
-
-            <Container composition="compact" spread="bottom">
-              <Tray composition="loose" spread="even">
-
+          <Container composition="compact" spread="bottom">
+            <Tray composition="loose" spread="even">
               <EditButton pressHandler={Edit} />
-              
-                <DeleteButton pressHandler={Delete} />
-                
-              </Tray>
-            </Container>
 
-        
+              <DeleteButton pressHandler={Delete} />
+            </Tray>
+          </Container>
+        </Container>
       </ImageBackground>
-      </ScrollView>
-      </Container>
+    </ScrollView>
   );
 }
 

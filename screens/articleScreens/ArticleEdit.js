@@ -35,43 +35,36 @@ export default function ArticleEdit({ navigation }) {
 
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
-    <Container composition="compact" spread="center">
-    <Tray composition="compact" spread="center">
-  <PasekNawigacyjny />
-</Tray>
+
     <ScrollView>
+      <Tray composition="compact" spread="center">
+        <PasekNawigacyjny />
+      </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
         style={styles.bckg}
       >
+        <Container>
+          <NameInput />
 
+          <CategorySelect />
 
-            
+          <LocationCodeInput pressHandler={() => {}} />
 
-            <NameInput />
+          <ArticleCodeInput pressHandler={() => {}} />
 
-            <CategorySelect />
+          <DescriptionInput />
 
-            <LocationCodeInput pressHandler={() => {}} />
+          <Container composition="compact" spread="bottom">
+            <Tray composition="loose" spread="even">
+              <SaveButton pressHandler={Save} />
 
-            <ArticleCodeInput pressHandler={() => {}} />
-
-            <DescriptionInput />
-
-            <Container composition="compact" spread="bottom">
-              <Tray composition="loose" spread="even">
-
-                <SaveButton pressHandler={Save} />
-              
-                <CancelButton pressHandler={Cancel} />
-                
-              </Tray>
-            </Container>
-
-        
+              <CancelButton pressHandler={Cancel} />
+            </Tray>
+          </Container>
+        </Container>
       </ImageBackground>
-      </ScrollView>
-      </Container>
+    </ScrollView>
   );
 }
 

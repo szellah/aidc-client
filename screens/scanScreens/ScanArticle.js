@@ -14,17 +14,15 @@ import { ArticleCodeInput } from "../../components/Inputs";
 import { ConfirmButton } from "../../components/Buttons";
 
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
+import { Container } from "../../components/Containers";
 
-export default function ScanArticle({ navigation , route}) {
+export default function ScanArticle({ navigation, route }) {
   const [articleCode, setArticleCode] = useState("kod");
 
-
-  
   useEffect(() => {
-    if(navigation.getParam('qrcode'))
-      setArticleCode(navigation.getParam('qrcode'));
-  },[navigation.getParam('qrcode')]);
-
+    if (navigation.getParam("qrcode"))
+      setArticleCode(navigation.getParam("qrcode"));
+  }, [navigation.getParam("qrcode")]);
 
   const Confirm = () => {};
   return (
@@ -55,28 +53,34 @@ export default function ScanArticle({ navigation , route}) {
             justifyContent: "space-around",
           }}
         >
-          <View style={{ alignItems: "center" }}>
-            <View style={{ maxHeight: 160, marginBottom: 10 }}>
-              <Image
-                source={require("../../assets/locationPage/qr.png")}
-                style={{
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                  resizeMode: "contain",
-                }}
-              />
+          <Container>
+            <View style={{ alignItems: "center" }}>
+              <View style={{ maxHeight: 160, marginBottom: 10 }}>
+                <Image
+                  source={require("../../assets/locationPage/qr.png")}
+                  style={{
+                    maxWidth: "100%",
+                    maxHeight: "100%",
+                    resizeMode: "contain",
+                  }}
+                />
+              </View>
+              <View>
+                <ArticleCodeInput
+                  pressHandler={() => {
+                    navigation.navigate("Scan", {
+                      previousScreen: "ScanArticle",
+                    });
+                  }}
+                  text={articleCode}
+                />
+              </View>
             </View>
-            <View>
-              <ArticleCodeInput 
-              pressHandler={() => {navigation.navigate('Scan',{ previousScreen: 'ScanArticle' })}} 
-              text={articleCode}
-              />
-            </View>
-          </View>
 
-          <Tray spread="center" composition="compact">
-            <ConfirmButton pressHandler={Confirm} />
-          </Tray>
+            <Tray spread="center" composition="compact">
+              <ConfirmButton pressHandler={Confirm} />
+            </Tray>
+          </Container>
         </ImageBackground>
       </KeyboardAvoidingView>
     </ScrollView>

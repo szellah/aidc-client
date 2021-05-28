@@ -1,43 +1,57 @@
-import React, {Component, useState} from "react";
-import { Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
-import {LocationCodeInput} from '../../components/Inputs.js';
-import {ExportButton} from '../../components/Buttons.js';
-import {Table} from '../../components/Table.js';
+import React, { Component, useState } from "react";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  TextInput,
+} from "react-native";
+import { LocationCodeInput } from "../../components/Inputs.js";
+import { ExportButton } from "../../components/Buttons.js";
+import { Table } from "../../components/Table.js";
 import {
   PasekNawigacyjny,
   PasekNawigacyjnyInfo,
 } from "../../components/PasekNawigacyjny.js";
+import { Container } from "../../components/Containers.js";
 
 export default function App() {
   return (
-    //<ScrollView>
-    <ImageBackground
-      source={require("../../assets/tlo_raport.png")}
-      style={styles.Tło}
-    >
-      <View style={styles.bezeksportu}>
-        <View style={styles.paseknagorze}>
-          <PasekNawigacyjnyInfo />
-        </View>
+    <ScrollView>
+      <ImageBackground
+        source={require("../../assets/tlo_raport.png")}
+        style={styles.Tło}
+      >
+        <Container>
+          <View style={styles.bezeksportu}>
+            <View style={styles.paseknagorze}>
+              <PasekNawigacyjnyInfo />
+            </View>
 
-        <View style={styles.naglowek}>
-          <Image source={require("../../assets/raport.png")} style={styles.h1} />
-        </View>
+            <View style={styles.naglowek}>
+              <Image
+                source={require("../../assets/raport.png")}
+                style={styles.h1}
+              />
+            </View>
 
-        <View style={styles.nazwa}>
-          <LocationCodeInput />
-        </View>
+            <View style={styles.nazwa}>
+              <LocationCodeInput />
+            </View>
 
-        <View style={styles.tabelka}>
-          <Table />
-        </View>
+            <View style={styles.tabelka}>
+              <Table />
+            </View>
 
-        <View style={styles.button}>
-          <ExportButton />
-        </View>
-      </View>
-    </ImageBackground>
-    //</ScrollView>
+            <View style={styles.button}>
+              <ExportButton />
+            </View>
+          </View>
+        </Container>
+      </ImageBackground>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({

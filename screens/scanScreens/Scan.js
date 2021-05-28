@@ -1,19 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import React, { useState, useEffect } from "react";
+import { Text, View, StyleSheet, Button, ImageBackground } from "react-native";
+import { BarCodeScanner } from "expo-barcode-scanner";
+import { Container } from "../../components/Containers";
 
-export default function Scan({navigation, route}) {
+export default function Scan({ navigation, route }) {
   const [hasPermission, setHasPermission] = useState(null);
 
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
-      setHasPermission(status === 'granted');
+      setHasPermission(status === "granted");
     })();
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
-    navigation.navigate(navigation.getParam('previousScreen'),{ qrcode: data });
+    navigation.navigate(navigation.getParam("previousScreen"), {
+      qrcode: data,
+    });
   };
 
   if (hasPermission === null) {
@@ -24,19 +27,25 @@ export default function Scan({navigation, route}) {
   }
 
   return (
-    <View style={styles.container}>
-      <BarCodeScanner
-        onBarCodeScanned={handleBarCodeScanned}
-        style={{flex:1}}
-      />
-    </View>
+    <ScrollView>
+      <ImageBackground>
+        <Container>
+          <View style={styles.container}>
+            <BarCodeScanner
+              onBarCodeScanned={handleBarCodeScanned}
+              style={{ flex: 1 }}
+            />
+          </View>
+        </Container>
+      </ImageBackground>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
+    flexDirection: "column",
+    justifyContent: "center",
   },
 });
