@@ -4,7 +4,20 @@ import {CancelButton,SaveButton} from '../components/Buttons.js';
 import {PanelLokalizacjiZapiszAnuluj} from '../components/PasekNawigacyjny.js';
 import {FloorsSelect,BuildingSelect ,ArticleCodeInput,RoomSelect} from '../components/Inputs.js';
 import {Tray} from '../components/Trays';
+/** 
+ * Ekran lokalizacji 
+ * @function  App Ekran głowny
 
+ * @category Screens 
+ * @return { PanelLokalizacjiZapiszAnuluj} Zwraca panel zapisu i anulowania
+ * @returns {BuildingSelect} Zwraca ekran  wyboru budynku
+ * @returns {FloorsSelect} Zwraca ekran  wyboru piętra
+ * @returns {RoomSelect}Zwraca ekran  wyboru pokoju
+ *  @returns {ArticleCodeInput}Zwraca ekran  wyboru kodu
+ *@returns  {SaveButton} zapisuje dane
+   @returns {CancelButton} anuluje dane
+ * 
+*/
 export default function App(){
   return (
     <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={{flex: 1}}>

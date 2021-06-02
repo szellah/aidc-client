@@ -1,8 +1,8 @@
   
 {
     "source": {
-      "include": ["./"],
-      "includePattern": "Trays.js",
+      "include": ["screens"],
+      "includePattern": "LocalisationEditDelete.js",
       "excludePattern": "(node_modules/|docs)"
     },
     "plugins": ["plugins/markdown"],

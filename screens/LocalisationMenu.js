@@ -4,6 +4,16 @@ import {PasekNawigacyjnyMenuLokalizacji} from '../components/PasekNawigacyjny.js
 import { InfoButton,PlusButton } from "../components/RoundButtons.js";
 import {Tray} from '../components/Trays';
 
+/** 
+ * Ekran lokalizacji Menu
+ * @function  App Ekran główny
+
+ * @category Screens 
+ * @return {PasekNawigacyjnyMenuLokalizacji} Zwraca ekran Informacji
+ * 
+ * 
+*/
+
 export default function App(){
   return (
     <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={{flex: 1}}>
