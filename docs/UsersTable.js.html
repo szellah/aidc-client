@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> UsersTable.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,72 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>UsersTable.js</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { ImageBackground, Text, StyleSheet, View } from "react-native";
+import {Table} from "../../components/Table";
+
+/**
+ * Ekran tabeli użytkowników&lt;br>
+ * Dzięki temu ekranowi można szybko wybrać konkretnego użytkownika&lt;br>
+ * Pobiera on z bazy danych użytkowników i podaje ich dane w tabelce
+ * 
+ * @function Ekran tabeli użytkowników
+ * @param {object} navigation - Sterowanie stosem nawigacji
+ * @category userScreens
+ * @returns {JSX} Zwraca ekran tabeli użytkowników w postaci elementu JSX
+ */
+export default function UsersTable({ navigation }) {
+
+  const users = [
+  { column1: 'Imię', column2: 'Nazwisko', column3: 'Login', id: 'header'},    
+  { column1: 'Tomasz', column2: 'Karolak', column3: 'TKarolak', id: '1'},
+  { column1: 'Borys', column2: 'Szyc', column3: 'BSzyc', id: '2'},
+];
+
+  return (
+    &lt;ImageBackground
+      source={require("../../assets/backgrounds/blue_quater.png")}
+      style={{ flex: 1 }}
+    >
+
+    &lt;View style={styles.titleBox}>
+      &lt;Text style={styles.title}>UŻYTKOWNICY&lt;/Text>
+    &lt;/View>
+      
+    &lt;Table toDisplay={users} clickable={true} pressHandler={(destination) => {
+      navigation.navigate('UserPanelEdit');
+    }}/>    
+     
 
 
-    <h3> </h3>
+    &lt;/ImageBackground>
+  );
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+const styles = StyleSheet.create({
+  title:{
+    color: "white",
+    fontSize: 43,
+    marginVertical: 10,
+  },
+  titleBox:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: "20%",
+  }
+});</code></pre>
+        </article>
+    </section>
 
 
 

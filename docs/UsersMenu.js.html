@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> UsersMenu.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,61 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>UsersMenu.js</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { ImageBackground } from "react-native";
+import { Tray } from "../../components/Trays";
+import {UsersInfoButton, UserAddNewButton} from "../../components/RoundButtons";
+import { PasekNawigacyjnyArticleMenu } from "../../components/PasekNawigacyjny.js";
+
+/**
+ * Ekran menu zarzadzania użytkownikami&lt;br>
+ * Za pomocą tego ekranu można wybrać użytkownika lub dodać nowego użytkownika
+ * 
+ * @function Ekran menu zarządzania użytkownikami
+ * @param {object} navigation - Sterowanie stosem nawigacji
+ * @category userScreens
+ * @returns {JSX} Zwraca ekran menu zarządania użytkownikami w postaci elementu JSX
+ */
+export default function UsersMenu({ navigation }) {
+  return (
+    &lt;>
+      &lt;Tray composition="compact">
+        {/* Pasek nawigujący do sekcji "Home" */}
+        &lt;PasekNawigacyjnyArticleMenu navigation={navigation} />
+      &lt;/Tray>
+
+      &lt;ImageBackground
+        source={require("../../assets/tlo_dodawanie.png")}
+        style={{ flex: 1, justifyContent: "center" }}
+      >
 
 
-    <h3> </h3>
+        &lt;Tray spread="center" composition="compact">
+            &lt;UsersInfoButton navigation={navigation} />
+        &lt;/Tray>
+
+        &lt;Tray spread="center" composition="compact">
+            &lt;UserAddNewButton navigation={navigation} />
+        &lt;/Tray>
 
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+      &lt;/ImageBackground>
+    &lt;/>
+  );
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

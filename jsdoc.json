@@ -1,7 +1,7 @@
 {
     "source": {
 
-      "include": ["./components","./README.md"],
+      "include": ["./screens/userScreens"],
       "includePattern": ".js",
       "excludePattern": "(node_modules/|docs)"
     },
