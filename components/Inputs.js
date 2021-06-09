@@ -1,21 +1,38 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, View, TextInput } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { WithLocalSvg as Icon } from "react-native-svg";
 import { Ionicons } from '@expo/vector-icons';
 
 
 
 //Input oraz QRbutton z którego dziedziczą różne inputy, dla reacta się na to mówi "zawieranie"
 
+/**
+ * Początkowy Input, który jest zawierany we wszystkich innych imputach.<br>
+ * Można wybrać mu ikonę, napis wypełniający, kolor, rozmiar i inne.<br>
+ * Posiada również możliwość przekazania funkcji do wykonania, po naciścięciu przycisku QR.
+ * 	@function
+ * 	@param {string} icon - nazwa ikony z czcionki FontAwesome
+ *  @param {string} placeholder - nazwa wyświetlająca się przed wpisaniem wartości do Inputa
+ *  @param {string} [placeholderTextColor] - kolor placeholdera w formię stringa css
+ *  @param {string} color - kolor inputa, do wybour yellow i blue
+ *  @param {string} size - rozmiar inputa, do wyboru small ilarge
+ *  @param {boolean} [displayQRButton] - czy przycisk QR ma zostac wyświetlony
+ *  @param {function} pressHandler - funkcja wywoływana podczas naciśnięcia przycisku QR 
+ * 
+ * 	@returns {JSX} zwraca input jako element JSX
+ * 
+ * 	@category Root Components
+ */
+
 export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler}) => {
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
 			<Icon
-				style={styles.inputIcon}
-				name={icon}
-				size={24}
-				color="#fcfefc"
-			/>
+                        width={24}
+                        height={24}
+                        asset={icon}
+                      />
 			<TextInput
 				style={styles.inputText}
 				autoCorrect={false}
@@ -28,6 +45,18 @@ export const Input = ({icon, placeholder, placeholderTextColor, color, size, dis
 	);
 }
 
+/**
+ * 
+ * Przycisk pozwalający na wywołanie przekazanej inputowi funkcji.<br>
+ * Zazwyczaj będzie to wyświetlenie ekrany skanowania.
+ * @function
+ * @param {funciton} pressHandler - Funkcja do wywołania po naciśnięciu przycisku QR
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const QRButton = ({pressHandler}) => {
 	return(
 		<View style={{justifyContent:'center'}}>
@@ -47,31 +76,56 @@ export const QRButton = ({pressHandler}) => {
 }
 
 //Gotowe Inputy
-
+/**
+ * Input dla podania Nazwy Artykułu
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const NameInput = () => {
 	return(
 		<Input
-		icon="archive"
+		icon={require("../assets/icons/package-2-512.svg")}
         placeholder="nazwa"
 		color="yellow"
 		/>
 	);
 }
-
+/**
+ * Input, w którym podajemy login użytkownika.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const LoginInput = () => {
 	return (
 		<Input
-		icon="user"
+		icon={require("../assets/icons/pngfind.com-black-png-1823885.svg")}
         placeholder="login"
 		color="blue"
 		/>
 	);
 };
 
+/**
+ * Input, w którym podajemy poprawne hasło wymagane do zalogowania.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const PasswordInput = () => {
 	return (
 		<Input
-		icon="lock"
+		icon={require("../assets/icons/lock-7-512.svg")}
         placeholder="hasło"
 		color="blue"
 		size="small"
@@ -79,10 +133,19 @@ export const PasswordInput = () => {
 	);
 };
 
+/**
+ * Input ,w którym podajemy stare hasło użytkownika.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const EnterOldPasswordInput = () => {
 	return (
 		<Input
-		icon="lock"
+		icon={require("../assets/icons/lock-7-512.svg")}
         placeholder="podaj stare hasło"
 		placeholderTextColor="white"
 		color="blue"
@@ -91,10 +154,19 @@ export const EnterOldPasswordInput = () => {
 	);
 };
 
+/**
+ * Input ,w którym wpisujemy nowe hasło dla bieżącego użytkownika.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const EnterNewPasswordInput = () => {
 	return (
 		<Input
-		icon="lock"
+		icon={require("../assets/icons/lock-7-512.svg")}
         placeholder="podaj nowe hasło"
 		placeholderTextColor="white"
 		color="blue"
@@ -103,10 +175,19 @@ export const EnterNewPasswordInput = () => {
 	);
 };
 
+/**
+ * Input, w którym potwierdzamy nowe hasło, aby dokonać ostatecznej zmiany.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const RepeatNewPasswordInput = () => {
 	return (
 		<Input
-		icon="lock"
+		icon={require("../assets/icons/lock-7-512.svg")}
         placeholder="powtórz nowe hasło"
 		placeholderTextColor="white"
 		color="blue"
@@ -115,10 +196,19 @@ export const RepeatNewPasswordInput = () => {
 	);
 };
 
+/**
+ * Input, w którym potwierdzamy obecne hasło.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const EnterPasswordInput = () => {
 	return (
 		<Input
-		icon="lock"
+		icon={require("../assets/icons/lock-7-512.svg")}
         placeholder="podaj hasło"
 		placeholderTextColor="white"
 		color="blue"
@@ -127,10 +217,19 @@ export const EnterPasswordInput = () => {
 	);
 };
 
+/**
+ * Input, w którym wpisujemy ponownie obecne hasło.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const RepeatPasswordInput = () => {
 	return (
 		<Input
-		icon="lock"
+		icon={require("../assets/icons/lock-7-512.svg")}
         placeholder="powtórz hasło"
 		placeholderTextColor="white"
 		color="blue"
@@ -138,74 +237,137 @@ export const RepeatPasswordInput = () => {
 		/>
 	);
 };
+////////////////////////////////////////////////
 
+/**
+ * Input dla podania Imienia Użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const UserFirstnameInput = () => {
 	return(
 		<Input
-		icon="user"
+		icon={require("../assets/icons/pngfind.com-black-png-1823885.svg")}
         placeholder="imię"
 		color="yellow"
 		/>
 	);
 }
 
+/**
+ * Input dla podania Nazwiska użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const UserSurnameInput = () => {
 	return(
 		<Input
-		icon="user"
+		icon={require("../assets/icons/pngfind.com-black-png-1823885.svg")}
         placeholder="nazwisko"
 		color="yellow"
 		/>
 	);
 }
 
+/**
+ * Input dla podania Stanu użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const UserStateInput = () => {
 	return(
 		<Input
-		icon="folder"
+		icon={require("../assets/icons/folder-512.svg")}
         placeholder="stan"
 		color="yellow"
 		/>
 	);
 }
 
+/**
+ * Input dla podania Rangi Uzytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const UserRankInput = () => {
 	return(
 		<Input
-		icon="folder"
+		icon={require("../assets/icons/folder-512.svg")}
         placeholder="ranga"
 		color="yellow"
 		/>
 	);
 }
 
+/**
+ * Input dla podania Login Użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const UserLoginInput = () => {
 	return(
 		<Input
-		icon="user"
+		icon={require("../assets/icons/pngfind.com-black-png-1823885.svg")}
         placeholder="login"
 		color="yellow"
 		/>
 	);
 }
 
+/**
+ * Input dla podania Email Użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const UserEmailInput = () => {
 	return(
 		<Input
-		icon="envelope"
+		icon={require("../assets/icons/user-5-512.svg")}
         placeholder="e-mail"
 		color="yellow"
 		/>
 	);
 }
 
-
 //duży input
 
+/**
+ * Duży input, w którym podajemy opis 
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const DescriptionInput = () => {
 	return (
 		<Input
-		icon="file"
+		icon={require("../assets/icons/description-icon-21.svg")}
 		color="yellow"
 		placeholder="opis"
 		size="large"
@@ -215,11 +377,21 @@ export const DescriptionInput = () => {
 
 //inputy korzystające z QR button
 
-export const ArticleCodeInput = ({pressHandler}) => {
+/**
+ * Input do odczytania kodu QR danego artykułu
+ * @function
+ * @param {function} pressHandler - funkcja wywoływana podczas naciśnięcia przycisku QR 
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const ArticleCodeInput = ({pressHandler, text}) => {
 	return (
 		<Input
-		icon="search"
-		placeholder="kod"
+		icon={require("../assets/icons/search-3-512.svg")}
+		placeholder={text}
 		color="yellow"
 		displayQRButton={true}
 		pressHandler={pressHandler}
@@ -227,11 +399,21 @@ export const ArticleCodeInput = ({pressHandler}) => {
 	);
 }
 
-export const LocationCodeInput = ({pressHandler}) => {
+/**
+ * Input do sprawdzania lokalizacji danego przedmiotu
+ * @function
+ * @param {function} pressHandler - funkcja wywoływana podczas naciśnięcia przycisku QR
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const LocationCodeInput = ({pressHandler, text}) => {
 	return (
 		<Input
-		icon="map-marker"
-        placeholder="lokalizacja"
+		icon={require("../assets/icons/pin-9-512.svg")}
+        placeholder={text}
 		color="yellow"
 		displayQRButton={true}
 		pressHandler={pressHandler}
@@ -241,42 +423,84 @@ export const LocationCodeInput = ({pressHandler}) => {
 
 //select, jeszcze nie zrobiony, usuniemy później Polekategoria
 
+/**
+ * Select do wybrania kategorii po jakiej tworzony będzie raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const CategorySelect = () => {
 	return (
 		<Input
-		icon="folder"
+		icon={require("../assets/icons/folder-512.svg")}
 		placeholder="kategoria"
 		color="yellow"
 		/>
 	);
 }
+
+/**
+ * Select do wybrania budynku z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const BuildingSelect = () => {
 	return (
 		<Input
-		icon="building"
+		icon={require("../assets/icons/icon budynek.svg")}
 		placeholder="budynek"
 		color="yellow"
 		/>
 	);
 }
+
+/**
+ * Select do wybrania piętra z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const FloorsSelect = () => {
 	return (
 		<Input
-		icon="align-justify"
+		icon={require("../assets/icons/icon piętro.svg")}
 		placeholder="piętro"
 		color="yellow"
 		/>
 	);
 }
+
+/**
+ * Select do wybrania pokoju z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
 export const RoomSelect = () => {
 	return (
 		<Input
-		icon="square-o"
+		icon={require("../assets/icons/icon pokój.svg")}
 		placeholder="pokój"
 		color="yellow"
 		/>
 	);
 }
+
+
+
 
 export const PoleKategoria = () => {
 	return (
@@ -296,8 +520,6 @@ export const PoleKategoria = () => {
 		</View>
 	);
 };
-
-
 
 
 
@@ -346,5 +568,7 @@ const styles = StyleSheet.create({
 
 
 //tablice asocjacyjne, pozwalające na proceduralne dobieranie stylów
+
 const colors = {yellow: styles.inputYellow, blue: styles.inputBlue};
+
 const sizes = {small: styles.inputSmall, large: styles.inputLarge};

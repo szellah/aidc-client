@@ -1,46 +1,15 @@
 import React from "react";
-import { Feather, Foundation, Ionicons } from '@expo/vector-icons';
-import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Image} from "react-native";
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+  Dimensions,
+  Image,
+} from "react-native";
+import { WithLocalSvg as Icon } from "react-native-svg";
 
-
-//Element po którym pseudo dziedziczy, dla reacta się na to mówi "zawieranie"
-export const RoundButton = ({navigation, destination, icon, familyOfIcons, title, color}) => {
-    
-    return(
-        <TouchableOpacity
-        onPress={() => {
-            navigation.navigate(destination);
-          }}
-        >
-
-            <View style={styles.buttonBox}>
-                <View style={[ styles.button, colors[color] ]}>
-                    <Icon 
-                    familyOfIcons = {familyOfIcons}
-                    icon = {icon}
-                    />
-                </View>
-                <Text
-                style={[ styles.buttonText, textColors[color] ]}
-                >
-                    {title}
-                </Text>
-            </View>
-          </TouchableOpacity>
-    );
-}
-
-
-
-
-// CustomRoundButton to przycisk który potrzebuje specjalnej grafiki (takiej której nie ma w "@expo/vector-icons")
-export const CustomRoundButton = ({
-  navigation,
-  destination,
-  src,
-  title,
-  color,
-}) => {
+export const RoundButton = ({ navigation, destination, svg, title, color }) => {
   return (
     <TouchableOpacity
       onPress={() => {
@@ -49,13 +18,12 @@ export const CustomRoundButton = ({
     >
       <View style={styles.buttonBox}>
         <View style={[styles.button, colors[color]]}>
-          <Image
-            source={src}
-            style={{
-              maxWidth: Dimensions.get("window").width * 0.18,
-              resizeMode: "contain",
-            }}
-          ></Image>
+          <Icon
+            width={Dimensions.get("window").width * 0.2}
+            height={Dimensions.get("window").width * 0.2}
+            asset={svg}
+          />
+          {/* Dimensions.get("window").width * 0.18, */}
         </View>
         <Text style={[styles.buttonText, textColors[color]]}>{title}</Text>
       </View>
@@ -69,30 +37,19 @@ export const PackageButton = ({ navigation }) => {
     <RoundButton
       navigation={navigation}
       color="yellow"
-      icon="package"
+      svg={require("../assets/icons/package-2-512.svg")}
       destination="ArticleMenu"
       title="Towar"
     />
   );
 };
 
-export const Icon = ({familyOfIcons, icon}) => {
-    if(familyOfIcons == null)
-        return(<Feather name={icon} size={Dimensions.get('window').width * 0.18} color="white" />)
-    else
-    if(familyOfIcons == "Foundation")
-        return(<Foundation name={icon} size={Dimensions.get('window').width * 0.25} color="white" />)
-    else
-    if(familyOfIcons == "Ionicons")
-            return(<Ionicons name={icon} size={Dimensions.get('window').width * 0.25} color="white" />)
-}
-
 export const LocationButton = ({ navigation }) => {
   return (
     <RoundButton
       navigation={navigation}
       color="gray"
-      icon="map-pin"
+      svg={require("../assets/icons/pin-9-512.svg")}
       destination="LocationMenu"
       title="Lokalizacja"
     />
@@ -104,7 +61,7 @@ export const UsersButton = ({ navigation }) => {
     <RoundButton
       navigation={navigation}
       color="blue"
-      icon="users"
+      svg={require("../assets/icons/user-5-512.svg")}
       destination="UsersMenu"
       title="Użytkownicy"
     />
@@ -116,7 +73,7 @@ export const SettingsButton = ({ navigation }) => {
     <RoundButton
       navigation={navigation}
       color="sand"
-      icon="settings"
+      svg={require("../assets/icons/settings-4-512.svg")}
       destination="Settings"
       title="Ustawienia"
     />
@@ -126,10 +83,10 @@ export const SettingsButton = ({ navigation }) => {
 // Przyciski w sekcji "Towar (ArticleMenu)"
 export const ManagmentButton = ({ navigation }) => {
   return (
-    <CustomRoundButton
+    <RoundButton
       navigation={navigation}
       color="blue"
-      src={require("../assets/articleMenuPage/textFile.png")}
+      svg={require("../assets/icons/text-file-6-512.svg")}
       destination="Managment"
       title="Zarządzanie"
     />
@@ -141,60 +98,56 @@ export const AddArticleButton = ({ navigation }) => {
     <RoundButton
       navigation={navigation}
       color="gray"
-      icon="plus"
+      svg={require("../assets/icons/plus-512.svg")}
       destination="ArticlePanelSave"
       title="Dodaj"
     />
   );
 };
 
-
 //poszczególne przyciski ustawień
-export const ChangePasswordButton = ({navigation}) => {
-    return(
-        <RoundButton
-        navigation={navigation}
-        color="yellow"
-        familyOfIcons="Foundation"
-        icon="lock"
-        destination="AccountChangePassword"
-        title="Zmień hasło"
-        />
-    )
-}
+export const ChangePasswordButton = ({ navigation }) => {
+  return (
+    <RoundButton
+      navigation={navigation}
+      color="yellow"
+      svg={require("../assets/icons/lock-7-512.svg")}
+      destination="AccountChangePassword"
+      title="Zmień hasło"
+    />
+  );
+};
 
-export const AccountInfoButton = ({navigation}) => {
-    return(
-        <RoundButton
-        navigation={navigation}
-        color="gray"
-        familyOfIcons="Ionicons"
-        icon="Information-circle-outline"
-        destination="AccountInfo"
-        title="Informacje"
-        />
-    )
-}
+export const AccountInfoButton = ({ navigation }) => {
+  return (
+    <RoundButton
+      navigation={navigation}
+      color="gray"
+      svg={require("../assets/icons/info-2-512.svg")}
+      destination="AccountInfo"
+      title="Informacje"
+    />
+  );
+};
 
-export const DeleteAccountButton = ({navigation}) => {
-    return(
-        <RoundButton
-        navigation={navigation}
-        color="blue"
-        familyOfIcons="Foundation"
-        icon="x-circle"
-        destination="DeleteAccount"
-        title="Usuń konto"
-        />
-    )
-}
+export const DeleteAccountButton = ({ navigation }) => {
+  return (
+    <RoundButton
+      navigation={navigation}
+      color="blue"
+      svg={require("../assets/icons/x-mark-4-512.svg")}
+      destination="DeleteAccount"
+      title="Usuń konto"
+    />
+  );
+};
 // przycisk "Odtowaruj"
 export const RemoveStockedArticleButton = ({ navigation }) => {
   return (
-    <CustomRoundButton
+    <RoundButton
       navigation={navigation}
       color="yellow"
-      src={require("../assets/articleMenuPage/emptyBox.png")}
+      svg={require("../assets/icons/empty-box-512.svg")}
       destination="ScanArticle"
       title="Odtowaruj"
     />
@@ -203,39 +156,38 @@ export const RemoveStockedArticleButton = ({ navigation }) => {
 // przycisk "Dotowaruj"
 export const AddStockedArticleButton = ({ navigation }) => {
   return (
-    <CustomRoundButton
+    <RoundButton
       navigation={navigation}
       color="sand"
-      src={require("../assets/articleMenuPage/filledBox.png")}
+      svg={require("../assets/icons/filled-box-512.svg")}
       destination="ScanLocation"
       title="Dotowaruj"
     />
   );
 };
 
-
-export const LocationInfoButton = ({navigation}) => {
-    return(
-        <RoundButton
-        navigation={navigation}
-        color="gray"
-        icon="info"
-        destination="ScanLocation"
-        title="Informacje"
-        />
-    )
-}
-export const LocationAddNewButton = ({navigation}) => {
-    return(
-        <RoundButton
-        navigation={navigation}
-        color="sand"
-        icon="plus"
-        destination="LocationEditDelete"
-        title="Dodaj"
-        />
-    )
-}
+export const LocationInfoButton = ({ navigation }) => {
+  return (
+    <RoundButton
+      navigation={navigation}
+      color="gray"
+      svg={require("../assets/icons/info-2-512.svg")}
+      destination="ScanLocation"
+      title="Informacje"
+    />
+  );
+};
+export const LocationAddNewButton = ({ navigation }) => {
+  return (
+    <RoundButton
+      navigation={navigation}
+      color="sand"
+      svg={require("../assets/icons/plus-512.svg")}
+      destination="LocationEditDelete"
+      title="Dodaj"
+    />
+  );
+};
 
 // Przyciski w Zarządzaniu (Managment)
 export const ArticleInfoButton = ({ navigation }) => {
@@ -243,44 +195,43 @@ export const ArticleInfoButton = ({ navigation }) => {
     <RoundButton
       navigation={navigation}
       color="blue"
-      icon="info"
+      svg={require("../assets/icons/info-2-512.svg")}
       destination="ScanArticle"
       title="Informacje"
     />
   );
 };
 
-
 export const ReportsButton = ({ navigation }) => {
   return (
-    <CustomRoundButton
+    <RoundButton
       navigation={navigation}
       color="yellow"
-      src={require("../assets/managmentPage/notepad.png")}
+      svg={require("../assets/icons/description-icon-21.svg")}
       destination=""
       title="Raporty"
     />
   );
 };
 
-export const UsersInfoButton = ({navigation}) => {
+export const UsersInfoButton = ({ navigation }) => {
   return (
     <RoundButton
       navigation={navigation}
       color="blue"
-      icon="info"
+      svg={require("../assets/icons/info-2-512.svg")}
       destination="UsersTable"
       title="Informacje"
     />
   );
 };
 
-export const UserAddNewButton = ({navigation}) => {
+export const UserAddNewButton = ({ navigation }) => {
   return (
     <RoundButton
       navigation={navigation}
       color="yellow"
-      icon="plus"
+      svg={require("../assets/icons/plus-7-512.svg")}
       destination="UserPanelSave"
       title="Dodaj Nowego"
     />
