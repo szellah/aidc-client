@@ -2,8 +2,16 @@ import React from "react";
 import { ImageBackground, Text, StyleSheet, View } from "react-native";
 import {Table} from "../../components/Table";
 
-//Ekran Tabeli użytkowników, pozwala na szybki wybór użytkownika którego informacje zamierzamy wyświetlić, zmienić bądź usunąć. Ekran pobiera z bazy danych wszystkich użytkowników i podaje ich najważniejsze dane w tabelce.
-//navigation object - obiekt sterowania stosem nawigacji
+/**
+ * Ekran tabeli użytkowników<br>
+ * Dzięki temu ekranowi można szybko wybrać konkretnego użytkownika<br>
+ * Pobiera on z bazy danych użytkowników i podaje ich dane w tabelce
+ * 
+ * @function Ekran tabeli użytkowników
+ * @param {object} navigation - Sterowanie stosem nawigacji
+ * @category userScreens
+ * @returns {JSX} Zwraca ekran tabeli użytkowników w postaci elementu JSX
+ */
 export default function UsersTable({ navigation }) {
 
   const users = [

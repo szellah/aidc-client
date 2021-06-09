@@ -34,8 +34,17 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
-    "better-docs": "^2.3.2",
+    "install": "^0.13.0",
     "jsdoc": "^3.6.7"
   },
-  "private": true
+  "private": true,
+  "name": "UserScreens10",
+  "description": "by SGGW WZIM Inf. 2019/gr.4\r </br>\r >Sprawdź również [AIDC-SERVER](https://github.com/szellah/aidc-server)",
+  "version": "1.0.0",
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

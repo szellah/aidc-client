@@ -1,0 +1,173 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> UsersTable.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">Client AIDC</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>userScreens</h2><h3>Global</h3><ul><li><a href="global.html#Ekranedycjiu%25C5%25BCytkownika">Ekran edycji użytkownika</a></li><li><a href="global.html#Ekraninformacyjnyu%25C5%25BCytkownika">Ekran informacyjny użytkownika</a></li><li><a href="global.html#Ekranmenuzarz%25C4%2585dzaniau%25C5%25BCytkownikami">Ekran menu zarządzania użytkownikami</a></li><li><a href="global.html#Ekrantabeliu%25C5%25BCytkownik%25C3%25B3w">Ekran tabeli użytkowników</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>UsersTable.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { ImageBackground, Text, StyleSheet, View } from "react-native";
+import {Table} from "../../components/Table";
+
+/**
+ * Ekran tabeli użytkowników&lt;br>
+ * Dzięki temu ekranowi można szybko wybrać konkretnego użytkownika&lt;br>
+ * Pobiera on z bazy danych użytkowników i podaje ich dane w tabelce
+ * 
+ * @function Ekran tabeli użytkowników
+ * @param {object} navigation - Sterowanie stosem nawigacji
+ * @category userScreens
+ * @returns {JSX} Zwraca ekran tabeli użytkowników w postaci elementu JSX
+ */
+export default function UsersTable({ navigation }) {
+
+  const users = [
+  { column1: 'Imię', column2: 'Nazwisko', column3: 'Login', id: 'header'},    
+  { column1: 'Tomasz', column2: 'Karolak', column3: 'TKarolak', id: '1'},
+  { column1: 'Borys', column2: 'Szyc', column3: 'BSzyc', id: '2'},
+];
+
+  return (
+    &lt;ImageBackground
+      source={require("../../assets/backgrounds/blue_quater.png")}
+      style={{ flex: 1 }}
+    >
+
+    &lt;View style={styles.titleBox}>
+      &lt;Text style={styles.title}>UŻYTKOWNICY&lt;/Text>
+    &lt;/View>
+      
+    &lt;Table toDisplay={users} clickable={true} pressHandler={(destination) => {
+      navigation.navigate('UserPanelEdit');
+    }}/>    
+     
+
+
+    &lt;/ImageBackground>
+  );
+}
+
+const styles = StyleSheet.create({
+  title:{
+    color: "white",
+    fontSize: 43,
+    marginVertical: 10,
+  },
+  titleBox:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    height: "20%",
+  }
+});</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>
