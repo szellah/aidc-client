@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> ArticleMenu.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -70,40 +72,76 @@
             
             <nav>
                 
-                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Screens</h2><h3>Global</h3><ul><li><a href="global.html#SkanowanieLokalizacji">Skanowanie Lokalizacji</a></li></ul></div>
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Screens</h2><h3>Global</h3><ul><li><a href="global.html#MenuTowar%25C3%25B3w">Menu Towarów</a></li></ul></div>
                 
             </nav>
         </div>
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>ArticleMenu.js</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { ImageBackground, StyleSheet } from "react-native";
+import { Tray } from "../../components/Trays";
+import {
+  AddArticleButton,
+  ManagmentButton,
+  RemoveStockedArticleButton,
+  AddStockedArticleButton,
+} from "../../components/RoundButtons";
 
+import { PasekNawigacyjnyArticleMenu } from "../../components/PasekNawigacyjny.js";
+/**
+ * Menu Towarów&lt;br>
+ * pozwala na wybranie jednego z czterech menu:&lt;br>
+ * -Zarządzanie&lt;br>
+ * -Dodaj nowy Towar&lt;br>
+ * -Dodaj już istniejący Towar&lt;br>
+ * -Usuń Towar
+ * @function Menu Towarów
+ * @param {object} navigation Pozwala na przenoszenie się między ekranami
+ * @category Screens
+ * @returns {JSX} zwraca Menu Towarów w postaci elementu JSX
+ */
+export default function ArticleMenu({ navigation }) {
+  return (
+    &lt;>
+      &lt;Tray composition="compact">
+        {/* Pasek nawigujący do sekcji "Home" */}
+        &lt;PasekNawigacyjnyArticleMenu navigation={navigation} />
+      &lt;/Tray>
 
-    <h3> </h3>
+      &lt;ImageBackground
+        source={require("../../assets/tlo_dodawanie.png")}
+        style={{ flex: 1, justifyContent: "center" }}
+      >
+        {/* Przyciski w menu "Towar (Article)" nawigujące do nowych sekcji */}
+        &lt;Tray spread="center" composition="compact">
+          &lt;ManagmentButton navigation={navigation} />
+          &lt;AddArticleButton navigation={navigation} />
+        &lt;/Tray>
+        &lt;Tray spread="center" composition="compact">
+          &lt;RemoveStockedArticleButton navigation={navigation} />
+          &lt;AddStockedArticleButton navigation={navigation} />
+        &lt;/Tray>
+      &lt;/ImageBackground>
+    &lt;/>
+  );
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+const styles = StyleSheet.create({});
+</code></pre>
+        </article>
+    </section>
 
 
 

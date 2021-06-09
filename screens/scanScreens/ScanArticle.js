@@ -15,6 +15,18 @@ import { ConfirmButton } from "../../components/Buttons";
 
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 
+/**
+ * Skanowanie Artykułu<br>
+ * Służy do skanowania kodów poszczególnych Towarów<br>
+ * posiada takie przyciski jak:<br>
+ * -potwierdź<br> 
+ * 
+ * 
+ * @function Skanowanie Artykułu
+ * @param {object} navigation pozwala na przenoszenie się między ekranami
+ * @category Screens
+ * @returns {JSX} Zwraca Skanowanie Artykułu w postaci elementu JSX
+ */
 export default function ScanArticle({ navigation , route}) {
   const [articleCode, setArticleCode] = useState("kod");
 

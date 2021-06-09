@@ -1,8 +1,8 @@
 {
     "source": {
 
-      "include": ["./components","./README.md"],
-      "includePattern": ".js",
+      "include": ["screens"],
+      "includePattern": "ScanLocation.js",
       "excludePattern": "(node_modules/|docs)"
     },
     "plugins": [

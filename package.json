@@ -37,5 +37,14 @@
     "@babel/core": "^7.9.0",
     "jsdoc": "^3.6.7"
   },
-  "private": true
+  "private": true,
+  "name": "dokumentacja_develop",
+  "description": "by SGGW WZIM Inf. 2019/gr.4\r </br>\r >Sprawdź również [AIDC-SERVER](https://github.com/szellah/aidc-server)",
+  "version": "1.0.0",
+  "directories": {
+    "doc": "docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

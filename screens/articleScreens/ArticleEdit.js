@@ -20,7 +20,22 @@ import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 import { ScrollView } from "react-native-gesture-handler";
 import { Container } from "../../components/Containers.js";
 import { Tray } from "../../components/Trays.js";
-
+/**
+ * Edytowanie Towaru<br> 
+ * posiada takie przyciski jak:<br>
+ * -zapisz<br> 
+ * -anuluj <br>
+ * Można tu ustawić:
+ * -Nazwę artykułu
+ * -Kategorię
+ * -Lokalizację
+ * -Kod artykułu
+ * -Opis artykułu  
+ * @function Edytowanie Towaru
+ * @param {object} navigation pozwala na przenoszenie się między ekranami
+ * @category Screens
+ * @returns {JSX} Zwraca Edytowanie Towaru w postaci elementu JSX
+ */
 export default function ArticleEdit({ navigation }) {
   const [Name, SetName] = useState("");
   const [Category, SetCategory] = useState("");
