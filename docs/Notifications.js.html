@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Table.js</title>
+  <title> Notifications.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>Table.js</h1>
+                    <h1>Notifications.js</h1>
                 </header>
                 
 
@@ -89,267 +89,160 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>//@ts-check
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useRef} from 'react';
-import { StyleSheet, Text, View, FlatList, ScrollView, Animated, TouchableOpacity} from 'react-native';
+            <pre class="prettyprint source linenums"><code>import React, { useState } from 'react';
+import { StyleSheet, Text, View, Modal, Dimensions, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { Entypo } from '@expo/vector-icons';
 
 
-//Komponent wyświetlający tabelkę, o trzech kolumnach
-//korzysta on z mapowania tablicy elementów wchodzących na obiekty JSX, czyli innymi słowy dla każdego elemntu w tablicy tworzy on wiersz w postaci xml
-//dodatkowo posiada on skomplikowana logikę aktualizowania wysokości paska przesuwania
-//toDisplay array object - tablica elementów do wyświetlenia w tabelce, informacje do zapasania w angłówkach muszą się znajdować w elemencie tablicy o key == header
-//clickable bool - informacja o tym czy wiersze mają być klikalne
-//pressHandler function - jeżeli wiersze są klikalne to pressHandler jest funkcją wykonywaną dla każdego wiersza po naciśnięciu
+//Komponent powiadomienie, który zawiera się w komponentach powiadomienia Informacyjnego i Błędu
+//visibiltyHandler object funkcja której zadaniem jest zmiana widoczności powiadomienia
+//message string wiadomość którą chcemy wyświetlić
+//color string szata koloryczna z listy kolorów: red, orange
 /**
+ * Komponent powiadomienie, który zawiera się w komponentach powiadomienia Informacyjnego i Błędu
+ * @function
+ * @param {function} visibiltyHandler funkcja której zadaniem jest zmiana widoczności powiadomienia
+ * @param {string} message wiadomość którą chcemy wyświetlić
+ * @param {string} color szata koloryczna z listy kolorów: red, orange
  * 
- * Komponent wyświetlający tabelkę, o trzech kolumnach&lt;br>
- * korzysta on z mapowania tablicy elementów wchodzących na obiekty JSX, &lt;br>
- * czyli innymi słowy dla każdego elemntu w tablicy tworzy on wiersz w postaci xml&lt;br>
- * dodatkowo posiada on skomplikowana logikę aktualizowania wysokości paska przesuwania&lt;br>
- * 
- * @param {Array} toDisplay - tablica elementów do wyświetlenia w tabelce, informacje do zapasania w angłówkach muszą się znajdować w elemencie tablicy o key równym 'header'
- * @param {boolean} clickable - informacja o tym czy wiersze mają być klikalne
- * @param {function} pressHandler - jeżeli wiersze są klikalne to pressHandler jest funkcją wykonywaną dla każdego wiersza po naciśnięciu
- * 
- * @returns {JSX} zwraca tabelę jako element JSX
+ * @returns {JSX} zwraca okienko powiadomienia jako element JSX
  * 
  * @category Root Components
  */
-export function Table({toDisplay, clickable, pressHandler}) {
+export function Notification({ visibilityHandler, message, color }) {
+	return (
+		&lt;View style={[styles.notification, colors[color]['container'] ]}>
+			&lt;TouchableOpacity
+				onPress={() => {
+					visibilityHandler(false);
+				}}
+			>
+				&lt;Entypo
+					name="circle-with-cross"
+					size={24}
+					color="#d2d2d2"
+					style={[styles.cross]}
+				/>
+			&lt;/TouchableOpacity>
 
-
-  function isHeader(value){
-    return value.id=='header';
-  }
-
-  function isNotHeader(value){
-    return value.id!='header';
-  }
-
-  const topRow = (toDisplay.filter(isHeader))[0];
-
-  toDisplay = toDisplay.filter(isNotHeader);
-
-  const [things, setThings] = useState(toDisplay)
-
-
-  const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
-  const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
-
-  const scrollIndicator = useRef(new Animated.Value(0)).current;
-
-  const scrollIndicatorSize =
-    completeScrollBarHeight > visibleScrollBarHeight
-      ? (visibleScrollBarHeight * visibleScrollBarHeight) /
-        completeScrollBarHeight
-      : visibleScrollBarHeight;
-
-  const difference =
-    visibleScrollBarHeight > scrollIndicatorSize
-      ? visibleScrollBarHeight - scrollIndicatorSize
-      : 1;
-
-  const scrollIndicatorPosition = Animated.multiply(
-    scrollIndicator,
-    visibleScrollBarHeight / completeScrollBarHeight 
-  ).interpolate({
-    inputRange: [0, difference],
-    outputRange: [0, difference],
-    extrapolate: 'clamp'
-  });
-
-
-  return (
-    &lt;View style={styles.container}>
-      &lt;View style={styles.top}>
-        &lt;Text style={styles.topColumnLeft}>{topRow.column1}&lt;/Text>
-        &lt;Text style={styles.topColumnCenter}>{topRow.column2}&lt;/Text>
-        &lt;Text style={styles.topColumnLeftRight}>{topRow.column3}&lt;/Text>
-      &lt;/View>
-      &lt;View style={styles.listContainer}>
-        &lt;ScrollView
-          showsVerticalScrollIndicator={false}
-          scrollEventThrottle={16}
-          onContentSizeChange={height => {
-            setCompleteScrollBarHeight(height);
-          }}
-          onLayout={({
-            nativeEvent: {
-              layout: { height }
-            }
-          }) => {
-            setVisibleScrollBarHeight(height);
-          }}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { y: scrollIndicator } } }],
-            { useNativeDriver: false }
-          )}
-        >
-          { things.map((item) => {
-            return (
-              &lt;View key={item.id}>
-                &lt;TouchableOpacity disabled={!clickable} onPress={()=>{pressHandler(item.id)}}>
-
-                  &lt;View style={[styles.row, rowColor[item.id % 2] ]}>
-                      &lt;Text style={[styles.columnLeft, styles.textColumn]}>{item.column1}&lt;/Text>
-                      &lt;Text style={[styles.columnCenter, styles.textColumn]}>{item.column2}&lt;/Text>
-                      &lt;Text style={[styles.columnRight, styles.textColumn]}>{item.column3}&lt;/Text>
-                  &lt;/View>
-
-                  &lt;/TouchableOpacity>
-              &lt;/View>
-            )
-          })}
-        &lt;/ScrollView>
-          &lt;View style={{ height: '100%', width: 27, backgroundColor: '#d5d6d7', borderRadius: 20}}>
-              &lt;Animated.View
-                style={{
-                  width: 27,
-                  borderRadius: 20,
-                  backgroundColor: '#e9eaea',
-                  height: 40,
-                  transform: [{ translateY: scrollIndicatorPosition }]
-                }}
-              />
-          &lt;/View>
-      &lt;/View>
-    &lt;/View>
-);
-
+			&lt;Text style={[ styles.text, colors[color]['text']]}>{message}&lt;/Text>
+		&lt;/View>
+	);
 }
 
 /**
- * Funkcja z React Native do stworzenia akruszu stylów
+ * Powiadomienie Informacyjne, o łagodniejszym kolorze z własną logiką 
  * @function
- * @name styles
- * @param {object} container - Container
- * @param {object} listContainer - List container
- * @param {object} columnLeft - Lewa kolumna
- * @param {object} columnRight - Prawa kolumna
- * @param {object} columnCenter - Środkowa kolumna
- * @param {object} top - Góra
- * @param {object} topColumnLeftRight - Kolumna na górze lewo i prawo?
- * @param {object} topColumnLeft - Kolumna na górze po lewo
- * @param {object} topColumnCenter - Kolumna na górze po środku
+ * @param {function} visibiltyHandler funkcja której zadaniem jest zmiana widoczności powiadomienia
+ * @param {string} message wiadomość którą chcemy wyświetlić
+ *  
+ * @returns {JSX} zwraca pomarańczowe okienko powiadomienia jako element JSX
  * 
- * @property {string} width - Szerokość
- * @property {string} backgroundColor - Kolor tła
- * @property {number} padding - Wolna przestrzeń obok elementu
- * @property {number} flex - Ułożenie elementu
- * @property {number} borderRadius - Zasięg obramowania
- * @property {number} marginTop - Margines (góra)
- * @property {string} flexDirection - Kierunek elementu
- * @property {number} marginBottom - Margines (dół)
- * @property {string} textAlign - Położenie tekstu
- * @property {number} paddingLeft - Wolna przestrzeń obok elementu (lewo)
- * @property {number} paddingVertical - Wolna przestrzeń obok elementu (wertykalnie)
- * @property {number} fontSize - Rozmiar czcionki
- * @property {number} borderLeftWidth - Szerokość obramowania (lewo)
- * @property {number} borderRightWidth - Szerokość obramowania (prawo)
- * @property {string} borderColor - Kolor obramowania
- * @property {number} height - Wysokość
- * @property {string} color - Kolor elementu
- * @property {string} borderLeftColor - Kolor obramowania (lewo)
+ * @category Notifications
  */
-const styles = StyleSheet.create({
-container: {
-  width: '90%',
-  backgroundColor: '#e1e3e4',
-  padding: 5,
-  flex: 1,
-  borderRadius: 30,
-  alignSelf: "center",
-  marginVertical: 10,
-},
-listContainer: {
-  marginTop:  10,
-  flex: 1,
-  flexDirection: 'row',
-  marginBottom: 10,
-},
-columnLeft: {
-  width: '32%',
-  paddingLeft: 5,
-  paddingVertical: 10,
-  fontSize: 20,
-},
-columnRight: {
-  width: '31%',
-  paddingLeft: 5,
-  paddingVertical: 10,
-  fontSize: 20,
-},
-columnCenter: {
-  width: '37%',
-  paddingLeft: 5,
-  paddingVertical: 10,
-  fontSize: 20,
-  borderLeftWidth: 2,
-  borderRightWidth: 2,
-  borderColor: '#c5c6c7',
-  height: 50
-},
-top: {
-  width: '100%',
-  height: 50,
-  backgroundColor: '#90a6c0',
-  flexDirection: 'row',
-  borderRadius: 40,
-  padding: 2,
-  color: 'white',
-  textAlign: 'center',
-},
-topColumnLeftRight: {
-  width: '33.33%',
-  textAlign: 'left',
-  paddingLeft: 15,
-  fontSize: 24,
-  borderLeftColor: 'white',
-  color: 'white',
-  paddingVertical: 4
-},
-topColumnLeft: {
-  width: '30.5%',
-  textAlign: 'center',
-
-  fontSize: 24,
-  borderLeftColor: 'white',
-  color: 'white',
-  paddingVertical: 4
-},
-topColumnCenter: {
-  width: '33.33%',
-  textAlign: 'center',
-  fontSize: 24,
-  borderLeftWidth: 1,
-  borderRightWidth: 1,
-  borderColor: 'white',
-  color: 'white',
-  paddingVertical: 4,
-},
-textColumn:{
-  color: 'white',
-  textAlign: 'center',
-},
-row:{ 
-width: '95%',
-flexDirection: 'row',
-marginVertical: 2,
-marginLeft:10,
-height: 50,
-},
-rowDark:{
-  backgroundColor:  '#cacccd', 
-},
-rowLight:{
-  backgroundColor: '#cdd0d3',
+export function InfoNotification({visibilityHandler, message}){
+	return(
+		&lt;Notification
+			visibilityHandler={visibilityHandler}
+			message={message}
+			color="orange"
+		/>
+	);
 }
+
+
+/**
+ * Powiadomienie Błędu, o ostrzejszym kolorze z własną logiką 
+ * @function
+ * @param {function} visibiltyHandler funkcja której zadaniem jest zmiana widoczności powiadomienia
+ * @param {string} message wiadomość którą chcemy wyświetlić
+ *  
+ * @returns {JSX} zwraca czerwone okienko powiadomienia jako element JSX
+ * 
+ * @category Notifications
+ */
+export function ErrorNotification({visibilityHandler, message}){
+	return(
+		&lt;Notification
+			visibilityHandler={visibilityHandler}
+			message={JSON.stringify(message)}
+			color="red"
+		/>
+	);
+}
+
+
+/**
+ * Ekran powiadomień, w którym pojawiają się powiadomienia, jest przyciemniony dla doatkowego efektu. Po naciśnięciu na niego powaidomienie znika.
+ * W ekranie dochodzi do warunkowego otwierania jednego z powiadomień (Błędu/ Informacji)  w obiekcie typu Modal&lt;br>
+ * To jakie powiadomienie się pojawi zależy od wartości content.error, która jest informacją od serwera odnośnie tego czy doszło do błedu. &lt;br>
+ * Niekiedy ta wartość jest również ustawiana na telefonie w moemencie wystapienia problemu z wykonaniem danej operacji, np. braku połączenia.&lt;br>
+ * @function
+ * @param {boolean} visibility informacja czy ekran powiadomień ma się wyświetlać czy nie
+ * @param {function} visibiltyHandler funkcja której zadaniem jest zmiana widoczności powiadomienia
+ * @param {object} content stworzony zazwyczaj na serwerze pakiet danych z informacjami odnośnie wystąpienia błędów oraz danymi przesłanymi przez serwer.
+ * 
+ * @returns {JSX} zwraca ciemny półprzejrzoczysty ekran typu Modal wraz z odpowiednim powiadomieniem jako element JSX
+ * 
+ * @category Notifications
+ */
+export function NotificationBox({visibility, visibilityHandler, content }) {
+	return (
+		&lt;Modal visible={visibility} transparent={true} animationType="fade">
+			
+			&lt;TouchableWithoutFeedback 
+			onPress={()=>{visibilityHandler(false)}}
+			>
+
+				&lt;View style={styles.notificationBox}>
+					{!content.error &amp;&amp; (&lt;InfoNotification visibilityHandler={visibilityHandler} message={content.message} />) }
+					{content.error &amp;&amp; (&lt;ErrorNotification visibilityHandler={visibilityHandler} message={content.message} />) }
+				&lt;/View>
+
+			&lt;/TouchableWithoutFeedback>
+		&lt;/Modal>
+	);
+}
+
+const styles = StyleSheet.create({
+	notificationBox:{ 
+		width:"100%", 
+		height:"100%" , 
+		backgroundColor: "rgba(0,0,0,0.25)"
+	},
+	notification: {
+		height: Dimensions.get('window').height * 0.15,
+		padding: 5,
+		margin: 10,
+		textAlign: 'center',
+		borderRadius: 20,
+		marginTop: '5%',
+	},
+	notificationInfo:{
+		backgroundColor: '#faf3ea',
+	},
+	notificationError:{
+		backgroundColor: '#d07474',
+	},
+	text:{
+		fontSize: 24,
+		width: '100%',
+		textAlign: 'center',
+	},
+	textOrange: {
+		color: 'orange',
+	},
+	textRed: {
+		color: 'white',
+	},
+	cross: {
+		textAlign: 'right',
+	},
 });
 
-
-//tablica nie asocjacyjna, ale liczbowa, trzymająca kolory
-const rowColor = [ styles.rowDark, styles.rowLight];</code></pre>
+//Tablica asocjacyjna pozwalająca na proceduralne zmieny szaty grtaficznej powiadomienia
+const colors = { orange: {text: styles.textOrange, container: styles.notificationInfo } , red: { text: styles.textRed, container: styles.notificationError } };
+</code></pre>
         </article>
     </section>
 
