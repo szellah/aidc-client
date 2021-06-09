@@ -1,0 +1,694 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> components/Inputs.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">Client AIDC</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#%2522T%25C5%2582o%2522">"Tło"</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#bezeksportu">bezeksportu</a></li><li><a href="global.html#button">button</a></li><li><a href="global.html#h1">h1</a></li><li><a href="global.html#naglowek">naglowek</a></li><li><a href="global.html#nazwa">nazwa</a></li><li><a href="global.html#opis">opis</a></li><li><a href="global.html#paseknagorze">paseknagorze</a></li><li><a href="global.html#tabelka">tabelka</a></li></ul></div><div class="category"><h2>Button</h2><h3>Global</h3><ul><li><a href="global.html#CancelButton">CancelButton</a></li><li><a href="global.html#ChangeButton">ChangeButton</a></li><li><a href="global.html#ChangePasswordButton">ChangePasswordButton</a></li><li><a href="global.html#ConfirmButton">ConfirmButton</a></li><li><a href="global.html#DeleteButton">DeleteButton</a></li><li><a href="global.html#DeletYellowButton">DeletYellowButton</a></li><li><a href="global.html#EditButton">EditButton</a></li><li><a href="global.html#ExportButton">ExportButton</a></li><li><a href="global.html#LoginButton">LoginButton</a></li><li><a href="global.html#LogoutButton">LogoutButton</a></li><li><a href="global.html#SaveButton">SaveButton</a></li></ul></div><div class="category"><h2>Inputs</h2><h3>Global</h3><ul><li><a href="global.html#ArticleCodeInput">ArticleCodeInput</a></li><li><a href="global.html#BuildingSelect">BuildingSelect</a></li><li><a href="global.html#CategorySelect">CategorySelect</a></li><li><a href="global.html#DescriptionInput">DescriptionInput</a></li><li><a href="global.html#EnterNewPasswordInput">EnterNewPasswordInput</a></li><li><a href="global.html#EnterOldPasswordInput">EnterOldPasswordInput</a></li><li><a href="global.html#EnterPasswordInput">EnterPasswordInput</a></li><li><a href="global.html#FloorsSelect">FloorsSelect</a></li><li><a href="global.html#LocationCodeInput">LocationCodeInput</a></li><li><a href="global.html#LoginInput">LoginInput</a></li><li><a href="global.html#NameInput">NameInput</a></li><li><a href="global.html#PasswordInput">PasswordInput</a></li><li><a href="global.html#QRButton">QRButton</a></li><li><a href="global.html#RepeatNewPasswordInput">RepeatNewPasswordInput</a></li><li><a href="global.html#RepeatPasswordInput">RepeatPasswordInput</a></li><li><a href="global.html#RoomSelect">RoomSelect</a></li><li><a href="global.html#UserEmailInput">UserEmailInput</a></li><li><a href="global.html#UserFirstnameInput">UserFirstnameInput</a></li><li><a href="global.html#UserLoginInput">UserLoginInput</a></li><li><a href="global.html#UserRankInput">UserRankInput</a></li><li><a href="global.html#UserStateInput">UserStateInput</a></li><li><a href="global.html#UserSurnameInput">UserSurnameInput</a></li></ul></div><div class="category"><h2>Notifications</h2><h3>Global</h3><ul><li><a href="global.html#ErrorNotification">ErrorNotification</a></li><li><a href="global.html#InfoNotification">InfoNotification</a></li><li><a href="global.html#NotificationBox">NotificationBox</a></li></ul></div><div class="category"><h2>Root Components</h2><h3>Global</h3><ul><li><a href="global.html#Button">Button</a></li><li><a href="global.html#Container">Container</a></li><li><a href="global.html#CustomRoundButton">CustomRoundButton</a></li><li><a href="global.html#Input">Input</a></li><li><a href="global.html#Notification">Notification</a></li><li><a href="global.html#RoundButton">RoundButton</a></li><li><a href="global.html#Table">Table</a></li><li><a href="global.html#Tray">Tray</a></li></ul></div><div class="category"><h2>Round Buttons</h2><h3>Global</h3><ul><li><a href="global.html#AccountInfoButton">AccountInfoButton</a></li><li><a href="global.html#AddArticleButton">AddArticleButton</a></li><li><a href="global.html#AddStockedArticleButton">AddStockedArticleButton</a></li><li><a href="global.html#ArticleInfoButton">ArticleInfoButton</a></li><li><a href="global.html#ChangePasswordButton">ChangePasswordButton</a></li><li><a href="global.html#DeleteAccountButton">DeleteAccountButton</a></li><li><a href="global.html#Icon">Icon</a></li><li><a href="global.html#LocationAddNewButton">LocationAddNewButton</a></li><li><a href="global.html#LocationButton">LocationButton</a></li><li><a href="global.html#LocationInfoButton">LocationInfoButton</a></li><li><a href="global.html#ManagmentButton">ManagmentButton</a></li><li><a href="global.html#PackageButton">PackageButton</a></li><li><a href="global.html#RemoveStockedArticleButton">RemoveStockedArticleButton</a></li><li><a href="global.html#ReportsButton">ReportsButton</a></li><li><a href="global.html#SettingsButton">SettingsButton</a></li><li><a href="global.html#UserAddNewButton">UserAddNewButton</a></li><li><a href="global.html#UsersButton">UsersButton</a></li><li><a href="global.html#UsersInfoButton">UsersInfoButton</a></li></ul></div><div class="category"><h2>Screens</h2><h3>Global</h3><ul><li><a href="global.html#LocationEdit">LocationEdit</a></li><li><a href="global.html#LocationInfo">LocationInfo</a></li><li><a href="global.html#LocationMenu">LocationMenu</a></li></ul></div><div class="category"><h2>Selects</h2><h3>Global</h3><ul><li><a href="global.html#BuildingSelect">BuildingSelect</a></li><li><a href="global.html#CategorySelect">CategorySelect</a></li><li><a href="global.html#FloorSelect">FloorSelect</a></li><li><a href="global.html#ReportSelect">ReportSelect</a></li><li><a href="global.html#RoomSelect">RoomSelect</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>components/Inputs.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { TouchableOpacity, StyleSheet, View, TextInput } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Ionicons } from '@expo/vector-icons';
+
+
+
+//Input oraz QRbutton z którego dziedziczą różne inputy, dla reacta się na to mówi "zawieranie"
+
+/**
+ * Początkowy Input, który jest zawierany we wszystkich innych imputach.&lt;br>
+ * Można wybrać mu ikonę, napis wypełniający, kolor, rozmiar i inne.&lt;br>
+ * Posiada również możliwość przekazania funkcji do wykonania, po naciścięciu przycisku QR.
+ * 	@function
+ * 	@param {string} icon - nazwa ikony z czcionki FontAwesome
+ *  @param {string} placeholder - nazwa wyświetlająca się przed wpisaniem wartości do Inputa
+ *  @param {string} [placeholderTextColor] - kolor placeholdera w formię stringa css
+ *  @param {string} color - kolor inputa, do wybour yellow i blue
+ *  @param {string} size - rozmiar inputa, do wyboru small ilarge
+ *  @param {boolean} [displayQRButton] - czy przycisk QR ma zostac wyświetlony
+ *  @param {function} pressHandler - funkcja wywoływana podczas naciśnięcia przycisku QR 
+ * 
+ * 	@returns {JSX} zwraca input jako element JSX
+ * 
+ * 	@category Root Components
+ */
+
+export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler}) => {
+	return (
+		&lt;View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
+			&lt;Icon
+				style={styles.inputIcon}
+				name={icon}
+				size={24}
+				color="#fcfefc"
+			/>
+			&lt;TextInput
+				style={styles.inputText}
+				autoCorrect={false}
+				placeholder={placeholder}
+				placeholderTextColor={placeholderTextColor == null ? "rgba(0,0,0,0.4)" : placeholderTextColor}
+				multiline={size=="large"}
+			/>
+			{displayQRButton&amp;&amp;(&lt;QRButton pressHandler={pressHandler}/>)}
+		&lt;/View>
+	);
+}
+
+/**
+ * 
+ * Przycisk pozwalający na wywołanie przekazanej inputowi funkcji.&lt;br>
+ * Zazwyczaj będzie to wyświetlenie ekrany skanowania.
+ * @function
+ * @param {funciton} pressHandler - Funkcja do wywołania po naciśnięciu przycisku QR
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const QRButton = ({pressHandler}) => {
+	return(
+		&lt;View style={{justifyContent:'center'}}>
+			&lt;TouchableOpacity 
+			onPress={() => {
+				pressHandler();
+			}}
+			>
+				&lt;Ionicons 
+				name="qr-code-outline" 
+				size={26} 
+				color="#fcfefc" 
+				/>
+			&lt;/TouchableOpacity>
+		&lt;/View>
+	);
+}
+
+//Gotowe Inputy
+/**
+ * Input dla podania Nazwy Artykułu
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const NameInput = () => {
+	return(
+		&lt;Input
+		icon="archive"
+        placeholder="nazwa"
+		color="yellow"
+		/>
+	);
+}
+/**
+ * Input, w którym podajemy login użytkownika.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const LoginInput = () => {
+	return (
+		&lt;Input
+		icon="user"
+        placeholder="login"
+		color="blue"
+		/>
+	);
+};
+
+/**
+ * Input, w którym podajemy poprawne hasło wymagane do zalogowania.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const PasswordInput = () => {
+	return (
+		&lt;Input
+		icon="lock"
+        placeholder="hasło"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+/**
+ * Input ,w którym podajemy stare hasło użytkownika.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const EnterOldPasswordInput = () => {
+	return (
+		&lt;Input
+		icon="lock"
+        placeholder="podaj stare hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+/**
+ * Input ,w którym wpisujemy nowe hasło dla bieżącego użytkownika.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const EnterNewPasswordInput = () => {
+	return (
+		&lt;Input
+		icon="lock"
+        placeholder="podaj nowe hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+/**
+ * Input, w którym potwierdzamy nowe hasło, aby dokonać ostatecznej zmiany.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const RepeatNewPasswordInput = () => {
+	return (
+		&lt;Input
+		icon="lock"
+        placeholder="powtórz nowe hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+/**
+ * Input, w którym potwierdzamy obecne hasło.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const EnterPasswordInput = () => {
+	return (
+		&lt;Input
+		icon="lock"
+        placeholder="podaj hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+
+/**
+ * Input, w którym wpisujemy ponownie obecne hasło.
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const RepeatPasswordInput = () => {
+	return (
+		&lt;Input
+		icon="lock"
+        placeholder="powtórz hasło"
+		placeholderTextColor="white"
+		color="blue"
+		size="small"
+		/>
+	);
+};
+////////////////////////////////////////////////
+
+/**
+ * Input dla podania Imienia Użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const UserFirstnameInput = () => {
+	return(
+		&lt;Input
+		icon="user"
+        placeholder="imię"
+		color="yellow"
+		/>
+	);
+}
+
+/**
+ * Input dla podania Nazwiska użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const UserSurnameInput = () => {
+	return(
+		&lt;Input
+		icon="user"
+        placeholder="nazwisko"
+		color="yellow"
+		/>
+	);
+}
+
+/**
+ * Input dla podania Stanu użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const UserStateInput = () => {
+	return(
+		&lt;Input
+		icon="folder"
+        placeholder="stan"
+		color="yellow"
+		/>
+	);
+}
+
+/**
+ * Input dla podania Rangi Uzytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const UserRankInput = () => {
+	return(
+		&lt;Input
+		icon="folder"
+        placeholder="ranga"
+		color="yellow"
+		/>
+	);
+}
+
+/**
+ * Input dla podania Login Użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const UserLoginInput = () => {
+	return(
+		&lt;Input
+		icon="user"
+        placeholder="login"
+		color="yellow"
+		/>
+	);
+}
+
+/**
+ * Input dla podania Email Użytkownika
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const UserEmailInput = () => {
+	return(
+		&lt;Input
+		icon="envelope"
+        placeholder="e-mail"
+		color="yellow"
+		/>
+	);
+}
+
+//duży input
+
+/**
+ * Duży input, w którym podajemy opis 
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const DescriptionInput = () => {
+	return (
+		&lt;Input
+		icon="file"
+		color="yellow"
+		placeholder="opis"
+		size="large"
+		/>
+	);
+}
+
+//inputy korzystające z QR button
+
+/**
+ * Input do odczytania kodu QR danego artykułu
+ * @function
+ * @param {function} pressHandler - funkcja wywoływana podczas naciśnięcia przycisku QR 
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const ArticleCodeInput = ({pressHandler, text}) => {
+	return (
+		&lt;Input
+		icon="search"
+		placeholder={text}
+		color="yellow"
+		displayQRButton={true}
+		pressHandler={pressHandler}
+		/>
+	);
+}
+
+/**
+ * Input do sprawdzania lokalizacji danego przedmiotu
+ * @function
+ * @param {function} pressHandler - funkcja wywoływana podczas naciśnięcia przycisku QR
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const LocationCodeInput = ({pressHandler, text}) => {
+	return (
+		&lt;Input
+		icon="map-marker"
+        placeholder={text}
+		color="yellow"
+		displayQRButton={true}
+		pressHandler={pressHandler}
+		/>
+	);
+};
+
+//select, jeszcze nie zrobiony, usuniemy później Polekategoria
+
+/**
+ * Select do wybrania kategorii po jakiej tworzony będzie raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const CategorySelect = () => {
+	return (
+		&lt;Input
+		icon="folder"
+		placeholder="kategoria"
+		color="yellow"
+		/>
+	);
+}
+
+/**
+ * Select do wybrania budynku z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const BuildingSelect = () => {
+	return (
+		&lt;Input
+		icon="building"
+		placeholder="budynek"
+		color="yellow"
+		/>
+	);
+}
+
+/**
+ * Select do wybrania piętra z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const FloorsSelect = () => {
+	return (
+		&lt;Input
+		icon="align-justify"
+		placeholder="piętro"
+		color="yellow"
+		/>
+	);
+}
+
+/**
+ * Select do wybrania pokoju z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Inputs
+ * 
+ */
+export const RoomSelect = () => {
+	return (
+		&lt;Input
+		icon="square-o"
+		placeholder="pokój"
+		color="yellow"
+		/>
+	);
+}
+
+
+
+
+export const PoleKategoria = () => {
+	return (
+		&lt;View style={styles.iconContainer_1}>
+			&lt;Icon
+				name="folder"
+				color="#000"
+				size={28}
+				color="#fcfefc"
+				style={{ marginRight: 10 }}
+			/>
+			&lt;TextInput
+				style={styles.inputStyle}
+				autoCorrect={false}
+				placeholder="Kategoria"
+			/>
+		&lt;/View>
+	);
+};
+
+
+
+
+//style
+
+const styles = StyleSheet.create({
+	inputText: {
+		textAlignVertical: 'top',
+		marginLeft: '5%',
+		color: '#faf3ea',
+		flex: 1,
+		width: "100%",
+		fontSize: 22,
+	},
+	inputBox:{
+		width: "86%",
+     	marginHorizontal: "7%",
+      	marginVertical: "4%",
+		flexDirection: 'row',
+		paddingVertical: 7,
+		paddingHorizontal: 15,
+		borderWidth: 1,
+		borderRadius: 28,
+	},
+	inputIcon:{
+		marginTop: 3,
+	},
+	inputSmall:{
+		height: 49,
+	},
+	inputLarge:{
+		height: 170
+	}, 
+	inputBlue:{
+		backgroundColor: '#8fa5be',
+		borderColor: '#eff2f6'
+	},
+	inputYellow:{
+		backgroundColor: '#ffc06f',
+		borderColor: '#ffc06f'
+	}
+
+
+});
+
+
+//tablice asocjacyjne, pozwalające na proceduralne dobieranie stylów
+
+const colors = {yellow: styles.inputYellow, blue: styles.inputBlue};
+
+const sizes = {small: styles.inputSmall, large: styles.inputLarge};</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>
