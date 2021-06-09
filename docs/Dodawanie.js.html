@@ -1,0 +1,245 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Dodawanie.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">Client AIDC</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"><h3>Global</h3><ul><li><a href="global.html#%2522T%25C5%2582o%2522">"Tło"</a></li><li><a href="global.html#App">App</a></li><li><a href="global.html#bezeksportu">bezeksportu</a></li><li><a href="global.html#button">button</a></li><li><a href="global.html#h1">h1</a></li><li><a href="global.html#naglowek">naglowek</a></li><li><a href="global.html#nazwa">nazwa</a></li><li><a href="global.html#opis">opis</a></li><li><a href="global.html#paseknagorze">paseknagorze</a></li><li><a href="global.html#tabelka">tabelka</a></li></ul></div><div class="category"><h2>Screens</h2><h3>Global</h3><ul><li><a href="global.html#MenuComponentE1">MenuComponentE1</a></li><li><a href="global.html#MenuComponentE2">MenuComponentE2</a></li><li><a href="global.html#MenuComponentE3">MenuComponentE3</a></li><li><a href="global.html#MenuComponentE4">MenuComponentE4</a></li><li><a href="global.html#MenuComponentE5">MenuComponentE5</a></li><li><a href="global.html#MenuComponentE31">MenuComponentE31</a></li><li><a href="global.html#RaportBudynek">RaportBudynek</a></li><li><a href="global.html#RaportKategoria">RaportKategoria</a></li><li><a href="global.html#RaportPietro">RaportPietro</a></li><li><a href="global.html#RaportPokoj">RaportPokoj</a></li><li><a href="global.html#RaportWedlugLista">RaportWedlugLista</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>Dodawanie.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {Component, useState} from "react";
+import {Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
+import tlo from "../assets/homePage/tempBackground.png";
+import {NameInput, PoleKategoria, LocationCodeInput, ArticleCodeInput, DescriptionInput} from '../components/Inputs.js';
+import {Dodaj} from '../components/Buttons.js';
+import {PasekNawigacyjny} from '../components/PasekNawigacyjny.js';
+
+/** 
+ * Funkcja odpowiadająca za rozmieszczanie elementów na ekranie dodawania
+ * @function App
+ */
+export default function App(){
+  return (
+    &lt;ImageBackground source={require('../assets/tlo_dodawanie.png')} style={styles.Tło}>
+    &lt;View style={styles.Tło}>
+      &lt;View style={styles.paseknagorze}>
+        &lt;PasekNawigacyjny/>
+      &lt;/View>
+      &lt;View style={styles.nazwa}>
+        &lt;NameInput/>
+      &lt;/View>
+        
+      &lt;View style={styles.nazwa}>
+        {/*&lt;PoleKategoria/>*/}
+      &lt;/View>
+
+      &lt;View style={styles.nazwa}>
+        &lt;LocationCodeInput/>
+      &lt;/View>
+
+      &lt;View style={styles.nazwa}>
+        &lt;ArticleCodeInput/>
+      &lt;/View>
+
+      &lt;View style={styles.opis}>
+        &lt;DescriptionInput/>
+      &lt;/View>
+
+      &lt;View style={styles.button}>
+        {/*&lt;Dodaj/>*/}
+      &lt;/View>
+
+    &lt;/View>
+    &lt;/ImageBackground>
+  );
+}
+  /**
+   * @typedef {Object} styles
+   * @property {string|number} width - Szerokość
+   * @property {string} flexDirection - Kierunek
+   * @property {string|number} marginBottom - Dolny margines
+   * @property {string|number} marginLeft - Lewy margines
+   * @property {string|number} marginRight - Prawy margines
+   * @property {string|number} marginTop - Górny Margines
+   * @property {string} resizeMode - Tryb wyświetlania
+   * @property {string|number} height - Wysokość
+   * @property {string} alignItems - Wyrównanie elementów
+   * @property {string|number} margin - Margines
+   */
+
+  /**
+   * @type {styles}
+   */
+  const styles=StyleSheet.create({
+	/**
+	 * Wygląd górnego paska
+	 * @property {string} width - Szerokość
+	 * @property {string} flexDirection - Kierunek
+	 * @property {number} marginBottom - Dolny Margines
+	 */
+    paseknagorze:{
+      width: '100%',
+      flexDirection: 'row',
+      marginBottom: 40,
+    },
+	/**
+	 * Wygląd pola z nazwą
+	 * @property {string} width - Szerokość
+	 * @property {string} marginLeft - Kierunek
+	 * @property {string} marginBottom - Dolny Margines
+	 * @property {number} height - Wysokość
+	 */
+    nazwa:
+    {
+      width: "80%",
+      marginLeft: "10%",
+      marginBottom: "5%",
+      height: 47,
+    },
+	/**
+	 * Wygląd przycisku
+	 * @property {string} alignItems - Wyrównanie elementów
+	 * @property {string} margin - Margines
+	 * @property {string} height - Wysokość
+	 */
+    button:
+    {
+      alignItems: "center",
+      margin: "5%",
+      height: "40%",
+    },
+	/**
+	 * Rozmiary pola z opisem
+	 * @property {string} width - Szerokość
+	 * @property {string} height - Wysokość
+	 * @property {string} alignItems - Wyrównanie elementów
+	 * @property {number} marginLeft - Lewy Margines
+	 */
+    opis:
+    {
+      width: "80%",
+      height: "30%",
+      alignItems: "flex-start",
+      marginLeft: "10%",
+    },
+	/**
+	 * Rozmiary tła
+	 * @property {string} width - Szerokość
+	 * @property {string} height - Wysokość
+	 */
+    Tło: {
+      width: '100%',
+      height: '100%',      
+    },
+  })
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

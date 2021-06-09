@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Home</title>
+  <title> components/Selects.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -77,33 +79,263 @@
         <div class="core" id="main-content-wrapper">
             <div class="content">
                 <header class="page-title">
-                    <p></p>
-                    <h1>Home</h1>
+                    <p>Source</p>
+                    <h1>components/Selects.js</h1>
                 </header>
                 
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, {useState} from "react";
+import { Text, StyleSheet, TouchableOpacity, ScrollView, Image, Dimensions} from "react-native";
+import {Menu, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-menu';
+
+const {width, height} = Dimensions.get("window");
 
 
-    <h3> </h3>
+export default function Select({changeHandler, placeholder, options, src, color}) {
+
+    const [selectText, setSelectText] = useState(placeholder);
+  
+    return (
+
+          &lt;Menu>
+            
+            &lt;MenuTrigger style={[styles.selectBox, selectColor[color]]}>
+                &lt;Image source={src} style={styles.Icons}/>
+                &lt;Text style={styles.selectText}>{selectText}&lt;/Text>
+            &lt;/MenuTrigger>
+            
+
+            &lt;MenuOptions optionsContainerStyle={styles.options}>
+
+              &lt;Text style={[styles.headerOptionWrapper, styles.headerOptionText]}>{selectText}&lt;/Text>
+
+                &lt;ScrollView>
+              {options.map((item) => {
+                return (
+  
+                 &lt;TouchableOpacity
+                 key={item.id} 
+                 >
+                 &lt;MenuOption 
+                 
+
+                 onSelect={() => {
+                    setSelectText(item.name);
+                    changeHandler(item.value);
+                  }}
+
+                  customStyles={
+                    {
+                      optionWrapper: [styles.optionWrapper, optionColor[item.id % 2] ], 
+                      optionText: styles.optionText
+                  }}   
+
+                  text={item.name}
+                 />
+                 &lt;/TouchableOpacity>
+  
+                );
+              })}
+            &lt;/ScrollView>
+  
+            &lt;/MenuOptions>
+          &lt;/Menu>
+
+    );
+  }
 
 
+  /**
+ * Select do wybrania kategorii po jakiej tworzony będzie raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
+  export const CategorySelect = ({changeHandler, options}) => {
+    return (
+      &lt;Select 
+        changeHandler={changeHandler}
+        placeholder="Kategoria"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconBudynek.png")}
+        />
+    );
+  }
 
+  /**
+ * Select do wybrania budynku z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
+  export const BuildingSelect = ({changeHandler, options}) => {
+    return (
+      &lt;Select 
+        changeHandler={changeHandler}
+        placeholder="Budynek"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconBudynek.png")}
+        />
+    );
+  }
 
+  /**
+ * Select do wybrania piętra z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
+  export const FloorSelect = ({changeHandler, options}) => {
+    return (
+      &lt;Select 
+        changeHandler={changeHandler}
+        placeholder="Piętro"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconPietro.png")}
+        />
+    );
+  }
 
+  /**
+ * Select do wybrania pokoju z którego będzie sporzandzany raport
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
+  export const RoomSelect = ({changeHandler, options}) => {
+    return (
+      &lt;Select 
+        changeHandler={changeHandler}
+        placeholder="Pokój"
+        options={options}
+        color="blue"
+        src={require("../assets/raportPage/iconPokoj.png")}
+        />
+    );
+  }
 
+  /**
+ * Select do wybrania według czego zostanie sporządzony raport
+ * -kategorii
+ * -budynku
+ * -piętra
+ * -pokoju
+ * 
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
+  export const ReportSelect = ({changeHandler, options}) => {
+    return (
+      &lt;Select 
+        changeHandler={changeHandler}
+        placeholder="Według"
+        options={options}
+        color="yellow"
+        src={require("../assets/raportPage/iconSporzRaportu.png")}
+        />
+    );
+  }
+  
+  
+  
 
+  const styles = StyleSheet.create({
+      selectLiner: {
 
-
-
-    
-
-
-
-
-
+    },
+    selectBox: {
+      marginTop: 0,
+      width: width * 0.86,
+      marginHorizontal: width * 0.07,
+      marginTop: height * 0.02,
+      marginBottom: height * 0.02,
+      flexDirection: "row",
+      borderRadius: 28,
+    },
+    selectText: {
+      color: "#faf3ea",
+      flex: 1,
+      width: "100%",
+      fontSize: 22,
+      paddingLeft: '5%',
+      textAlignVertical: 'center',
+    },    
+    Icons: {
+      margin: 5,
+      width: 40,
+      height: 40,
+      resizeMode: "contain",
+    },
+    options: {
+      marginTop: -(38+height * 0.04),
+      marginLeft: '20%',
+      backgroundColor: "#e4e4e4", 
+      padding: 5,
+      paddingBottom: 10,
+      borderRadius: 20,
+    },
+    headerOptionWrapper: {
+        margin: 7,
+        paddingLeft: 10,
+    },
+    headerOptionText: {
+        fontSize: 22, 
+        color: "white"
+    },
+    optionWrapper: {
+        paddingVertical: 2,
+        marginVertical: 0.5,
+        paddingHorizontal: 20,
+    }, 
+    optionText: {
+        fontSize: 19, 
+        color: "white"
+    },
+    optionDark: {
+        backgroundColor: '#d1d5d7',
+    },
+    optionLight: {
+        backgroundColor: '#d8dada',
+    },
+    selectBlue: {
+        backgroundColor: '#8fa5be',
+    },
+    selectYellow:{
+        backgroundColor: '#ffc06f',
+    }
+  });
+  
+  
+  const optionColor = [ styles.optionLight, styles.optionDark];
+  const selectColor = {blue: styles.selectBlue, yellow: styles.selectYellow};
+  
+  </code></pre>
+        </article>
+    </section>
 
 
 
