@@ -1,8 +1,7 @@
 {
     "source": {
-
-      "include": ["./screens","./components"],
-      "includePattern": ".",
+      "include": ["./screens","./components","./README.md"],
+      "includePattern": ".js",
       "excludePattern": "(node_modules/|docs)"
     },
     "plugins": [

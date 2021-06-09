@@ -7,7 +7,7 @@
   
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> Table.js</title>
+  <title> Buttons.js</title>
 
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -80,7 +80,7 @@
             <div class="content">
                 <header class="page-title">
                     <p>Source</p>
-                    <h1>Table.js</h1>
+                    <h1>Buttons.js</h1>
                 </header>
                 
 
@@ -89,267 +89,311 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>//@ts-check
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useRef} from 'react';
-import { StyleSheet, Text, View, FlatList, ScrollView, Animated, TouchableOpacity} from 'react-native';
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 
-
-//Komponent wyświetlający tabelkę, o trzech kolumnach
-//korzysta on z mapowania tablicy elementów wchodzących na obiekty JSX, czyli innymi słowy dla każdego elemntu w tablicy tworzy on wiersz w postaci xml
-//dodatkowo posiada on skomplikowana logikę aktualizowania wysokości paska przesuwania
-//toDisplay array object - tablica elementów do wyświetlenia w tabelce, informacje do zapasania w angłówkach muszą się znajdować w elemencie tablicy o key == header
-//clickable bool - informacja o tym czy wiersze mają być klikalne
-//pressHandler function - jeżeli wiersze są klikalne to pressHandler jest funkcją wykonywaną dla każdego wiersza po naciśnięciu
+//Elementy po których się pseudo dziediczy, dla reacta się na to mówi "zawieranie"
 /**
+ * Przycisk podstawowy, taki który zawierany jest w innych i pozweala na duże dopasowanie.&lt;br>
+ * Pozwala na dobranie tytułu, koloru, rozmiaru tak by elementy&lt;br>
+ * go zawierające mogły jak najlepiej oddawać wygląd prototypowy.&lt;br>
+ * Posiada również możliwość przekazania funkcji która zadziała po jego naciśnięciu.
+ * @function
+ * @param {string} title -tytuł wyświetlany na przycisku
+ * @param {string} color -kolor przycisku, do wyboru yellow, green i blue
+ * @param {string} size - rozmiar przycisku, do wyboru small i large
+ * @param {function} pressHandler - funkcja wywołana po naciśnięciu przycisku
  * 
- * Komponent wyświetlający tabelkę, o trzech kolumnach&lt;br>
- * korzysta on z mapowania tablicy elementów wchodzących na obiekty JSX, &lt;br>
- * czyli innymi słowy dla każdego elemntu w tablicy tworzy on wiersz w postaci xml&lt;br>
- * dodatkowo posiada on skomplikowana logikę aktualizowania wysokości paska przesuwania&lt;br>
- * 
- * @param {Array} toDisplay - tablica elementów do wyświetlenia w tabelce, informacje do zapasania w angłówkach muszą się znajdować w elemencie tablicy o key równym 'header'
- * @param {boolean} clickable - informacja o tym czy wiersze mają być klikalne
- * @param {function} pressHandler - jeżeli wiersze są klikalne to pressHandler jest funkcją wykonywaną dla każdego wiersza po naciśnięciu
- * 
- * @returns {JSX} zwraca tabelę jako element JSX
+ * @returns {JSX} zwraca przycisk jako element JSX
  * 
  * @category Root Components
- */
-export function Table({toDisplay, clickable, pressHandler}) {
-
-
-  function isHeader(value){
-    return value.id=='header';
-  }
-
-  function isNotHeader(value){
-    return value.id!='header';
-  }
-
-  const topRow = (toDisplay.filter(isHeader))[0];
-
-  toDisplay = toDisplay.filter(isNotHeader);
-
-  const [things, setThings] = useState(toDisplay)
-
-
-  const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
-  const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
-
-  const scrollIndicator = useRef(new Animated.Value(0)).current;
-
-  const scrollIndicatorSize =
-    completeScrollBarHeight > visibleScrollBarHeight
-      ? (visibleScrollBarHeight * visibleScrollBarHeight) /
-        completeScrollBarHeight
-      : visibleScrollBarHeight;
-
-  const difference =
-    visibleScrollBarHeight > scrollIndicatorSize
-      ? visibleScrollBarHeight - scrollIndicatorSize
-      : 1;
-
-  const scrollIndicatorPosition = Animated.multiply(
-    scrollIndicator,
-    visibleScrollBarHeight / completeScrollBarHeight 
-  ).interpolate({
-    inputRange: [0, difference],
-    outputRange: [0, difference],
-    extrapolate: 'clamp'
-  });
-
-
+ */export const Button = ({ title, color, size, pressHandler }) => {
   return (
-    &lt;View style={styles.container}>
-      &lt;View style={styles.top}>
-        &lt;Text style={styles.topColumnLeft}>{topRow.column1}&lt;/Text>
-        &lt;Text style={styles.topColumnCenter}>{topRow.column2}&lt;/Text>
-        &lt;Text style={styles.topColumnLeftRight}>{topRow.column3}&lt;/Text>
+    &lt;TouchableOpacity
+      onPress={() => {
+        pressHandler();
+      }}
+    >
+      &lt;View style={[styles.buttonBox, colors[color], sizes[size]["button"]]}>
+        &lt;Text style={[styles.buttonText, sizes[size]["text"]]}>{title}&lt;/Text>
       &lt;/View>
-      &lt;View style={styles.listContainer}>
-        &lt;ScrollView
-          showsVerticalScrollIndicator={false}
-          scrollEventThrottle={16}
-          onContentSizeChange={height => {
-            setCompleteScrollBarHeight(height);
-          }}
-          onLayout={({
-            nativeEvent: {
-              layout: { height }
-            }
-          }) => {
-            setVisibleScrollBarHeight(height);
-          }}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { y: scrollIndicator } } }],
-            { useNativeDriver: false }
-          )}
-        >
-          { things.map((item) => {
-            return (
-              &lt;View key={item.id}>
-                &lt;TouchableOpacity disabled={!clickable} onPress={()=>{pressHandler(item.id)}}>
+    &lt;/TouchableOpacity>
+  );
+};
 
-                  &lt;View style={[styles.row, rowColor[item.id % 2] ]}>
-                      &lt;Text style={[styles.columnLeft, styles.textColumn]}>{item.column1}&lt;/Text>
-                      &lt;Text style={[styles.columnCenter, styles.textColumn]}>{item.column2}&lt;/Text>
-                      &lt;Text style={[styles.columnRight, styles.textColumn]}>{item.column3}&lt;/Text>
-                  &lt;/View>
+//Przyciski niebieskie
+/**
+ * Niebieski przycisk z napisem "Edytuj"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
+export const EditButton = ({ pressHandler }) => {
+  return (
+    &lt;Button
+      title="Edytuj"
+      color="blue"
+      size="small"
+      pressHandler={pressHandler}
+    />
+  );
+};
 
-                  &lt;/TouchableOpacity>
-              &lt;/View>
-            )
-          })}
-        &lt;/ScrollView>
-          &lt;View style={{ height: '100%', width: 27, backgroundColor: '#d5d6d7', borderRadius: 20}}>
-              &lt;Animated.View
-                style={{
-                  width: 27,
-                  borderRadius: 20,
-                  backgroundColor: '#e9eaea',
-                  height: 40,
-                  transform: [{ translateY: scrollIndicatorPosition }]
-                }}
-              />
-          &lt;/View>
-      &lt;/View>
-    &lt;/View>
-);
+/**
+ * Niebieski przycisk z napisem "Usuń"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
+export const DeleteButton = ({ pressHandler }) => {
+  return (
+    &lt;Button
+      title="Usuń"
+      color="blue"
+      size="small"
+      pressHandler={pressHandler}
+    />
+  );
+};
 
+/**
+ * Niebieski przycisk z napisem "Zapisz"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
+export const SaveButton = ({ pressHandler }) => {
+  return (
+    &lt;Button
+      title="Zapisz"
+      color="blue"
+      size="small"
+      pressHandler={pressHandler}
+    />
+  );
+};
+
+/**
+ * Niebieski przycisk z napisem "Anuluj"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
+export const CancelButton = ({ pressHandler }) => {
+  return (
+    &lt;Button
+      title="Anuluj"
+      color="blue"
+      size="small"
+      pressHandler={pressHandler}
+    />
+  );
+};
+
+//przyciski żółte
+/**
+ * Żółty duży przycisk z napisem "Zaloguj"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
+export const LoginButton = ({ pressHandler }) => {
+  return (
+    &lt;Button
+      title="Zaloguj"
+      color="yellow"
+      size="large"
+      pressHandler={pressHandler}
+    />
+  );
+};
+
+/**
+ * Żółty duży przycisk z napisem "Eksportuj"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
+export const ExportButton = ({ pressHandler }) => {
+  return (
+    &lt;Button
+      title="Eksportuj"
+      color="yellow"
+      size="large"
+      pressHandler={pressHandler}
+    />
+  );
+};
+
+/**
+ * Żółty duży przycisk z napisem "Zatwierdź"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
+export const ConfirmButton = ({ pressHandler }) => {
+  return (
+    &lt;Button
+      title="Zatwierdź"
+      color="yellow"
+      size="large"
+      pressHandler={pressHandler}
+    />
+  );
+};
+
+/**
+ * Żółty przycisk z napisem "Zmień"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
+export const ChangeButton = ({pressHandler}) => {
+  return(
+    &lt;Button
+    title="Zmień"
+    color="yellow"
+    size="small"
+    pressHandler={pressHandler}
+    />
+  );
 }
 
 /**
- * Funkcja z React Native do stworzenia akruszu stylów
+ * Żółty przycisk z napisem "Usuń"
  * @function
- * @name styles
- * @param {object} container - Container
- * @param {object} listContainer - List container
- * @param {object} columnLeft - Lewa kolumna
- * @param {object} columnRight - Prawa kolumna
- * @param {object} columnCenter - Środkowa kolumna
- * @param {object} top - Góra
- * @param {object} topColumnLeftRight - Kolumna na górze lewo i prawo?
- * @param {object} topColumnLeft - Kolumna na górze po lewo
- * @param {object} topColumnCenter - Kolumna na górze po środku
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
  * 
- * @property {string} width - Szerokość
- * @property {string} backgroundColor - Kolor tła
- * @property {number} padding - Wolna przestrzeń obok elementu
- * @property {number} flex - Ułożenie elementu
- * @property {number} borderRadius - Zasięg obramowania
- * @property {number} marginTop - Margines (góra)
- * @property {string} flexDirection - Kierunek elementu
- * @property {number} marginBottom - Margines (dół)
- * @property {string} textAlign - Położenie tekstu
- * @property {number} paddingLeft - Wolna przestrzeń obok elementu (lewo)
- * @property {number} paddingVertical - Wolna przestrzeń obok elementu (wertykalnie)
- * @property {number} fontSize - Rozmiar czcionki
- * @property {number} borderLeftWidth - Szerokość obramowania (lewo)
- * @property {number} borderRightWidth - Szerokość obramowania (prawo)
- * @property {string} borderColor - Kolor obramowania
- * @property {number} height - Wysokość
- * @property {string} color - Kolor elementu
- * @property {string} borderLeftColor - Kolor obramowania (lewo)
+ * @category Button
  */
-const styles = StyleSheet.create({
-container: {
-  width: '90%',
-  backgroundColor: '#e1e3e4',
-  padding: 5,
-  flex: 1,
-  borderRadius: 30,
-  alignSelf: "center",
-  marginVertical: 10,
-},
-listContainer: {
-  marginTop:  10,
-  flex: 1,
-  flexDirection: 'row',
-  marginBottom: 10,
-},
-columnLeft: {
-  width: '32%',
-  paddingLeft: 5,
-  paddingVertical: 10,
-  fontSize: 20,
-},
-columnRight: {
-  width: '31%',
-  paddingLeft: 5,
-  paddingVertical: 10,
-  fontSize: 20,
-},
-columnCenter: {
-  width: '37%',
-  paddingLeft: 5,
-  paddingVertical: 10,
-  fontSize: 20,
-  borderLeftWidth: 2,
-  borderRightWidth: 2,
-  borderColor: '#c5c6c7',
-  height: 50
-},
-top: {
-  width: '100%',
-  height: 50,
-  backgroundColor: '#90a6c0',
-  flexDirection: 'row',
-  borderRadius: 40,
-  padding: 2,
-  color: 'white',
-  textAlign: 'center',
-},
-topColumnLeftRight: {
-  width: '33.33%',
-  textAlign: 'left',
-  paddingLeft: 15,
-  fontSize: 24,
-  borderLeftColor: 'white',
-  color: 'white',
-  paddingVertical: 4
-},
-topColumnLeft: {
-  width: '30.5%',
-  textAlign: 'center',
-
-  fontSize: 24,
-  borderLeftColor: 'white',
-  color: 'white',
-  paddingVertical: 4
-},
-topColumnCenter: {
-  width: '33.33%',
-  textAlign: 'center',
-  fontSize: 24,
-  borderLeftWidth: 1,
-  borderRightWidth: 1,
-  borderColor: 'white',
-  color: 'white',
-  paddingVertical: 4,
-},
-textColumn:{
-  color: 'white',
-  textAlign: 'center',
-},
-row:{ 
-width: '95%',
-flexDirection: 'row',
-marginVertical: 2,
-marginLeft:10,
-height: 50,
-},
-rowDark:{
-  backgroundColor:  '#cacccd', 
-},
-rowLight:{
-  backgroundColor: '#cdd0d3',
+export const DeletYellowButton = ({pressHandler}) => {
+  return(
+    &lt;Button
+    title="Usuń"
+    color="yellow"
+    size="small"
+    pressHandler={pressHandler}
+    />
+  );
 }
+
+/**
+ * Żółty duży przycisk z napisem "Zamień Hasło"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
+export const ChangePasswordButton = ({pressHandler}) => {
+  return(
+    &lt;Button
+    title="Zmień Hasło"
+    color="yellow"
+    size="large"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
+
+export const CreateButton = ({pressHandler}) => {
+  return(
+    &lt;Button
+    title="Sporządź"
+    color="yellow"
+    size="large"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
+//przyciski zielone
+/**
+ * Zielony przycisk z napisem "Wyloguj"
+ * @function
+ * @property {function} pressHandler funkcja wywołana po naciśnięciu przycisku
+ * @returns {JSX} zwraca przycisk jako element JSX
+ * 
+ * @category Button
+ */
+export const LogoutButton = ({ pressHandler }) => {
+  return (
+    &lt;Button
+      title="Wyloguj"
+      color="green"
+      size="small"
+      pressHandler={pressHandler}
+    />
+  );
+
+};
+
+
+const styles = StyleSheet.create({
+  buttonBox: {
+    borderRadius: 40,
+    flexDirection: "row",
+    justifyContent: "center",
+  },
+  buttonText: {
+    color: "#ffffff",
+    textTransform: "uppercase",
+  }, //buttonColor
+  buttonBlue: {
+    backgroundColor: "#8fa5be",
+  },
+  buttonYellow: {
+    backgroundColor: "#ffc06f",
+  },
+  buttonGreen: {
+    backgroundColor: "#b3b7ba",
+  }, //buttonSize
+  textSmall: {
+    fontSize: 23,
+  },
+  buttonSmall: {
+    width: 160,
+    paddingVertical: 3,
+  },
+  textLarge: {
+    fontSize: 28,
+  },
+  buttonLarge: {
+    paddingHorizontal: 23,
+    paddingVertical: 5,
+  },
 });
 
+//tablice asocjacyjne, pozwalające na proceduralne dobieranie stylów
+const colors = {
+  yellow: styles.buttonYellow,
+  blue: styles.buttonBlue,
+  green: styles.buttonGreen,
+};
+const sizes = {
+  small: { text: styles.textSmall, button: styles.buttonSmall },
+  large: { text: styles.textLarge, button: styles.buttonLarge },
+};
 
-//tablica nie asocjacyjna, ale liczbowa, trzymająca kolory
-const rowColor = [ styles.rowDark, styles.rowLight];</code></pre>
+</code></pre>
         </article>
     </section>
 

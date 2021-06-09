@@ -7,6 +7,7 @@ import {Menu, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-men
 import { AntDesign } from '@expo/vector-icons'; 
 import {PasekNawigacyjny} from "../components/PasekNawigacyjny";
 
+ 
 
 // Wymiary okna
 const {width, height} = Dimensions.get("window");
@@ -14,7 +15,19 @@ const {width, height} = Dimensions.get("window");
 // navigation - obiekt do nawigacji
 // route - obiekt do przekazywania danych miedzy ekranami
 
-
+/**
+ * Ekran Raport Budynku<br>
+ * Wyświetla się po wybraniu opcji wyboru budynku w raporcie w aplilkacji <br>
+ * Umożliwia wybór budynku
+ * @function 
+ * @param {object} navigation
+ * Umożliwia przenoszenie się między ekranami
+ * @param {object} route
+ *  Umożliwia przekazywanie danych miedzy ekranami
+ * @category Screens
+ * @returns {JSX}
+ * Zwraca ekran z raportem budynku w postaci elementu JSX
+ */
 export function RaportBudynek({navigation, route}) {
   const [budText, setBudText] = useState("budynek");
   return (
@@ -42,7 +55,18 @@ export function RaportBudynek({navigation, route}) {
   );
 }
 
-
+/** 
+ * Ekran Raport Kategorii<br>
+ * Wyświetla się po wybraniu opcji wyboru kategoria w raporcie w aplilkacji 
+ * @function 
+ * @param {object} navigation
+ * Umożliwia przenoszenie się między ekranami
+ * @param {object} route
+ *  Umożliwia przekazywanie danych miedzy ekranami
+ * @category Screens
+ * @returns {JSX}
+ * Zwraca ekran z raportem kategorii w postaci elementu JSX
+ */
 export function RaportKategoria({navigation, route}) {
   const [kategoriaText, setKategoriaText] = useState("kategoria");
   return (
@@ -69,7 +93,20 @@ export function RaportKategoria({navigation, route}) {
     </MenuProvider>
   ); 
 }
-
+/** 
+ * Ekran Raport Piętra<br>
+ * Wyświetla się po wybraniu opcji wyboru piętra w raporcie w aplikacji 
+ * <br>
+ * Umożlwia wybranie dowolnego piętra w wybranym wczesniej budynku
+ * @function 
+ * @param {object} navigation
+ * Umożliwia przenoszenie się między ekranami
+ * @param {object} route
+ *  Umożliwia przekazywanie danych miedzy ekranami
+ * @category Screens
+ * @returns {JSX}
+ * Zwraca ekran z raportem piętra w budynku w postaci elementu JSX
+ */
 export function RaportPietro({navigation, route}) {
   const [budText, setBudText] = useState("budynek");
   const [pietroText, setPietroText] = useState("piętro");
@@ -97,7 +134,20 @@ export function RaportPietro({navigation, route}) {
   ); 
 }
 
-
+/** 
+ * Ekran Raport Pokoju<br>
+ * Wyświetla się po wybraniu opcji wyboru pokoju w raporcie w aplilkacji 
+ * <br>
+ *  Umożlwia wybranie dowolnego pokoju w wybranym wczesniej budynku na wyranym wczesniej piętrze
+ * @function 
+ * @param {object} navigation
+ * Umożliwia przenoszenie się między ekranami
+ * @param {object} route
+ *  Umożliwia przekazywanie danych miedzy ekranami
+ * @category Screens
+ * @returns {JSX}
+ * Zwraca ekran z raportem pokoju na piętrze w budynku w postaci elementu JSX
+ */
 export function RaportPokoj({navigation, route}) {
   const [budText, setBudText] = useState("budynek");
   const [pietroText, setPietroText] = useState("piętro");
@@ -126,7 +176,18 @@ export function RaportPokoj({navigation, route}) {
     </MenuProvider>
   ); 
 }
-
+/** 
+ * Ekran Raport Według Listy<br>
+ *  Wyświetla raport według listy
+ * @function 
+ * @param {object} navigation
+ * Umożliwia przenoszenie się między ekranami
+ * @param {object} route
+ *  Umożliwia przekazywanie danych miedzy ekranami
+ * @category Screens
+ * @returns {JSX}
+ * Zwraca ekran z raportem  w postaci elementu JSX
+ */ 
 export function RaportWedlugLista({navigation, route}) {
   const [wgTekst, setWgTekst] = useState("według");
   return (
@@ -155,7 +216,16 @@ export function RaportWedlugLista({navigation, route}) {
 // Rozne warianty menu
 // callbacki i props do przekazywania danych
 
-
+/** 
+ * Menu ComponentE1 <br>
+ * Wyświetla różne warianty menu z numerami budynkó<br>
+ * @function 
+ * @param {object} props
+ * Służy do przekazywania danych
+ * @category Screens
+ * 
+ *
+ */
 export function MenuComponentE1(props) {
 
 
@@ -205,7 +275,16 @@ export function MenuComponentE1(props) {
   );
 }
 
-
+/** 
+ * Menu ComponentE2<br>
+ * Wyświetla różne warianty menuz kategoriami <br>
+ * @function 
+ * @param {object} props
+ * Służy do przekazywania danych
+ * @category Screens
+ * 
+ *
+ */
 export function MenuComponentE2(props) {
   return (
     <Menu>
@@ -229,7 +308,16 @@ export function MenuComponentE2(props) {
   );
 }
 
-
+/** 
+ * Menu ComponentE3 <br>
+ * Wyświetla różne warianty w menu z budynkami <br>
+ * @function 
+ * @param {object} props
+ * Służy do przekazywania danych
+ * @category Screens
+ * 
+ *
+ */
 export function MenuComponentE3(props) {
   return (
     <Menu>
@@ -252,7 +340,16 @@ export function MenuComponentE3(props) {
     </Menu>
   );
 }
-
+/** 
+ * Menu ComponentE31 <br>
+ * Wyświetla wariant w menu z budynkiem<br>
+ * @function 
+ * @param {object} props
+ * Służy do przekazywania danych
+ * @category Screens
+ * 
+ *
+ */
 export function MenuComponentE31(props) {
   return (
     <Menu>
@@ -274,6 +371,16 @@ export function MenuComponentE31(props) {
     </Menu>
   );
 }
+/** 
+ * Menu ComponentE4 <br>
+ * Wyświetla wariant menu  z numerami pokoi<br>
+ * @function 
+ * @param {object} props
+ * Służy do przekazywania danych
+ * @category Screens
+ * 
+ *
+ */
 
 export function MenuComponentE4(props) {
   return (
@@ -296,7 +403,16 @@ export function MenuComponentE4(props) {
     </Menu>
   );
 }
-
+/** 
+ * Menu ComponentE5 <br>
+ * Wyświetla wariant menu z budynkiem , piętrem ,pokojem i kategorią<br>
+ * @function 
+ * @param {object} props
+ * Służy do przekazywania danych
+ * @category Screens
+ * 
+ *
+ */
 
 export function MenuComponentE5(props) {
   return (
