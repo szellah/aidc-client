@@ -19,16 +19,16 @@ import { ScrollView } from "react-native-gesture-handler";
 
 export default function LocationMenu({ navigation }) {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flex: 1 }}>
+      <Tray composition="compact">
+        {/* Pasek nawigujący do sekcji "Home" */}
+        <PasekNawigacyjnyMenuLokalizacji navigation={navigation} />
+      </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
-        style={{ flex: 1 }}
+        style={{ flex: 1, justifyContent: "center" }}
       >
-        <Container>
-          <View style={styles.paseknagorze}>
-            <PasekNawigacyjnyMenuLokalizacji />
-          </View>
-
+        <Container spread="center" composition="compact">
           <Tray composition="compact" spread="center">
             <LocationInfoButton navigation={navigation} />
           </Tray>

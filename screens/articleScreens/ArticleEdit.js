@@ -1,12 +1,7 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  Image,
   ImageBackground,
-  TextInput,
+  ScrollView,
 } from "react-native";
 import {
   NameInput,
@@ -17,7 +12,6 @@ import {
 } from "../../components/Inputs.js";
 import { SaveButton, CancelButton } from "../../components/Buttons.js";
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
-import { ScrollView } from "react-native-gesture-handler";
 import { Container } from "../../components/Containers.js";
 import { Tray } from "../../components/Trays.js";
 
@@ -36,15 +30,15 @@ export default function ArticleEdit({ navigation }) {
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
 
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact" spread="center">
         <PasekNawigacyjny />
       </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
-        style={styles.bckg}
+        style={{ flex: 1, justifyContent: "center" }}
       >
-        <Container>
+        <Container spread="top" composition="comapct">
           <NameInput />
 
           <CategorySelect />
@@ -67,32 +61,3 @@ export default function ArticleEdit({ navigation }) {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  nav: {
-    width: "100%",
-    flexDirection: "row",
-    marginBottom: 40,
-  },
-
-  name: {
-    marginBottom: "5%",
-    height: 47,
-  },
-
-  buttons: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    marginVertical: 30,
-  },
-
-  description: {
-    height: "30%",
-    alignItems: "flex-start",
-  },
-
-  bckg: {
-    width: "100%",
-    height: "100%",
-  },
-});

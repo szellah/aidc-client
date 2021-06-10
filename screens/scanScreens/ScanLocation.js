@@ -45,25 +45,22 @@ export default function ScanLocation({ navigation, route }) {
         </Tray>
         <ImageBackground
           source={require("../../assets/locationPage/background.png")}
-          style={{
-            minHeight: "100%",
-            flex: 1,
-            justifyContent: "space-around",
-          }}
+          style={{ flex: 1, justifyContent: "center" }}
         >
-          <Container>
-            <View style={{ alignItems: "center" }}>
-              <View style={{ maxHeight: 160, marginBottom: 10 }}>
-                <Image
-                  source={require("../../assets/locationPage/qr.png")}
-                  style={{
-                    maxWidth: "100%",
-                    maxHeight: "100%",
-                    resizeMode: "contain",
-                  }}
-                />
-              </View>
-
+          <Container spread="center" composition="loose">
+            <Container spread="center" composition="compact">
+              <Tray spread="center" composition="compact">
+                <View style={{ maxHeight: 160, marginBottom: 10 }}>
+                  <Image
+                    source={require("../../assets/locationPage/qr.png")}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      resizeMode: "contain",
+                    }}
+                  />
+                </View>
+              </Tray>
               <View>
                 <LocationCodeInput
                   pressHandler={() => {
@@ -74,10 +71,13 @@ export default function ScanLocation({ navigation, route }) {
                   text={locationCode}
                 />
               </View>
-            </View>
-            <Tray spread="center" composition="compact">
-              <ConfirmButton pressHandler={Confirm} />
-            </Tray>
+            </Container>
+
+            <Container spread="bottom" composition="compact">
+              <Tray spread="center" composition="compact">
+                <ConfirmButton pressHandler={Confirm} />
+              </Tray>
+            </Container>
           </Container>
         </ImageBackground>
       </KeyboardAvoidingView>

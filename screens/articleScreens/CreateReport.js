@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ImageBackground, Text, View } from "react-native";
+import { ImageBackground, Text, View, ScrollView } from "react-native";
 import { CreateButton } from "../../components/Buttons";
 import { Tray } from "../../components/Trays";
 import { Container } from "../../components/Containers";
@@ -58,10 +58,10 @@ export default function Test({ navigation }) {
   ];
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flex: 1 }}>
       <ImageBackground
         source={require("../../assets/tlo_raport.png")}
-        style={{ flex: 1 }}
+        style={{ flex: 1, justifyContent: "center" }}
       >
         <Container composition="compact" spread="top">
           <Tray composition="loose" spread="center">

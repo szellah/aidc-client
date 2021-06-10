@@ -17,7 +17,7 @@ const kliknij = (text) => {
 
 export default function Home({ navigation }) {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flex: 1 }}>
       <ImageBackground
         source={require("../assets/tlo_dodawanie.png")}
         style={{ flex: 1 }}
@@ -27,15 +27,17 @@ export default function Home({ navigation }) {
             <LogoutButton />
           </Tray>
 
-          <Tray spread="center" composition="compact">
-            <PackageButton navigation={navigation} />
-            <LocationButton navigation={navigation} />
-          </Tray>
+          <Container composition="compact" spread="center">
+            <Tray spread="center" composition="compact">
+              <PackageButton navigation={navigation} />
+              <LocationButton navigation={navigation} />
+            </Tray>
 
-          <Tray spread="center" composition="compact">
-            <UsersButton navigation={navigation} />
-            <SettingsButton navigation={navigation} />
-          </Tray>
+            <Tray spread="center" composition="compact">
+              <UsersButton navigation={navigation} />
+              <SettingsButton navigation={navigation} />
+            </Tray>
+          </Container>
         </Container>
       </ImageBackground>
     </ScrollView>

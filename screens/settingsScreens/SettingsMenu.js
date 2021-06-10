@@ -26,16 +26,16 @@ const kliknij = (text) => {
 
 export default function SettingsMenu({ navigation }) {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flex: 1 }}>
+      <Tray composition="compact">
+        {/* Pasek nawigujący do sekcji "Home" */}
+        <PasekNawigacyjnyInfo navigation={navigation} />
+      </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
-        style={styles.Tło}
+        style={{ flex: 1, justifyContent: "center" }}
       >
-        <View style={styles.paseknagorze}>
-          <PasekNawigacyjnyInfo />
-        </View>
-
-        <Container spread="center" composition="loose">
+        <Container spread="center" composition="compact">
           <Tray spread="center" composition="compact">
             <ChangePasswordButton navigation={navigation} />
             <AccountInfoButton navigation={navigation} />

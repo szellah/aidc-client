@@ -14,10 +14,10 @@ export default function UsersTable({ navigation }) {
   ];
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <ImageBackground
         source={require("../../assets/backgrounds/blue_quater.png")}
-        style={{ flex: 1 }}
+        style={{ flex: 1, justifyContent: "center" }}
       >
         <Container>
           <View style={styles.titleBox}>

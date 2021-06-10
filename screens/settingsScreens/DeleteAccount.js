@@ -23,16 +23,16 @@ import { ScrollView } from "react-native-gesture-handler";
 
 export default function DeleteAccount({ navigation }) {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <Tray composition="compact">
+        {/* Pasek nawigujący do sekcji */}
+        <PasekNawigacyjnyInfo navigation={navigation} />
+      </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
-        style={styles.Tło}
+        style={{ flex: 1, justifyContent: "center" }}
       >
-        <Container>
-          <View style={styles.paseknagorze}>
-            <PasekNawigacyjnyInfo />
-          </View>
-
+        <Container spread="top" composition="comapct">
           <Container composition="loose" spread="top">
             <Tray spread="center" composition="compact">
               <EnterPasswordInput />

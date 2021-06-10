@@ -29,16 +29,16 @@ import { Container } from "../../components/Containers";
 //navigation object - obiekt sterowania stosem nawigacji
 export default function UserEdit({ navigation }) {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <Tray composition="compact">
+        {/* Pasek nawigujący do sekcji */}
+        <PasekNawigacyjnyInfo navigation={navigation} />
+      </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
-        style={styles.Tło}
+        style={{ flex: 1, justifyContent: "center" }}
       >
-        <Container>
-          <View style={styles.paseknagorze}>
-            <PasekNawigacyjnyInfo />
-          </View>
-
+        <Container spread="top" composition="comapct">
           <UserFirstnameInput />
 
           <UserSurnameInput />

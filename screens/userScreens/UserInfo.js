@@ -33,16 +33,16 @@ import { Container } from "../../components/Containers";
 //navigation object - obiekt sterowania stosem nawigacji
 export default function UserInfo({ navigation }) {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <Tray composition="compact">
+        {/* Pasek nawigujący do sekcji */}
+        <PasekNawigacyjnyInfo navigation={navigation} />
+      </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
-        style={styles.Tło}
+        style={{ flex: 1, justifyContent: "center" }}
       >
-        <Container>
-          <View style={styles.paseknagorze}>
-            <PasekNawigacyjnyInfo />
-          </View>
-
+        <Container spread="top" composition="comapct">
           <UserFirstnameInput />
 
           <UserSurnameInput />
@@ -59,7 +59,7 @@ export default function UserInfo({ navigation }) {
             <ChangePasswordButton />
           </Tray>
 
-          <Container composition="comact" spread="bottom">
+          <Container composition="compact" spread="bottom">
             <Tray spread="even" composition="loose">
               <EditButton />
               <DeleteButton />

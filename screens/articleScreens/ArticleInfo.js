@@ -32,15 +32,15 @@ export default function ArticleInfo({ navigation }) {
 
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact" spread="center">
         <PasekNawigacyjny />
       </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
-        style={styles.bckg}
+        style={{ flex: 1, justifyContent: "center" }}
       >
-        <Container>
+        <Container spread="top" composition="comapct">
           <NameInput />
 
           <CategorySelect />

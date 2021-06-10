@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, ImageBackground } from "react-native";
+import { StyleSheet, ImageBackground } from "react-native";
 import { CancelButton, SaveButton } from "../../components/Buttons.js";
 import { PanelLokalizacjiZapiszAnuluj } from "../../components/PasekNawigacyjny.js";
 import {
@@ -13,22 +13,19 @@ import { Container } from "../../components/Containers";
 
 export default function LocationEdit() {
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={{ flex: 1 }}>
+      <Tray composition="compact" spread="center">
+        <PanelLokalizacjiZapiszAnuluj />
+      </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
-        style={{ flex: 1 }}
+        style={{ flex: 1, justifyContent: "center" }}
       >
-        <Container>
-          <View style={styles.paseknagorze}>
-            <PanelLokalizacjiZapiszAnuluj />
-          </View>
-
-          <Container composition="loose" spread="top">
-            <BuildingSelect />
-            <FloorsSelect />
-            <RoomSelect />
-            <ArticleCodeInput />
-          </Container>
+        <Container spread="top" composition="comapct">
+          <BuildingSelect />
+          <FloorsSelect />
+          <RoomSelect />
+          <ArticleCodeInput />
 
           <Container composition="loose" spread="bottom">
             <Tray composition="loose" spread="even">
