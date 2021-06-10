@@ -4,7 +4,17 @@ import { Tray } from "../../components/Trays";
 import { ArticleInfoButton, ReportsButton } from "../../components/RoundButtons";
 
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
-
+/**
+ * Ekran Menu Zarządzania<br> 
+ * posiada takie elementy jak:<br>
+ * - Przycisk Informacje na temat Towaru
+ * - Przycisk do Raportu danego Towaru
+ * 
+ * @function ArticleManagmentMenu
+ * @param {object} navigation pozwala na przenoszenie się między ekranami
+ * @category Screens
+ * @returns {JSX} Zwraca Ekran Menu Zarządzania w postaci elementu JSX
+ */
 export default function ArticleManagmentMenu({ navigation }) {
   return (
     <>
