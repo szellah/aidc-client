@@ -7,6 +7,7 @@ import {
   Image,
   ImageBackground,
   TextInput,
+  ScrollView
 } from "react-native";
 import { Tray } from "../../components/Trays";
 import {
