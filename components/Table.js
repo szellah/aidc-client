@@ -1,4 +1,3 @@
-//@ts-check
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useRef} from 'react';
 import { StyleSheet, Text, View, FlatList, ScrollView, Animated, TouchableOpacity} from 'react-native';
