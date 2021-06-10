@@ -4,6 +4,19 @@ import {PasekNawigacyjnyMenuLokalizacji} from '../../components/PasekNawigacyjny
 import { LocationInfoButton,LocationAddNewButton } from "../../components/RoundButtons.js";
 import {Tray} from '../../components/Trays';
 
+
+/**
+ * Ekran Menu Lokalizacji<br>
+ * Pozwala na przemieszczenie się do Ekranu pozwalającego na dodanie nowej lokalizacji lub też
+ * ekranu skanownia w celu wyświtlenia informacji o skanowanej lokalizacji
+ * Można do niej przejść wybierając przycisk Lokalizacja w głównym Menu
+ * 
+ * @function LocationMenu
+ * 
+ * @category Screens
+ * 
+ * @returns {JSX} Zwraca ekran menu lokalizacji w postaci elmentu JSX
+ */
 export default function LocationMenu({navigation}){
   return (
     <ImageBackground source={require('../../assets/tlo_dodawanie.png')} style={{flex: 1}}>

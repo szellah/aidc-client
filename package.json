@@ -13,7 +13,6 @@
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
     "axios": "^0.21.1",
-    "better-docs": "^2.3.2",
     "expo": "^40.0.1",
     "expo-barcode-scanner": "~9.1.0",
     "expo-status-bar": "~1.0.3",
@@ -35,10 +34,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "install": "^0.13.0",
     "jsdoc": "^3.6.7"
   },
   "private": true,
-  "name": "dokumentacja_develop",
+  "name": "UserScreens10",
   "description": "by SGGW WZIM Inf. 2019/gr.4\r </br>\r >Sprawdź również [AIDC-SERVER](https://github.com/szellah/aidc-server)",
   "version": "1.0.0",
   "directories": {
