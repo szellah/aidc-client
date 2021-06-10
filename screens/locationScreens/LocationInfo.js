@@ -17,7 +17,19 @@ import {
 import { Tray } from "../../components/Trays";
 import { Container } from "../../components/Containers.js";
 
-export default function LocationInfo() {
+
+/**
+ * Ekran Informacji Lokalizacji<br>
+ * Wyświetla informacje o lokalizacji i pozwala na usunięcie bądź edycje lokalizacji.
+ * Można do niej przejść poprzez zeskanowanie odpowiedniej lokalizacji.
+ * 
+ * @function LocationInfo
+ * 
+ * @category Screens
+ * 
+ * @returns {JSX} Zwraca ekran informacyjny lokalizacji w postaci elmentu JSX
+ */
+export default function LocationInfo(){
   return (
     <KeyboardAvoidingView
       behavior="height"

@@ -19,10 +19,24 @@ import {
   AccountInfoButton,
 } from "../../components/RoundButtons";
 import { Container } from "../../components/Containers";
-import { ScrollView } from "react-native-gesture-handler";
+
+
 const kliknij = (text) => {
-  console.log(text);
-};
+    console.log(text);
+}
+/**
+ * Ekran ustawień<br>
+ * Pozwala na:
+ * - Wyświetlenie informacji o koncie użytkownika
+ * - Przejście do ekranu zmiany haseł
+ * - Rozpoczęcie procesu usuwania konta
+ * @function SettingsMenu
+ * @param {object} navigation Pozwala na przenosznie się między ekranami
+ *
+ * @category Screens
+ *
+ * @returns {JSX} Zwraca ekran ustawień w postaci elmentu JSX
+ */
 
 export default function SettingsMenu({ navigation }) {
   return (

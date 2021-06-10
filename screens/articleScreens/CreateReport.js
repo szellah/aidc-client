@@ -16,6 +16,20 @@ const kliknij = (text) => {
   console.log(text);
 };
 
+/**
+ * Ekran Kreatora Raportów<br>
+ * Pozwala na wybranie jednego ze sposobów według których
+ * może zostac sporzadzony raport. W zależności od wyboru wyświetli
+ * odpowiednie listy wyboru z których będzie można wybrać odpowiadajce
+ * nam parametry do Raportu.
+ * Po naciśnięciu `Sporządź` otworzy się nowy Ekran zawierający gotowy raport.
+ * @function CreateReport
+ * @param {object} navigation
+ * Umożliwia przenoszenie się między ekranami
+ * @category Screens
+ * @returns {JSX}
+ * Zwraca ekran kreatora raportów w postaci elementu JSX
+ */
 export default function Test({ navigation }) {
   const [reportId, setReportId] = useState(0);
 

@@ -17,7 +17,18 @@ import {
 } from "../../components/PasekNawigacyjny.js";
 import { Container } from "../../components/Containers.js";
 
-export default function App() {
+
+/**
+ * Ekran Raportu<br>
+ * Wyświetla się po naciśnięciu `Sporządź` w ekranie tworzenia raportu<br>
+ * W zależnoności od danych które przyjdą z bazy danych może wyświetlać raport
+ * z lokalizacji lub po kategorii.
+ * @function Report
+ * @category Screens
+ * @returns {JSX}
+ * Zwraca ekran z raportu w postaci elementu JSX
+ */
+export default function Report() {
   return (
     <ScrollView>
       <ImageBackground

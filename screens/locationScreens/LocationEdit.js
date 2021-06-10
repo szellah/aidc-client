@@ -11,7 +11,20 @@ import {
 import { Tray } from "../../components/Trays";
 import { Container } from "../../components/Containers";
 
-export default function LocationEdit() {
+
+/**
+ * Ekran Edytowania Lokalizacji<br>
+ * Pozwala na wpisanie informacji o artykule w celu ich modyfikacji
+ * jak i wstawienia nowej do bazy danych.
+ * Można do niej przejść poprzez zeskanowanie odpowiedniej lokalizacji i naciśnięcie przycisku `Edytuj`,
+ * bądź przez proces dodawania nowej lokalizacji.
+ * @function LocationEdit
+ * 
+ * @category Screens
+ * 
+ * @returns {JSX} Zwraca ekran edycji lokalizacji w postaci elmentu JSX
+ */
+export default function LocationEdit(){
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact" spread="center">

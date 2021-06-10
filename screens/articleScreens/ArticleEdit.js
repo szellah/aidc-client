@@ -14,7 +14,22 @@ import { SaveButton, CancelButton } from "../../components/Buttons.js";
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 import { Container } from "../../components/Containers.js";
 import { Tray } from "../../components/Trays.js";
-
+/**
+ * Ekran edytowania towaru<br> 
+ * posiada takie przyciski jak:<br>
+ * - zapisz<br> 
+ * - anuluj <br>
+ * Można tu ustawić:
+ * - Nazwę artykułu
+ * - Kategorię
+ * - Lokalizację
+ * - Kod artykułu
+ * - Opis artykułu  
+ * @function ArticleEdit
+ * @param {object} navigation pozwala na przenoszenie się między ekranami
+ * @category Screens
+ * @returns {JSX} Zwraca Ekran edytowania towaru w postaci elementu JSX
+ */
 export default function ArticleEdit({ navigation }) {
   const [Name, SetName] = useState("");
   const [Category, SetCategory] = useState("");

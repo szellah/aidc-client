@@ -15,6 +15,18 @@ import { ConfirmButton } from "../../components/Buttons";
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 import { Container } from "../../components/Containers";
 
+/**
+ * Ekran Skanownaia Lokalizacji<br>
+ * Służy do skanowania kodów poszczególnych Lokalizacji<br>
+ * posiada takie przyciski jak:<br>
+ * - potwierdź<br> 
+ * 
+ * 
+ * @function ScanLocation
+ * @param {object} navigation pozwala na przenoszenie się między ekranami
+ * @category Screens
+ * @returns {JSX} Zwraca Ekran Skanownaia Lokalizacji w postaci elementu JSX
+ */
 export default function ScanLocation({ navigation, route }) {
   const [locationCode, setLocationCode] = useState("lokalizacja");
 

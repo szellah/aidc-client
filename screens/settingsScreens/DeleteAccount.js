@@ -21,7 +21,21 @@ import {
 import { Container } from "../../components/Containers";
 import { ScrollView } from "react-native-gesture-handler";
 
-export default function DeleteAccount({ navigation }) {
+/**
+ * Ekran usuwania konta<br>
+ * Wyświetla się po wywołaniu w ekranie ustawień<br>
+ * Należy:
+ * - Wpisać dwukronie hasło użytkownika
+ * - Zatwierdzić bądź anulować operację
+ * @function DeleteAccount
+ * @param {object} navigation Pozwala na przenosznie się między ekranami
+ *
+ * @category Screens
+ *
+ * @returns {JSX} Zwraca ekran usuwania konta w postaci elmentu JSX
+ */
+
+export default function DeleteAccount({navigation}){
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Tray composition="compact">

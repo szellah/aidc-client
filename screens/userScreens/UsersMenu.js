@@ -9,8 +9,15 @@ import { PasekNawigacyjnyArticleMenu } from "../../components/PasekNawigacyjny.j
 import { Container } from "../../components/Containers";
 import { ScrollView } from "react-native-gesture-handler";
 
-//Ekran Menu zarządzania użytkownikami, pozwala na wybranie dokładnego użytkownika lub też dodanie nowego
-//navigation object - obiekt sterowania stosem nawigacji
+/**
+ * Ekran menu zarzadzania użytkownikami<br>
+ * Za pomocą tego ekranu można wybrać użytkownika lub dodać nowego użytkownika
+ * 
+ * @function Ekran menu zarządzania użytkownikami
+ * @param {object} navigation - Sterowanie stosem nawigacji
+ * @category userScreens
+ * @returns {JSX} Zwraca ekran menu zarządania użytkownikami w postaci elementu JSX
+ */
 export default function UsersMenu({ navigation }) {
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>

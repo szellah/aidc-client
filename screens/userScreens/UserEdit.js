@@ -25,9 +25,15 @@ import {
 import { SaveButton, CancelButton } from "../../components/Buttons";
 import { Container } from "../../components/Containers";
 
-//Ekran Edycji Użytkownika, pozwala na wpisywanie dowolnych wartości a następnie na zatwierdzenie ich, odpowiednia funkcja łaczy się z serwerem korzystając z zapytania UPDATE aktualizuje dane, jeżeli użytkownik jest tworzony jako nowy korzysta z INSERT INTO
-//navigation object - obiekt sterowania stosem nawigacji
-export default function UserEdit({ navigation }) {
+/**
+ * Ekran edycji użytkownika<br>
+ * W tym ekranie można zmieniać dane użytkownika, co spowoduje edycję obecnych danych lub dodanie użytkownika
+ * @function Ekran edycji użytkownika
+ * @param {object} navigation - Sterowanie stosem nawigacji
+ * @category userScreens
+ * @returns {JSX} Zwraca ekran edycji użytkownika w postaci elementu JSX
+ */
+export default function UserEdit({navigation}){
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Tray composition="compact">

@@ -17,6 +17,18 @@ import {
 import { Tray } from "../../components/Trays";
 import { ScrollView } from "react-native-gesture-handler";
 
+/**
+ * Ekran Menu Lokalizacji<br>
+ * Pozwala na przemieszczenie się do Ekranu pozwalającego na dodanie nowej lokalizacji lub też
+ * ekranu skanownia w celu wyświtlenia informacji o skanowanej lokalizacji
+ * Można do niej przejść wybierając przycisk Lokalizacja w głównym Menu
+ * 
+ * @function LocationMenu
+ * 
+ * @category Screens
+ * 
+ * @returns {JSX} Zwraca ekran menu lokalizacji w postaci elmentu JSX
+ */
 export default function LocationMenu({ navigation }) {
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>

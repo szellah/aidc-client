@@ -29,9 +29,20 @@ import {
 } from "../../components/Buttons";
 import { Container } from "../../components/Containers";
 
-//Ekran Informacyjny Użytkownika, pokazuje informacje o użytkowniku i pozwala na przejście do korespondującego Panelu Edycji Użytkownika, oraz na Usunięcie użytkownika czy wysłanie możliwości na zmianę hasła
-//navigation object - obiekt sterowania stosem nawigacji
-export default function UserInfo({ navigation }) {
+/**
+ * Ekran informacyjny użytkownika<br>
+ * Ten ekran pozwala na:
+ * - pokazanie informacji o użytkowniku
+ * - przejście do korespondującego panelu edycji użytkownika
+ * - usunięcie użytkownika
+ * - wysłanie możliwości na zmianę hasła
+ * 
+ * @function Ekran informacyjny użytkownika
+ * @param {object} navigation - Sterowanie stosem nawigacji
+ * @category userScreens
+ * @returns {JSX} Zwraca ekran informacyjny użytkownika w postaci elementu JSX
+ */
+export default function UserInfo({navigation}){
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Tray composition="compact">
