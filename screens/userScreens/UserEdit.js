@@ -1,9 +1,28 @@
-import React, {Component, useState} from "react";
-import { Button, StyleSheet, Text, View, Image, ImageBackground, TextInput, ScrollView} from "react-native";
-import {Tray} from '../../components/Trays';
-import {PasekNawigacyjny,PasekNawigacyjnyInfo} from '../../components/PasekNawigacyjny.js';
-import {UserFirstnameInput, UserEmailInput, UserLoginInput, UserSurnameInput, UserStateInput, UserRankInput} from '../../components/Inputs.js';
-import {SaveButton, CancelButton} from "../../components/Buttons";
+import React, { Component, useState } from "react";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  TextInput,
+  ScrollView,
+} from "react-native";
+import { Tray } from "../../components/Trays";
+import {
+  PasekNawigacyjny,
+  PasekNawigacyjnyInfo,
+} from "../../components/PasekNawigacyjny.js";
+import {
+  UserFirstnameInput,
+  UserEmailInput,
+  UserLoginInput,
+  UserSurnameInput,
+  UserStateInput,
+  UserRankInput,
+} from "../../components/Inputs.js";
+import { SaveButton, CancelButton } from "../../components/Buttons";
 import { Container } from "../../components/Containers";
 
 /**
@@ -16,47 +35,50 @@ import { Container } from "../../components/Containers";
  */
 export default function UserEdit({navigation}){
   return (
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <Tray composition="compact">
+        {/* Pasek nawigujący do sekcji */}
+        <PasekNawigacyjnyInfo navigation={navigation} />
+      </Tray>
+      <ImageBackground
+        source={require("../../assets/tlo_dodawanie.png")}
+        style={{ flex: 1, justifyContent: "center" }}
+      >
+        <Container spread="top" composition="comapct">
+          <UserFirstnameInput />
 
-  <ImageBackground source={require('../../assets/tlo_dodawanie.png')} style={styles.Tło}>
-      <View style={styles.paseknagorze}>
-        <PasekNawigacyjnyInfo/>
-      </View>
+          <UserSurnameInput />
 
+          <UserLoginInput />
 
-        <UserFirstnameInput/>
+          <UserEmailInput />
 
-        <UserSurnameInput/>
+          <UserStateInput />
 
-        <UserLoginInput/>
+          <UserRankInput />
 
-        <UserEmailInput/>
-
-        <UserStateInput/>
-
-        <UserRankInput/>
-
-        <Container composition="comact" spread="bottom">
-          <Tray spread="even" composition="loose">
-              <SaveButton/>
-              <CancelButton/>
-          </Tray>
+          <Container composition="comact" spread="bottom">
+            <Tray spread="even" composition="loose">
+              <SaveButton />
+              <CancelButton />
+            </Tray>
+          </Container>
         </Container>
-        
-  </ImageBackground>
-
+      </ImageBackground>
+    </ScrollView>
   );
 }
-  const styles=StyleSheet.create({
-    Tło: {
-      width: '100%',
-      height: '100%',      
-    },
-    paseknagorze:{
-      width: '110%',
-      flexDirection: 'row',
-    },
-    bezeksportu:{
-        width: '100%',
-        height: '80%',      
-    },
-  })
+const styles = StyleSheet.create({
+  Tło: {
+    width: "100%",
+    height: "100%",
+  },
+  paseknagorze: {
+    width: "110%",
+    flexDirection: "row",
+  },
+  bezeksportu: {
+    width: "100%",
+    height: "80%",
+  },
+});

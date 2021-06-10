@@ -13,6 +13,7 @@ import { LocationCodeInput } from "../../components/Inputs";
 import { ConfirmButton } from "../../components/Buttons";
 
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
+import { Container } from "../../components/Containers";
 
 /**
  * Ekran Skanownaia Lokalizacji<br>
@@ -30,9 +31,9 @@ export default function ScanLocation({ navigation, route }) {
   const [locationCode, setLocationCode] = useState("lokalizacja");
 
   useEffect(() => {
-    if(navigation.getParam('qrcode'))
-    setLocationCode(navigation.getParam('qrcode'));
-  },[navigation.getParam('qrcode')]);
+    if (navigation.getParam("qrcode"))
+      setLocationCode(navigation.getParam("qrcode"));
+  }, [navigation.getParam("qrcode")]);
 
   const Confirm = () => {};
   return (
@@ -56,34 +57,40 @@ export default function ScanLocation({ navigation, route }) {
         </Tray>
         <ImageBackground
           source={require("../../assets/locationPage/background.png")}
-          style={{
-            minHeight: "100%",
-            flex: 1,
-            justifyContent: "space-around",
-          }}
+          style={{ flex: 1, justifyContent: "center" }}
         >
-          <View style={{ alignItems: "center" }}>
-            <View style={{ maxHeight: 160, marginBottom: 10 }}>
-              <Image
-                source={require("../../assets/locationPage/qr.png")}
-                style={{
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                  resizeMode: "contain",
-                }}
-              />
-            </View>
+          <Container spread="center" composition="loose">
+            <Container spread="center" composition="compact">
+              <Tray spread="center" composition="compact">
+                <View style={{ maxHeight: 160, marginBottom: 10 }}>
+                  <Image
+                    source={require("../../assets/locationPage/qr.png")}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      resizeMode: "contain",
+                    }}
+                  />
+                </View>
+              </Tray>
+              <View>
+                <LocationCodeInput
+                  pressHandler={() => {
+                    navigation.navigate("Scan", {
+                      previousScreen: "ScanLocation",
+                    });
+                  }}
+                  text={locationCode}
+                />
+              </View>
+            </Container>
 
-            <View>
-              <LocationCodeInput
-               pressHandler={() => {navigation.navigate('Scan',{ previousScreen: 'ScanLocation' })}} 
-               text={locationCode}
-               />
-            </View>
-          </View>
-          <Tray spread="center" composition="compact">
-            <ConfirmButton pressHandler={Confirm} />
-          </Tray>
+            <Container spread="bottom" composition="compact">
+              <Tray spread="center" composition="compact">
+                <ConfirmButton pressHandler={Confirm} />
+              </Tray>
+            </Container>
+          </Container>
         </ImageBackground>
       </KeyboardAvoidingView>
     </ScrollView>

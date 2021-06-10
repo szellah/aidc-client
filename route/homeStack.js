@@ -35,7 +35,7 @@ const screens = {
   ArticlePanelEdit: {
     screen: ArticleInfo,
   },
-  Raport: {
+  Report: {
     screen: Report,
   },
   ArticleMenu: {

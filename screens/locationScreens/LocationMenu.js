@@ -1,9 +1,21 @@
-import React, {Component, useState} from "react";
-import {Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
-import {PasekNawigacyjnyMenuLokalizacji} from '../../components/PasekNawigacyjny.js';
-import { LocationInfoButton,LocationAddNewButton } from "../../components/RoundButtons.js";
-import {Tray} from '../../components/Trays';
-
+import React, { Component, useState } from "react";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  TextInput,
+} from "react-native";
+import { Container } from "../../components/Containers.js";
+import { PasekNawigacyjnyMenuLokalizacji } from "../../components/PasekNawigacyjny.js";
+import {
+  LocationInfoButton,
+  LocationAddNewButton,
+} from "../../components/RoundButtons.js";
+import { Tray } from "../../components/Trays";
+import { ScrollView } from "react-native-gesture-handler";
 
 /**
  * Ekran Menu Lokalizacji<br>
@@ -17,32 +29,35 @@ import {Tray} from '../../components/Trays';
  * 
  * @returns {JSX} Zwraca ekran menu lokalizacji w postaci elmentu JSX
  */
-export default function LocationMenu({navigation}){
+export default function LocationMenu({ navigation }) {
   return (
-    <ImageBackground source={require('../../assets/tlo_dodawanie.png')} style={{flex: 1}}>
-
-
-      <View style={styles.paseknagorze}>
-        <PasekNawigacyjnyMenuLokalizacji/>
-      </View>
-
-      <Tray composition='compact' spread='center'>
-        <LocationInfoButton navigation={navigation}/>
+    <ScrollView contentContainerStyle={{ flex: 1 }}>
+      <Tray composition="compact">
+        {/* Pasek nawigujący do sekcji "Home" */}
+        <PasekNawigacyjnyMenuLokalizacji navigation={navigation} />
       </Tray>
+      <ImageBackground
+        source={require("../../assets/tlo_dodawanie.png")}
+        style={{ flex: 1, justifyContent: "center" }}
+      >
+        <Container spread="center" composition="compact">
+          <Tray composition="compact" spread="center">
+            <LocationInfoButton navigation={navigation} />
+          </Tray>
 
-      <Tray composition='compact' spread='center'>
-        <LocationAddNewButton navigation={navigation}/>
-      </Tray>
-
-
-    </ImageBackground>
+          <Tray composition="compact" spread="center">
+            <LocationAddNewButton navigation={navigation} />
+          </Tray>
+        </Container>
+      </ImageBackground>
+    </ScrollView>
   );
 }
 
-  const styles=StyleSheet.create({
-    paseknagorze:{
-      width: '100%',
-      flexDirection: 'row',
-      marginBottom: 50,
-    }
-  })
+const styles = StyleSheet.create({
+  paseknagorze: {
+    width: "100%",
+    flexDirection: "row",
+    marginBottom: 50,
+  },
+});

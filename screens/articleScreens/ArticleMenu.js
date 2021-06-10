@@ -9,6 +9,9 @@ import {
 } from "../../components/RoundButtons";
 
 import { PasekNawigacyjnyArticleMenu } from "../../components/PasekNawigacyjny.js";
+import { Container } from "../../components/Containers";
+import { ScrollView } from "react-native-gesture-handler";
+
 /**
  * Ekran menu towarów<br>
  * pozwala na wybranie jednego z czterech menu:<br>
@@ -23,27 +26,28 @@ import { PasekNawigacyjnyArticleMenu } from "../../components/PasekNawigacyjny.j
  */
 export default function ArticleMenu({ navigation }) {
   return (
-    <>
+    <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact">
         {/* Pasek nawigujący do sekcji "Home" */}
         <PasekNawigacyjnyArticleMenu navigation={navigation} />
       </Tray>
-
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
         style={{ flex: 1, justifyContent: "center" }}
       >
-        {/* Przyciski w menu "Towar (Article)" nawigujące do nowych sekcji */}
-        <Tray spread="center" composition="compact">
-          <ManagmentButton navigation={navigation} />
-          <AddArticleButton navigation={navigation} />
-        </Tray>
-        <Tray spread="center" composition="compact">
-          <RemoveStockedArticleButton navigation={navigation} />
-          <AddStockedArticleButton navigation={navigation} />
-        </Tray>
+        <Container spread="center" composition="compact">
+          {/* Przyciski w menu "Towar (Article)" nawigujące do nowych sekcji */}
+          <Tray spread="center" composition="compact">
+            <ManagmentButton navigation={navigation} />
+            <AddArticleButton navigation={navigation} />
+          </Tray>
+          <Tray spread="center" composition="compact">
+            <RemoveStockedArticleButton navigation={navigation} />
+            <AddStockedArticleButton navigation={navigation} />
+          </Tray>
+        </Container>
       </ImageBackground>
-    </>
+    </ScrollView>
   );
 }
 

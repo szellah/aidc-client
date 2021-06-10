@@ -14,6 +14,7 @@ import { ArticleCodeInput } from "../../components/Inputs";
 import { ConfirmButton } from "../../components/Buttons";
 
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
+import { Container } from "../../components/Containers";
 
 /**
  * Ekran skanowania artykułu<br>
@@ -30,23 +31,15 @@ import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 export default function ScanArticle({ navigation , route}) {
   const [articleCode, setArticleCode] = useState("kod");
 
-
-  
   useEffect(() => {
-    if(navigation.getParam('qrcode'))
-      setArticleCode(navigation.getParam('qrcode'));
-  },[navigation.getParam('qrcode')]);
-
+    if (navigation.getParam("qrcode"))
+      setArticleCode(navigation.getParam("qrcode"));
+  }, [navigation.getParam("qrcode")]);
 
   const Confirm = () => {};
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
-    <ScrollView
-      contentContainerStyle={{
-        flexGrow: 1,
-        minHeight: "100%",
-      }}
-    >
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       {/* KeyboardAvoidingView to kontener, który chroni przed "zjadaniem" elementów po wysunięciu klawiatury */}
       <KeyboardAvoidingView
         behavior="padding"
@@ -61,34 +54,40 @@ export default function ScanArticle({ navigation , route}) {
 
         <ImageBackground
           source={require("../../assets/locationPage/background.png")}
-          style={{
-            minHeight: "100%",
-            flex: 1,
-            justifyContent: "space-around",
-          }}
+          style={{ flex: 1, justifyContent: "center" }}
         >
-          <View style={{ alignItems: "center" }}>
-            <View style={{ maxHeight: 160, marginBottom: 10 }}>
-              <Image
-                source={require("../../assets/locationPage/qr.png")}
-                style={{
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                  resizeMode: "contain",
-                }}
-              />
-            </View>
-            <View>
-              <ArticleCodeInput 
-              pressHandler={() => {navigation.navigate('Scan',{ previousScreen: 'ScanArticle' })}} 
-              text={articleCode}
-              />
-            </View>
-          </View>
+          <Container spread="center" composition="loose">
+            <Container spread="center" composition="compact">
+              <Tray spread="center" composition="compact">
+                <View style={{ maxHeight: 160, marginBottom: 10 }}>
+                  <Image
+                    source={require("../../assets/locationPage/qr.png")}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      resizeMode: "contain",
+                    }}
+                  />
+                </View>
+              </Tray>
+              <View>
+                <ArticleCodeInput
+                  pressHandler={() => {
+                    navigation.navigate("Scan", {
+                      previousScreen: "ScanArticle",
+                    });
+                  }}
+                  text={articleCode}
+                />
+              </View>
+            </Container>
 
-          <Tray spread="center" composition="compact">
-            <ConfirmButton pressHandler={Confirm} />
-          </Tray>
+            <Container spread="bottom" composition="compact">
+              <Tray spread="center" composition="compact">
+                <ConfirmButton pressHandler={Confirm} />
+              </Tray>
+            </Container>
+          </Container>
         </ImageBackground>
       </KeyboardAvoidingView>
     </ScrollView>
