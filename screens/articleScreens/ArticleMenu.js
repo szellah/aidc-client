@@ -10,16 +10,16 @@ import {
 
 import { PasekNawigacyjnyArticleMenu } from "../../components/PasekNawigacyjny.js";
 /**
- * Menu Towarów<br>
+ * Ekran menu towarów<br>
  * pozwala na wybranie jednego z czterech menu:<br>
- * -Zarządzanie<br>
- * -Dodaj nowy Towar<br>
- * -Dodaj już istniejący Towar<br>
- * -Usuń Towar
- * @function Menu Towarów
+ * - Zarządzanie<br>
+ * - Dodaj nowy Towar<br>
+ * - Dodaj już istniejący Towar<br>
+ * - Usuń Towar
+ * @function ArticleMenu
  * @param {object} navigation Pozwala na przenoszenie się między ekranami
  * @category Screens
- * @returns {JSX} zwraca Menu Towarów w postaci elementu JSX
+ * @returns {JSX} zwraca Ekran menu towarów w postaci elementu JSX
  */
 export default function ArticleMenu({ navigation }) {
   return (

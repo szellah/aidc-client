@@ -7,12 +7,10 @@ import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 /**
  * Ekran Menu Zarządzania<br> 
  * posiada takie elementy jak:<br>
- * -Pasek nawigujący do sekcji "Zarządzanie(Managment)"<br> 
- * W sekcji "Zarządzanie(Managment)"<br> 
- * -Przycisk Informacje na temat Towaru<br>
- * -Przycisk do Raportu danego Towaru<br>
+ * - Przycisk Informacje na temat Towaru
+ * - Przycisk do Raportu danego Towaru
  * 
- * @function Ekran Menu Zarządzania
+ * @function ArticleManagmentMenu
  * @param {object} navigation pozwala na przenoszenie się między ekranami
  * @category Screens
  * @returns {JSX} Zwraca Ekran Menu Zarządzania w postaci elementu JSX
