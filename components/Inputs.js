@@ -346,7 +346,7 @@ export const UserLoginInput = () => {
 export const UserEmailInput = () => {
 	return(
 		<Input
-		icon={require("../assets/icons/user-5-512.svg")}
+		icon={require("../assets/icons/at.svg")}
         placeholder="e-mail"
 		color="yellow"
 		/>
