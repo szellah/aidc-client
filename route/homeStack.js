@@ -29,10 +29,10 @@ const screens = {
   Test: {
     screen: Test,
   },
-  ArticlePanelSave: {
+  ArticleEdit: {
     screen: ArticleEdit,
   },
-  ArticlePanelEdit: {
+  ArticleInfo: {
     screen: ArticleInfo,
   },
   Report: {
@@ -80,7 +80,7 @@ const screens = {
   Scan:{
     screen: Scan,
   },
-  Report:{
+  CreateReport:{
     screen: CreateReport,
   }
 

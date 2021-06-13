@@ -15,6 +15,7 @@ import { ConfirmButton } from "../../components/Buttons";
 
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 import { Container } from "../../components/Containers";
+import { NotificationBox } from "../../components/Notifications";
 
 /**
  * Ekran skanowania artykułu<br>
@@ -29,14 +30,41 @@ import { Container } from "../../components/Containers";
  * @returns {JSX} Zwraca Ekran skanowania artykułu w postaci elementu JSX
  */
 export default function ScanArticle({ navigation , route}) {
-  const [articleCode, setArticleCode] = useState("kod");
+  const [articleCode, setArticleCode] = useState("3");
+  let handler = null;
+
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
 
   useEffect(() => {
     if (navigation.getParam("qrcode"))
       setArticleCode(navigation.getParam("qrcode"));
   }, [navigation.getParam("qrcode")]);
 
-  const Confirm = () => {};
+  useEffect(() => {
+    if (navigation.getParam('handler')){
+      handler = navigation.getParam('handler');
+    }
+  });
+
+  useEffect(() => {
+    if(navigation.getParam('notification'))
+      {
+        setNotificationContent(navigation.getParam('notification'));
+        setNotificationVisibility(true);    
+      }
+  }, [navigation.getParam('notification')]);
+
+  const Confirm = (code) => {
+   handler(code)
+   .catch((error)=>{
+    setNotificationContent(error);
+    setNotificationVisibility(true);
+  });
+  }
+  
+
+
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -56,6 +84,13 @@ export default function ScanArticle({ navigation , route}) {
           source={require("../../assets/locationPage/background.png")}
           style={{ flex: 1, justifyContent: "center" }}
         >
+
+        <NotificationBox
+        visibility={notificationVisibility}
+        visibilityHandler={setNotificationVisibility}
+        content={notificationContent}
+        />
+
           <Container spread="center" composition="loose">
             <Container spread="center" composition="compact">
               <Tray spread="center" composition="compact">
@@ -71,20 +106,17 @@ export default function ScanArticle({ navigation , route}) {
                 </View>
               </Tray>
               <View>
-                <ArticleCodeInput
-                  pressHandler={() => {
-                    navigation.navigate("Scan", {
-                      previousScreen: "ScanArticle",
-                    });
-                  }}
-                  text={articleCode}
-                />
+              <ArticleCodeInput 
+              pressHandler={() => {navigation.navigate('Scan',{ data: Confirm })}} 
+              text={articleCode}
+              changeHandler={(val) => {setArticleCode(val)}}
+              />
               </View>
             </Container>
 
             <Container spread="bottom" composition="compact">
               <Tray spread="center" composition="compact">
-                <ConfirmButton pressHandler={Confirm} />
+                <ConfirmButton pressHandler={() => {Confirm(articleCode)}} />
               </Tray>
             </Container>
           </Container>

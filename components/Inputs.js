@@ -25,7 +25,7 @@ import { Ionicons } from '@expo/vector-icons';
  * 	@category Root Components
  */
 
-export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler}) => {
+export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler, changeHandler, text, editable}) => {
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
 			<Icon
@@ -38,8 +38,11 @@ export const Input = ({icon, placeholder, placeholderTextColor, color, size, dis
 				style={styles.inputText}
 				autoCorrect={false}
 				placeholder={placeholder}
+				defaultValue={text}
+				editable={typeof(changeHandler) === "function"}
 				placeholderTextColor={placeholderTextColor == null ? "rgba(0,0,0,0.4)" : placeholderTextColor}
 				multiline={size=="large"}
+				onChangeText={(val) => {changeHandler(val)}}
 			/>
 			{displayQRButton&&(<QRButton pressHandler={pressHandler}/>)}
 		</View>
@@ -86,12 +89,14 @@ export const QRButton = ({pressHandler}) => {
  * @category Inputs
  * 
  */
-export const NameInput = () => {
+export const NameInput = ({text, changeHandler, placeholder}) => {
 	return(
 		<Input
 		icon="archive"
-        placeholder="nazwa"
+        placeholder={ placeholder ? placeholder : "Nazwa"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -365,13 +370,15 @@ export const UserEmailInput = () => {
  * @category Inputs
  * 
  */
-export const DescriptionInput = () => {
+export const DescriptionInput = ({text, placeholder, changeHandler}) => {
 	return (
 		<Input
 		icon="file"
 		color="yellow"
-		placeholder="opis"
+		placeholder={ placeholder ? placeholder : "opis"}
+		text={text}
 		size="large"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -388,14 +395,16 @@ export const DescriptionInput = () => {
  * @category Inputs
  * 
  */
-export const ArticleCodeInput = ({pressHandler, text}) => {
+export const ArticleCodeInput = ({pressHandler, text, changeHandler, placeholder}) => {
 	return (
 		<Input
 		icon="search"
-		placeholder={text}
+		placeholder={ placeholder ? placeholder : "kod"}
+		text={text}
 		color="yellow"
 		displayQRButton={true}
 		pressHandler={pressHandler}
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -410,13 +419,15 @@ export const ArticleCodeInput = ({pressHandler, text}) => {
  * @category Inputs
  * 
  */
-export const LocationCodeInput = ({pressHandler, text}) => {
+export const LocationCodeInput = ({pressHandler, text, placeholder, changeHandler}) => {
 	return (
 		<Input
 		icon="map-marker"
-        placeholder={text}
+		placeholder={ placeholder ? placeholder : "lokalizacja"}
+		text={text}
 		color="yellow"
 		displayQRButton={true}
+		changeHandler={changeHandler}
 		pressHandler={pressHandler}
 		/>
 	);
@@ -433,11 +444,12 @@ export const LocationCodeInput = ({pressHandler, text}) => {
  * @category Inputs
  * 
  */
-export const CategorySelect = () => {
+export const CategorySelect = ({text}) => {
 	return (
 		<Input
 		icon="folder"
 		placeholder="kategoria"
+		text={text}
 		color="yellow"
 		/>
 	);

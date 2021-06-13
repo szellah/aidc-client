@@ -18,12 +18,12 @@ import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Image} from "reac
  * 
  * @category Root Components
  */
-export const RoundButton = ({navigation, destination, icon, familyOfIcons, title, color}) => {
+export const RoundButton = ({navigation, destination, handler, icon, familyOfIcons, title, color, previousScreen}) => {
     
     return(
         <TouchableOpacity
         onPress={() => {
-            navigation.navigate(destination);
+            navigation.navigate(destination, {handler: handler, previousScreen: previousScreen});
           }}
         >
 
@@ -68,11 +68,13 @@ export const CustomRoundButton = ({
   src,
   title,
   color,
+  handler,
+  previousScreen
 }) => {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate(destination);
+        navigation.navigate(destination, {handler: handler, previousScreen: previousScreen});
       }}
     >
       <View style={styles.buttonBox}>
@@ -91,8 +93,7 @@ export const CustomRoundButton = ({
   );
 };
 
-//poszczególne przyciski menu
-
+//poszczególne przyciski menuodt
 /**
  * Przycisk nawigujący do menu Towaru
  * @function
@@ -233,9 +234,10 @@ export const AddArticleButton = ({ navigation }) => {
   return (
     <RoundButton
       navigation={navigation}
+      previousScreen="ArticleMenu"
       color="gray"
       icon="plus"
-      destination="ArticlePanelSave"
+      destination="ArticleEdit"
       title="Dodaj"
     />
   );
@@ -320,10 +322,12 @@ export const DeleteAccountButton = ({navigation}) => {
  * 
  * @category Round Buttons
  */
-export const RemoveStockedArticleButton = ({ navigation }) => {
+export const RemoveStockedArticleButton = ({ navigation, handler }) => {
   return (
     <CustomRoundButton
       navigation={navigation}
+      handler={handler}
+      previousScreen="ScanArticle"
       color="yellow"
       src={require("../assets/articleMenuPage/emptyBox.png")}
       destination="ScanArticle"
@@ -406,10 +410,11 @@ export const LocationAddNewButton = ({navigation}) => {
  * 
  * @category Round Buttons
  */
-export const ArticleInfoButton = ({ navigation }) => {
+export const ArticleInfoButton = ({ navigation, handler }) => {
   return (
     <RoundButton
       navigation={navigation}
+      handler={handler}
       color="blue"
       icon="info"
       destination="ScanArticle"
@@ -433,7 +438,7 @@ export const ReportsButton = ({ navigation }) => {
       navigation={navigation}
       color="yellow"
       src={require("../assets/managmentPage/notepad.png")}
-      destination="Report"
+      destination="CreateReport"
       title="Raporty"
     />
   );
