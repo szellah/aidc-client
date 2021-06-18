@@ -30,8 +30,14 @@ const kliknij = (text) => {
  * @returns {JSX}
  * Zwraca ekran kreatora raportów w postaci elementu JSX
  */
-export default function Test({ navigation }) {
+export default function CreateReport({ navigation }) {
   const [reportId, setReportId] = useState(0);
+  const [reportText, setReportText] = useState("kategoria");
+
+  const ReportSelectHandler = (name, value) =>{
+    setReportText(name);
+    setReportId(value);
+  }
 
   const reportOptions = [
     { name: "kategoria", value: 1, id: 1 },
@@ -84,7 +90,7 @@ export default function Test({ navigation }) {
             </Text>
           </Tray>
           <MenuProvider>
-            <ReportSelect changeHandler={setReportId} options={reportOptions} />
+            <ReportSelect changeHandler={ReportSelectHandler} text={reportText} options={reportOptions} />            
 
             {reportId >= 2 && (
               <BuildingSelect

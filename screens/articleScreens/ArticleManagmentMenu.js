@@ -25,7 +25,8 @@ import {getArticleInfo} from "../../clientRequests/Creq_lib";
  */
 export default function ArticleManagmentMenu({ navigation }) {
 
-  const passToArticleInfoScreen = (code) =>{
+  const passToArticleInfoScreen = ({code}) =>{
+    console.log(code);
     return new Promise((resolve, reject) => {
     getArticleInfo(code).then((response) =>{
           //handling błędu do Notification

@@ -14,8 +14,10 @@ export default function Scan({ navigation, route }) {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
-    const handler = navigation.getParam("data");
-    handler(data);
+    // const handler = navigation.getParam("handler");
+    // handler({code: data});
+    const destination = navigation.getParam("previousScreen");
+    navigation.navigate(destination, {qrcode: data})
   };
 
   if (hasPermission === null) {

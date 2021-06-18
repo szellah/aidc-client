@@ -28,14 +28,18 @@ import { Container } from "../../components/Containers";
  * @returns {JSX} Zwraca Ekran Skanownaia Lokalizacji w postaci elementu JSX
  */
 export default function ScanLocation({ navigation, route }) {
-  const [locationCode, setLocationCode] = useState("lokalizacja");
+  const [locationCode, setLocationCode] = useState("10");
 
   useEffect(() => {
     if (navigation.getParam("qrcode"))
       setLocationCode(navigation.getParam("qrcode"));
   }, [navigation.getParam("qrcode")]);
 
-  const Confirm = () => {};
+  const Confirm = () => {
+    if(navigation.getParam("previousScreen") === "ArticleMenu"){
+      navigation.navigate("ScanArticle", {data: locationCode, handler: navigation.getParam("handler"), previousScreen: navigation.getParam("previousScreen")})
+    }
+  };
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
     <ScrollView

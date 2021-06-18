@@ -55,8 +55,24 @@ export default function ScanArticle({ navigation , route}) {
       }
   }, [navigation.getParam('notification')]);
 
-  const Confirm = (code) => {
-   handler(code)
+  const Confirm = (overriteParams) => {
+    let params = {};
+    if(navigation.getParam("previousScreen") === "ArticleMenu")
+    {
+      params = {locationCode: navigation.getParam("data"), articleCode: articleCode}
+    }
+    else if(navigation.getParam("previousScreen") === "ScanArticle")
+    {
+      params = {code: articleCode};
+    }
+    
+    params = overriteParams ? overriteParams : params;
+
+   handler(params)
+   .then((result) =>{
+    setNotificationContent(result);
+    setNotificationVisibility(true); 
+   })
    .catch((error)=>{
     setNotificationContent(error);
     setNotificationVisibility(true);
@@ -107,7 +123,7 @@ export default function ScanArticle({ navigation , route}) {
               </Tray>
               <View>
               <ArticleCodeInput 
-              pressHandler={() => {navigation.navigate('Scan',{ data: Confirm })}} 
+              pressHandler={() => {navigation.navigate('Scan',{ handler: Confirm, previousScreen: "ScanArticle" })}} 
               text={articleCode}
               changeHandler={(val) => {setArticleCode(val)}}
               />
@@ -116,7 +132,7 @@ export default function ScanArticle({ navigation , route}) {
 
             <Container spread="bottom" composition="compact">
               <Tray spread="center" composition="compact">
-                <ConfirmButton pressHandler={() => {Confirm(articleCode)}} />
+                <ConfirmButton pressHandler={Confirm} />
               </Tray>
             </Container>
           </Container>

@@ -154,7 +154,32 @@ export default function Select({changeHandler, placeholder, text, options, src, 
     );
   }
 
-
+  /**
+ * Select do wybrania według czego zostanie sporządzony raport
+ * -kategorii
+ * -budynku
+ * -piętra
+ * -pokoju
+ * 
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
+   export const ReportSelect = ({changeHandler, options}) => {
+    return (
+      <Select 
+        changeHandler={changeHandler}
+        placeholder="Według"
+        options={options}
+        color="yellow"
+        src={require("../assets/raportPage/iconSporzRaportu.png")}
+        />
+    );
+  }
+  
 
   const styles = StyleSheet.create({
       selectLiner: {

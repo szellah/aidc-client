@@ -345,11 +345,13 @@ export const RemoveStockedArticleButton = ({ navigation, handler }) => {
  * 
  * @category Round Buttons
  */
-export const AddStockedArticleButton = ({ navigation }) => {
+export const AddStockedArticleButton = ({ navigation, handler }) => {
   return (
     <CustomRoundButton
       navigation={navigation}
       color="sand"
+      previousScreen="ArticleMenu"
+      handler={handler}
       src={require("../assets/articleMenuPage/filledBox.png")}
       destination="ScanLocation"
       title="Dotowaruj"
@@ -415,6 +417,7 @@ export const ArticleInfoButton = ({ navigation, handler }) => {
     <RoundButton
       navigation={navigation}
       handler={handler}
+      previousScreen="ScanArticle"
       color="blue"
       icon="info"
       destination="ScanArticle"

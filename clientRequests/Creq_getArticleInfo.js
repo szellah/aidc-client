@@ -11,7 +11,16 @@ return new Promise((resolve, reject) => {
     })
     .then(res => {
         console.log(res.data);
-        resolve(res.data);
+        
+        if(res.data.error)
+        {
+            throw new Error(res.data.message);
+        }
+        else
+        {
+            resolve(res.data);
+        }
+                
     })
     .catch(error => {
         reject(error);

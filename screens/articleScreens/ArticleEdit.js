@@ -75,24 +75,39 @@ export default function ArticleEdit({ navigation }) {
           const article = navigation.getParam('data');
 
           setPhName(article.Name);
-          setName(phName);
 
           setPhCategoryId("0");
-          setCategoryId(phCategoryId);
+          
 
           setPhCategory(article.Category);
-          setCategory(phCategory);
 
           setPhLocationCode(article.LocationId.toString());
-          setLocationCode(phLocationCode);
+
 
           setPhArticleCode(article.ArticleId.toString());
-          setArticleCode(phArticleCode);
-          console.log("rero");
+
           setPhDescription(article.Description);
-          setDescription(phDescription);
+
           };
         },[navigation.getParam('data')]
+    );
+
+
+    //zapisanie wartości podstawowych do wartości wysyłanych
+    useEffect(()=>{
+      setName(phName);
+
+      setCategoryId(phCategoryId);
+
+      setCategory(phCategory);
+
+      setLocationCode(phLocationCode);
+
+      setArticleCode(phArticleCode);
+
+      setDescription(phDescription);
+
+    },[phName,phCategoryId,phCategory,phLocationCode,phArticleCode,phDescription]
     );
 
     const CategorySelectHandler = (name, value) =>{
@@ -104,13 +119,13 @@ export default function ArticleEdit({ navigation }) {
     console.log("siema");
     if(navigation.getParam("previousScreen") === "ArticleInfo")
     {
-      const article = { 
+      const article = {
         ArticleId: parseInt(articleCode), 
-        Name: name, 
-        Category: category, 
-        LocationId: parseInt(locationCode), 
-        Description: description 
-      }
+          Name: name, 
+          Category: category, 
+          LocationId: parseInt(locationCode), 
+          Description: description
+        }
       updateArticleInfo(
       {
         UserId: 1, 
@@ -191,7 +206,6 @@ export default function ArticleEdit({ navigation }) {
           <LocationCodeInput placeholder={ phLocationCode } changeHandler={(val) => {setLocationCode(val)}} pressHandler={() => {}} />
 
           <DescriptionInput placeholder={ phDescription } changeHandler={(val) => {setDescription(val)}} pressHandler/>
-
 
           <Container composition="compact" spread="bottom">
             <Tray composition="loose" spread="even">

@@ -14,7 +14,7 @@ import { PasekNawigacyjnyArticleMenu } from "../../components/PasekNawigacyjny.j
 import { Container } from "../../components/Containers";
 import { ScrollView } from "react-native-gesture-handler";
 
-import {dislocateArticle} from "../../clientRequests/Creq_lib";
+import {dislocateArticle, allocateArticle} from "../../clientRequests/Creq_lib";
 
 /**
  * Ekran menu towarów<br>
@@ -41,20 +41,36 @@ export default function ArticleMenu({ navigation }) {
     }
   }, [navigation.getParam('notification')]);
 
-  const dislocateHandler = (code) => {
+  const dislocateHandler = ({code}) => {
     return new Promise((resolve, reject) => {
     dislocateArticle({
       ArticleId: code,
       AccountId: 1
     })
     .then((notification)=>{
-      setNotificationContent(notification);
-      setNotificationVisibility(true);   
+      resolve(notification);  
     })
     .catch((error)=>{
       reject({error: true, error:error.message});
     });
   });
+  }
+
+  const allocateHandler = ({locationCode, articleCode}) => {
+    console.log(locationCode);
+    console.log(articleCode);
+    return new Promise((resolve, reject) => {
+      allocateArticle({
+        ArticleId: articleCode,
+        LocationId: locationCode
+      })
+      .then((notification)=>{
+       resolve(notification);  
+      })
+      .catch((error)=>{
+        reject({error: true, error:error.message});
+      });
+    });
   }
 
 
@@ -84,7 +100,7 @@ export default function ArticleMenu({ navigation }) {
           </Tray>
           <Tray spread="center" composition="compact">
             <RemoveStockedArticleButton navigation={navigation} handler={dislocateHandler} />
-            <AddStockedArticleButton navigation={navigation} />
+            <AddStockedArticleButton navigation={navigation} handler={allocateHandler} />
           </Tray>
         </Container>
       </ImageBackground>
