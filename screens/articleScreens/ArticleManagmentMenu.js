@@ -21,12 +21,20 @@ import { ScrollView } from "react-native-gesture-handler";
  * @category Screens
  * @returns {JSX} Zwraca Ekran Menu Zarządzania w postaci elementu JSX
  */
+
+
+let nav = {}
+
+
 export default function ArticleManagmentMenu({ navigation }) {
+
+  nav = navigation
+
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact">
         {/* Pasek nawigujący do sekcji "Zarządzanie (Managment)" */}
-        <PasekNawigacyjny />
+        {/* <PasekNawigacyjny /> */}
       </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
@@ -44,4 +52,11 @@ export default function ArticleManagmentMenu({ navigation }) {
       </ImageBackground>
     </ScrollView>
   );
+}
+
+
+ArticleManagmentMenu.navigationOptions = {
+  headerTitle: () => <PasekNawigacyjny/>,
+  headerLeft: () => {return null;}
+
 }

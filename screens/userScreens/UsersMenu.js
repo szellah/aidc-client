@@ -18,12 +18,21 @@ import { ScrollView } from "react-native-gesture-handler";
  * @category userScreens
  * @returns {JSX} Zwraca ekran menu zarządania użytkownikami w postaci elementu JSX
  */
+
+
+let nav = {}
+
+
 export default function UsersMenu({ navigation }) {
+
+  nav = navigation
+
+
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact">
         {/* Pasek nawigujący do sekcji "Home" */}
-        <PasekNawigacyjnyArticleMenu navigation={navigation} />
+        {/* <PasekNawigacyjnyArticleMenu navigation={navigation} /> */}
       </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
@@ -41,4 +50,10 @@ export default function UsersMenu({ navigation }) {
       </ImageBackground>
     </ScrollView>
   );
+}
+
+UsersMenu.navigationOptions = {
+  headerTitle: () => <PasekNawigacyjnyArticleMenu navigation={nav}/>,
+  headerLeft: () => {return null;}
+
 }

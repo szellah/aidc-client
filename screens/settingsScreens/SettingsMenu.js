@@ -39,12 +39,19 @@ const kliknij = (text) => {
  * @returns {JSX} Zwraca ekran ustawień w postaci elmentu JSX
  */
 
+
+let nav = {}
+
+
 export default function SettingsMenu({ navigation }) {
+
+  nav = navigation
+
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact">
         {/* Pasek nawigujący do sekcji "Home" */}
-        <PasekNawigacyjnyInfo navigation={navigation} />
+        {/* <PasekNawigacyjnyInfo navigation={navigation} /> */}
       </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
@@ -77,3 +84,10 @@ const styles = StyleSheet.create({
     height: "80%",
   },
 });
+
+
+SettingsMenu.navigationOptions = {
+  headerTitle: () => <PasekNawigacyjnyInfo navigation={nav}/>,
+  headerLeft: () => {return null;}
+
+}

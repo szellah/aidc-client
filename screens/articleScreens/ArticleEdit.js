@@ -30,7 +30,15 @@ import { Tray } from "../../components/Trays.js";
  * @category Screens
  * @returns {JSX} Zwraca Ekran edytowania towaru w postaci elementu JSX
  */
+
+
+
+let nav = {}
+
+
 export default function ArticleEdit({ navigation }) {
+
+  nav = navigation
   const [Name, SetName] = useState("");
   const [Category, SetCategory] = useState("");
   const [LocationCode, SetLocationCode] = useState("");
@@ -47,7 +55,7 @@ export default function ArticleEdit({ navigation }) {
 
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact" spread="center">
-        <PasekNawigacyjny />
+        {/* <PasekNawigacyjny /> */}
       </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
@@ -75,4 +83,11 @@ export default function ArticleEdit({ navigation }) {
       </ImageBackground>
     </ScrollView>
   );
+}
+
+
+ArticleEdit.navigationOptions = {
+  headerTitle: () => <PasekNawigacyjny/>,
+  headerLeft: () => {return null;}
+
 }

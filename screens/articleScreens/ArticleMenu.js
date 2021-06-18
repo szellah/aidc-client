@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ImageBackground, StyleSheet } from "react-native";
 import { Tray } from "../../components/Trays";
 import {
@@ -24,12 +24,20 @@ import { ScrollView } from "react-native-gesture-handler";
  * @category Screens
  * @returns {JSX} zwraca Ekran menu towarów w postaci elementu JSX
  */
+
+
+ let nav = {}
+
+
 export default function ArticleMenu({ navigation }) {
+
+  nav = navigation
+
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact">
         {/* Pasek nawigujący do sekcji "Home" */}
-        <PasekNawigacyjnyArticleMenu navigation={navigation} />
+        {/* <PasekNawigacyjnyArticleMenu navigation={navigation} /> */}
       </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
@@ -50,5 +58,15 @@ export default function ArticleMenu({ navigation }) {
     </ScrollView>
   );
 }
+
+
+
+
+ArticleMenu.navigationOptions = {
+  headerTitle: () => <PasekNawigacyjnyArticleMenu navigation={nav}/>,
+  headerLeft: () => {return null;}
+  
+}
+
 
 const styles = StyleSheet.create({});

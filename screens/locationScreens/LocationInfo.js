@@ -29,7 +29,12 @@ import { Container } from "../../components/Containers.js";
  * 
  * @returns {JSX} Zwraca ekran informacyjny lokalizacji w postaci elmentu JSX
  */
+
+
+
 export default function LocationInfo(){
+
+  
   return (
     <KeyboardAvoidingView
       behavior="height"
@@ -39,7 +44,7 @@ export default function LocationInfo(){
     >
       <ScrollView contentContainerStyle={{ flex: 1 }}>
         <Tray composition="compact" spread="center">
-          <PanelLokalizacjiEdytujUsun />
+          {/* <PanelLokalizacjiEdytujUsun /> */}
         </Tray>
         <ImageBackground
           source={require("../../assets/tlo_dodawanie.png")}
@@ -62,6 +67,12 @@ export default function LocationInfo(){
       </ScrollView>
     </KeyboardAvoidingView>
   );
+}
+
+LocationInfo.navigationOptions = {
+  headerTitle: () => <PanelLokalizacjiEdytujUsun/>,
+  headerLeft: () => {return null;}
+
 }
 
 const styles = StyleSheet.create({

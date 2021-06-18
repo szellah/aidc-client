@@ -35,12 +35,20 @@ import { ScrollView } from "react-native-gesture-handler";
  * @returns {JSX} Zwraca ekran usuwania konta w postaci elmentu JSX
  */
 
+
+let nav = {}
+
+
 export default function DeleteAccount({navigation}){
+
+  nav = navigation
+
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Tray composition="compact">
         {/* Pasek nawigujący do sekcji */}
-        <PasekNawigacyjnyInfo navigation={navigation} />
+        {/* <PasekNawigacyjnyInfo navigation={navigation} /> */}
       </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
@@ -66,6 +74,12 @@ export default function DeleteAccount({navigation}){
       </ImageBackground>
     </ScrollView>
   );
+}
+
+DeleteAccount.navigationOptions = {
+  headerTitle: () => <PasekNawigacyjnyInfo navigation={nav}/>,
+  headerLeft: () => {return null;}
+
 }
 const styles = StyleSheet.create({
   Tło: {
