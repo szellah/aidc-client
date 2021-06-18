@@ -12,10 +12,6 @@ import {
 } from "../../components/Selects";
 import { MenuProvider } from "react-native-popup-menu";
 
-const kliknij = (text) => {
-  console.log(text);
-};
-
 /**
  * Ekran Kreatora Raportów<br>
  * Pozwala na wybranie jednego ze sposobów według których
@@ -31,8 +27,9 @@ const kliknij = (text) => {
  * Zwraca ekran kreatora raportów w postaci elementu JSX
  */
 export default function CreateReport({ navigation }) {
+  
   const [reportId, setReportId] = useState(0);
-  const [reportText, setReportText] = useState("kategoria");
+  const [reportText, setReportText] = useState("");
 
   const ReportSelectHandler = (name, value) =>{
     setReportText(name);
@@ -46,7 +43,13 @@ export default function CreateReport({ navigation }) {
     { name: "pokój", value: 4, id: 4 },
   ];
 
-  const [categoryId, setCategoryId] = useState("1");
+  const [categoryId, setCategoryId] = useState(0);
+  const [categoryText, setCategoryText] = useState("");
+
+  const CategorySelectHandler = (name, value) =>{
+    setCategoryText(name);
+    setCategoryId(value);
+  }
 
   const categoryOptions = [
     { name: "monitor", value: "111", id: 1 },
@@ -56,21 +59,39 @@ export default function CreateReport({ navigation }) {
     { name: "jednostka centralna", value: "112", id: 5 },
   ];
 
-  const [buildingId, setBuildingId] = useState("1");
+  const [buildingId, setBuildingId] = useState(0);
+  const [buildingText, setBuildingText] = useState("");
+
+  const BuildingSelectHandler = (name, value) =>{
+    setBuildingText(name);
+    setBuildingId(value);
+  }
 
   const buildingOptions = [
     { name: "budynek 1", value: "1", id: 1 },
     { name: "budynek 2", value: "2", id: 2 },
   ];
 
-  const [floorId, setFloorId] = useState("0");
+  const [floorId, setFloorId] = useState(0);
+  const [floorText, setFloorText] = useState("");
 
-  const floorgOptions = [
+  const FloorSelectHandler = (name, value) =>{
+    setFloorText(name);
+    setFloorId(value);
+  }
+
+  const floorOptions = [
     { name: "parter", value: "0", id: 1 },
     { name: "piętro 1", value: "1", id: 2 },
   ];
 
-  const [roomId, setRoomId] = useState("100");
+  const [roomId, setRoomId] = useState(0);
+  const [roomText, setRoomText] = useState("");
+
+  const RoomSelectHandler = (name, value) =>{
+    setRoomText(name);
+    setRoomId(value);
+  }
 
   const roomOptions = [
     { name: "pokój 111", value: "111", id: 1 },
@@ -90,26 +111,40 @@ export default function CreateReport({ navigation }) {
             </Text>
           </Tray>
           <MenuProvider>
-            <ReportSelect changeHandler={ReportSelectHandler} text={reportText} options={reportOptions} />            
+            <ReportSelect 
+            changeHandler={ReportSelectHandler} 
+            text={reportText} 
+            options={reportOptions} 
+            />
 
             {reportId >= 2 && (
               <BuildingSelect
-                changeHandler={setBuildingId}
+                changeHandler={BuildingSelectHandler}
+                text={buildingText} 
                 options={buildingOptions}
               />
             )}
 
             {reportId >= 3 && (
-              <FloorSelect changeHandler={setFloorId} options={floorgOptions} />
+              <FloorSelect
+              text={floorText}
+              changeHandler={FloorSelectHandler} 
+              options={floorOptions} 
+              />
             )}
 
             {reportId >= 4 && (
-              <RoomSelect changeHandler={setRoomId} options={roomOptions} />
+              <RoomSelect 
+              changeHandler={RoomSelectHandler}
+              text={roomText}
+              options={roomOptions} 
+              />
             )}
 
             {reportId == 1 && (
               <CategorySelect
-                changeHandler={setCategoryId}
+                changeHandler={CategorySelectHandler}
+                text={categoryText}
                 options={categoryOptions}
               />
             )}

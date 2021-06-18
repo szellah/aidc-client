@@ -66,11 +66,11 @@ export default function Select({changeHandler, placeholder, text, options, src, 
  * @category Selects
  * 
  */
-  export const CategorySelect = ({changeHandler, options}) => {
+  export const CategorySelect = ({changeHandler, options, placeholder, text}) => {
     return (
       <Select 
         changeHandler={changeHandler}
-        placeholder="Kategoria"
+        placeholder={ placeholder ? placeholder : "Kategoria"}
         options={options}
         color="blue"
         src={require("../assets/raportPage/iconBudynek.png")}
@@ -100,12 +100,13 @@ export default function Select({changeHandler, placeholder, text, options, src, 
  * @category Selects
  * 
  */
-  export const BuildingSelect = ({changeHandler, options}) => {
+  export const BuildingSelect = ({changeHandler, options, placeholder, text}) => {
     return (
       <Select 
         changeHandler={changeHandler}
-        placeholder="Budynek"
+        placeholder={ placeholder ? placeholder : "Budynek"}
         options={options}
+        text={text}
         color="blue"
         src={require("../assets/raportPage/iconBudynek.png")}
         />
@@ -121,12 +122,13 @@ export default function Select({changeHandler, placeholder, text, options, src, 
  * @category Selects
  * 
  */
-  export const FloorSelect = ({changeHandler, options}) => {
+  export const FloorSelect = ({changeHandler, options, placeholder, text}) => {
     return (
       <Select 
         changeHandler={changeHandler}
-        placeholder="Piętro"
+        placeholder={ placeholder ? placeholder : "Pietro"}
         options={options}
+        text={text}
         color="blue"
         src={require("../assets/raportPage/iconPietro.png")}
         />
@@ -142,12 +144,13 @@ export default function Select({changeHandler, placeholder, text, options, src, 
  * @category Selects
  * 
  */
-  export const RoomSelect = ({changeHandler, options}) => {
+  export const RoomSelect = ({changeHandler, options, placeholder, text}) => {
     return (
       <Select 
         changeHandler={changeHandler}
-        placeholder="Pokój"
+        placeholder={ placeholder ? placeholder : "Pokój"}
         options={options}
+        text={text}
         color="blue"
         src={require("../assets/raportPage/iconPokoj.png")}
         />
@@ -168,12 +171,13 @@ export default function Select({changeHandler, placeholder, text, options, src, 
  * @category Selects
  * 
  */
-   export const ReportSelect = ({changeHandler, options}) => {
+   export const ReportSelect = ({changeHandler, options, placeholder, text}) => {
     return (
       <Select 
         changeHandler={changeHandler}
-        placeholder="Według"
+        placeholder={ placeholder ? placeholder : "Według"}
         options={options}
+        text={text}
         color="yellow"
         src={require("../assets/raportPage/iconSporzRaportu.png")}
         />
