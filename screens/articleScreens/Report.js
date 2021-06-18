@@ -28,6 +28,9 @@ import { Container } from "../../components/Containers.js";
  * @returns {JSX}
  * Zwraca ekran z raportu w postaci elementu JSX
  */
+
+
+
 export default function Report() {
   return (
     <ScrollView>
@@ -38,7 +41,7 @@ export default function Report() {
         <Container>
           <View style={styles.bezeksportu}>
             <View style={styles.paseknagorze}>
-              <PasekNawigacyjnyInfo />
+              {/* <PasekNawigacyjnyInfo /> */}
             </View>
 
             <View style={styles.naglowek}>
@@ -65,6 +68,14 @@ export default function Report() {
     </ScrollView>
   );
 }
+
+Report.navigationOptions = {
+  headerTitle: () => <PasekNawigacyjnyInfo/>,
+  headerLeft: () => {return null;}
+
+}
+
+
 const styles = StyleSheet.create({
   Tło: {
     width: "100%",

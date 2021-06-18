@@ -28,7 +28,15 @@ import { Container } from "../../components/Containers";
  * @category Screens
  * @returns {JSX} Zwraca Ekran skanowania artykułu w postaci elementu JSX
  */
+
+
+let nav = {}
+
+
 export default function ScanArticle({ navigation , route}) {
+  
+  nav = navigation
+
   const [articleCode, setArticleCode] = useState("kod");
 
   useEffect(() => {
@@ -49,7 +57,7 @@ export default function ScanArticle({ navigation , route}) {
       >
         <Tray composition="compact">
           {/* Pasek nawigujący do sekcji */}
-          <PasekNawigacyjny navigation={navigation} />
+          {/* <PasekNawigacyjny navigation={navigation} /> */}
         </Tray>
 
         <ImageBackground
@@ -92,4 +100,10 @@ export default function ScanArticle({ navigation , route}) {
       </KeyboardAvoidingView>
     </ScrollView>
   );
+}
+
+ScanArticle.navigationOptions = {
+  headerTitle: () => <PasekNawigacyjny navigation={nav}/>,
+  headerLeft: () => {return null;}
+
 }

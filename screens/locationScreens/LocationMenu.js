@@ -29,12 +29,22 @@ import { ScrollView } from "react-native-gesture-handler";
  * 
  * @returns {JSX} Zwraca ekran menu lokalizacji w postaci elmentu JSX
  */
+
+
+
+let nav = {}
+
+
 export default function LocationMenu({ navigation }) {
+
+  nav = navigation
+
+
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact">
         {/* Pasek nawigujący do sekcji "Home" */}
-        <PasekNawigacyjnyMenuLokalizacji navigation={navigation} />
+        {/* <PasekNawigacyjnyMenuLokalizacji navigation={navigation} /> */}
       </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
@@ -54,6 +64,12 @@ export default function LocationMenu({ navigation }) {
   );
 }
 
+
+LocationMenu.navigationOptions = {
+  headerTitle: () => <PasekNawigacyjnyMenuLokalizacji navigation={nav}/>,
+  headerLeft: () => {return null;}
+
+}
 const styles = StyleSheet.create({
   paseknagorze: {
     width: "100%",

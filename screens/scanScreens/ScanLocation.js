@@ -27,7 +27,14 @@ import { Container } from "../../components/Containers";
  * @category Screens
  * @returns {JSX} Zwraca Ekran Skanownaia Lokalizacji w postaci elementu JSX
  */
+
+let nav = {}
+
 export default function ScanLocation({ navigation, route }) {
+
+  nav = navigation
+
+
   const [locationCode, setLocationCode] = useState("lokalizacja");
 
   useEffect(() => {
@@ -53,7 +60,7 @@ export default function ScanLocation({ navigation, route }) {
       >
         <Tray composition="compact">
           {/* Pasek nawigujący do poprzednich sekcji */}
-          <PasekNawigacyjny navigation={navigation} />
+          {/* <PasekNawigacyjny navigation={navigation} /> */}
         </Tray>
         <ImageBackground
           source={require("../../assets/locationPage/background.png")}
@@ -95,4 +102,10 @@ export default function ScanLocation({ navigation, route }) {
       </KeyboardAvoidingView>
     </ScrollView>
   );
+}
+
+ScanLocation.navigationOptions = {
+  headerTitle: () => <PasekNawigacyjny navigation={nav}/>,
+  headerLeft: () => {return null;}
+
 }

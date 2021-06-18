@@ -20,7 +20,12 @@ import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 import { ScrollView } from "react-native-gesture-handler";
 import { Container } from "../../components/Containers.js";
 
+
+let nav = {}
+
 export default function ArticleInfo({ navigation }) {
+
+  nav = navigation
   const [Name, SetName] = useState("");
   const [Category, SetCategory] = useState("");
   const [LocationCode, SetLocationCode] = useState("");
@@ -34,7 +39,7 @@ export default function ArticleInfo({ navigation }) {
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact" spread="center">
-        <PasekNawigacyjny />
+        {/* <PasekNawigacyjny /> */}
       </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
@@ -62,6 +67,12 @@ export default function ArticleInfo({ navigation }) {
       </ImageBackground>
     </ScrollView>
   );
+}
+
+ArticleInfo.navigationOptions = {
+  headerTitle: () => <PasekNawigacyjny/>,
+  headerLeft: () => {return null;}
+
 }
 
 const styles = StyleSheet.create({
