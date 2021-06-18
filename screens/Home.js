@@ -20,21 +20,26 @@ export default function Home({navigation}){
     const [showModal, setModal] = useState(false);
 
 
-    // czas w milisekundach po ktorym konczy sie sesja
-    let expirationTime = 10000;
+    // czas w milisekundach, po ktorym wyswietla sie powiadomienie o nadchodzacym zakonczeniu sesji
+    let modalTime = 10000;
+
+    // czas w milisekundach, po ktorym nastapi zakonczenie sesji od momentu wyswietlenia powiadomienia o zakonczeniu sesji
+    let endSessionTime = 10000;
 
 
     useEffect(() => {
-        setTimeout(async () => {
+        setTimeout(() => {        
             setModal(true);
-            await AsyncStorage.removeItem("token");
-            await AsyncStorage.removeItem("user");            
-            setTimeout(() => navigation.navigate("Login"), 60000);
-        }, expirationTime)    
-    }, [])
+            setTimeout(() => {
+                AsyncStorage.removeItem("token");
+                AsyncStorage.removeItem("user");                
+                navigation.navigate("Login");
+            }, endSessionTime)
+        }, modalTime)            
+    }, []);
 
 
-
+    
     // Blokuje przycisk cofania na urzadzeniu; blokuje przejscie z ekranu uzytkownika do ekranu logowania
     BackHandler.addEventListener("hardwareBackPress", () => {return true;})
 
@@ -70,7 +75,7 @@ export default function Home({navigation}){
             {/* <View><Text>{user["Login"]}</Text></View> */}
             <NotificationBox
                 visibility={showModal}
-                content={{message: "Sesja konczy sie za 60 sekund, zapisz swoje zmiany"}}
+                content={{message: `Sesja konczy sie za ${endSessionTime / 1000} sekund, zapisz swoje zmiany`}}
                 visibilityHandler={setModal}>
             </NotificationBox>
             <Tray spread="right" composition="loose">
