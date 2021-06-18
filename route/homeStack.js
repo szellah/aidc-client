@@ -15,6 +15,7 @@ import ChangePassword from "../screens/settingsScreens/ChangePassword";
 import DeleteAccount from "../screens/settingsScreens/DeleteAccount";
 import LocationMenu from "../screens/locationScreens/LocationMenu";
 import LocationInfo from "../screens/locationScreens/LocationInfo";
+import LocationEdit from "../screens/locationScreens/LocationEdit";
 import UsersMenu from "../screens/userScreens/UsersMenu";
 import UserInfo from "../screens/userScreens/UserInfo";
 import UserEdit from "../screens/userScreens/UserEdit";
@@ -62,8 +63,11 @@ const screens = {
   LocationMenu: {
     screen: LocationMenu,
   },
-  LocationEditDelete: {
+  LocationInfo: {
     screen: LocationInfo,
+  },
+  LocationEdit: {
+    screen: LocationEdit,
   },
   UsersMenu:{
     screen: UsersMenu,

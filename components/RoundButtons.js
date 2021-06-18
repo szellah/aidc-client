@@ -368,13 +368,15 @@ export const AddStockedArticleButton = ({ navigation, handler }) => {
  * 
  * @category Round Buttons
  */
-export const LocationInfoButton = ({navigation}) => {
+export const LocationInfoButton = ({navigation, handler}) => {
     return(
         <RoundButton
         navigation={navigation}
+        handler={handler}
         color="gray"
         icon="info"
         destination="ScanLocation"
+        previousScreen="ScanLocation"
         title="Informacje"
         />
     )
@@ -395,7 +397,8 @@ export const LocationAddNewButton = ({navigation}) => {
         navigation={navigation}
         color="sand"
         icon="plus"
-        destination="LocationEditDelete"
+        destination="LocationEdit"
+        previousScreen="LocationMenu"
         title="Dodaj"
         />
     )

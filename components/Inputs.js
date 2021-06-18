@@ -464,12 +464,14 @@ export const CategorySelect = ({text}) => {
  * @category Inputs
  * 
  */
-export const BuildingSelect = () => {
+export const BuildingSelect = ({text, changeHandler, placeholder}) => {
 	return (
 		<Input
 		icon="building"
-		placeholder="budynek"
+        placeholder={ placeholder ? placeholder : "Budynek"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -483,12 +485,14 @@ export const BuildingSelect = () => {
  * @category Inputs
  * 
  */
-export const FloorsSelect = () => {
+export const FloorsSelect = ({text, changeHandler, placeholder}) => {
 	return (
 		<Input
 		icon="align-justify"
-		placeholder="piętro"
+        placeholder={ placeholder ? placeholder : "Piętro"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -502,12 +506,14 @@ export const FloorsSelect = () => {
  * @category Inputs
  * 
  */
-export const RoomSelect = () => {
+export const RoomSelect = ({text, changeHandler, placeholder}) => {
 	return (
 		<Input
 		icon="square-o"
-		placeholder="pokój"
+        placeholder={ placeholder ? placeholder : "Pokój"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }

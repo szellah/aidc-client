@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import {
   Button,
   StyleSheet,
@@ -16,6 +16,10 @@ import {
 } from "../../components/RoundButtons.js";
 import { Tray } from "../../components/Trays";
 import { ScrollView } from "react-native-gesture-handler";
+import { getLocationInfo } from "../../clientRequests/Creq_lib";
+
+import { NotificationBox } from "../../components/Notifications";
+
 
 /**
  * Ekran Menu Lokalizacji<br>
@@ -30,6 +34,34 @@ import { ScrollView } from "react-native-gesture-handler";
  * @returns {JSX} Zwraca ekran menu lokalizacji w postaci elmentu JSX
  */
 export default function LocationMenu({ navigation }) {
+
+
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
+  
+  useEffect(() => {
+    if(navigation.getParam('notification'))
+    {
+      setNotificationContent(navigation.getParam('notification'));
+      setNotificationVisibility(true);    
+    }
+  }, [navigation.getParam('notification')]);
+
+  const passToLocationInfoScreen = ({code}) =>{
+    console.log(code);
+    return new Promise((resolve, reject) => {
+    getLocationInfo(code).then((response) =>{
+          //handling błędu do Notification
+          navigation.navigate('LocationInfo', {data: response.message, previousScreen: "ScanLocation"});
+        }).catch((error) => {
+          reject({error: true, message: error.message});
+        });
+
+    });
+    
+  }
+
+
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact">
@@ -40,9 +72,17 @@ export default function LocationMenu({ navigation }) {
         source={require("../../assets/tlo_dodawanie.png")}
         style={{ flex: 1, justifyContent: "center" }}
       >
+
+        <NotificationBox
+        visibility={notificationVisibility}
+        visibilityHandler={setNotificationVisibility}
+        content={notificationContent}
+        />
+
+
         <Container spread="center" composition="compact">
           <Tray composition="compact" spread="center">
-            <LocationInfoButton navigation={navigation} />
+            <LocationInfoButton navigation={navigation} handler={passToLocationInfoScreen} />
           </Tray>
 
           <Tray composition="compact" spread="center">
