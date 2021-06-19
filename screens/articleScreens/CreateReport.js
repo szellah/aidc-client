@@ -163,6 +163,24 @@ export default function CreateReport({ navigation }) {
 
 
 
+  const CreateTitle = () => {
+    let title = "";
+    if(reportText==="Kategoria")
+      title = `RAPORT\n${categoryText}`;
+
+    if(reportText==="Budynek")
+      title = `RAPORT\n${buildingText}`;
+
+    if(reportText==="Piętro")
+      title = `RAPORT\n${buildingId} / ${floorText}`;
+
+    if(reportText==="Pokój")
+      title = `RAPORT\n${buildingId} / ${floorId} / ${roomText}`;
+
+    return title;
+  }
+
+
   const Create = () => {
     getArticleReport(
       {
@@ -174,8 +192,9 @@ export default function CreateReport({ navigation }) {
       }
     )
     .then((data) =>{
-      console.log(data.message);
-      navigation.navigate("Report", {data: data.message});
+      const title = CreateTitle();
+      console.log(title);
+      navigation.navigate("Report", {data: data.message, title: title});
     })
     .catch((error)=>{
       setNotificationContent(error);

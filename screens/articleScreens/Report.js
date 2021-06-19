@@ -42,16 +42,16 @@ export default function Report({navigation}) {
   const [notificationVisibility, setNotificationVisibility] = useState(false); 
   const [notificationContent, setNotificationContent] =useState({});
 
-  const [title, setTitle] = useState("RAPORT");
+  const [title, setTitle] = useState("RAPORTT");
 
   useEffect(()=>{
-    if(navigation.getParam('data'))
-    {
-      setReport(navigation.getParam('data'));
-    }
     if(navigation.getParam('title'))
     {
       setTitle(navigation.getParam('title'));
+    }
+    if(navigation.getParam('data'))
+    {
+      setReport(navigation.getParam('data'));
     }
 }, [navigation.getParam('data'), navigation.getParam('title')]);
 
@@ -95,12 +95,13 @@ const Export = () => {
 const styles = StyleSheet.create({
   title: {
     color: "white",
-    fontSize: 43,
-    marginVertical: 30,
+    fontSize: 35,
+    marginVertical: 20,
+    textAlign: "center"
   },
   titleBox: {
     flexDirection: "row",
     justifyContent: "center",
-    height: "15%",
+    height: "17%",
   },
 });
