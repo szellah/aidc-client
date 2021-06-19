@@ -14,6 +14,7 @@ import { ConfirmButton } from "../../components/Buttons";
 
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 import { Container } from "../../components/Containers";
+import { NotificationBox } from "../../components/Notifications";
 
 /**
  * Ekran Skanownaia Lokalizacji<br>
@@ -28,14 +29,61 @@ import { Container } from "../../components/Containers";
  * @returns {JSX} Zwraca Ekran Skanownaia Lokalizacji w postaci elementu JSX
  */
 export default function ScanLocation({ navigation, route }) {
-  const [locationCode, setLocationCode] = useState("lokalizacja");
+
+  const [locationCode, setLocationCode] = useState("13");
+
+  let handler = null;
+
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
 
   useEffect(() => {
     if (navigation.getParam("qrcode"))
       setLocationCode(navigation.getParam("qrcode"));
   }, [navigation.getParam("qrcode")]);
 
-  const Confirm = () => {};
+  useEffect(() => {
+    if (navigation.getParam('handler')){
+      handler = navigation.getParam('handler');
+    }
+  });
+
+  useEffect(() => {
+    if(navigation.getParam('notification'))
+      {
+        setNotificationContent(navigation.getParam('notification'));
+        setNotificationVisibility(true);    
+      }
+  }, [navigation.getParam('notification')]);
+
+  const Confirm = (overriteParams) => {
+    let params = {};
+
+    if(navigation.getParam("previousScreen") === "ArticleMenu"){
+      navigation.navigate("ScanArticle", {data: locationCode, handler: navigation.getParam("handler"), previousScreen: navigation.getParam("previousScreen")})
+      return;
+    }
+    else if(navigation.getParam("previousScreen") === "ScanLocation")
+    {
+      params = {code: locationCode};
+    }
+    
+    params = overriteParams ? overriteParams : params;
+
+   handler(params)
+   .then((result) =>{
+    setNotificationContent(result);
+    setNotificationVisibility(true); 
+   })
+   .catch((error)=>{
+    setNotificationContent(error);
+    setNotificationVisibility(true);
+  });
+  }
+
+
+  
+
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
     <ScrollView
@@ -59,6 +107,15 @@ export default function ScanLocation({ navigation, route }) {
           source={require("../../assets/locationPage/background.png")}
           style={{ flex: 1, justifyContent: "center" }}
         >
+
+
+        <NotificationBox
+        visibility={notificationVisibility}
+        visibilityHandler={setNotificationVisibility}
+        content={notificationContent}
+        />
+
+
           <Container spread="center" composition="loose">
             <Container spread="center" composition="compact">
               <Tray spread="center" composition="compact">
@@ -80,6 +137,7 @@ export default function ScanLocation({ navigation, route }) {
                       previousScreen: "ScanLocation",
                     });
                   }}
+                  changeHandler={(val) => {setLocationCode(val)}}
                   text={locationCode}
                 />
               </View>

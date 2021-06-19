@@ -5,26 +5,25 @@ import {Menu, MenuOptions, MenuOption, MenuTrigger} from 'react-native-popup-men
 const {width, height} = Dimensions.get("window");
 
 
-export default function Select({changeHandler, placeholder, options, src, color}) {
+export default function Select({changeHandler, placeholder, text, options, src, color}) {
 
-    const [selectText, setSelectText] = useState(placeholder);
-  
     return (
 
           <Menu>
             
             <MenuTrigger style={[styles.selectBox, selectColor[color]]}>
                 <Image source={src} style={styles.Icons}/>
-                <Text style={styles.selectText}>{selectText}</Text>
+                <Text style={[styles.selectText, text ? null : styles.placeholder]}>{ text ? text : placeholder }</Text>
             </MenuTrigger>
             
 
             <MenuOptions optionsContainerStyle={styles.options}>
 
-              <Text style={[styles.headerOptionWrapper, styles.headerOptionText]}>{selectText}</Text>
+              <Text style={[styles.headerOptionWrapper, styles.headerOptionText]}>{text ? text : placeholder}</Text>
 
                 <ScrollView>
-              {options.map((item) => {
+              {              
+              options && options.map((item) => {
                 return (
   
                  <TouchableOpacity
@@ -34,8 +33,7 @@ export default function Select({changeHandler, placeholder, options, src, color}
                  
 
                  onSelect={() => {
-                    setSelectText(item.name);
-                    changeHandler(item.value);
+                    changeHandler(item.name, item.value);
                   }}
 
                   customStyles={
@@ -68,17 +66,30 @@ export default function Select({changeHandler, placeholder, options, src, color}
  * @category Selects
  * 
  */
-  export const CategorySelect = ({changeHandler, options}) => {
+  export const CategorySelect = ({changeHandler, options, placeholder, text}) => {
     return (
       <Select 
         changeHandler={changeHandler}
-        placeholder="Kategoria"
+        placeholder={ placeholder ? placeholder : "Kategoria"}
         options={options}
         color="blue"
         src={require("../assets/raportPage/iconBudynek.png")}
         />
     );
   }
+
+    export const CategorySelectEdit = ({changeHandler, options, placeholder, text}) => {
+      return (
+        <Select 
+          changeHandler={changeHandler}
+          placeholder={ placeholder ? placeholder : "Kategoria"}
+          options={options}
+          text={text}
+          color="yellow"
+          src={require("../assets/raportPage/iconBudynek.png")}
+          />
+      );
+    }
 
   /**
  * Select do wybrania budynku z którego będzie sporzandzany raport
@@ -89,12 +100,13 @@ export default function Select({changeHandler, placeholder, options, src, color}
  * @category Selects
  * 
  */
-  export const BuildingSelect = ({changeHandler, options}) => {
+  export const BuildingSelect = ({changeHandler, options, placeholder, text}) => {
     return (
       <Select 
         changeHandler={changeHandler}
-        placeholder="Budynek"
+        placeholder={ placeholder ? placeholder : "Budynek"}
         options={options}
+        text={text}
         color="blue"
         src={require("../assets/raportPage/iconBudynek.png")}
         />
@@ -110,12 +122,13 @@ export default function Select({changeHandler, placeholder, options, src, color}
  * @category Selects
  * 
  */
-  export const FloorSelect = ({changeHandler, options}) => {
+  export const FloorSelect = ({changeHandler, options, placeholder, text}) => {
     return (
       <Select 
         changeHandler={changeHandler}
-        placeholder="Piętro"
+        placeholder={ placeholder ? placeholder : "Pietro"}
         options={options}
+        text={text}
         color="blue"
         src={require("../assets/raportPage/iconPietro.png")}
         />
@@ -131,12 +144,13 @@ export default function Select({changeHandler, placeholder, options, src, color}
  * @category Selects
  * 
  */
-  export const RoomSelect = ({changeHandler, options}) => {
+  export const RoomSelect = ({changeHandler, options, placeholder, text}) => {
     return (
       <Select 
         changeHandler={changeHandler}
-        placeholder="Pokój"
+        placeholder={ placeholder ? placeholder : "Pokój"}
         options={options}
+        text={text}
         color="blue"
         src={require("../assets/raportPage/iconPokoj.png")}
         />
@@ -157,19 +171,18 @@ export default function Select({changeHandler, placeholder, options, src, color}
  * @category Selects
  * 
  */
-  export const ReportSelect = ({changeHandler, options}) => {
+   export const ReportSelect = ({changeHandler, options, placeholder, text}) => {
     return (
       <Select 
         changeHandler={changeHandler}
-        placeholder="Według"
+        placeholder={ placeholder ? placeholder : "Według"}
         options={options}
+        text={text}
         color="yellow"
         src={require("../assets/raportPage/iconSporzRaportu.png")}
         />
     );
   }
-  
-  
   
 
   const styles = StyleSheet.create({
@@ -192,6 +205,9 @@ export default function Select({changeHandler, placeholder, options, src, color}
       fontSize: 22,
       paddingLeft: '5%',
       textAlignVertical: 'center',
+    },
+    placeholder:{
+      color: "rgba(0,0,0,0.4)"
     },    
     Icons: {
       margin: 5,

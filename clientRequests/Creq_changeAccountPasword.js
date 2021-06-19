@@ -3,27 +3,21 @@ const { serverURL } = require('./serverInfo');
 
 /** W przyszłości możliwe że dojdzie do standaryzacji Creq */
 
-function Creq_getAccountInfo (reqId){
+function Creq_changeAccountPassword(params){
 return new Promise((resolve, reject) => {
-    if(parseInt(reqId)){
-    axios.post(`${serverURL}/getAccountInfo`, {
-        accountId: parseInt(reqId)
-    })
+    axios.post(`${serverURL}/changeAccountPassword`, params)
     .then(res => {
         console.log(res.data);
         resolve(res.data);
     })
     .catch(error => {
-        console.error(error)
+        reject({error: true, message: error.message});
     })
-}
-else{
-    reject("to nie jest liczba");
-}
+
 });
 
 }
 
   module.exports={
-    Creq_getAccountInfo,
+    Creq_changeAccountPassword,
 };

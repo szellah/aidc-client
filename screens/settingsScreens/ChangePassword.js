@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import {
   Button,
   StyleSheet,
@@ -21,6 +21,9 @@ import {
 import { ChangeButton, CancelButton } from "../../components/Buttons";
 import { Container } from "../../components/Containers";
 import { ScrollView } from "react-native-gesture-handler";
+import { NotificationBox } from "../../components/Notifications";
+import { changeAccountPassword } from "../../clientRequests/Creq_lib";
+
 
 /**
  * Ekran zmiany hasła<br>
@@ -38,6 +41,44 @@ import { ScrollView } from "react-native-gesture-handler";
  */
 
 export default function ChangePassword({navigation}){
+
+
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
+
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("")
+  const [repeatedNewPassword, setRepeatedNewPassword] = useState("")
+
+  const Change = () => {
+    if(newPassword === repeatedNewPassword)
+    {
+      const SHA256 = require("crypto-js/sha256");
+      changeAccountPassword(
+      {
+        userId: 1, //tu zaminić na id użytkownika wysyłającego
+        password: SHA256(newPassword)
+      })
+      .then((notification)=>{
+        navigation.navigate("Settings", { notification: notification });
+      })
+      .catch((error)=>{
+        setNotificationContent(error);
+        setNotificationVisibility(true);
+      });
+    }
+    else{
+        setNotificationContent({error: true, message: "nowe hasło i hasło powtórzone nie zgadzają się ze sobą"});
+        setNotificationVisibility(true);
+    }
+      
+    };
+
+
+  const Cancel = () => {
+    navigation.goBack();
+  };
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Tray composition="compact">
@@ -48,21 +89,32 @@ export default function ChangePassword({navigation}){
         source={require("../../assets/tlo_dodawanie.png")}
         style={{ flex: 1, justifyContent: "center" }}
       >
+
+
+        <NotificationBox
+        visibility={notificationVisibility}
+        visibilityHandler={setNotificationVisibility}
+        content={notificationContent}
+        />
+
         <Container spread="top" composition="comapct">
-          <Tray spread="center" composition="compact">
-            <EnterNewPasswordInput />
-          </Tray>
-          <Tray spread="center" composition="compact">
-            <EnterOldPasswordInput />
-          </Tray>
-          <Tray spread="center" composition="compact">
-            <RepeatNewPasswordInput />
-          </Tray>
+
+            <EnterOldPasswordInput 
+            changeHandler={setOldPassword}
+            />
+            
+            <EnterNewPasswordInput
+            changeHandler={setNewPassword}
+            />
+
+            <RepeatNewPasswordInput 
+            changeHandler={setRepeatedNewPassword}
+            />
 
           <Container composition="loose" spread="bottom">
             <Tray spread="even" composition="loose">
-              <ChangeButton />
-              <CancelButton navigation={navigation} />
+              <ChangeButton pressHandler={Change}/>
+              <CancelButton pressHandler={Cancel}/>
             </Tray>
           </Container>
         </Container>

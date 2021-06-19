@@ -36,7 +36,7 @@ import { NotificationBox } from "../../components/Notifications";
  * @category userScreens
  * @returns {JSX} Zwraca ekran edycji użytkownika w postaci elementu JSX
  */
-export default function UserEdit({navigation}){
+export default function AccountEdit({navigation}){
 
   const [userId, setUserId] = useState(-1);
   const [name, setName] = useState("");
@@ -91,7 +91,7 @@ export default function UserEdit({navigation}){
   );
 
   const Save = () => {
-    if(navigation.getParam("previousScreen") === "UserInfo")
+    if(navigation.getParam("previousScreen") === "AccountInfo")
     {
       const user = {
         AccountId: userId,
@@ -187,15 +187,6 @@ export default function UserEdit({navigation}){
           changeHandler={setEmail}
           />
 
-          <UserStateInput 
-          placeholder={phState.toString()}
-          changeHandler={setState}
-          />
-
-          <UserRankInput 
-          placeholder={phRank.toString()}
-          changeHandler={setRank}
-          />
 
           <Container composition="comact" spread="bottom">
             <Tray spread="even" composition="loose">

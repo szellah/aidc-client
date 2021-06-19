@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button, ImageBackground } from "react-native";
+import { Text, View, StyleSheet, ImageBackground } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { Container } from "../../components/Containers";
 
@@ -14,9 +14,10 @@ export default function Scan({ navigation, route }) {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
-    navigation.navigate(navigation.getParam("previousScreen"), {
-      qrcode: data,
-    });
+    // const handler = navigation.getParam("handler");
+    // handler({code: data});
+    const destination = navigation.getParam("previousScreen");
+    navigation.navigate(destination, {qrcode: data})
   };
 
   if (hasPermission === null) {
@@ -27,18 +28,17 @@ export default function Scan({ navigation, route }) {
   }
 
   return (
-    <ScrollView>
-      <ImageBackground>
-        <Container>
+          <ImageBackground
+          source={require("../../assets/locationPage/background.png")}
+          style={{ flex: 1, justifyContent: "center" }}
+          >
           <View style={styles.container}>
             <BarCodeScanner
               onBarCodeScanned={handleBarCodeScanned}
               style={{ flex: 1 }}
             />
           </View>
-        </Container>
-      </ImageBackground>
-    </ScrollView>
+          </ImageBackground>
   );
 }
 

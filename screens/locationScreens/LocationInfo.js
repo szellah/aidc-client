@@ -1,21 +1,25 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {
   StyleSheet,
   View,
   ImageBackground,
   ScrollView,
   KeyboardAvoidingView,
+  Text
 } from "react-native";
 import { EditButton, DeleteButton } from "../../components/Buttons.js";
 import { PanelLokalizacjiEdytujUsun } from "../../components/PasekNawigacyjny.js";
 import {
   FloorsSelect,
   BuildingSelect,
-  ArticleCodeInput,
+  LocationCodeInput,
   RoomSelect,
 } from "../../components/Inputs.js";
 import { Tray } from "../../components/Trays";
 import { Container } from "../../components/Containers.js";
+import { deleteLocation } from "../../clientRequests/Creq_lib.js";
+
+import { NotificationBox } from "../../components/Notifications";
 
 
 /**
@@ -29,7 +33,61 @@ import { Container } from "../../components/Containers.js";
  * 
  * @returns {JSX} Zwraca ekran informacyjny lokalizacji w postaci elmentu JSX
  */
-export default function LocationInfo(){
+export default function LocationInfo({navigation}){
+
+  const [building, setBuilding] = useState("");
+  const [floor, setFloor] = useState("");
+  const [room, setRoom] = useState("");
+  const [locationCode, setLocationCode] = useState("");
+
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
+
+
+  let location = null;
+
+  //wstawianie informacji jeżeli przyszły z innego ekranu
+  useEffect(() => {
+    if(navigation.getParam('data'))
+      {
+        location = navigation.getParam('data');
+
+        setBuilding("Budynek " + location.Building.toString());
+        setFloor("Piętro " + location.Floor.toString());
+        setRoom("Pokój " + location.Room.toString());
+        setLocationCode(location.LocationId.toString())
+
+      }
+  });
+
+  useEffect(() => {
+    if(navigation.getParam('notification'))
+      {
+        setNotificationContent(navigation.getParam('notification'));
+        setNotificationVisibility(true);    
+      }
+  }, [navigation.getParam('notification')]);
+
+  const Edit = () => {
+    navigation.navigate("LocationEdit", {data: location, previousScreen: "LocationInfo"});
+  };
+
+  const Delete = () => {
+      deleteLocation(
+      {
+        AccountId: 1, 
+        locationId: locationCode
+      })
+      .then((notification)=>{
+        const destination = navigation.getParam("previousScreen");
+        navigation.navigate(destination, { notification: notification });
+      })
+      .catch((error)=>{
+        setNotificationContent(error);
+        setNotificationVisibility(true);
+      });
+  };
+
   return (
     <KeyboardAvoidingView
       behavior="height"
@@ -45,16 +103,24 @@ export default function LocationInfo(){
           source={require("../../assets/tlo_dodawanie.png")}
           style={{ flex: 1 }}
         >
+
+          <NotificationBox
+          visibility={notificationVisibility}
+          visibilityHandler={setNotificationVisibility}
+          content={notificationContent}
+          />
+
+
           <Container spread="top" composition="comapct">
-            <BuildingSelect />
-            <FloorsSelect />
-            <RoomSelect />
-            <ArticleCodeInput />
+            <BuildingSelect text={building} />
+            <FloorsSelect text={floor} />
+            <RoomSelect text={room} />
+            <LocationCodeInput text={locationCode}/>
 
             <Container composition="loose" spread="bottom">
               <Tray composition="loose" spread="even">
-                <EditButton />
-                <DeleteButton />
+                <EditButton pressHandler={Edit} />
+                <DeleteButton pressHandler={Delete} />
               </Tray>
             </Container>
           </Container>

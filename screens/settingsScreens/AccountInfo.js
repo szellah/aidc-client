@@ -45,7 +45,7 @@ import { deleteUser } from "../../clientRequests/Creq_lib";
  * @category userScreens
  * @returns {JSX} Zwraca ekran informacyjny użytkownika w postaci elementu JSX
  */
-export default function UserInfo({navigation}){
+export default function AccountInfo({navigation}){
 
   const [userId, setUserId] = useState(-1);
   const [name, setName] = useState("");
@@ -87,24 +87,28 @@ export default function UserInfo({navigation}){
   
 
   const Edit = () => {
-    navigation.navigate("UserEdit", {data: user, previousScreen: "UserInfo"});
+    navigation.navigate("AccountEdit", {data: user, previousScreen: "AccountInfo"});
   };
+
+  const ChangePassword = () => {
+    navigation.navigate("AccountChangePassword");
+  }
   
-  const Delete = () => {
-    deleteUser(
-    {
-      UserId: 1, 
-      UserToDelete: userId
-    })
-    .then((notification)=>{
-      const destination = navigation.getParam("previousScreen");
-      navigation.navigate(destination, { notification: notification });
-    })
-    .catch((error)=>{
-      setNotificationContent(error);
-      setNotificationVisibility(true);
-    });
-};
+//   const Delete = () => {
+//     deleteUser(
+//     {
+//       UserId: 1, 
+//       UserToDelete: userId
+//     })
+//     .then((notification)=>{
+//       const destination = navigation.getParam("previousScreen");
+//       navigation.navigate(destination, { notification: notification });
+//     })
+//     .catch((error)=>{
+//       setNotificationContent(error);
+//       setNotificationVisibility(true);
+//     });
+// };
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -139,13 +143,13 @@ export default function UserInfo({navigation}){
           <UserRankInput text={rank.toString()}/>
 
           <Tray spread="center" composition="loose">
-            <ChangePasswordButton />
+            <ChangePasswordButton pressHandler={ChangePassword}/>
           </Tray>
 
           <Container composition="compact" spread="bottom">
             <Tray spread="even" composition="loose">
               <EditButton pressHandler={Edit} />
-              <DeleteButton pressHandler={Delete} />
+              {/* <DeleteButton pressHandler={Delete} /> */}
             </Tray>
           </Container>
         </Container>

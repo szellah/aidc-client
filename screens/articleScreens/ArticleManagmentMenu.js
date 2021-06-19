@@ -10,6 +10,8 @@ import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 import { Container } from "../../components/Containers";
 import { ScrollView } from "react-native-gesture-handler";
 
+import {getArticleInfo} from "../../clientRequests/Creq_lib";
+
 /**
  * Ekran Menu Zarządzania<br> 
  * posiada takie elementy jak:<br>
@@ -22,6 +24,21 @@ import { ScrollView } from "react-native-gesture-handler";
  * @returns {JSX} Zwraca Ekran Menu Zarządzania w postaci elementu JSX
  */
 export default function ArticleManagmentMenu({ navigation }) {
+
+  const passToArticleInfoScreen = ({code}) =>{
+    console.log(code);
+    return new Promise((resolve, reject) => {
+    getArticleInfo(code).then((response) =>{
+          //handling błędu do Notification
+          navigation.navigate('ArticleInfo', {data: response.message, previousScreen: "ScanArticle"});
+        }).catch((error) => {
+          reject({error: true, message: error.message});
+        });
+
+    });
+    
+  }
+
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact">
@@ -35,7 +52,7 @@ export default function ArticleManagmentMenu({ navigation }) {
         <Container spread="center" composition="compact">
           {/* Przyciski w menu "Zarządzanie (Managment)" nawigujące do nowych sekcji  */}
           <Tray spread="center" composition="compact">
-            <ArticleInfoButton navigation={navigation} />
+            <ArticleInfoButton navigation={navigation} handler={passToArticleInfoScreen}/>
           </Tray>
           <Tray spread="center" composition="compact">
             <ReportsButton navigation={navigation} />
