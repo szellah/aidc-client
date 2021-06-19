@@ -8,6 +8,7 @@ const { Creq_addNewArticle } = require('./Creq_addNewArticle');
 const { Creq_deleteArticle } = require('./Creq_deleteArticle');
 const { Creq_dislocateArticle } = require('./Creq_dislocateArticle');
 const { Creq_allocateArticle } = require('./Creq_allocateArticle');
+const { Creq_getArticleReport } = require('./Creq_getArticleReport');
 
 const { Creq_getLocationInfo } = require('./Creq_getLocationInfo');
 const { Creq_addNewLocation } = require('./Creq_addNewLocation');
@@ -19,6 +20,10 @@ const { Creq_updateUserInfo } = require('./Creq_updateUserInfo');
 const { Creq_deleteUser } = require('./Creq_deleteUser');
 
 const {Creq_changeAccountPassword} = require('./Creq_changeAccountPasword');
+
+const { Creq_getBuildings } = require("./Creq_getBuildings");
+const { Creq_getFloors } = require("./Creq_getFloors");
+const { Creq_getRooms } = require("./Creq_getRooms");
 
 
 const { Creq_test } = require('./Creq_test');
@@ -36,6 +41,8 @@ module.exports={
     dislocateArticle: Creq_dislocateArticle,
     allocateArticle: Creq_allocateArticle,
 
+    getArticleReport: Creq_getArticleReport,
+
     getLocationInfo: Creq_getLocationInfo,
     addNewLocation: Creq_addNewLocation,
     updateLocationInfo: Creq_updateLocationInfo,
@@ -44,6 +51,10 @@ module.exports={
     addNewUser: Creq_addNewUser,
     updateUserInfo: Creq_updateUserInfo,
     deleteUser: Creq_deleteUser,
+
+    getBuildings: Creq_getBuildings,
+    getFloors: Creq_getFloors,
+    getRooms: Creq_getRooms,
 
     changeAccountPassword: Creq_changeAccountPassword,
 

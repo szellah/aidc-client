@@ -63,7 +63,7 @@ export default function UsersTable({ navigation }) {
     setNotificationContent(error);
     setNotificationVisibility(true);
   });
- }, []);
+ }, [navigation.getParam('notification'), navigation.getParam('data')]);
 
  useEffect(() => {
   if(navigation.getParam('notification'))
@@ -75,7 +75,6 @@ export default function UsersTable({ navigation }) {
 
 
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <ImageBackground
         source={require("../../assets/backgrounds/blue_quater.png")}
         style={{ flex: 1, justifyContent: "center" }}
@@ -100,7 +99,6 @@ export default function UsersTable({ navigation }) {
           />
         </Container>
       </ImageBackground>
-    </ScrollView>
   );
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ImageBackground, Text, View, ScrollView } from "react-native";
 import { CreateButton } from "../../components/Buttons";
 import { Tray } from "../../components/Trays";
@@ -11,6 +11,7 @@ import {
   ReportSelect,
 } from "../../components/Selects";
 import { MenuProvider } from "react-native-popup-menu";
+import { getArticleCategories, getBuildings, getFloors, getRooms, getArticleReport } from "../../clientRequests/Creq_lib";
 
 /**
  * Ekran Kreatora Raportów<br>
@@ -27,6 +28,11 @@ import { MenuProvider } from "react-native-popup-menu";
  * Zwraca ekran kreatora raportów w postaci elementu JSX
  */
 export default function CreateReport({ navigation }) {
+
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
+
+
   
   const [reportId, setReportId] = useState(0);
   const [reportText, setReportText] = useState("");
@@ -37,66 +43,145 @@ export default function CreateReport({ navigation }) {
   }
 
   const reportOptions = [
-    { name: "kategoria", value: 1, id: 1 },
-    { name: "budynek", value: 2, id: 2 },
-    { name: "piętro", value: 3, id: 3 },
-    { name: "pokój", value: 4, id: 4 },
+    { name: "Kategoria", value: 1, id: 1 },
+    { name: "Budynek", value: 2, id: 2 },
+    { name: "Piętro", value: 3, id: 3 },
+    { name: "Pokój", value: 4, id: 4 },
   ];
 
   const [categoryId, setCategoryId] = useState(0);
   const [categoryText, setCategoryText] = useState("");
+
+  const [categoryOptions, setCategoryOptions] = useState([]);
 
   const CategorySelectHandler = (name, value) =>{
     setCategoryText(name);
     setCategoryId(value);
   }
 
-  const categoryOptions = [
-    { name: "monitor", value: "111", id: 1 },
-    { name: "myszka", value: "112", id: 2 },
-    { name: "drukarka", value: "111", id: 3 },
-    { name: "klawiatura", value: "112", id: 4 },
-    { name: "jednostka centralna", value: "112", id: 5 },
-  ];
+
 
   const [buildingId, setBuildingId] = useState(0);
   const [buildingText, setBuildingText] = useState("");
 
+  const [buildingOptions, setBuildingOptions] = useState([]);
+
   const BuildingSelectHandler = (name, value) =>{
     setBuildingText(name);
     setBuildingId(value);
+
+    FloorSelectHandler("","");
+    RoomSelectHandler("","");
   }
 
-  const buildingOptions = [
-    { name: "budynek 1", value: "1", id: 1 },
-    { name: "budynek 2", value: "2", id: 2 },
-  ];
+
+
+  useEffect(() => {
+    if(reportText === "Kategoria")
+    {
+      getArticleCategories().then((options) => {
+        setCategoryOptions(options.message);
+      })
+      .catch((error)=>{
+        setNotificationContent(error);
+        setNotificationVisibility(true);
+      });
+    }
+
+    if(reportText === "Budynek" || reportText === "Piętro" || reportText === "Pokój")
+    {
+      getBuildings().then((options) => {
+        setBuildingOptions(options.message);
+      })
+      .catch((error)=>{
+        setNotificationContent(error);
+        setNotificationVisibility(true);
+      });
+    }
+
+    
+  },[reportText]);
 
   const [floorId, setFloorId] = useState(0);
   const [floorText, setFloorText] = useState("");
 
+  const [floorOptions, setFloorsOptions] = useState([]);
+
   const FloorSelectHandler = (name, value) =>{
     setFloorText(name);
     setFloorId(value);
+
+    RoomSelectHandler("","");
   }
 
-  const floorOptions = [
-    { name: "parter", value: "0", id: 1 },
-    { name: "piętro 1", value: "1", id: 2 },
-  ];
+  useEffect(() => {
+    if(reportText === "Piętro" || reportText === "Pokój")
+    {
+      getFloors(
+        {
+          building: parseInt(buildingId)
+        }
+      ).then((options) => {
+        setFloorsOptions(options.message);
+      })
+      .catch((error)=>{
+        setNotificationContent(error);
+        setNotificationVisibility(true);
+      });
+    }    
+  },[reportText, buildingId]);
+
 
   const [roomId, setRoomId] = useState(0);
   const [roomText, setRoomText] = useState("");
+
+  const [roomsOptions, setRoomsOptions] = useState([]);
 
   const RoomSelectHandler = (name, value) =>{
     setRoomText(name);
     setRoomId(value);
   }
 
-  const roomOptions = [
-    { name: "pokój 111", value: "111", id: 1 },
-    { name: "pokój 112", value: "112", id: 2 },
-  ];
+  useEffect(() => {
+    if(reportText === "Pokój")
+    {
+      getRooms(
+        {
+          building: parseInt(buildingId),
+          floor: parseInt(floorId)
+        }
+      ).then((options) => {
+        setRoomsOptions(options.message);
+      })
+      .catch((error)=>{
+        setNotificationContent(error);
+        setNotificationVisibility(true);
+      });
+    }    
+  },[reportText, buildingId, floorId]);
+
+
+
+  const Create = () => {
+    getArticleReport(
+      {
+      reportChoice: reportText,
+      building: parseInt(buildingId),
+      floor: parseInt(floorId),
+      room: parseInt(roomId),
+      category: categoryText
+      }
+    )
+    .then((data) =>{
+      console.log(data.message);
+      navigation.navigate("Report", {data: data.message});
+    })
+    .catch((error)=>{
+      setNotificationContent(error);
+      setNotificationVisibility(true);
+    });
+    
+  }
 
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
@@ -137,7 +222,7 @@ export default function CreateReport({ navigation }) {
               <RoomSelect 
               changeHandler={RoomSelectHandler}
               text={roomText}
-              options={roomOptions} 
+              options={roomsOptions} 
               />
             )}
 
@@ -152,9 +237,7 @@ export default function CreateReport({ navigation }) {
             <Container composition="loose" spread="bottom">
               <Tray composition="loose" spread="center">
                 <CreateButton
-                  pressHandler={() => {
-                    navigation.navigate("Raport");
-                  }}
+                  pressHandler={Create}
                 />
               </Tray>
             </Container>

@@ -86,6 +86,11 @@ export default function UserInfo({navigation}){
   });
   
 
+  const ChangePassword = () => {
+    setNotificationContent({error: false, message: `Wysłano link do zmiany hasła pod adres ${email}`});
+    setNotificationVisibility(true);
+  }
+
   const Edit = () => {
     navigation.navigate("UserEdit", {data: user, previousScreen: "UserInfo"});
   };
@@ -139,7 +144,7 @@ export default function UserInfo({navigation}){
           <UserRankInput text={rank.toString()}/>
 
           <Tray spread="center" composition="loose">
-            <ChangePasswordButton />
+            <ChangePasswordButton pressHandler={ChangePassword}/>
           </Tray>
 
           <Container composition="compact" spread="bottom">

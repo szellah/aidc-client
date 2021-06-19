@@ -23,7 +23,7 @@ export default function Select({changeHandler, placeholder, text, options, src, 
 
                 <ScrollView>
               {              
-              options && options.map((item) => {
+              typeof(options) === 'object' && options.map((item) => {
                 return (
   
                  <TouchableOpacity
@@ -66,12 +66,13 @@ export default function Select({changeHandler, placeholder, text, options, src, 
  * @category Selects
  * 
  */
-  export const CategorySelect = ({changeHandler, options, placeholder, text}) => {
+   export const CategorySelect = ({changeHandler, options, placeholder, text}) => {
     return (
       <Select 
         changeHandler={changeHandler}
         placeholder={ placeholder ? placeholder : "Kategoria"}
         options={options}
+        text={text}
         color="blue"
         src={require("../assets/raportPage/iconBudynek.png")}
         />
