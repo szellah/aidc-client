@@ -149,7 +149,7 @@ export const PasswordInput = () => {
  * @category Inputs
  * 
  */
-export const EnterOldPasswordInput = () => {
+export const EnterOldPasswordInput = ({changeHandler}) => {
 	return (
 		<Input
 		icon="lock"
@@ -157,6 +157,7 @@ export const EnterOldPasswordInput = () => {
 		placeholderTextColor="white"
 		color="blue"
 		size="small"
+		changeHandler={changeHandler}
 		/>
 	);
 };
@@ -170,7 +171,7 @@ export const EnterOldPasswordInput = () => {
  * @category Inputs
  * 
  */
-export const EnterNewPasswordInput = () => {
+export const EnterNewPasswordInput = ({changeHandler}) => {
 	return (
 		<Input
 		icon="lock"
@@ -178,6 +179,7 @@ export const EnterNewPasswordInput = () => {
 		placeholderTextColor="white"
 		color="blue"
 		size="small"
+		changeHandler={changeHandler}
 		/>
 	);
 };
@@ -191,7 +193,7 @@ export const EnterNewPasswordInput = () => {
  * @category Inputs
  * 
  */
-export const RepeatNewPasswordInput = () => {
+export const RepeatNewPasswordInput = ({changeHandler}) => {
 	return (
 		<Input
 		icon="lock"
@@ -199,6 +201,7 @@ export const RepeatNewPasswordInput = () => {
 		placeholderTextColor="white"
 		color="blue"
 		size="small"
+		changeHandler={changeHandler}
 		/>
 	);
 };

@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import {
   Button,
   StyleSheet,
@@ -20,6 +20,10 @@ import {
   AccountInfoButton,
 } from "../../components/RoundButtons";
 import { Container } from "../../components/Containers";
+import { NotificationBox } from "../../components/Notifications";
+import { getAccountInfo } from "../../clientRequests/Creq_lib";
+
+
 
 
 const kliknij = (text) => {
@@ -40,6 +44,37 @@ const kliknij = (text) => {
  */
 
 export default function SettingsMenu({ navigation }) {
+
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
+
+  useEffect(() => {
+    if(navigation.getParam('notification'))
+      {
+        setNotificationContent(navigation.getParam('notification'));
+        setNotificationVisibility(true);    
+      }
+  }, [navigation.getParam('notification')]);
+
+  const passAccountInfo = () =>{
+    console.log("hej");
+    getAccountInfo(1)
+    .then((data) => {
+      if(data.error)
+      {
+        throw new Error(data.message)
+      }
+      else
+      {
+        navigation.navigate("AccountInfo", {data: data.message, previousScreen: "SettingsMenu"});
+      }
+    })
+    .catch((error) => {
+      setNotificationContent(error);
+      setNotificationVisibility(true);
+    });
+  }
+
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact">
@@ -50,13 +85,23 @@ export default function SettingsMenu({ navigation }) {
         source={require("../../assets/tlo_dodawanie.png")}
         style={{ flex: 1, justifyContent: "center" }}
       >
+
+<NotificationBox
+        visibility={notificationVisibility}
+        visibilityHandler={setNotificationVisibility}
+        content={notificationContent}
+        />
+
+
         <Container spread="center" composition="compact">
           <Tray spread="center" composition="compact">
             <ChangePasswordButton navigation={navigation} />
-            <AccountInfoButton navigation={navigation} />
+            {/* <AccountInfoButton navigation={navigation} pressHandler={passAccountInfo}/> */}
           </Tray>
           <Tray spread="center" composition="compact">
-            <DeleteAccountButton navigation={navigation} />
+          <AccountInfoButton navigation={navigation} pressHandler={passAccountInfo}/>
+
+            {/* <DeleteAccountButton navigation={navigation}/> */}
           </Tray>
         </Container>
       </ImageBackground>

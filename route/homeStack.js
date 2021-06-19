@@ -22,6 +22,8 @@ import UserEdit from "../screens/userScreens/UserEdit";
 import UsersTable from "../screens/userScreens/UsersTable";
 import Scan from "../screens/scanScreens/Scan";
 import CreateReport from "../screens/articleScreens/CreateReport";
+import AccountInfo from "../screens/settingsScreens/AccountInfo.js";
+import AccountEdit from "../screens/settingsScreens/AccountEdit.js";
 
 const screens = {
   Home: {
@@ -86,7 +88,13 @@ const screens = {
   },
   CreateReport:{
     screen: CreateReport,
+  },
+  AccountInfo:{
+    screen: AccountInfo,
+  },AccountEdit:{
+    screen: AccountEdit,
   }
+
 
 };
 

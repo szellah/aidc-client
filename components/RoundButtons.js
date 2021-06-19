@@ -18,12 +18,13 @@ import { View, StyleSheet, TouchableOpacity, Text, Dimensions, Image} from "reac
  * 
  * @category Root Components
  */
-export const RoundButton = ({navigation, destination, handler, icon, familyOfIcons, title, color, previousScreen}) => {
+export const RoundButton = ({navigation, destination, handler, icon, familyOfIcons, title, color, previousScreen, pressHandler}) => {
     
     return(
         <TouchableOpacity
         onPress={() => {
-            navigation.navigate(destination, {handler: handler, previousScreen: previousScreen});
+            destination ? navigation.navigate(destination, {handler: handler, previousScreen: previousScreen}) : null;
+            (typeof(pressHandler) === 'function') ? pressHandler() : null;
           }}
         >
 
@@ -277,14 +278,15 @@ export const ChangePasswordButton = ({navigation}) => {
  * 
  * @category Round Buttons
  */
-export const AccountInfoButton = ({navigation}) => {
+export const AccountInfoButton = ({navigation, pressHandler}) => {
     return(
         <RoundButton
         navigation={navigation}
         color="gray"
         familyOfIcons="Ionicons"
         icon="information-circle-outline"
-        destination="AccountInfo"
+        previousScreen="SettingsMenu"
+        pressHandler={pressHandler}
         title="Informacje"
         />
     )

@@ -18,6 +18,8 @@ const { Creq_addNewUser } = require('./Creq_addNewUser');
 const { Creq_updateUserInfo } = require('./Creq_updateUserInfo');
 const { Creq_deleteUser } = require('./Creq_deleteUser');
 
+const {Creq_changeAccountPassword} = require('./Creq_changeAccountPasword');
+
 
 const { Creq_test } = require('./Creq_test');
 
@@ -42,6 +44,8 @@ module.exports={
     addNewUser: Creq_addNewUser,
     updateUserInfo: Creq_updateUserInfo,
     deleteUser: Creq_deleteUser,
+
+    changeAccountPassword: Creq_changeAccountPassword,
 
 
     test: Creq_test,
