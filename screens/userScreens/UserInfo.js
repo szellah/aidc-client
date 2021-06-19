@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState, useEffect } from "react";
 import {
   Button,
   StyleSheet,
@@ -28,6 +28,9 @@ import {
   ChangePasswordButton,
 } from "../../components/Buttons";
 import { Container } from "../../components/Containers";
+import { NotificationBox } from "../../components/Notifications";
+import { deleteUser } from "../../clientRequests/Creq_lib";
+
 
 /**
  * Ekran informacyjny użytkownika<br>
@@ -43,6 +46,66 @@ import { Container } from "../../components/Containers";
  * @returns {JSX} Zwraca ekran informacyjny użytkownika w postaci elementu JSX
  */
 export default function UserInfo({navigation}){
+
+  const [userId, setUserId] = useState(-1);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");  
+  const [login, setLogin] = useState("");
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState(0);
+  const [rank, setRank] = useState(0);
+
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
+
+  useEffect(() => {
+    if(navigation.getParam('notification'))
+      {
+        setNotificationContent(navigation.getParam('notification'));
+        setNotificationVisibility(true);    
+      }
+  }, [navigation.getParam('notification')]);
+
+
+  let user = null;
+
+  useEffect(() => {
+    if(navigation.getParam('data'))
+      {
+        user = navigation.getParam('data');
+
+        setName(user.Name);
+        setSurname(user.Surname);
+        setLogin(user.Login);
+        setEmail(user.Email);
+        setState(user.State);
+        setRank(user.Rank);
+
+        setUserId(user.AccountId);
+      }
+  });
+  
+
+  const Edit = () => {
+    navigation.navigate("UserEdit", {data: user, previousScreen: "UserInfo"});
+  };
+  
+  const Delete = () => {
+    deleteUser(
+    {
+      UserId: 1, 
+      UserToDelete: userId
+    })
+    .then((notification)=>{
+      const destination = navigation.getParam("previousScreen");
+      navigation.navigate(destination, { notification: notification });
+    })
+    .catch((error)=>{
+      setNotificationContent(error);
+      setNotificationVisibility(true);
+    });
+};
+
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       <Tray composition="compact">
@@ -53,18 +116,27 @@ export default function UserInfo({navigation}){
         source={require("../../assets/tlo_dodawanie.png")}
         style={{ flex: 1, justifyContent: "center" }}
       >
+
+          <NotificationBox
+          visibility={notificationVisibility}
+          visibilityHandler={setNotificationVisibility}
+          content={notificationContent}
+          />
+
+
         <Container spread="top" composition="comapct">
-          <UserFirstnameInput />
 
-          <UserSurnameInput />
+          <UserFirstnameInput text={name}/>
 
-          <UserLoginInput />
+          <UserSurnameInput text={surname}/>
 
-          <UserEmailInput />
+          <UserLoginInput text={login}/>
 
-          <UserStateInput />
+          <UserEmailInput text={email}/>
 
-          <UserRankInput />
+          <UserStateInput text={state.toString()}/>
+
+          <UserRankInput text={rank.toString()}/>
 
           <Tray spread="center" composition="loose">
             <ChangePasswordButton />
@@ -72,8 +144,8 @@ export default function UserInfo({navigation}){
 
           <Container composition="compact" spread="bottom">
             <Tray spread="even" composition="loose">
-              <EditButton />
-              <DeleteButton />
+              <EditButton pressHandler={Edit} />
+              <DeleteButton pressHandler={Delete} />
             </Tray>
           </Container>
         </Container>

@@ -486,7 +486,8 @@ export const UserAddNewButton = ({navigation}) => {
       navigation={navigation}
       color="yellow"
       icon="plus"
-      destination="UserPanelSave"
+      destination="UserEdit"
+      previousScreen="UsersMenu"
       title="Dodaj Nowego"
     />
   );

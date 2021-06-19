@@ -1,23 +1,19 @@
 const axios = require('axios');
 const { serverURL } = require('./serverInfo');
 
-function Creq_getAccountReport (reqId){
+/** W przyszłości możliwe że dojdzie do standaryzacji Creq */
+
+function Creq_getAccountReport(params){
 return new Promise((resolve, reject) => {
-    if(parseInt(reqId)){
-    axios.post(`${serverURL}/getAccountReport`, {
-        id: parseInt(reqId)
-    })
+    axios.post(`${serverURL}/getAccountReport`, params)
     .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         resolve(res.data);
     })
     .catch(error => {
-        console.error(error)
+        reject({error: true, message: error.message});
     })
-}
-else{
-    reject("to nie jest liczba");
-}
+
 });
 
 }

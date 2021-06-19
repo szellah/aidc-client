@@ -140,7 +140,6 @@ useEffect(() => {
 
         <Container spread="top" composition="comapct">
 
-          <Text>{locationCode}</Text>
 
           <BuildingSelect 
           placeholder={phBuilding}

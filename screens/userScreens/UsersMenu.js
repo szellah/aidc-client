@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { ImageBackground } from "react-native";
 import { Tray } from "../../components/Trays";
 import {
@@ -8,6 +8,9 @@ import {
 import { PasekNawigacyjnyArticleMenu } from "../../components/PasekNawigacyjny.js";
 import { Container } from "../../components/Containers";
 import { ScrollView } from "react-native-gesture-handler";
+
+import { NotificationBox } from "../../components/Notifications";
+
 
 /**
  * Ekran menu zarzadzania użytkownikami<br>
@@ -19,6 +22,19 @@ import { ScrollView } from "react-native-gesture-handler";
  * @returns {JSX} Zwraca ekran menu zarządania użytkownikami w postaci elementu JSX
  */
 export default function UsersMenu({ navigation }) {
+
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
+
+
+  useEffect(() => {
+    if(navigation.getParam('notification'))
+    {
+      setNotificationContent(navigation.getParam('notification'));
+      setNotificationVisibility(true);    
+    }
+  }, [navigation.getParam('notification')]);
+
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact">
@@ -29,6 +45,13 @@ export default function UsersMenu({ navigation }) {
         source={require("../../assets/tlo_dodawanie.png")}
         style={{ flex: 1, justifyContent: "center" }}
       >
+
+        <NotificationBox
+        visibility={notificationVisibility}
+        visibilityHandler={setNotificationVisibility}
+        content={notificationContent}
+        />
+
         <Container spread="center" composition="compact">
           <Tray spread="center" composition="compact">
             <UsersInfoButton navigation={navigation} />

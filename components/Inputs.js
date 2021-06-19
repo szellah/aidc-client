@@ -109,10 +109,11 @@ export const NameInput = ({text, changeHandler, placeholder}) => {
  * @category Inputs
  * 
  */
-export const LoginInput = () => {
+export const LoginInput = ({text, placeholder, changeHandler}) => {
 	return (
 		<Input
 		icon="user"
+		text={text}
         placeholder="login"
 		color="blue"
 		/>
@@ -254,12 +255,14 @@ export const RepeatPasswordInput = () => {
  * @category Inputs
  * 
  */
-export const UserFirstnameInput = () => {
+export const UserFirstnameInput = ({text, placeholder, changeHandler}) => {
 	return(
 		<Input
 		icon="user"
-        placeholder="imię"
+        placeholder={ placeholder ? placeholder : "imie"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -273,12 +276,14 @@ export const UserFirstnameInput = () => {
  * @category Inputs
  * 
  */
-export const UserSurnameInput = () => {
+export const UserSurnameInput = ({text, placeholder, changeHandler}) => {
 	return(
 		<Input
 		icon="user"
-        placeholder="nazwisko"
+        placeholder={ placeholder ? placeholder : "nazwisko"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -292,12 +297,14 @@ export const UserSurnameInput = () => {
  * @category Inputs
  * 
  */
-export const UserStateInput = () => {
+export const UserStateInput = ({text, placeholder, changeHandler}) => {
 	return(
 		<Input
 		icon="folder"
-        placeholder="stan"
+        placeholder={ placeholder ? placeholder : "stan"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -311,12 +318,14 @@ export const UserStateInput = () => {
  * @category Inputs
  * 
  */
-export const UserRankInput = () => {
+export const UserRankInput = ({text, placeholder, changeHandler}) => {
 	return(
 		<Input
 		icon="folder"
-        placeholder="ranga"
+        placeholder={ placeholder ? placeholder : "ranga"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -330,12 +339,14 @@ export const UserRankInput = () => {
  * @category Inputs
  * 
  */
-export const UserLoginInput = () => {
+export const UserLoginInput = ({text, placeholder, changeHandler}) => {
 	return(
 		<Input
 		icon="user"
-        placeholder="login"
+        placeholder={ placeholder ? placeholder : "login"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -349,12 +360,14 @@ export const UserLoginInput = () => {
  * @category Inputs
  * 
  */
-export const UserEmailInput = () => {
+export const UserEmailInput = ({text, placeholder, changeHandler}) => {
 	return(
 		<Input
 		icon="envelope"
-        placeholder="e-mail"
+        placeholder={ placeholder ? placeholder : "e-mail"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -444,7 +457,7 @@ export const LocationCodeInput = ({pressHandler, text, placeholder, changeHandle
  * @category Inputs
  * 
  */
-export const CategorySelect = ({text}) => {
+export const CategorySelect = ({text, placeholder, changeHandler}) => {
 	return (
 		<Input
 		icon="folder"

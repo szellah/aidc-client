@@ -37,9 +37,8 @@ export function Table({toDisplay, clickable, pressHandler}) {
 
   const topRow = (toDisplay.filter(isHeader))[0];
 
-  toDisplay = toDisplay.filter(isNotHeader);
+  const things = toDisplay.filter(isNotHeader);
 
-  const [things, setThings] = useState(toDisplay)
 
 
   const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);

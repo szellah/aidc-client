@@ -72,10 +72,10 @@ const screens = {
   UsersMenu:{
     screen: UsersMenu,
   },
-  UserPanelEdit:{
+  UserInfo:{
     screen: UserInfo,
   },
-  UserPanelSave:{
+  UserEdit:{
     screen: UserEdit,
   },
   UsersTable:{

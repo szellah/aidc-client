@@ -14,6 +14,10 @@ const { Creq_addNewLocation } = require('./Creq_addNewLocation');
 const { Creq_updateLocationInfo } = require('./Creq_updateLocationInfo');
 const { Creq_deleteLocation } = require('./Creq_deleteLocation');
 
+const { Creq_addNewUser } = require('./Creq_addNewUser');
+const { Creq_updateUserInfo } = require('./Creq_updateUserInfo');
+const { Creq_deleteUser } = require('./Creq_deleteUser');
+
 
 const { Creq_test } = require('./Creq_test');
 
@@ -34,6 +38,11 @@ module.exports={
     addNewLocation: Creq_addNewLocation,
     updateLocationInfo: Creq_updateLocationInfo,
     deleteLocation: Creq_deleteLocation,
+
+    addNewUser: Creq_addNewUser,
+    updateUserInfo: Creq_updateUserInfo,
+    deleteUser: Creq_deleteUser,
+
 
     test: Creq_test,
 }
