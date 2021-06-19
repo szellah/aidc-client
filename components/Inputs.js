@@ -25,7 +25,7 @@ import { Ionicons } from '@expo/vector-icons';
  * 	@category Root Components
  */
 
-export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler, changeHandler, text, editable}) => {
+export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler, changeHandler, text, editable, password}) => {
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
 			<Icon
@@ -40,6 +40,7 @@ export const Input = ({icon, placeholder, placeholderTextColor, color, size, dis
 				placeholder={placeholder}
 				defaultValue={text}
 				editable={typeof(changeHandler) === "function"}
+				secureTextEntry={password}
 				placeholderTextColor={placeholderTextColor == null ? "rgba(0,0,0,0.4)" : placeholderTextColor}
 				multiline={size=="large"}
 				onChangeText={(val) => {changeHandler(val)}}
@@ -136,6 +137,7 @@ export const PasswordInput = () => {
         placeholder="hasło"
 		color="blue"
 		size="small"
+		password={true}
 		/>
 	);
 };
@@ -158,6 +160,7 @@ export const EnterOldPasswordInput = ({changeHandler}) => {
 		color="blue"
 		size="small"
 		changeHandler={changeHandler}
+		password={true}
 		/>
 	);
 };
@@ -180,6 +183,7 @@ export const EnterNewPasswordInput = ({changeHandler}) => {
 		color="blue"
 		size="small"
 		changeHandler={changeHandler}
+		password={true}
 		/>
 	);
 };
@@ -202,6 +206,7 @@ export const RepeatNewPasswordInput = ({changeHandler}) => {
 		color="blue"
 		size="small"
 		changeHandler={changeHandler}
+		password={true}
 		/>
 	);
 };
@@ -223,6 +228,7 @@ export const EnterPasswordInput = () => {
 		placeholderTextColor="white"
 		color="blue"
 		size="small"
+		password={true}
 		/>
 	);
 };
@@ -244,6 +250,7 @@ export const RepeatPasswordInput = () => {
 		placeholderTextColor="white"
 		color="blue"
 		size="small"
+		password={true}
 		/>
 	);
 };

@@ -89,6 +89,10 @@ export default function AccountInfo({navigation}){
   const Edit = () => {
     navigation.navigate("AccountEdit", {data: user, previousScreen: "AccountInfo"});
   };
+
+  const ChangePassword = () => {
+    navigation.navigate("AccountChangePassword");
+  }
   
 //   const Delete = () => {
 //     deleteUser(
@@ -139,7 +143,7 @@ export default function AccountInfo({navigation}){
           <UserRankInput text={rank.toString()}/>
 
           <Tray spread="center" composition="loose">
-            <ChangePasswordButton />
+            <ChangePasswordButton pressHandler={ChangePassword}/>
           </Tray>
 
           <Container composition="compact" spread="bottom">
