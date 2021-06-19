@@ -5,14 +5,39 @@ const { serverURL } = require('./serverInfo');
 
 function Creq_getArticleReport(params){
 return new Promise((resolve, reject) => {
-    axios.post(`${serverURL}/getArticleReport`, params)
-    .then(res => {
-        console.log(res.data);
-        resolve(res.data);
-    })
-    .catch(error => {
-        reject({error: true, message: error.message});
-    })
+    const {reportChoice, building, floor, room, category} = params;
+
+    let message = reportChoice ? false : "Nie wybrano według czego stworzyć raport"
+
+
+
+    if(reportChoice==="Kategoria")
+        message = category ? false : "Nie wybrano kategorii";
+
+    if(reportChoice==="Budynek")
+        message = building ? false : "Nie wybrano budynku";
+
+    if(reportChoice==="Piętro")
+        message = floor ? building ? false : "Nie wybrano budynku" : "Nie wybrano pietra";
+
+    if(reportChoice==="Pokój")
+        message = room ? floor ? building ? false : "Nie wybrano budynku" : "Nie wybrano pietra" : "Nie wybrano pokoju";
+
+    if(!message){
+        axios.post(`${serverURL}/getArticleReport`, params)
+        .then(res => {
+            console.log(res.data);
+            resolve(res.data);
+        })
+        .catch(error => {
+            reject({error: true, message: error.message});
+        })
+    }
+    else{
+        reject({error: true, message: message});
+    }
+
+    
 
 });
 

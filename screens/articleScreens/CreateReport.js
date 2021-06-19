@@ -11,6 +11,7 @@ import {
   ReportSelect,
 } from "../../components/Selects";
 import { MenuProvider } from "react-native-popup-menu";
+import { NotificationBox } from "../../components/Notifications";
 import { getArticleCategories, getBuildings, getFloors, getRooms, getArticleReport } from "../../clientRequests/Creq_lib";
 
 /**
@@ -189,6 +190,14 @@ export default function CreateReport({ navigation }) {
         source={require("../../assets/tlo_raport.png")}
         style={{ flex: 1, justifyContent: "center" }}
       >
+
+        <NotificationBox
+        visibility={notificationVisibility}
+        visibilityHandler={setNotificationVisibility}
+        content={notificationContent}
+        />
+
+
         <Container composition="compact" spread="top">
           <Tray composition="loose" spread="center">
             <Text style={{ fontSize: 40, color: "white", marginBottom: "17%" }}>
