@@ -25,13 +25,7 @@ import { Ionicons } from '@expo/vector-icons';
  * 	@category Root Components
  */
 
-<<<<<<< HEAD
-export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler, textInputHandler}) => {
-
-	// Znam tylko czytanie wartosci input'a przez onChangeText uzylem textInputHandler, jesli to ma byc jakos inaczej zrobione to zmienic
-=======
 export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler, changeHandler, text, editable, password}) => {
->>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
 			<Icon
@@ -49,12 +43,7 @@ export const Input = ({icon, placeholder, placeholderTextColor, color, size, dis
 				secureTextEntry={password}
 				placeholderTextColor={placeholderTextColor == null ? "rgba(0,0,0,0.4)" : placeholderTextColor}
 				multiline={size=="large"}
-<<<<<<< HEAD
-				// onChangeText={(text) => {loginPressHandler(text)}}
-				onChangeText={typeof(textInputHandler) === typeof(Function) ? (text) => {textInputHandler(text)} : () => {}}
-=======
 				onChangeText={(val) => {changeHandler(val)}}
->>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
 			/>
 			{displayQRButton&&(<QRButton pressHandler={pressHandler}/>)}
 		</View>
@@ -121,18 +110,14 @@ export const NameInput = ({text, changeHandler, placeholder}) => {
  * @category Inputs
  * 
  */
-<<<<<<< HEAD
-export const LoginInput = ({textInputHandler}) => {
-=======
-export const LoginInput = ({text, placeholder, changeHandler}) => {
->>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
+export const LoginInput = ({text, changeHandler}) => {
 	return (
 		<Input
 		icon="user"
 		text={text}
         placeholder="login"
 		color="blue"
-		textInputHandler={textInputHandler}
+		changeHandler={changeHandler}
 		/>
 	);
 };
@@ -146,18 +131,15 @@ export const LoginInput = ({text, placeholder, changeHandler}) => {
  * @category Inputs
  * 
  */
-export const PasswordInput = ({textInputHandler}) => {
+export const PasswordInput = ({changeHandler}) => {
 	return (
 		<Input
 		icon="lock"
         placeholder="hasło"
 		color="blue"
 		size="small"
-<<<<<<< HEAD
-		textInputHandler={textInputHandler}
-=======
 		password={true}
->>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
+		changeHandler={changeHandler}
 		/>
 	);
 };

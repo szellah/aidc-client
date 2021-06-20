@@ -13,6 +13,8 @@ import { addNewLocation, updateLocationInfo } from "../../clientRequests/Creq_li
 
 import { NotificationBox } from "../../components/Notifications";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 
 /**
@@ -68,6 +70,9 @@ useEffect(() => {
   },[phBuilding,phFloor,phRoom]
   );
 
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
+
 
   const Save = () => {
     if(navigation.getParam("previousScreen") === "LocationInfo")
@@ -80,7 +85,7 @@ useEffect(() => {
         }
       updateLocationInfo(
       {
-        AccountId: 1, 
+        AccountId: account.AccountId, 
         Location: location
       })
       .then((notification)=>{
@@ -103,7 +108,7 @@ useEffect(() => {
       console.log(location);
       addNewLocation(
       {
-        AccountId: 1, 
+        AccountId: account.AccountId, 
         Location: location
       })
       .then((notification)=>{
@@ -120,6 +125,18 @@ useEffect(() => {
   const Cancel = () => {
     navigation.goBack();
   };
+
+  if (!isReady) {
+    AsyncStorage.getItem("user").then(account => {setAccount(JSON.parse(account)); setReady(true);});
+}
+
+if (!isReady) {
+    return (
+        <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+            <Text>Przetwarzanie danych...</Text>
+        </View>
+    );
+}
 
 
   return (

@@ -1,8 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-=======
-
->>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
 import {
   Text,
   View,
@@ -42,10 +38,6 @@ import {
 export const PasekNawigacyjny = ({ navigation } /* Obiekt do nawigacji*/ ) => {
   return (
     <View style={styles.header}>
-<<<<<<< HEAD
-=======
-
->>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
       <TouchableOpacity
       /* Nawigacja onPress={() => navigation.navigate("ekran")} */
       >
@@ -60,10 +52,6 @@ export const PasekNawigacyjny = ({ navigation } /* Obiekt do nawigacji*/ ) => {
         source={require("../assets/pusty2Icon.png")}
         style={styles.pusty}
       />
-<<<<<<< HEAD
-=======
-
->>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
     </View>
   );
 };
@@ -88,10 +76,6 @@ export const PasekNawigacyjnyArticleMenu = (
   { navigation } /* Obiekt do nawigacji */
 ) => {
   return (
-<<<<<<< HEAD
-=======
-
->>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
     <ImageBackground
       source={require("../assets/navigationBase.png")}
       style={[styles.header, { height: height * 0.065 }]}
@@ -117,10 +101,6 @@ export const PasekNawigacyjnyArticleMenu = (
         Towar
       </Text>
     </ImageBackground>
-<<<<<<< HEAD
-=======
-
->>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
   );
 
 }

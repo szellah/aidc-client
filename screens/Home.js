@@ -21,27 +21,46 @@ export default function Home({navigation}){
 
 
     // czas w milisekundach, po ktorym wyswietla sie powiadomienie o nadchodzacym zakonczeniu sesji
-    let modalTime = 10000;
+    let modalTime = 300000;
 
     // czas w milisekundach, po ktorym nastapi zakonczenie sesji od momentu wyswietlenia powiadomienia o zakonczeniu sesji
     let endSessionTime = 10000;
 
+// setTimeout nie wykona się jeżeli apka działa w tle, więc póki co kompentuje żeby dało się jedynie wylogować przez przycisk
+    // useEffect(() => {
+    //     setTimeout(() => {        
+    //         setModal(true);
+    //         setTimeout(() => {
+    //             AsyncStorage.removeItem("token");
+    //             AsyncStorage.removeItem("user");                
+    //             navigation.navigate("Login");
+    //         }, endSessionTime)
+    //     }, modalTime)            
+    // }, []);
+
+
+    //goback do poprawy
+    const [previousScreen, setPreviousScreen] = useState("")
 
     useEffect(() => {
-        setTimeout(() => {        
-            setModal(true);
-            setTimeout(() => {
-                AsyncStorage.removeItem("token");
-                AsyncStorage.removeItem("user");                
-                navigation.navigate("Login");
-            }, endSessionTime)
-        }, modalTime)            
-    }, []);
-
-
+        if(navigation.getParam('previousScreen'))
+          {
+            setPreviousScreen(navigation.getParam('previousScreen'));
+          }
+      });
     
     // Blokuje przycisk cofania na urzadzeniu; blokuje przejscie z ekranu uzytkownika do ekranu logowania
-    BackHandler.addEventListener("hardwareBackPress", () => {return true;})
+    BackHandler.addEventListener("hardwareBackPress", () => {
+        if(previousScreen === "Login")
+        {
+            
+        }
+        else
+        {
+            navigation.goBack();
+        }
+        return true;
+    })
 
 
     
@@ -64,38 +83,46 @@ export default function Home({navigation}){
         );
     }
 
+    const Logout = async () => {
+    await AsyncStorage.removeItem("token"); 
+    await AsyncStorage.removeItem("user"); 
+    navigation.navigate("Login");
+}
+
 
 
     return(
-        <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={{flex: 1}}>
-
-<ScrollView>
-
-        <Container composition="compact" spread="top">
-            {/* Test pobrania loginu zalogowanego usera */}
-            {/* <View><Text>{user["Login"]}</Text></View> */}
-            <NotificationBox
-                visibility={showModal}
-                content={{message: `Sesja konczy sie za ${endSessionTime / 1000} sekund, zapisz swoje zmiany`}}
-                visibilityHandler={setModal}>
-            </NotificationBox>
+        <ScrollView contentContainerStyle={{ flex: 1 }}>
+        <ImageBackground
+          source={require("../assets/tlo_dodawanie.png")}
+          style={{ flex: 1 }}
+        >
+          <Container composition="compact" spread="top">
             <Tray spread="right" composition="loose">
-                
-                <LogoutButton pressHandler={async () => {await AsyncStorage.removeItem("token"); await AsyncStorage.removeItem("user"); navigation.navigate("Login");}}/>
+              <LogoutButton pressHandler={Logout}/>
             </Tray>
 
-            <Tray spread="center" composition="compact">
-              <PackageButton navigation={navigation} />
-              <LocationButton navigation={navigation} />
-            </Tray>
-
-            <Tray spread="center" composition="compact">
-              <UsersButton navigation={navigation} />
-              <SettingsButton navigation={navigation} />
-            </Tray>
+            <NotificationBox
+            visibility={showModal}
+            content={{message: `Sesja konczy sie za ${endSessionTime / 1000} sekund, zapisz swoje zmiany`}}
+            visibilityHandler={setModal}
+            />
+            <Text>{previousScreen}</Text>
+  
+            <Container composition="compact" spread="center">
+              <Tray spread="center" composition="compact">
+                <PackageButton navigation={navigation} />
+                <LocationButton navigation={navigation} />
+              </Tray>
+  
+              <Tray spread="center" composition="compact">
+                <UsersButton navigation={navigation} />
+                <SettingsButton navigation={navigation} />
+              </Tray>
+            </Container>
           </Container>
-          </ScrollView>
-      </ImageBackground>
+        </ImageBackground>
+      </ScrollView>
     
   );
 }

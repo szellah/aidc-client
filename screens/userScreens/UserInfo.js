@@ -31,6 +31,9 @@ import { Container } from "../../components/Containers";
 import { NotificationBox } from "../../components/Notifications";
 import { deleteUser } from "../../clientRequests/Creq_lib";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
 
 /**
  * Ekran informacyjny użytkownika<br>
@@ -86,6 +89,9 @@ export default function UserInfo({navigation}){
   });
   
 
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
+
   const ChangePassword = () => {
     setNotificationContent({error: false, message: `Wysłano link do zmiany hasła pod adres ${email}`});
     setNotificationVisibility(true);
@@ -98,7 +104,7 @@ export default function UserInfo({navigation}){
   const Delete = () => {
     deleteUser(
     {
-      UserId: 1, 
+      UserId: account.AccountId, 
       UserToDelete: userId
     })
     .then((notification)=>{
@@ -110,6 +116,21 @@ export default function UserInfo({navigation}){
       setNotificationVisibility(true);
     });
 };
+
+
+
+if (!isReady) {
+  AsyncStorage.getItem("user").then(account => {setAccount(JSON.parse(account)); setReady(true);});
+}
+
+if (!isReady) {
+  return (
+      <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+          <Text>Przetwarzanie danych...</Text>
+      </View>
+  );
+}
+
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -128,6 +149,8 @@ export default function UserInfo({navigation}){
           content={notificationContent}
           />
 
+<Text>{navigation.getParam('previousScreen')}</Text>
+
 
         <Container spread="top" composition="comapct">
 
@@ -143,7 +166,7 @@ export default function UserInfo({navigation}){
 
           <UserRankInput text={rank.toString()}/>
 
-          <Tray spread="center" composition="loose">
+          { account.Rank === 1 && (<><Tray spread="center" composition="loose">
             <ChangePasswordButton pressHandler={ChangePassword}/>
           </Tray>
 
@@ -152,7 +175,7 @@ export default function UserInfo({navigation}){
               <EditButton pressHandler={Edit} />
               <DeleteButton pressHandler={Delete} />
             </Tray>
-          </Container>
+          </Container></>)}
         </Container>
       </ImageBackground>
     </ScrollView>

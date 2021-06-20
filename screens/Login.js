@@ -43,7 +43,7 @@ export default function Login({ navigation }) {
 				SetPassword(password);				
 				await AsyncStorage.setItem("token", resolve.message[0].token);
 				await AsyncStorage.setItem("user", JSON.stringify(resolve.message[0]));
-				navigation.navigate('Home');
+				navigation.navigate('Home',{previousScreen: "Login"});
 			}
 		});
 	};
@@ -69,7 +69,7 @@ export default function Login({ navigation }) {
 						visibility={notificationVisibility}
 						content={notificationContent}
 						visibilityHandler={setNotificationVisibility}
-					></NotificationBox>
+					/>
 					<ImageBackground
 						source={require('../assets/loginPage/LoginBackground.png')}
 						style={styles.imageBackground}
@@ -82,11 +82,11 @@ export default function Login({ navigation }) {
 							<View style={styles.inputContainer}>
 								<View style={styles.Login}>
 									{/* Do pobierania danych z inputow */}
-									<LoginInput textInputHandler={SetUsername}/>
+									<LoginInput changeHandler={SetUsername}/>
 								</View>
 								<View style={styles.Login}>
 									{/* Do pobierania danych z inputow */}
-									<PasswordInput textInputHandler={SetPassword}/>
+									<PasswordInput changeHandler={SetPassword}/>
 								</View>
 								{/* tutaj wstawić nowe inputy */}
 							</View>

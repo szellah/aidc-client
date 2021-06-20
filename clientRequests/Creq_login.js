@@ -1,6 +1,8 @@
 const axios = require("axios");
 const {serverURL} = require("./serverInfo");
 
+const SHA256 = require("crypto-js/sha256");
+
 
 
 function Creq_login(username, password) {
@@ -8,7 +10,7 @@ function Creq_login(username, password) {
         // Tutaj zmienic adres ip
         axios.post(`${serverURL}/login`, {
             username: username,
-            password: password
+            password: SHA256(password).toString()
         })
         .then(res => {
             console.log(res.data);
