@@ -17,7 +17,6 @@ import {
 } from "../../components/PasekNawigacyjny.js";
 import { Container } from "../../components/Containers.js";
 
-
 /**
  * Ekran Raportu<br>
  * Wyświetla się po naciśnięciu `Sporządź` w ekranie tworzenia raportu<br>
@@ -55,9 +54,10 @@ export default function Report() {
             <View style={styles.tabelka}>
               <Table />
             </View>
-
+            <Text> raz dwa </Text>
             <View style={styles.button}>
-              <ExportButton />
+              <ExportButton/>
+              
             </View>
           </View>
         </Container>

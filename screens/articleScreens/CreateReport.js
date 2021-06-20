@@ -11,7 +11,7 @@ import {
   ReportSelect,
 } from "../../components/Selects";
 import { MenuProvider } from "react-native-popup-menu";
-
+import XLSX from 'xlsx';
 /**
  * Ekran Kreatora Raportów<br>
  * Pozwala na wybranie jednego ze sposobów według których
@@ -26,6 +26,15 @@ import { MenuProvider } from "react-native-popup-menu";
  * @returns {JSX}
  * Zwraca ekran kreatora raportów w postaci elementu JSX
  */
+ function Creq_reportXsl(table){
+  //Tworzenie arkusza
+  var sheet = XLSX.utils.json_to_sheet(table);
+  var file = XLSX.utils.book_new();
+  //Łączenie do jednego skoroszytu
+  XLSX.utils.book_append_sheet(file, sheet, "Article");
+  //Dopis do skoroszytu
+  //XLSX.write(file, {/* Miejsce na tablicę */});
+}
 export default function CreateReport({ navigation }) {
   
   const [reportId, setReportId] = useState(0);
@@ -97,7 +106,6 @@ export default function CreateReport({ navigation }) {
     { name: "pokój 111", value: "111", id: 1 },
     { name: "pokój 112", value: "112", id: 2 },
   ];
-
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <ImageBackground
@@ -154,6 +162,7 @@ export default function CreateReport({ navigation }) {
                 <CreateButton
                   pressHandler={() => {
                     navigation.navigate("Raport");
+                    Creq_reportXsl(reportText);
                   }}
                 />
               </Tray>
