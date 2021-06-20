@@ -28,6 +28,7 @@ const { Creq_getFloors } = require("./Creq_getFloors");
 const { Creq_getRooms } = require("./Creq_getRooms");
 
 const { Creq_resetPassword } = require("./Creq_resetPassword");
+const { Creq_forgotPassword } = require("./Creq_forgotPassword")
 
 const { Creq_test } = require('./Creq_test');
 
@@ -63,6 +64,7 @@ module.exports={
 
     changeAccountPassword: Creq_changeAccountPassword,
     resetPassword: Creq_resetPassword,
+    forgotPassword: Creq_forgotPassword,
 
     test: Creq_test,
 }

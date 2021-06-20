@@ -10,7 +10,7 @@ import {
   LocationCodeInput,
   ArticleCodeInput,
   DescriptionInput,
-  UserEmailInput
+  LoginInput
 } from "../components/Inputs.js";
 import { MenuProvider } from "react-native-popup-menu";
 import { NotificationBox } from "../components/Notifications";
@@ -20,7 +20,7 @@ import { SaveButton, CancelButton } from "../components/Buttons.js";
 import { PasekNawigacyjny } from "../components/PasekNawigacyjny.js";
 import { Container } from "../components/Containers.js";
 import { Tray } from "../components/Trays.js";
-import { resetPassword } from "../clientRequests/Creq_lib";
+import { forgotPassword } from "../clientRequests/Creq_lib";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 /**
@@ -46,18 +46,17 @@ export default function ResetPassword({ navigation }) {
   const [notificationVisibility, setNotificationVisibility] = useState(false); 
   const [notificationContent, setNotificationContent] =useState({});
 
-  const [email, setEmail] = useState("");
+  const [login, setLogin] = useState("");
   
 
   const Send = () => {
 
-    resetPassword(
+    forgotPassword(
         {
-          UserId: userId 
+          Login: login 
         })
         .then((notification)=>{
-          setNotificationContent(notification);
-          setNotificationVisibility(true);
+            navigation.navigate("Login", {notification: notification});
         })
         .catch((error)=>{
           setNotificationContent(error);
@@ -96,9 +95,8 @@ export default function ResetPassword({ navigation }) {
         <Container spread="center" composition="comapct">
 
         <Tray composition="compact" spread="center">
-            <UserEmailInput 
-            placeholder={email}
-            changeHandler={setEmail}
+            <LoginInput 
+            changeHandler={setLogin}
             />
         </Tray>
         

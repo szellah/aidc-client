@@ -22,8 +22,17 @@ export default function Login({ navigation }) {
 
   const [username, SetUsername] = useState("");
   const [password, SetPassword] = useState("");
+
   const [notificationVisibility, setNotificationVisibility] = useState(false);
   const [notificationContent, setNotificationContent] = useState({});
+
+  useEffect(() => {
+	if(navigation.getParam('notification'))
+	  {
+		setNotificationContent(navigation.getParam('notification'));
+		setNotificationVisibility(true);    
+	  }
+  }, [navigation.getParam('notification')]);
 
 
 	// do zrobienia
@@ -94,7 +103,7 @@ export default function Login({ navigation }) {
 						<View style={styles.bottContainer}>
 							<LoginButton pressHandler={SendLoginData}/>
 							<TouchableOpacity onPress={ForgotPassword}>
-								<Text style={{ fontSize: 16, color: '#a2b9d4' }}>
+								<Text style={{ fontSize: 16, color: '#a2b9d4', marginTop: 20 }}>
 									Zapomniałem(am) hasła
 								</Text>
 							</TouchableOpacity>
