@@ -6,6 +6,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import { getAccountReport, getAccountInfo } from "../../clientRequests/Creq_lib";
 import { NotificationBox } from "../../components/Notifications";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
 
 /**
  * Ekran tabeli użytkowników<br>
@@ -24,6 +27,11 @@ export default function UsersTable({ navigation }) {
 
   const [notificationVisibility, setNotificationVisibility] = useState(false); 
   const [notificationContent, setNotificationContent] =useState({});
+
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
+
+  
 
   
   const rowHandler = (accountId) =>{
@@ -47,22 +55,23 @@ export default function UsersTable({ navigation }) {
 
 
  useEffect(() => {
-  getAccountReport()
-  .then((data) => {
-    if(data.error)
-    {
-      throw new Error(data.message)
-    }
-    else
-    {
-    setUsers([ header, ...data.message]);
-    }
-
-  })
-  .catch((error) => {
-    setNotificationContent(error);
-    setNotificationVisibility(true);
-  });
+    getAccountReport()
+    .then((data) => {
+      if(data.error)
+      {
+        throw new Error(data.message)
+      }
+      else
+      {
+      setUsers([ header, ...data.message]);
+      }
+  
+    })
+    .catch((error) => {
+      setNotificationContent(error);
+      setNotificationVisibility(true);
+    });
+   
  }, [navigation.getParam('notification'), navigation.getParam('data')]);
 
  useEffect(() => {
@@ -72,6 +81,22 @@ export default function UsersTable({ navigation }) {
       setNotificationVisibility(true);    
     }
 }, [navigation.getParam('notification')]);
+
+
+if (!isReady) {
+  AsyncStorage.getItem("user")
+  .then(account => {
+    setAccount(JSON.parse(account)); 
+    setReady(true);});
+}
+
+if (!isReady) {
+  return (
+      <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+          <Text>Przetwarzanie danych...</Text>
+      </View>
+  );
+}
 
 
   return (
@@ -86,6 +111,7 @@ export default function UsersTable({ navigation }) {
         content={notificationContent}
         />
 
+      <Text>{account.AccountId}</Text>
 
         <Container>
           <View style={styles.titleBox}>

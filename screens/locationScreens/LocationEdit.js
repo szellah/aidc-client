@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { StyleSheet, ImageBackground, ScrollView, Text } from "react-native";
+import { StyleSheet, ImageBackground, ScrollView, Text, View } from "react-native";
 import { CancelButton, SaveButton } from "../../components/Buttons.js";
 import { PanelLokalizacjiZapiszAnuluj } from "../../components/PasekNawigacyjny.js";
 import {

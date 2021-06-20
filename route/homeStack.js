@@ -24,6 +24,7 @@ import Scan from "../screens/scanScreens/Scan";
 import CreateReport from "../screens/articleScreens/CreateReport";
 import AccountInfo from "../screens/settingsScreens/AccountInfo.js";
 import AccountEdit from "../screens/settingsScreens/AccountEdit.js";
+import ResetPassword from "../screens/ResetPassword.js";
 
 const screens = {
   Login: {
@@ -96,6 +97,9 @@ const screens = {
     screen: AccountInfo,
   },AccountEdit:{
     screen: AccountEdit,
+  },
+  ResetPassword:{
+    screen: ResetPassword,
   }
 
 

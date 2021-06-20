@@ -29,7 +29,7 @@ import {
 } from "../../components/Buttons";
 import { Container } from "../../components/Containers";
 import { NotificationBox } from "../../components/Notifications";
-import { deleteUser } from "../../clientRequests/Creq_lib";
+import { deleteUser, resetPassword } from "../../clientRequests/Creq_lib";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -93,8 +93,20 @@ export default function UserInfo({navigation}){
   const [isReady, setReady] = useState(false);
 
   const ChangePassword = () => {
-    setNotificationContent({error: false, message: `Wysłano link do zmiany hasła pod adres ${email}`});
-    setNotificationVisibility(true);
+
+
+    resetPassword(
+      {
+        UserId: userId 
+      })
+      .then((notification)=>{
+        setNotificationContent(notification);
+        setNotificationVisibility(true);
+      })
+      .catch((error)=>{
+        setNotificationContent(error);
+        setNotificationVisibility(true);
+      });
   }
 
   const Edit = () => {

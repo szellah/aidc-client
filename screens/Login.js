@@ -28,7 +28,7 @@ export default function Login({ navigation }) {
 
 	// do zrobienia
 	const ForgotPassword = () => {
-		console.log('do zrobienia');
+		navigation.navigate("ResetPassword");
 	};
 
 
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
     marginTop: "10%",
   },
   bottContainer: {
-    marginTop: 200,
+    marginTop: 20,
     alignItems: "center",
   },
   button: {

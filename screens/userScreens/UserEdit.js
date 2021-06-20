@@ -27,6 +27,8 @@ import { Container } from "../../components/Containers";
 import { addNewUser, updateUserInfo } from "../../clientRequests/Creq_lib";
 import { NotificationBox } from "../../components/Notifications";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 /**
  * Ekran edycji użytkownika<br>
@@ -48,6 +50,9 @@ export default function UserEdit({navigation}){
 
   const [notificationVisibility, setNotificationVisibility] = useState(false); 
   const [notificationContent, setNotificationContent] =useState({});
+
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
 
 
 //wstawianie informacji jeżeli przyszły z innego ekranu
@@ -104,7 +109,7 @@ export default function UserEdit({navigation}){
         }
       updateUserInfo(
       {
-        UserId: 1, 
+        UserId: account.AccountId, 
         User: user
       })
       .then((notification)=>{
@@ -129,7 +134,7 @@ export default function UserEdit({navigation}){
       }
       addNewUser(
       {
-        UserId: 1, 
+        UserId: account.AccountId, 
         User: user
       })
       .then((notification)=>{
@@ -146,6 +151,18 @@ export default function UserEdit({navigation}){
   const Cancel = () => {
     navigation.goBack();
   };
+
+  if (!isReady) {
+    AsyncStorage.getItem("user").then(account => {setAccount(JSON.parse(account)); setReady(true);});
+}
+
+if (!isReady) {
+    return (
+        <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+            <Text>Przetwarzanie danych...</Text>
+        </View>
+    );
+}
 
 
   return (

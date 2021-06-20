@@ -45,11 +45,14 @@ export default function ArticleMenu({ navigation }) {
     }
   }, [navigation.getParam('notification')]);
 
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
+
   const dislocateHandler = ({code}) => {
     return new Promise((resolve, reject) => {
     dislocateArticle({
       ArticleId: code,
-      AccountId: 1
+      AccountId: account.AccountId
     })
     .then((notification)=>{
       resolve(notification);  
@@ -77,8 +80,7 @@ export default function ArticleMenu({ navigation }) {
     });
   }
 
-  const [account, setAccount] = useState({});
-  const [isReady, setReady] = useState(false);
+
 
   if (!isReady) {
       AsyncStorage.getItem("user").then(account => {setAccount(JSON.parse(account)); setReady(true);});
