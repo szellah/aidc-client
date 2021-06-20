@@ -1,55 +1,124 @@
-import React, {Component, useState} from "react";
-import { Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
-import {Tray} from '../../components/Trays';
-import {PasekNawigacyjny, PasekNawigacyjnyInfo} from '../../components/PasekNawigacyjny.js';
-import {ChangePasswordButton, DeleteAccountButton, AccountInfoButton} from '../../components/RoundButtons';
+import React, { Component, useState, useEffect } from "react";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  TextInput,
+  ScrollView
+} from "react-native";
+import { Tray } from "../../components/Trays";
+import {
+  PasekNawigacyjny,
+  PasekNawigacyjnyInfo,
+} from "../../components/PasekNawigacyjny.js";
+import {
+  ChangePasswordButton,
+  DeleteAccountButton,
+  AccountInfoButton,
+} from "../../components/RoundButtons";
 import { Container } from "../../components/Containers";
+import { NotificationBox } from "../../components/Notifications";
+import { getAccountInfo } from "../../clientRequests/Creq_lib";
+
+
+
 
 const kliknij = (text) => {
     console.log(text);
 }
+/**
+ * Ekran ustawień<br>
+ * Pozwala na:
+ * - Wyświetlenie informacji o koncie użytkownika
+ * - Przejście do ekranu zmiany haseł
+ * - Rozpoczęcie procesu usuwania konta
+ * @function SettingsMenu
+ * @param {object} navigation Pozwala na przenosznie się między ekranami
+ *
+ * @category Screens
+ *
+ * @returns {JSX} Zwraca ekran ustawień w postaci elmentu JSX
+ */
 
-export default function SettingsMenu({navigation}){
+export default function SettingsMenu({ navigation }) {
+
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
+
+  useEffect(() => {
+    if(navigation.getParam('notification'))
+      {
+        setNotificationContent(navigation.getParam('notification'));
+        setNotificationVisibility(true);    
+      }
+  }, [navigation.getParam('notification')]);
+
+  const passAccountInfo = () =>{
+    console.log("hej");
+    getAccountInfo(1)
+    .then((data) => {
+      if(data.error)
+      {
+        throw new Error(data.message)
+      }
+      else
+      {
+        navigation.navigate("AccountInfo", {data: data.message, previousScreen: "SettingsMenu"});
+      }
+    })
+    .catch((error) => {
+      setNotificationContent(error);
+      setNotificationVisibility(true);
+    });
+  }
+
   return (
-  //<ScrollView>
-  <ImageBackground source={require('../../assets/tlo_dodawanie.png')} style={styles.Tło}>
-
-      <View style={styles.paseknagorze}>
-        <PasekNawigacyjnyInfo/>
-      </View>
-
-
-<Container spread="center" composition="loose">
-      <Tray spread="center" composition="compact">
-        <ChangePasswordButton
-        navigation={navigation}
-        />
-        <AccountInfoButton
-        navigation={navigation}
-        />
+    <ScrollView contentContainerStyle={{ flex: 1 }}>
+      <Tray composition="compact">
+        {/* Pasek nawigujący do sekcji "Home" */}
+        <PasekNawigacyjnyInfo navigation={navigation} />
       </Tray>
-      <Tray spread="center" composition="compact">
-        <DeleteAccountButton
-        navigation={navigation}
-        />
-      </Tray>
-</Container>
+      <ImageBackground
+        source={require("../../assets/tlo_dodawanie.png")}
+        style={{ flex: 1, justifyContent: "center" }}
+      >
 
-  </ImageBackground>
-  //</ScrollView>
+<NotificationBox
+        visibility={notificationVisibility}
+        visibilityHandler={setNotificationVisibility}
+        content={notificationContent}
+        />
+
+
+        <Container spread="center" composition="compact">
+          <Tray spread="center" composition="compact">
+            <ChangePasswordButton navigation={navigation} />
+            {/* <AccountInfoButton navigation={navigation} pressHandler={passAccountInfo}/> */}
+          </Tray>
+          <Tray spread="center" composition="compact">
+          <AccountInfoButton navigation={navigation} pressHandler={passAccountInfo}/>
+
+            {/* <DeleteAccountButton navigation={navigation}/> */}
+          </Tray>
+        </Container>
+      </ImageBackground>
+    </ScrollView>
   );
 }
-  const styles=StyleSheet.create({
-    Tło: {
-      width: '100%',
-      height: '100%',      
-    },
-    paseknagorze:{
-      width: '110%',
-      flexDirection: 'row',
-    },
-    bezeksportu:{
-        width: '100%',
-        height: '80%',      
-    }
-  })
+const styles = StyleSheet.create({
+  Tło: {
+    width: "100%",
+    height: "100%",
+  },
+  paseknagorze: {
+    width: "110%",
+    flexDirection: "row",
+  },
+  bezeksportu: {
+    width: "100%",
+    height: "80%",
+  },
+});

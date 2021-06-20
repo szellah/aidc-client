@@ -7,7 +7,7 @@ function Creq_getAccountInfo (reqId){
 return new Promise((resolve, reject) => {
     if(parseInt(reqId)){
     axios.post(`${serverURL}/getAccountInfo`, {
-        id: parseInt(reqId)
+        accountId: parseInt(reqId)
     })
     .then(res => {
         console.log(res.data);

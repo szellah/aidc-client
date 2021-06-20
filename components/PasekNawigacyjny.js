@@ -1,4 +1,8 @@
 import React from "react";
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
 import {
   Text,
   View,
@@ -9,17 +13,39 @@ import {
   ImageBackground,
 } from "react-native";
 
-/* Pasek nawigacyjny */
+/**
+ * Pasek Nawigacyjny<br>
+ * Wyświetla się na każdym kolejnym ekranie po wybraniu jednej
+ * z czterech ikon na ekranie po zalogowaniu<br>
+ * pozwala na swobodny dostęp do ekranu głównego,
+ * wracanie na poprzedni ekran aplikacji
+ * 
+ * 
+ * @param {object} navigation 
+ * Umożliwia przenoszenie się między ekranami
+ * @category Components
+ * @returns {JSX}
+ *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci 
+ * elementu JSX
+ */
 
-/* Dodanie go do ekranu w App.js: 
-        <Stack.Screen 
-        options={{headerTitle: () => <PasekNawigacyjny/>}}>
-        </Stack.Screen>
-*/
 
-export const PasekNawigacyjny = ({ navigation } /* Obiekt do nawigacji */) => {
+
+// Pasek nawigacyjny 
+
+// Dodanie go do ekranu w App.js: 
+      //  <Stack.Screen 
+       // options={{headerTitle: () => <PasekNawigacyjny/>}}>
+      //  </Stack.Screen>
+
+
+export const PasekNawigacyjny = ({ navigation } /* Obiekt do nawigacji*/ ) => {
   return (
     <View style={styles.header}>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
       <TouchableOpacity
       /* Nawigacja onPress={() => navigation.navigate("ekran")} */
       >
@@ -34,15 +60,38 @@ export const PasekNawigacyjny = ({ navigation } /* Obiekt do nawigacji */) => {
         source={require("../assets/pusty2Icon.png")}
         style={styles.pusty}
       />
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
     </View>
   );
 };
-
+/**
+ * Pasek Nawigacyjny w Menu Towar<br>
+ * Wyświetla się na każdym kolejnym ekranie po wybraniu ikonki Towar
+ *  na ekranie po zalogowaniu<br>
+ * pozwala na swobodny dostęp do ekranu głównego,
+ * wracanie na poprzedni ekran aplikacji<br>
+ * składa się  z ikonki domku ( powrót do ekranu głównego) i ikonki towaru
+ * 
+ * 
+ * @param {object} navigation 
+ * Umożliwia przenoszenie się między ekranami
+ * @category Components
+ * @returns {JSX}
+ *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci 
+ * elementu JSX
+ */
 // Pasek nawigacyjny w menu "Towar (ArticleMenu)"
 export const PasekNawigacyjnyArticleMenu = (
   { navigation } /* Obiekt do nawigacji */
 ) => {
   return (
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
     <ImageBackground
       source={require("../assets/navigationBase.png")}
       style={[styles.header, { height: height * 0.065 }]}
@@ -68,9 +117,28 @@ export const PasekNawigacyjnyArticleMenu = (
         Towar
       </Text>
     </ImageBackground>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
   );
 
 }
+/**
+ * Pasek Nawigacyjny w Menu Lokalizacji <br>
+ * Wyświetla się na każdym kolejnym ekranie po wybraniu ikonki Lokalizacja
+ *  na ekranie po zalogowaniu<br>
+ * pozwala na swobodny dostęp do ekranu głównego,
+ * wracanie na poprzedni ekran aplikacji<br>
+ *  składa się  z ikonki domku ( powrót do ekranu głównego) i ikonki lokalizacji
+ * 
+ * @param {object} navigation 
+ * Umożliwia przenoszenie się między ekranami
+ * @category Components
+ * @returns {JSX}
+ *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci 
+ * elementu JSX
+ */
 export const PasekNawigacyjnyMenuLokalizacji = ({navigation} /* Obiekt do nawigacji */) => {
     return (
       <View style={styles.header}>
@@ -87,6 +155,21 @@ export const PasekNawigacyjnyMenuLokalizacji = ({navigation} /* Obiekt do nawiga
       </View>
     );
   }
+    /**
+ * Pasek Nawigacyjny w Menu Lokalizacji Edytuj i Usuń <br>
+ * Wyświetla się na ekranie po wybraniu ikonki Lokalizacja i edycji bądź usunięcia lokalizacji do/ z  raportu
+ *  na ekranie po zalogowaniu<br>
+ * pozwala na swobodny dostęp do ekranu głównego,
+ * wracanie na poprzedni ekran aplikacji<br>
+ *  składa się  z ikonki domku ( powrót do ekranu głównego) i ikonki lokalizacji, ikonki informacyjnej
+ * 
+ * @param {object} navigation 
+ * Umożliwia przenoszenie się między ekranami
+ * @category Components 
+ * @returns {JSX}
+ *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci 
+ * elementu JSX
+ */
   export const PanelLokalizacjiEdytujUsun = ({navigation} /* Obiekt do nawigacji */) => {
     return (
       <View style={styles.header}>
@@ -107,6 +190,21 @@ export const PasekNawigacyjnyMenuLokalizacji = ({navigation} /* Obiekt do nawiga
       </View>
     );
   }
+  /**
+ * Pasek Nawigacyjny w Menu Lokalizacji Zapisz i Anuluj <br>
+ * Wyświetla się na ekranie po wybraniu ikonki Lokalizacja i dodania lokalizacji do raportu
+ *  na ekranie po zalogowaniu<br>
+ * pozwala na swobodny dostęp do ekranu głównego,
+ * wracanie na poprzedni ekran aplikacji<br>
+ *  składa się  z ikonki domku ( powrót do ekranu głównego) i ikonki lokalizacji,napisu dodaj i plusika
+ * 
+ * @param {object} navigation 
+ * Umożliwia przenoszenie się między ekranami
+ * @category Components
+ * @returns {JSX}
+ *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci 
+ * elementu JSX
+ */
   export const PanelLokalizacjiZapiszAnuluj = ({navigation} /* Obiekt do nawigacji */) => {
     return (
       <View style={styles.header}>
@@ -130,7 +228,21 @@ export const PasekNawigacyjnyMenuLokalizacji = ({navigation} /* Obiekt do nawiga
 
 };
 
-
+  /**
+ * Pasek Nawigacyjny Informacyjny <br>
+ * Wyświetla się na ekranie po wybraniu ikonki Informacje
+ *  na ekranie po zalogowaniu<br>
+ * pozwala na swobodny dostęp do ekranu głównego,
+ * wracanie na poprzedni ekran aplikacji<br>
+ *  składa się  z ikonki domku ( powrót do ekranu głównego) i ikonki informacyjnej 
+ *np
+ * @param {object} navigation 
+ * Umożliwia przenoszenie się między ekranami
+ * @category Components
+ * @returns {JSX}
+ *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci 
+ * elementu JSX
+ */
 export const PasekNawigacyjnyInfo = (
   { navigation } /* Obiekt do nawigacji */
 ) => {

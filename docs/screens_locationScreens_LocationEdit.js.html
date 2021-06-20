@@ -1,0 +1,210 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> screens/locationScreens/LocationEdit.js</title>
+
+  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="./build/entry.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,400,700|Inconsolata,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link type="text/css" rel="stylesheet" href="https://jmblog.github.io/color-themes-for-google-code-prettify/themes/tomorrow-night.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/app.min.css">
+  <link type="text/css" rel="stylesheet" href="styles/iframe.css">
+  <link type="text/css" rel="stylesheet" href="">
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+  
+</head>
+
+
+
+<body class="layout small-header">
+    <div id="stickyNavbarOverlay"></div>
+    
+
+<div class="top-nav">
+    <div class="inner">
+        <a id="hamburger" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+        <div class="logo">
+            
+             
+                <a href="index.html">
+                    <h1 class="navbar-item">Client AIDC</h1>
+                </a>
+            
+        </div>
+        <div class="menu">
+            
+            <div class="navigation">
+                <a
+                    href="index.html"
+                    class="link"
+                >
+                    API Documentation
+                </a>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+    <div id="main">
+        <div
+            class="sidebar "
+            id="sidebarNav"
+        >
+            
+            <nav>
+                
+                    <h2><a href="index.html">Documentation</a></h2><div class="category"></div><div class="category"><h2>Button</h2><h3>Global</h3><ul><li><a href="global.html#CancelButton">CancelButton</a></li><li><a href="global.html#ChangeButton">ChangeButton</a></li><li><a href="global.html#ChangePasswordButton">ChangePasswordButton</a></li><li><a href="global.html#ConfirmButton">ConfirmButton</a></li><li><a href="global.html#DeleteButton">DeleteButton</a></li><li><a href="global.html#DeletYellowButton">DeletYellowButton</a></li><li><a href="global.html#EditButton">EditButton</a></li><li><a href="global.html#ExportButton">ExportButton</a></li><li><a href="global.html#LoginButton">LoginButton</a></li><li><a href="global.html#LogoutButton">LogoutButton</a></li><li><a href="global.html#SaveButton">SaveButton</a></li></ul></div><div class="category"><h2>Components</h2><h3>Global</h3><ul><li><a href="global.html#PanelLokalizacjiEdytujUsun">PanelLokalizacjiEdytujUsun</a></li><li><a href="global.html#PanelLokalizacjiZapiszAnuluj">PanelLokalizacjiZapiszAnuluj</a></li><li><a href="global.html#PasekNawigacyjny">PasekNawigacyjny</a></li><li><a href="global.html#PasekNawigacyjnyArticleMenu">PasekNawigacyjnyArticleMenu</a></li><li><a href="global.html#PasekNawigacyjnyInfo">PasekNawigacyjnyInfo</a></li><li><a href="global.html#PasekNawigacyjnyMenuLokalizacji">PasekNawigacyjnyMenuLokalizacji</a></li></ul></div><div class="category"><h2>Inputs</h2><h3>Global</h3><ul><li><a href="global.html#ArticleCodeInput">ArticleCodeInput</a></li><li><a href="global.html#BuildingSelect">BuildingSelect</a></li><li><a href="global.html#CategorySelect">CategorySelect</a></li><li><a href="global.html#DescriptionInput">DescriptionInput</a></li><li><a href="global.html#EnterNewPasswordInput">EnterNewPasswordInput</a></li><li><a href="global.html#EnterOldPasswordInput">EnterOldPasswordInput</a></li><li><a href="global.html#EnterPasswordInput">EnterPasswordInput</a></li><li><a href="global.html#FloorsSelect">FloorsSelect</a></li><li><a href="global.html#LocationCodeInput">LocationCodeInput</a></li><li><a href="global.html#LoginInput">LoginInput</a></li><li><a href="global.html#NameInput">NameInput</a></li><li><a href="global.html#PasswordInput">PasswordInput</a></li><li><a href="global.html#QRButton">QRButton</a></li><li><a href="global.html#RepeatNewPasswordInput">RepeatNewPasswordInput</a></li><li><a href="global.html#RepeatPasswordInput">RepeatPasswordInput</a></li><li><a href="global.html#RoomSelect">RoomSelect</a></li><li><a href="global.html#UserEmailInput">UserEmailInput</a></li><li><a href="global.html#UserFirstnameInput">UserFirstnameInput</a></li><li><a href="global.html#UserLoginInput">UserLoginInput</a></li><li><a href="global.html#UserRankInput">UserRankInput</a></li><li><a href="global.html#UserStateInput">UserStateInput</a></li><li><a href="global.html#UserSurnameInput">UserSurnameInput</a></li></ul></div><div class="category"><h2>Notifications</h2><h3>Global</h3><ul><li><a href="global.html#ErrorNotification">ErrorNotification</a></li><li><a href="global.html#InfoNotification">InfoNotification</a></li><li><a href="global.html#NotificationBox">NotificationBox</a></li></ul></div><div class="category"><h2>Root Components</h2><h3>Global</h3><ul><li><a href="global.html#Button">Button</a></li><li><a href="global.html#Container">Container</a></li><li><a href="global.html#CustomRoundButton">CustomRoundButton</a></li><li><a href="global.html#Input">Input</a></li><li><a href="global.html#Notification">Notification</a></li><li><a href="global.html#RoundButton">RoundButton</a></li><li><a href="global.html#Table">Table</a></li><li><a href="global.html#Tray">Tray</a></li></ul></div><div class="category"><h2>Round Buttons</h2><h3>Global</h3><ul><li><a href="global.html#AccountInfoButton">AccountInfoButton</a></li><li><a href="global.html#AddArticleButton">AddArticleButton</a></li><li><a href="global.html#AddStockedArticleButton">AddStockedArticleButton</a></li><li><a href="global.html#ArticleInfoButton">ArticleInfoButton</a></li><li><a href="global.html#ChangePasswordButton">ChangePasswordButton</a></li><li><a href="global.html#DeleteAccountButton">DeleteAccountButton</a></li><li><a href="global.html#Icon">Icon</a></li><li><a href="global.html#LocationAddNewButton">LocationAddNewButton</a></li><li><a href="global.html#LocationButton">LocationButton</a></li><li><a href="global.html#LocationInfoButton">LocationInfoButton</a></li><li><a href="global.html#ManagmentButton">ManagmentButton</a></li><li><a href="global.html#PackageButton">PackageButton</a></li><li><a href="global.html#RemoveStockedArticleButton">RemoveStockedArticleButton</a></li><li><a href="global.html#ReportsButton">ReportsButton</a></li><li><a href="global.html#SettingsButton">SettingsButton</a></li><li><a href="global.html#UserAddNewButton">UserAddNewButton</a></li><li><a href="global.html#UsersButton">UsersButton</a></li><li><a href="global.html#UsersInfoButton">UsersInfoButton</a></li></ul></div><div class="category"><h2>Screens</h2><h3>Global</h3><ul><li><a href="global.html#ArticleEdit">ArticleEdit</a></li><li><a href="global.html#ArticleManagmentMenu">ArticleManagmentMenu</a></li><li><a href="global.html#ArticleMenu">ArticleMenu</a></li><li><a href="global.html#ChangePassword">ChangePassword</a></li><li><a href="global.html#CreateReport">CreateReport</a></li><li><a href="global.html#DeleteAccount">DeleteAccount</a></li><li><a href="global.html#LocationEdit">LocationEdit</a></li><li><a href="global.html#LocationInfo">LocationInfo</a></li><li><a href="global.html#LocationMenu">LocationMenu</a></li><li><a href="global.html#Report">Report</a></li><li><a href="global.html#ScanArticle">ScanArticle</a></li><li><a href="global.html#ScanLocation">ScanLocation</a></li><li><a href="global.html#SettingsMenu">SettingsMenu</a></li></ul></div><div class="category"><h2>Selects</h2><h3>Global</h3><ul><li><a href="global.html#BuildingSelect">BuildingSelect</a></li><li><a href="global.html#CategorySelect">CategorySelect</a></li><li><a href="global.html#FloorSelect">FloorSelect</a></li><li><a href="global.html#ReportSelect">ReportSelect</a></li><li><a href="global.html#RoomSelect">RoomSelect</a></li></ul></div><div class="category"><h2>userScreens</h2><h3>Global</h3><ul><li><a href="global.html#Ekranedycjiu%25C5%25BCytkownika">Ekran edycji użytkownika</a></li><li><a href="global.html#Ekraninformacyjnyu%25C5%25BCytkownika">Ekran informacyjny użytkownika</a></li><li><a href="global.html#Ekranmenuzarz%25C4%2585dzaniau%25C5%25BCytkownikami">Ekran menu zarządzania użytkownikami</a></li><li><a href="global.html#Ekrantabeliu%25C5%25BCytkownik%25C3%25B3w">Ekran tabeli użytkowników</a></li></ul></div>
+                
+            </nav>
+        </div>
+        <div class="core" id="main-content-wrapper">
+            <div class="content">
+                <header class="page-title">
+                    <p>Source</p>
+                    <h1>screens/locationScreens/LocationEdit.js</h1>
+                </header>
+                
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from "react";
+import { StyleSheet, ImageBackground } from "react-native";
+import { CancelButton, SaveButton } from "../../components/Buttons.js";
+import { PanelLokalizacjiZapiszAnuluj } from "../../components/PasekNawigacyjny.js";
+import {
+  FloorsSelect,
+  BuildingSelect,
+  ArticleCodeInput,
+  RoomSelect,
+} from "../../components/Inputs.js";
+import { Tray } from "../../components/Trays";
+import { Container } from "../../components/Containers";
+
+
+/**
+ * Ekran Edytowania Lokalizacji&lt;br>
+ * Pozwala na wpisanie informacji o artykule w celu ich modyfikacji
+ * jak i wstawienia nowej do bazy danych.
+ * Można do niej przejść poprzez zeskanowanie odpowiedniej lokalizacji i naciśnięcie przycisku `Edytuj`,
+ * bądź przez proces dodawania nowej lokalizacji.
+ * @function LocationEdit
+ * 
+ * @category Screens
+ * 
+ * @returns {JSX} Zwraca ekran edycji lokalizacji w postaci elmentu JSX
+ */
+export default function LocationEdit(){
+  return (
+    &lt;ScrollView contentContainerStyle={{ flex: 1 }}>
+      &lt;Tray composition="compact" spread="center">
+        &lt;PanelLokalizacjiZapiszAnuluj />
+      &lt;/Tray>
+      &lt;ImageBackground
+        source={require("../../assets/tlo_dodawanie.png")}
+        style={{ flex: 1, justifyContent: "center" }}
+      >
+        &lt;Container spread="top" composition="comapct">
+          &lt;BuildingSelect />
+          &lt;FloorsSelect />
+          &lt;RoomSelect />
+          &lt;ArticleCodeInput />
+
+          &lt;Container composition="loose" spread="bottom">
+            &lt;Tray composition="loose" spread="even">
+              &lt;SaveButton />
+              &lt;CancelButton />
+            &lt;/Tray>
+          &lt;/Container>
+        &lt;/Container>
+      &lt;/ImageBackground>
+    &lt;/ScrollView>
+  );
+}
+
+const styles = StyleSheet.create({
+  paseknagorze: {
+    width: "100%",
+    flexDirection: "row",
+  },
+  save: {
+    position: "absolute",
+    top: "90%",
+    left: "2%",
+    marginLeft: "3%",
+  },
+  select: {
+    top: "25%",
+    height: "10%",
+    alignItems: "center",
+  },
+  cancel: {
+    position: "absolute",
+    top: "90%",
+    right: "2%",
+    marginRight: "3%",
+  },
+
+  Tło: {
+    width: "100%",
+    height: "100%",
+  },
+  tekst: {
+    position: "absolute",
+    left: "60%",
+    top: "1%",
+    color: "black",
+    textAlign: "right",
+    fontSize: 25,
+  },
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+            </div>
+            
+            <footer class="footer">
+                <div class="content has-text-centered">
+                    <p>Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a></p>
+                    <p class="sidebar-created-by">
+                        <a href="https://github.com/SoftwareBrothers/better-docs" target="_blank">BetterDocs theme</a> provided with <i class="fas fa-heart"></i> by 
+                        <a href="http://softwarebrothers.co" target="_blank">SoftwareBrothers - JavaScript Development Agency</a>
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        <div id="side-nav" class="side-nav">
+        </div>
+    </div>
+<script src="scripts/app.min.js"></script>
+<script>PR.prettyPrint();</script>
+<script src="scripts/linenumber.js"> </script>
+
+</body>
+</html>

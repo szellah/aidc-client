@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState, useRef} from 'react';
 import { StyleSheet, Text, View, FlatList, ScrollView, Animated, TouchableOpacity} from 'react-native';
 
+
 //Komponent wyświetlający tabelkę, o trzech kolumnach
 //korzysta on z mapowania tablicy elementów wchodzących na obiekty JSX, czyli innymi słowy dla każdego elemntu w tablicy tworzy on wiersz w postaci xml
 //dodatkowo posiada on skomplikowana logikę aktualizowania wysokości paska przesuwania
@@ -23,7 +24,7 @@ import { StyleSheet, Text, View, FlatList, ScrollView, Animated, TouchableOpacit
  * 
  * @category Root Components
  */
-export function Table({toDisplay, clickable, pressHandler}) {
+export function Table({toDisplay, clickable, pressHandler, manyItems}) {
 
 
   function isHeader(value){
@@ -36,45 +37,61 @@ export function Table({toDisplay, clickable, pressHandler}) {
 
   const topRow = (toDisplay.filter(isHeader))[0];
 
-  toDisplay = toDisplay.filter(isNotHeader);
+  const things = toDisplay.filter(isNotHeader);
 
-  const [things, setThings] = useState(toDisplay)
 
-  const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
-  const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
 
-  const scrollIndicator = useRef(new Animated.Value(0)).current;
+  // const [completeScrollBarHeight, setCompleteScrollBarHeight] = useState(1);
+  // const [visibleScrollBarHeight, setVisibleScrollBarHeight] = useState(0);
 
-  const scrollIndicatorSize =
-    completeScrollBarHeight > visibleScrollBarHeight
-      ? (visibleScrollBarHeight * visibleScrollBarHeight) /
-        completeScrollBarHeight
-      : visibleScrollBarHeight;
+  // const scrollIndicator = useRef(new Animated.Value(0)).current;
 
-  const difference =
-    visibleScrollBarHeight > scrollIndicatorSize
-      ? visibleScrollBarHeight - scrollIndicatorSize
-      : 1;
+  // const scrollIndicatorSize =
+  //   completeScrollBarHeight > visibleScrollBarHeight
+  //     ? (visibleScrollBarHeight * visibleScrollBarHeight) /
+  //       completeScrollBarHeight
+  //     : visibleScrollBarHeight;
 
-  const scrollIndicatorPosition = Animated.multiply(
-    scrollIndicator,
-    visibleScrollBarHeight / completeScrollBarHeight 
-  ).interpolate({
-    inputRange: [0, difference],
-    outputRange: [0, difference],
-    extrapolate: 'clamp'
-  });
+  // const difference =
+  //   visibleScrollBarHeight > scrollIndicatorSize
+  //     ? visibleScrollBarHeight - scrollIndicatorSize
+  //     : 1;
+
+  // const scrollIndicatorPosition = Animated.multiply(
+  //   scrollIndicator,
+  //   visibleScrollBarHeight / completeScrollBarHeight 
+  // ).interpolate({
+  //   inputRange: [0, difference],
+  //   outputRange: [0, difference],
+  //   extrapolate: 'clamp'
+  // });
+
+  const render = ({item}) => {
+    return (
+      <View>
+        <TouchableOpacity disabled={!clickable} onPress={()=>{pressHandler(item.id)}}>
+
+          <View style={[styles.row, rowColor[item.id % 2] ]}>
+              <Text style={[styles.columnLeft, styles.textColumn, manyItems ? styles.smallRow : styles.bigRow ]}>{item.column1}</Text>
+              <Text style={[styles.columnCenter, styles.textColumn, manyItems ? styles.smallRow : styles.bigRow ]}>{item.column2}</Text>
+              <Text style={[styles.columnRight, styles.textColumn, manyItems ? styles.smallRow : styles.bigRow ]}>{item.column3}</Text>
+          </View>
+
+          </TouchableOpacity>
+      </View>
+    )
+  }
 
 
   return (
     <View style={styles.container}>
       <View style={styles.top}>
-        <Text style={styles.topColumnLeft}>{topRow.column1}</Text>
-        <Text style={styles.topColumnCenter}>{topRow.column2}</Text>
-        <Text style={styles.topColumnLeftRight}>{topRow.column3}</Text>
+        <Text style={[styles.topColumnLeft, manyItems ? styles.smallTop : styles.bigTop ]}>{topRow.column1}</Text>
+        <Text style={[styles.topColumnCenter, manyItems ? styles.smallTop : styles.bigTop ]}>{topRow.column2}</Text>
+        <Text style={[styles.topColumnLeftRight, manyItems ? styles.smallTop : styles.bigTop ]}>{topRow.column3}</Text>
       </View>
       <View style={styles.listContainer}>
-        <ScrollView
+        {/* <ScrollView
           showsVerticalScrollIndicator={false}
           scrollEventThrottle={16}
           onContentSizeChange={height => {
@@ -91,24 +108,29 @@ export function Table({toDisplay, clickable, pressHandler}) {
             [{ nativeEvent: { contentOffset: { y: scrollIndicator } } }],
             { useNativeDriver: false }
           )}
-        >
-          { things.map((item) => {
+        > */}
+        <FlatList
+          data={things}
+          keyExtractor={item => item.id}
+          renderItem={render}
+        />
+          {/* { things.map((item) => {
             return (
               <View key={item.id}>
                 <TouchableOpacity disabled={!clickable} onPress={()=>{pressHandler(item.id)}}>
 
                   <View style={[styles.row, rowColor[item.id % 2] ]}>
-                      <Text style={[styles.columnLeft, styles.textColumn]}>{item.column1}</Text>
-                      <Text style={[styles.columnCenter, styles.textColumn]}>{item.column2}</Text>
-                      <Text style={[styles.columnRight, styles.textColumn]}>{item.column3}</Text>
+                      <Text style={[styles.columnLeft, styles.textColumn, manyItems ? styles.smallRow : styles.bigRow ]}>{item.column1}</Text>
+                      <Text style={[styles.columnCenter, styles.textColumn, manyItems ? styles.smallRow : styles.bigRow ]}>{item.column2}</Text>
+                      <Text style={[styles.columnRight, styles.textColumn, manyItems ? styles.smallRow : styles.bigRow ]}>{item.column3}</Text>
                   </View>
 
                   </TouchableOpacity>
               </View>
             )
           })}
-        </ScrollView>
-          <View style={{ height: '100%', width: 27, backgroundColor: '#d5d6d7', borderRadius: 20}}>
+        </ScrollView> */}
+          {/* <View style={{ height: '100%', width: 27, backgroundColor: '#d5d6d7', borderRadius: 20}}>
               <Animated.View
                 style={{
                   width: 27,
@@ -118,7 +140,7 @@ export function Table({toDisplay, clickable, pressHandler}) {
                   transform: [{ translateY: scrollIndicatorPosition }]
                 }}
               />
-          </View>
+          </View> */}
       </View>
     </View>
 );
@@ -145,19 +167,16 @@ columnLeft: {
   width: '32%',
   paddingLeft: 5,
   paddingVertical: 10,
-  fontSize: 20,
 },
 columnRight: {
   width: '31%',
   paddingLeft: 5,
   paddingVertical: 10,
-  fontSize: 20,
 },
 columnCenter: {
   width: '37%',
   paddingLeft: 5,
   paddingVertical: 10,
-  fontSize: 20,
   borderLeftWidth: 2,
   borderRightWidth: 2,
   borderColor: '#c5c6c7',
@@ -173,11 +192,16 @@ top: {
   color: 'white',
   textAlign: 'center',
 },
+smallTop:{
+  fontSize: 15,
+},
+bigTop:{
+  fontSize: 24,
+},
 topColumnLeftRight: {
   width: '33.33%',
   textAlign: 'left',
   paddingLeft: 15,
-  fontSize: 24,
   borderLeftColor: 'white',
   color: 'white',
   paddingVertical: 4
@@ -186,7 +210,6 @@ topColumnLeft: {
   width: '30.5%',
   textAlign: 'center',
 
-  fontSize: 24,
   borderLeftColor: 'white',
   color: 'white',
   paddingVertical: 4
@@ -194,7 +217,6 @@ topColumnLeft: {
 topColumnCenter: {
   width: '33.33%',
   textAlign: 'center',
-  fontSize: 24,
   borderLeftWidth: 1,
   borderRightWidth: 1,
   borderColor: 'white',
@@ -211,6 +233,12 @@ flexDirection: 'row',
 marginVertical: 2,
 marginLeft:10,
 height: 50,
+},
+smallRow:{
+  fontSize: 12,
+},
+bigRow:{
+  fontSize: 20,
 },
 rowDark:{
   backgroundColor:  '#cacccd', 

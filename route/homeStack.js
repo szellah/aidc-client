@@ -1,4 +1,3 @@
-
 import { createStackNavigator } from "react-navigation-stack";
 import { createAppContainer } from "react-navigation";
 import Home from "../screens/Home.js";
@@ -16,10 +15,15 @@ import ChangePassword from "../screens/settingsScreens/ChangePassword";
 import DeleteAccount from "../screens/settingsScreens/DeleteAccount";
 import LocationMenu from "../screens/locationScreens/LocationMenu";
 import LocationInfo from "../screens/locationScreens/LocationInfo";
+import LocationEdit from "../screens/locationScreens/LocationEdit";
 import UsersMenu from "../screens/userScreens/UsersMenu";
 import UserInfo from "../screens/userScreens/UserInfo";
 import UserEdit from "../screens/userScreens/UserEdit";
 import UsersTable from "../screens/userScreens/UsersTable";
+import Scan from "../screens/scanScreens/Scan";
+import CreateReport from "../screens/articleScreens/CreateReport";
+import AccountInfo from "../screens/settingsScreens/AccountInfo.js";
+import AccountEdit from "../screens/settingsScreens/AccountEdit.js";
 
 const screens = {
   Login: {
@@ -31,13 +35,13 @@ const screens = {
   Test: {
     screen: Test,
   },
-  ArticlePanelSave: {
+  ArticleEdit: {
     screen: ArticleEdit,
   },
-  ArticlePanelEdit: {
+  ArticleInfo: {
     screen: ArticleInfo,
   },
-  Raport: {
+  Report: {
     screen: Report,
   },
   ArticleMenu: {
@@ -64,21 +68,37 @@ const screens = {
   LocationMenu: {
     screen: LocationMenu,
   },
-  LocationEditDelete: {
+  LocationInfo: {
     screen: LocationInfo,
+  },
+  LocationEdit: {
+    screen: LocationEdit,
   },
   UsersMenu:{
     screen: UsersMenu,
   },
-  UserPanelEdit:{
+  UserInfo:{
     screen: UserInfo,
   },
-  UserPanelSave:{
+  UserEdit:{
     screen: UserEdit,
   },
   UsersTable:{
     screen: UsersTable,
+  },
+  Scan:{
+    screen: Scan,
+  },
+  CreateReport:{
+    screen: CreateReport,
+  },
+  AccountInfo:{
+    screen: AccountInfo,
+  },AccountEdit:{
+    screen: AccountEdit,
   }
+
+
 };
 
 const HomeStack = createStackNavigator(screens);

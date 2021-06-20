@@ -1,5 +1,5 @@
 import React, {useEffect, useState}from "react";
-import { ImageBackground, BackHandler, View, Text, Modal, TouchableOpacity, TouchableHighlight } from "react-native";
+import { ImageBackground, BackHandler, View, Text, Modal, TouchableOpacity, TouchableHighlight, ScrollView } from "react-native";
 import {LogoutButton} from "../components/Buttons";
 import {Tray} from '../components/Trays';
 import {LocationButton, UsersButton, SettingsButton, PackageButton} from '../components/RoundButtons';
@@ -69,6 +69,7 @@ export default function Home({navigation}){
     return(
         <ImageBackground source={require('../assets/tlo_dodawanie.png')} style={{flex: 1}}>
 
+<ScrollView>
 
         <Container composition="compact" spread="top">
             {/* Test pobrania loginu zalogowanego usera */}
@@ -84,25 +85,17 @@ export default function Home({navigation}){
             </Tray>
 
             <Tray spread="center" composition="compact">
-                <PackageButton
-                navigation={navigation}
-                />
-                <LocationButton
-                navigation={navigation}
-                />
+              <PackageButton navigation={navigation} />
+              <LocationButton navigation={navigation} />
             </Tray>
 
             <Tray spread="center" composition="compact">
-                <UsersButton
-                navigation={navigation}
-                />
-                <SettingsButton
-                navigation={navigation}
-                />
+              <UsersButton navigation={navigation} />
+              <SettingsButton navigation={navigation} />
             </Tray>
-
-        </Container>
-
-        </ImageBackground>
-    )
+          </Container>
+          </ScrollView>
+      </ImageBackground>
+    
+  );
 }

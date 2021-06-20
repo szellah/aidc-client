@@ -6,7 +6,7 @@ const {serverURL} = require("./serverInfo");
 function Creq_login(username, password) {
     return new Promise((resolve, reject) => {
         // Tutaj zmienic adres ip
-        axios.post(`http://192.168.0.4:8080/login`, {
+        axios.post(`${serverURL}/login`, {
             username: username,
             password: password
         })

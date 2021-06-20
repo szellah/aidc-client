@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   ImageBackground,
   KeyboardAvoidingView,
   StyleSheet,
+  Text,
   View,
 } from "react-native";
 import { Tray } from "../../components/Trays";
@@ -13,19 +14,76 @@ import { ArticleCodeInput } from "../../components/Inputs";
 import { ConfirmButton } from "../../components/Buttons";
 
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
+import { Container } from "../../components/Containers";
+import { NotificationBox } from "../../components/Notifications";
 
-export default function ScanArticle({ navigation }) {
-  const [ArticleCode, SetArticleCode] = useState("");
+/**
+ * Ekran skanowania artykułu<br>
+ * Służy do skanowania kodów poszczególnych Towarów<br>
+ * posiada takie przyciski jak:<br>
+ * - potwierdź<br> 
+ * 
+ * 
+ * @function ScanArticle
+ * @param {object} navigation pozwala na przenoszenie się między ekranami
+ * @category Screens
+ * @returns {JSX} Zwraca Ekran skanowania artykułu w postaci elementu JSX
+ */
+export default function ScanArticle({ navigation , route}) {
+  const [articleCode, setArticleCode] = useState("3");
+  let handler = null;
 
-  const Confirm = () => {};
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
+
+  useEffect(() => {
+    if (navigation.getParam("qrcode"))
+      setArticleCode(navigation.getParam("qrcode"));
+  }, [navigation.getParam("qrcode")]);
+
+  useEffect(() => {
+    if (navigation.getParam('handler')){
+      handler = navigation.getParam('handler');
+    }
+  });
+
+  useEffect(() => {
+    if(navigation.getParam('notification'))
+      {
+        setNotificationContent(navigation.getParam('notification'));
+        setNotificationVisibility(true);    
+      }
+  }, [navigation.getParam('notification')]);
+
+  const Confirm = (overriteParams) => {
+    let params = {};
+    if(navigation.getParam("previousScreen") === "ArticleMenu")
+    {
+      params = {locationCode: navigation.getParam("data"), articleCode: articleCode}
+    }
+    else if(navigation.getParam("previousScreen") === "ScanArticle")
+    {
+      params = {code: articleCode};
+    }
+    
+    params = overriteParams ? overriteParams : params;
+
+   handler(params)
+   .then((result) =>{
+    setNotificationContent(result);
+    setNotificationVisibility(true); 
+   })
+   .catch((error)=>{
+    setNotificationContent(error);
+    setNotificationVisibility(true);
+  });
+  }
+  
+
+
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
-    <ScrollView
-      contentContainerStyle={{
-        flexGrow: 1,
-        minHeight: "100%",
-      }}
-    >
+    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
       {/* KeyboardAvoidingView to kontener, który chroni przed "zjadaniem" elementów po wysunięciu klawiatury */}
       <KeyboardAvoidingView
         behavior="padding"
@@ -40,31 +98,44 @@ export default function ScanArticle({ navigation }) {
 
         <ImageBackground
           source={require("../../assets/locationPage/background.png")}
-          style={{
-            minHeight: "100%",
-            flex: 1,
-            justifyContent: "space-around",
-          }}
+          style={{ flex: 1, justifyContent: "center" }}
         >
-          <View style={{ alignItems: "center" }}>
-            <View style={{ maxHeight: 160, marginBottom: 10 }}>
-              <Image
-                source={require("../../assets/locationPage/qr.png")}
-                style={{
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                  resizeMode: "contain",
-                }}
-              />
-            </View>
-            <View>
-              <ArticleCodeInput pressHandler={() => {}} />
-            </View>
-          </View>
 
-          <Tray spread="center" composition="compact">
-            <ConfirmButton pressHandler={Confirm} />
-          </Tray>
+        <NotificationBox
+        visibility={notificationVisibility}
+        visibilityHandler={setNotificationVisibility}
+        content={notificationContent}
+        />
+
+          <Container spread="center" composition="loose">
+            <Container spread="center" composition="compact">
+              <Tray spread="center" composition="compact">
+                <View style={{ maxHeight: 160, marginBottom: 10 }}>
+                  <Image
+                    source={require("../../assets/locationPage/qr.png")}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      resizeMode: "contain",
+                    }}
+                  />
+                </View>
+              </Tray>
+              <View>
+              <ArticleCodeInput 
+              pressHandler={() => {navigation.navigate('Scan',{ handler: Confirm, previousScreen: "ScanArticle" })}} 
+              text={articleCode}
+              changeHandler={(val) => {setArticleCode(val)}}
+              />
+              </View>
+            </Container>
+
+            <Container spread="bottom" composition="compact">
+              <Tray spread="center" composition="compact">
+                <ConfirmButton pressHandler={Confirm} />
+              </Tray>
+            </Container>
+          </Container>
         </ImageBackground>
       </KeyboardAvoidingView>
     </ScrollView>

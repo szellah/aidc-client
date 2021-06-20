@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Image,
   ImageBackground,
@@ -13,11 +13,77 @@ import { LocationCodeInput } from "../../components/Inputs";
 import { ConfirmButton } from "../../components/Buttons";
 
 import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
+import { Container } from "../../components/Containers";
+import { NotificationBox } from "../../components/Notifications";
 
-export default function ScanLocation({ navigation }) {
-  const [LocationCode, SetLocationCode] = useState("");
+/**
+ * Ekran Skanownaia Lokalizacji<br>
+ * Służy do skanowania kodów poszczególnych Lokalizacji<br>
+ * posiada takie przyciski jak:<br>
+ * - potwierdź<br> 
+ * 
+ * 
+ * @function ScanLocation
+ * @param {object} navigation pozwala na przenoszenie się między ekranami
+ * @category Screens
+ * @returns {JSX} Zwraca Ekran Skanownaia Lokalizacji w postaci elementu JSX
+ */
+export default function ScanLocation({ navigation, route }) {
 
-  const Confirm = () => {};
+  const [locationCode, setLocationCode] = useState("13");
+
+  let handler = null;
+
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
+
+  useEffect(() => {
+    if (navigation.getParam("qrcode"))
+      setLocationCode(navigation.getParam("qrcode"));
+  }, [navigation.getParam("qrcode")]);
+
+  useEffect(() => {
+    if (navigation.getParam('handler')){
+      handler = navigation.getParam('handler');
+    }
+  });
+
+  useEffect(() => {
+    if(navigation.getParam('notification'))
+      {
+        setNotificationContent(navigation.getParam('notification'));
+        setNotificationVisibility(true);    
+      }
+  }, [navigation.getParam('notification')]);
+
+  const Confirm = (overriteParams) => {
+    let params = {};
+
+    if(navigation.getParam("previousScreen") === "ArticleMenu"){
+      navigation.navigate("ScanArticle", {data: locationCode, handler: navigation.getParam("handler"), previousScreen: navigation.getParam("previousScreen")})
+      return;
+    }
+    else if(navigation.getParam("previousScreen") === "ScanLocation")
+    {
+      params = {code: locationCode};
+    }
+    
+    params = overriteParams ? overriteParams : params;
+
+   handler(params)
+   .then((result) =>{
+    setNotificationContent(result);
+    setNotificationVisibility(true); 
+   })
+   .catch((error)=>{
+    setNotificationContent(error);
+    setNotificationVisibility(true);
+  });
+  }
+
+
+  
+
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
     <ScrollView
@@ -39,31 +105,50 @@ export default function ScanLocation({ navigation }) {
         </Tray>
         <ImageBackground
           source={require("../../assets/locationPage/background.png")}
-          style={{
-            minHeight: "100%",
-            flex: 1,
-            justifyContent: "space-around",
-          }}
+          style={{ flex: 1, justifyContent: "center" }}
         >
-          <View style={{ alignItems: "center" }}>
-            <View style={{ maxHeight: 160, marginBottom: 10 }}>
-              <Image
-                source={require("../../assets/locationPage/qr.png")}
-                style={{
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                  resizeMode: "contain",
-                }}
-              />
-            </View>
 
-            <View>
-              <LocationCodeInput pressHandler={() => {}} />
-            </View>
-          </View>
-          <Tray spread="center" composition="compact">
-            <ConfirmButton pressHandler={Confirm} />
-          </Tray>
+
+        <NotificationBox
+        visibility={notificationVisibility}
+        visibilityHandler={setNotificationVisibility}
+        content={notificationContent}
+        />
+
+
+          <Container spread="center" composition="loose">
+            <Container spread="center" composition="compact">
+              <Tray spread="center" composition="compact">
+                <View style={{ maxHeight: 160, marginBottom: 10 }}>
+                  <Image
+                    source={require("../../assets/locationPage/qr.png")}
+                    style={{
+                      maxWidth: "100%",
+                      maxHeight: "100%",
+                      resizeMode: "contain",
+                    }}
+                  />
+                </View>
+              </Tray>
+              <View>
+                <LocationCodeInput
+                  pressHandler={() => {
+                    navigation.navigate("Scan", {
+                      previousScreen: "ScanLocation",
+                    });
+                  }}
+                  changeHandler={(val) => {setLocationCode(val)}}
+                  text={locationCode}
+                />
+              </View>
+            </Container>
+
+            <Container spread="bottom" composition="compact">
+              <Tray spread="center" composition="compact">
+                <ConfirmButton pressHandler={Confirm} />
+              </Tray>
+            </Container>
+          </Container>
         </ImageBackground>
       </KeyboardAvoidingView>
     </ScrollView>

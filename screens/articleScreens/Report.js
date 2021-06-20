@@ -1,79 +1,107 @@
-import React, {Component, useState} from "react";
-import { Button, StyleSheet, Text, View, Image, ImageBackground, TextInput} from "react-native";
-import {LocationCodeInput} from '../../components/Inputs.js';
-import {ExportButton} from '../../components/Buttons.js';
-import {Table} from '../../components/Table.js';
-import { ScrollView } from "react-native-gesture-handler";
+import React, { Component, useState, useEffect } from "react";
+import {
+  Button,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ImageBackground,
+  TextInput,
+  ScrollView
+} from "react-native";
+import { LocationCodeInput } from "../../components/Inputs.js";
+import { ExportButton } from "../../components/Buttons.js";
+import { Table } from "../../components/Table.js";
 import {
   PasekNawigacyjny,
   PasekNawigacyjnyInfo,
 } from "../../components/PasekNawigacyjny.js";
+import { Container } from "../../components/Containers.js";
+import { Tray } from "../../components/Trays";
 
-export default function App() {
+import { NotificationBox } from "../../components/Notifications";
+
+
+
+/**
+ * Ekran Raportu<br>
+ * Wyświetla się po naciśnięciu `Sporządź` w ekranie tworzenia raportu<br>
+ * W zależnoności od danych które przyjdą z bazy danych może wyświetlać raport
+ * z lokalizacji lub po kategorii.
+ * @function Report
+ * @category Screens
+ * @returns {JSX}
+ * Zwraca ekran z raportu w postaci elementu JSX
+ */
+export default function Report({navigation}) {
+
+  const [report, setReport] = useState([
+    { column1: "", column2: "Ładowanie...", column3: "", id: "header" },
+  ]);
+
+  const [notificationVisibility, setNotificationVisibility] = useState(false); 
+  const [notificationContent, setNotificationContent] =useState({});
+
+  const [title, setTitle] = useState("RAPORTT");
+
+  useEffect(()=>{
+    if(navigation.getParam('title'))
+    {
+      setTitle(navigation.getParam('title'));
+    }
+    if(navigation.getParam('data'))
+    {
+      setReport(navigation.getParam('data'));
+    }
+}, [navigation.getParam('data'), navigation.getParam('title')]);
+
+
+const Export = () => {
+
+}
+
+
   return (
-    //<ScrollView>
-    <ImageBackground
-      source={require("../../assets/tlo_raport.png")}
-      style={styles.Tło}
-    >
-      <View style={styles.bezeksportu}>
-        <View style={styles.paseknagorze}>
-          <PasekNawigacyjnyInfo />
-        </View>
+      <ImageBackground
+        source={require("../../assets/backgrounds/blue_quater.png")}
+        style={{ flex: 1, justifyContent: "center" }}
+      >
 
-        <View style={styles.naglowek}>
-          <Image source={require("../../assets/raport.png")} style={styles.h1} />
-        </View>
+        <NotificationBox
+        visibility={notificationVisibility}
+        visibilityHandler={setNotificationVisibility}
+        content={notificationContent}
+        />
 
-        <View style={styles.nazwa}>
-          <LocationCodeInput />
-        </View>
+        <Container>
+          <View style={styles.titleBox}>
+            <Text style={styles.title}>{title}</Text>
+          </View>
 
-        <View style={styles.tabelka}>
-          <Table />
-        </View>
+          <Table
+            toDisplay={report}
+            manyItems={true}
+          />
 
-        <View style={styles.button}>
-          <ExportButton />
-        </View>
-      </View>
-    </ImageBackground>
-    //</ScrollView>
+            <Tray composition="loose" spread="center">
+                <ExportButton
+                  pressHandler={Export}
+                />
+              </Tray>
+        </Container>
+      </ImageBackground>
   );
 }
 const styles = StyleSheet.create({
-  Tło: {
-    width: "100%",
-    height: "100%",
+  title: {
+    color: "white",
+    fontSize: 35,
+    marginVertical: 20,
+    textAlign: "center"
   },
-  paseknagorze: {
-    width: "110%",
+  titleBox: {
     flexDirection: "row",
-  },
-  naglowek: {
-    alignItems: "center",
-  },
-  h1: {
-    resizeMode: "contain",
-    width: 200,
-  },
-  bezeksportu: {
-    width: "100%",
-    height: "80%",
-  },
-  nazwa: {
-    width: "80%",
-    alignItems: "center",
-    height: 53,
-    marginTop: 30,
-    margin: "10%",
-  },
-  tabelka: {
-    width: "85%",
-    marginLeft: "8%",
-    height: "60%",
-  },
-  button: {
-    alignItems: "center",
+    justifyContent: "center",
+    height: "17%",
   },
 });

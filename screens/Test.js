@@ -1,48 +1,51 @@
-import React from "react";
-import { ImageBackground, Text, StyleSheet, View } from "react-native";
-import {Table} from "../components/Table";
+import React, { useState, useEffect } from "react";
+import { Text, View, StyleSheet, Button, ImageBackground } from "react-native";
+import { BarCodeScanner } from "expo-barcode-scanner";
+import { ScrollView } from "react-native-gesture-handler";
 
-const kliknij = (text) => {
-  console.log(text);
-};
+export default function Test({ navigation, route }) {
+  const [hasPermission, setHasPermission] = useState(null);
 
-export default function Test({ navigation }) {
+  useEffect(() => {
+    (async () => {
+      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      setHasPermission(status === "granted");
+    })();
+  }, []);
 
-  const users = [
-  { row1: 'Imię', row2: 'Nazwisko', row3: 'Login', id: 'header'},    
-  { row1: 'Tomasz', row2: 'Karolak', row3: 'TKarolak', id: '1'},
-  { row1: 'Borys', row2: 'Szyc', row3: 'BSzyc', id: '2'},
-];
+  const handleBarCodeScanned = ({ type, data }) => {
+    navigation.navigate(navigation.getParam("previousScreen"), {
+      qrcode: data,
+    });
+  };
+
+  if (hasPermission === null) {
+    return <Text>Requesting for camera permission</Text>;
+  }
+  if (hasPermission === false) {
+    return <Text>No access to camera</Text>;
+  }
 
   return (
-    <ImageBackground
-      source={require("../assets/loginPage/LoginBackground.png")}
-      style={{ flex: 1 }}
-    >
-
-    <View style={styles.titleBox}>
-      <Text style={styles.title}>UŻYTKOWNICY</Text>
-    </View>
-      
-    <Table toDisplay={users} clickable={true} pressHandler={(destination) => {
-      navigation.navigate('UserPanelEdit');
-    }}/>    
-     
-
-
-    </ImageBackground>
+    <ScrollView>
+      <ImageBackground>
+        <Container>
+          <View style={styles.container}>
+            <BarCodeScanner
+              onBarCodeScanned={handleBarCodeScanned}
+              style={{ flex: 1 }}
+            />
+          </View>
+        </Container>
+      </ImageBackground>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  title:{
-    color: "white",
-    fontSize: 43,
-    marginVertical: 10,
+  container: {
+    flex: 1,
+    flexDirection: "column",
+    justifyContent: "center",
   },
-  titleBox:{
-    flexDirection: 'row',
-    justifyContent: 'center',
-    height: "20%",
-  }
 });

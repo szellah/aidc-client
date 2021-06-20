@@ -222,6 +222,18 @@ export const ChangePasswordButton = ({pressHandler}) => {
   );
 }
 
+
+export const CreateButton = ({pressHandler}) => {
+  return(
+    <Button
+    title="Sporządź"
+    color="yellow"
+    size="large"
+    pressHandler={pressHandler}
+    />
+  );
+}
+
 //przyciski zielone
 /**
  * Zielony przycisk z napisem "Wyloguj"

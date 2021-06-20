@@ -18,12 +18,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 export default function Login({ navigation }) {
-	const Creq_lib = require('../clientRequests/Creq_lib');
+  const Creq_lib = require("../clientRequests/Creq_lib");
 
-	const [username, SetUsername] = useState('');
-	const [password, SetPassword] = useState('');
-	const [notificationVisibility, setNotificationVisibility] = useState(false);
-	const [notificationContent, setNotificationContent] = useState({});
+  const [username, SetUsername] = useState("");
+  const [password, SetPassword] = useState("");
+  const [notificationVisibility, setNotificationVisibility] = useState(false);
+  const [notificationContent, setNotificationContent] = useState({});
 
 
 	// do zrobienia
@@ -107,46 +107,46 @@ export default function Login({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-	wrapper: {
-		flexGrow: 1,
-	},
-	imageBackground: {
-		flex: 1,
-		justifyContent: 'space-around',
-		alignItems: 'center',
-		resizeMode: 'cover',
-	},
-	topContainer: {
-		width: '85%',
-		maxWidth: 300,
-		alignItems: 'center',
-		padding: 10,
-		paddingTop: 40,
-		marginTop: 40,
-	},
-	loginTitle: {
-		maxWidth: '80%',
-		resizeMode: 'contain',
-	},
-	inputContainer: {
-		width: '100%',
-		marginTop: '10%',
-	},
-	bottContainer: {
-		marginTop: 200,
-		alignItems: 'center',
-	},
-	button: {
-		maxWidth: 150,
-	},
-	imgButton: {
-		resizeMode: 'contain',
-		maxWidth: '100%',
-	},
-	Login: {
-		width: '100%',
-		height: '23%',
-		margin: '3%',
-		minHeight: 40,
-	},
+  wrapper: {
+    flexGrow: 1,
+  },
+  imageBackground: {
+    flex: 1,
+    justifyContent: "space-around",
+    alignItems: "center",
+    resizeMode: "cover",
+  },
+  topContainer: {
+    width: "85%",
+    maxWidth: 300,
+    alignItems: "center",
+    padding: 10,
+    paddingTop: 40,
+    marginTop: 40,
+  },
+  loginTitle: {
+    maxWidth: "80%",
+    resizeMode: "contain",
+  },
+  inputContainer: {
+    width: "100%",
+    marginTop: "10%",
+  },
+  bottContainer: {
+    marginTop: 200,
+    alignItems: "center",
+  },
+  button: {
+    maxWidth: 150,
+  },
+  imgButton: {
+    resizeMode: "contain",
+    maxWidth: "100%",
+  },
+  Login: {
+    width: "100%",
+    height: "23%",
+    margin: "3%",
+    minHeight: 40,
+  },
 });

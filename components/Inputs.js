@@ -25,9 +25,13 @@ import { Ionicons } from '@expo/vector-icons';
  * 	@category Root Components
  */
 
+<<<<<<< HEAD
 export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler, textInputHandler}) => {
 
 	// Znam tylko czytanie wartosci input'a przez onChangeText uzylem textInputHandler, jesli to ma byc jakos inaczej zrobione to zmienic
+=======
+export const Input = ({icon, placeholder, placeholderTextColor, color, size, displayQRButton, pressHandler, changeHandler, text, editable, password}) => {
+>>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
 	return (
 		<View style={ [ styles.inputBox, sizes[size], colors[color] ] }>
 			<Icon
@@ -40,10 +44,17 @@ export const Input = ({icon, placeholder, placeholderTextColor, color, size, dis
 				style={styles.inputText}
 				autoCorrect={false}
 				placeholder={placeholder}
+				defaultValue={text}
+				editable={typeof(changeHandler) === "function"}
+				secureTextEntry={password}
 				placeholderTextColor={placeholderTextColor == null ? "rgba(0,0,0,0.4)" : placeholderTextColor}
 				multiline={size=="large"}
+<<<<<<< HEAD
 				// onChangeText={(text) => {loginPressHandler(text)}}
 				onChangeText={typeof(textInputHandler) === typeof(Function) ? (text) => {textInputHandler(text)} : () => {}}
+=======
+				onChangeText={(val) => {changeHandler(val)}}
+>>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
 			/>
 			{displayQRButton&&(<QRButton pressHandler={pressHandler}/>)}
 		</View>
@@ -90,12 +101,14 @@ export const QRButton = ({pressHandler}) => {
  * @category Inputs
  * 
  */
-export const NameInput = () => {
+export const NameInput = ({text, changeHandler, placeholder}) => {
 	return(
 		<Input
 		icon="archive"
-        placeholder="nazwa"
+        placeholder={ placeholder ? placeholder : "Nazwa"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -108,10 +121,15 @@ export const NameInput = () => {
  * @category Inputs
  * 
  */
+<<<<<<< HEAD
 export const LoginInput = ({textInputHandler}) => {
+=======
+export const LoginInput = ({text, placeholder, changeHandler}) => {
+>>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
 	return (
 		<Input
 		icon="user"
+		text={text}
         placeholder="login"
 		color="blue"
 		textInputHandler={textInputHandler}
@@ -135,7 +153,11 @@ export const PasswordInput = ({textInputHandler}) => {
         placeholder="hasło"
 		color="blue"
 		size="small"
+<<<<<<< HEAD
 		textInputHandler={textInputHandler}
+=======
+		password={true}
+>>>>>>> 5913c2605a374db2a1acb7cc06f76bfd4b6c8cec
 		/>
 	);
 };
@@ -149,7 +171,7 @@ export const PasswordInput = ({textInputHandler}) => {
  * @category Inputs
  * 
  */
-export const EnterOldPasswordInput = () => {
+export const EnterOldPasswordInput = ({changeHandler}) => {
 	return (
 		<Input
 		icon="lock"
@@ -157,6 +179,8 @@ export const EnterOldPasswordInput = () => {
 		placeholderTextColor="white"
 		color="blue"
 		size="small"
+		changeHandler={changeHandler}
+		password={true}
 		/>
 	);
 };
@@ -170,7 +194,7 @@ export const EnterOldPasswordInput = () => {
  * @category Inputs
  * 
  */
-export const EnterNewPasswordInput = () => {
+export const EnterNewPasswordInput = ({changeHandler}) => {
 	return (
 		<Input
 		icon="lock"
@@ -178,6 +202,8 @@ export const EnterNewPasswordInput = () => {
 		placeholderTextColor="white"
 		color="blue"
 		size="small"
+		changeHandler={changeHandler}
+		password={true}
 		/>
 	);
 };
@@ -191,7 +217,7 @@ export const EnterNewPasswordInput = () => {
  * @category Inputs
  * 
  */
-export const RepeatNewPasswordInput = () => {
+export const RepeatNewPasswordInput = ({changeHandler}) => {
 	return (
 		<Input
 		icon="lock"
@@ -199,6 +225,8 @@ export const RepeatNewPasswordInput = () => {
 		placeholderTextColor="white"
 		color="blue"
 		size="small"
+		changeHandler={changeHandler}
+		password={true}
 		/>
 	);
 };
@@ -220,6 +248,7 @@ export const EnterPasswordInput = () => {
 		placeholderTextColor="white"
 		color="blue"
 		size="small"
+		password={true}
 		/>
 	);
 };
@@ -241,6 +270,7 @@ export const RepeatPasswordInput = () => {
 		placeholderTextColor="white"
 		color="blue"
 		size="small"
+		password={true}
 		/>
 	);
 };
@@ -255,12 +285,14 @@ export const RepeatPasswordInput = () => {
  * @category Inputs
  * 
  */
-export const UserFirstnameInput = () => {
+export const UserFirstnameInput = ({text, placeholder, changeHandler}) => {
 	return(
 		<Input
 		icon="user"
-        placeholder="imię"
+        placeholder={ placeholder ? placeholder : "imie"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -274,12 +306,14 @@ export const UserFirstnameInput = () => {
  * @category Inputs
  * 
  */
-export const UserSurnameInput = () => {
+export const UserSurnameInput = ({text, placeholder, changeHandler}) => {
 	return(
 		<Input
 		icon="user"
-        placeholder="nazwisko"
+        placeholder={ placeholder ? placeholder : "nazwisko"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -293,12 +327,14 @@ export const UserSurnameInput = () => {
  * @category Inputs
  * 
  */
-export const UserStateInput = () => {
+export const UserStateInput = ({text, placeholder, changeHandler}) => {
 	return(
 		<Input
 		icon="folder"
-        placeholder="stan"
+        placeholder={ placeholder ? placeholder : "stan"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -312,12 +348,14 @@ export const UserStateInput = () => {
  * @category Inputs
  * 
  */
-export const UserRankInput = () => {
+export const UserRankInput = ({text, placeholder, changeHandler}) => {
 	return(
 		<Input
 		icon="folder"
-        placeholder="ranga"
+        placeholder={ placeholder ? placeholder : "ranga"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -331,12 +369,14 @@ export const UserRankInput = () => {
  * @category Inputs
  * 
  */
-export const UserLoginInput = () => {
+export const UserLoginInput = ({text, placeholder, changeHandler}) => {
 	return(
 		<Input
 		icon="user"
-        placeholder="login"
+        placeholder={ placeholder ? placeholder : "login"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -350,12 +390,14 @@ export const UserLoginInput = () => {
  * @category Inputs
  * 
  */
-export const UserEmailInput = () => {
+export const UserEmailInput = ({text, placeholder, changeHandler}) => {
 	return(
 		<Input
 		icon="envelope"
-        placeholder="e-mail"
+        placeholder={ placeholder ? placeholder : "e-mail"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -371,13 +413,15 @@ export const UserEmailInput = () => {
  * @category Inputs
  * 
  */
-export const DescriptionInput = () => {
+export const DescriptionInput = ({text, placeholder, changeHandler}) => {
 	return (
 		<Input
 		icon="file"
 		color="yellow"
-		placeholder="opis"
+		placeholder={ placeholder ? placeholder : "opis"}
+		text={text}
 		size="large"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -394,14 +438,16 @@ export const DescriptionInput = () => {
  * @category Inputs
  * 
  */
-export const ArticleCodeInput = ({pressHandler}) => {
+export const ArticleCodeInput = ({pressHandler, text, changeHandler, placeholder}) => {
 	return (
 		<Input
 		icon="search"
-		placeholder="kod"
+		placeholder={ placeholder ? placeholder : "kod"}
+		text={text}
 		color="yellow"
 		displayQRButton={true}
 		pressHandler={pressHandler}
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -416,13 +462,15 @@ export const ArticleCodeInput = ({pressHandler}) => {
  * @category Inputs
  * 
  */
-export const LocationCodeInput = ({pressHandler}) => {
+export const LocationCodeInput = ({pressHandler, text, placeholder, changeHandler}) => {
 	return (
 		<Input
 		icon="map-marker"
-        placeholder="lokalizacja"
+		placeholder={ placeholder ? placeholder : "lokalizacja"}
+		text={text}
 		color="yellow"
 		displayQRButton={true}
+		changeHandler={changeHandler}
 		pressHandler={pressHandler}
 		/>
 	);
@@ -439,11 +487,12 @@ export const LocationCodeInput = ({pressHandler}) => {
  * @category Inputs
  * 
  */
-export const CategorySelect = () => {
+export const CategorySelect = ({text, placeholder, changeHandler}) => {
 	return (
 		<Input
 		icon="folder"
 		placeholder="kategoria"
+		text={text}
 		color="yellow"
 		/>
 	);
@@ -458,12 +507,14 @@ export const CategorySelect = () => {
  * @category Inputs
  * 
  */
-export const BuildingSelect = () => {
+export const BuildingSelect = ({text, changeHandler, placeholder}) => {
 	return (
 		<Input
 		icon="building"
-		placeholder="budynek"
+        placeholder={ placeholder ? placeholder : "Budynek"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -477,12 +528,14 @@ export const BuildingSelect = () => {
  * @category Inputs
  * 
  */
-export const FloorsSelect = () => {
+export const FloorsSelect = ({text, changeHandler, placeholder}) => {
 	return (
 		<Input
 		icon="align-justify"
-		placeholder="piętro"
+        placeholder={ placeholder ? placeholder : "Piętro"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
@@ -496,12 +549,14 @@ export const FloorsSelect = () => {
  * @category Inputs
  * 
  */
-export const RoomSelect = () => {
+export const RoomSelect = ({text, changeHandler, placeholder}) => {
 	return (
 		<Input
 		icon="square-o"
-		placeholder="pokój"
+        placeholder={ placeholder ? placeholder : "Pokój"}
+		text={text}
 		color="yellow"
+		changeHandler={changeHandler}
 		/>
 	);
 }
