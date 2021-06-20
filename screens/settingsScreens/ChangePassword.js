@@ -57,36 +57,49 @@ export default function ChangePassword({navigation}){
   const [isReady, setReady] = useState(false);
 
   const Change = () => {
-    if(newPassword === repeatedNewPassword)
+    if(newPassword != "" && repeatedNewPassword != "")
     {
-      const SHA256 = require("crypto-js/sha256");
-      if(SHA256(oldPassword).toString() === account.Password)
+      if(newPassword.length >= 8)
       {
-          const SHA256 = require("crypto-js/sha256");
-        changeAccountPassword(
+        if(newPassword === repeatedNewPassword)
         {
-          userId: account.AccountId, 
-          password: SHA256(newPassword).toString()
-        })
-        .then((notification)=>{
-          navigation.navigate("Settings", { notification: notification });
-        })
-        .catch((error)=>{
-          setNotificationContent(error);
-          setNotificationVisibility(true);
-        });
+          const SHA256 = require("crypto-js/sha256");
+          if(SHA256(oldPassword).toString() === account.Password)
+          {
+              const SHA256 = require("crypto-js/sha256");
+            changeAccountPassword(
+            {
+              userId: account.AccountId, 
+              password: SHA256(newPassword).toString()
+            })
+            .then((notification)=>{
+              navigation.navigate("Settings", { notification: notification });
+            })
+            .catch((error)=>{
+              setNotificationContent(error);
+              setNotificationVisibility(true);
+            });
+          }
+          else{
+            setNotificationContent({error: true, message: "wpisano błędne stare hasło"});
+            setNotificationVisibility(true);
+          }
+          
+        }
+        else{
+            setNotificationContent({error: true, message: "nowe hasło i hasło powtórzone nie zgadzają się ze sobą"});
+            setNotificationVisibility(true);
+        }
       }
       else{
-        setNotificationContent({error: true, message: "wpisano błędne stare hasło"});
+        setNotificationContent({error: true, message: "hasło musi mieć przynajmniej 8 znaków"});
         setNotificationVisibility(true);
       }
-      
     }
     else{
-        setNotificationContent({error: true, message: "nowe hasło i hasło powtórzone nie zgadzają się ze sobą"});
+        setNotificationContent({error: true, message: "nie podano nowego hasła"});
         setNotificationVisibility(true);
     }
-      
     };
 
 
