@@ -1,19 +1,19 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from 'react';
 import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ImageBackground,
-  TextInput,
-  ScrollView,
-} from "react-native";
-import { Tray } from "../../components/Trays";
+	Button,
+	StyleSheet,
+	Text,
+	View,
+	Image,
+	ImageBackground,
+	TextInput,
+	ScrollView,
+} from 'react-native';
+import { Tray } from '../../components/Trays';
 import {
-  PasekNawigacyjny,
-  PasekNawigacyjnyInfo,
-} from "../../components/PasekNawigacyjny.js";
+	PasekNawigacyjny,
+	PasekNawigacyjnyInfo,
+} from '../../components/PasekNawigacyjny.js';
 import {
   UserFirstnameInput,
   UserEmailInput,
@@ -247,16 +247,16 @@ if (!isReady) {
   );
 }
 const styles = StyleSheet.create({
-  Tło: {
-    width: "100%",
-    height: "100%",
-  },
-  paseknagorze: {
-    width: "110%",
-    flexDirection: "row",
-  },
-  bezeksportu: {
-    width: "100%",
-    height: "80%",
-  },
+	Tło: {
+		width: '100%',
+		height: '100%',
+	},
+	paseknagorze: {
+		width: '110%',
+		flexDirection: 'row',
+	},
+	bezeksportu: {
+		width: '100%',
+		height: '80%',
+	},
 });
