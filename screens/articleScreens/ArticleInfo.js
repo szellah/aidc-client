@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   ImageBackground,
+  View,
+  Text
 } from "react-native";
 import {
   NameInput,
@@ -18,6 +20,9 @@ import {Tray} from "../../components/Trays";
 import { NotificationBox } from "../../components/Notifications";
 
 import { deleteArticle } from "../../clientRequests/Creq_lib";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 
 export default function ArticleInfo({ navigation }) {
@@ -55,14 +60,18 @@ export default function ArticleInfo({ navigation }) {
       }
   }, [navigation.getParam('notification')]);
 
+  
+
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
+
   const Edit = () => {
     navigation.navigate("ArticleEdit", {data: article, previousScreen: "ArticleInfo"});
   };
   const Delete = () => {
-    console.log("hej");
       deleteArticle(
       {
-        UserId: 1, 
+        UserId: account.AccountId, 
         ArticleId: ArticleCode
       })
       .then((notification)=>{
@@ -74,6 +83,18 @@ export default function ArticleInfo({ navigation }) {
         setNotificationVisibility(true);
       });
   };
+
+  if (!isReady) {
+      AsyncStorage.getItem("user").then(account => {setAccount(JSON.parse(account)); setReady(true);});
+  }
+
+  if (!isReady) {
+      return (
+          <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+              <Text>Przetwarzanie danych...</Text>
+          </View>
+      );
+  }
 
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie
@@ -104,13 +125,13 @@ export default function ArticleInfo({ navigation }) {
 
           <DescriptionInput text={Description} />
 
-          <Container composition="compact" spread="bottom">
+          {account.Rank === 1 && <Container composition="compact" spread="bottom">
             <Tray composition="loose" spread="even">
               <EditButton pressHandler={Edit} />
 
               <DeleteButton pressHandler={Delete} />
             </Tray>
-          </Container>
+          </Container>}
         </Container>
       </ImageBackground>
     </ScrollView>

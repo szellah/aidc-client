@@ -461,7 +461,7 @@ export const ReportsButton = ({ navigation }) => {
  * 
  * @category Round Buttons
  */
-export const UsersInfoButton = ({navigation}) => {
+export const UsersInfoButton = ({navigation, previousScreen}) => {
   return (
     <RoundButton
       navigation={navigation}
@@ -469,6 +469,7 @@ export const UsersInfoButton = ({navigation}) => {
       icon="info"
       destination="UsersTable"
       title="Informacje"
+      previousScreen={previousScreen}
     />
   );
 };

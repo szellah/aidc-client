@@ -24,6 +24,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import { NotificationBox } from "../../components/Notifications";
 import { changeAccountPassword } from "../../clientRequests/Creq_lib";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
 
 /**
  * Ekran zmiany hasła<br>
@@ -50,34 +53,71 @@ export default function ChangePassword({navigation}){
   const [newPassword, setNewPassword] = useState("")
   const [repeatedNewPassword, setRepeatedNewPassword] = useState("")
 
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
+
   const Change = () => {
-    if(newPassword === repeatedNewPassword)
+    if(newPassword != "" && repeatedNewPassword != "")
     {
-      const SHA256 = require("crypto-js/sha256");
-      changeAccountPassword(
+      if(newPassword.length >= 8)
       {
-        userId: 1, //tu zaminić na id użytkownika wysyłającego
-        password: SHA256(newPassword)
-      })
-      .then((notification)=>{
-        navigation.navigate("Settings", { notification: notification });
-      })
-      .catch((error)=>{
-        setNotificationContent(error);
+        if(newPassword === repeatedNewPassword)
+        {
+          const SHA256 = require("crypto-js/sha256");
+          if(SHA256(oldPassword).toString() === account.Password)
+          {
+              const SHA256 = require("crypto-js/sha256");
+            changeAccountPassword(
+            {
+              userId: account.AccountId, 
+              password: SHA256(newPassword).toString()
+            })
+            .then((notification)=>{
+              navigation.navigate("Settings", { notification: notification });
+            })
+            .catch((error)=>{
+              setNotificationContent(error);
+              setNotificationVisibility(true);
+            });
+          }
+          else{
+            setNotificationContent({error: true, message: "wpisano błędne stare hasło"});
+            setNotificationVisibility(true);
+          }
+          
+        }
+        else{
+            setNotificationContent({error: true, message: "nowe hasło i hasło powtórzone nie zgadzają się ze sobą"});
+            setNotificationVisibility(true);
+        }
+      }
+      else{
+        setNotificationContent({error: true, message: "hasło musi mieć przynajmniej 8 znaków"});
         setNotificationVisibility(true);
-      });
+      }
     }
     else{
-        setNotificationContent({error: true, message: "nowe hasło i hasło powtórzone nie zgadzają się ze sobą"});
+        setNotificationContent({error: true, message: "nie podano nowego hasła"});
         setNotificationVisibility(true);
     }
-      
     };
 
 
   const Cancel = () => {
     navigation.goBack();
   };
+
+  if (!isReady) {
+    AsyncStorage.getItem("user").then(account => {setAccount(JSON.parse(account)); setReady(true);});
+}
+
+if (!isReady) {
+    return (
+        <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+            <Text>Przetwarzanie danych...</Text>
+        </View>
+    );
+}
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>

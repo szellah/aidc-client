@@ -30,7 +30,7 @@ import { NotificationBox } from "../../components/Notifications";
  * @returns {JSX} Zwraca Ekran skanowania artykułu w postaci elementu JSX
  */
 export default function ScanArticle({ navigation , route}) {
-  const [articleCode, setArticleCode] = useState("3");
+  const [articleCode, setArticleCode] = useState("");
   let handler = null;
 
   const [notificationVisibility, setNotificationVisibility] = useState(false); 

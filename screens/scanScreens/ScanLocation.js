@@ -30,7 +30,7 @@ import { NotificationBox } from "../../components/Notifications";
  */
 export default function ScanLocation({ navigation, route }) {
 
-  const [locationCode, setLocationCode] = useState("13");
+  const [locationCode, setLocationCode] = useState("");
 
   let handler = null;
 

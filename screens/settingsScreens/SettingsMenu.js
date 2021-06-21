@@ -21,7 +21,9 @@ import {
 } from "../../components/RoundButtons";
 import { Container } from "../../components/Containers";
 import { NotificationBox } from "../../components/Notifications";
-import { getAccountInfo } from "../../clientRequests/Creq_lib";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 
 
@@ -48,6 +50,10 @@ export default function SettingsMenu({ navigation }) {
   const [notificationVisibility, setNotificationVisibility] = useState(false); 
   const [notificationContent, setNotificationContent] =useState({});
 
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
+
+
   useEffect(() => {
     if(navigation.getParam('notification'))
       {
@@ -57,23 +63,22 @@ export default function SettingsMenu({ navigation }) {
   }, [navigation.getParam('notification')]);
 
   const passAccountInfo = () =>{
-    console.log("hej");
-    getAccountInfo(1)
-    .then((data) => {
-      if(data.error)
-      {
-        throw new Error(data.message)
-      }
-      else
-      {
-        navigation.navigate("AccountInfo", {data: data.message, previousScreen: "SettingsMenu"});
-      }
-    })
-    .catch((error) => {
-      setNotificationContent(error);
-      setNotificationVisibility(true);
-    });
+    
+    navigation.navigate("AccountInfo", {data: account, previousScreen: "SettingsMenu"});
+
   }
+
+  if (!isReady) {
+    AsyncStorage.getItem("user").then(account => {setAccount(JSON.parse(account)); setReady(true);});
+}
+
+if (!isReady) {
+    return (
+        <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+            <Text>Przetwarzanie danych...</Text>
+        </View>
+    );
+}
 
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>

@@ -3,15 +3,14 @@ const { serverURL } = require('./serverInfo');
 
 /** W przyszłości możliwe że dojdzie do standaryzacji Creq */
 
-function Creq_getAccountReport(){
+function Creq_getBuildings(){
 return new Promise((resolve, reject) => {
-    axios.post(`${serverURL}/getAccountReport`, {})
+    axios.post(`${serverURL}/getBuildings`, {})
     .then(res => {
-        // console.log(res.data);
         resolve(res.data);
     })
     .catch(error => {
-        reject({error: true, message: error.message});
+        reject(error);
     })
 
 });
@@ -19,5 +18,5 @@ return new Promise((resolve, reject) => {
 }
 
   module.exports={
-    Creq_getAccountReport,
+    Creq_getBuildings,
 };

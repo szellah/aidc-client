@@ -23,7 +23,7 @@ export default function Select({changeHandler, placeholder, text, options, src, 
 
                 <ScrollView>
               {              
-              options && options.map((item) => {
+              typeof(options) === 'object' && options.map((item) => {
                 return (
   
                  <TouchableOpacity
@@ -66,12 +66,13 @@ export default function Select({changeHandler, placeholder, text, options, src, 
  * @category Selects
  * 
  */
-  export const CategorySelect = ({changeHandler, options, placeholder, text}) => {
+   export const CategorySelect = ({changeHandler, options, placeholder, text}) => {
     return (
       <Select 
         changeHandler={changeHandler}
         placeholder={ placeholder ? placeholder : "Kategoria"}
         options={options}
+        text={text}
         color="blue"
         src={require("../assets/raportPage/iconBudynek.png")}
         />
@@ -176,6 +177,56 @@ export default function Select({changeHandler, placeholder, text, options, src, 
       <Select 
         changeHandler={changeHandler}
         placeholder={ placeholder ? placeholder : "Według"}
+        options={options}
+        text={text}
+        color="yellow"
+        src={require("../assets/raportPage/iconSporzRaportu.png")}
+        />
+    );
+  }
+
+    /**
+ * Select do wybrania Rangi użytkownika
+ * -ranga administratorska
+ * -ranga zwykła
+ * 
+ * @function 
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
+     export const RankSelect = ({changeHandler, options, placeholder, text}) => {
+      return (
+        <Select 
+          changeHandler={changeHandler}
+          placeholder={ placeholder ? placeholder : "Ranga użytkownika"}
+          options={options}
+          text={text}
+          color="yellow"
+          src={require("../assets/raportPage/iconSporzRaportu.png")}
+          />
+      );
+    }
+
+      /**
+ * Select do wybrania stanu użytkownika
+ * -aktywny
+ * -nieaktywny
+ * 
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
+   export const StateSelect = ({changeHandler, options, placeholder, text}) => {
+    return (
+      <Select 
+        changeHandler={changeHandler}
+        placeholder={ placeholder ? placeholder : "Stan użytkownika"}
         options={options}
         text={text}
         color="yellow"

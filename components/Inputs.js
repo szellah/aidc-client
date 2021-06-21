@@ -110,13 +110,14 @@ export const NameInput = ({text, changeHandler, placeholder}) => {
  * @category Inputs
  * 
  */
-export const LoginInput = ({text, placeholder, changeHandler}) => {
+export const LoginInput = ({text, changeHandler}) => {
 	return (
 		<Input
 		icon="user"
 		text={text}
         placeholder="login"
 		color="blue"
+		changeHandler={changeHandler}
 		/>
 	);
 };
@@ -130,7 +131,7 @@ export const LoginInput = ({text, placeholder, changeHandler}) => {
  * @category Inputs
  * 
  */
-export const PasswordInput = () => {
+export const PasswordInput = ({changeHandler}) => {
 	return (
 		<Input
 		icon="lock"
@@ -138,6 +139,7 @@ export const PasswordInput = () => {
 		color="blue"
 		size="small"
 		password={true}
+		changeHandler={changeHandler}
 		/>
 	);
 };

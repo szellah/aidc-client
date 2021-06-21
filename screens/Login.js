@@ -1,102 +1,117 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
-  StyleSheet,
-  View,
-  TextInput,
-  TouchableOpacity,
-  ImageBackground,
-  KeyboardAvoidingView,
-  Image,
-  Text,
-} from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
-import { NotificationBox } from "../components/Notifications";
-import { PasswordInput, LoginInput } from "../components/Inputs.js";
-import { LoginButton } from "../components/Buttons.js";
-import { Container } from "../components/Containers";
+	StyleSheet,
+	View,
+	TextInput,
+	TouchableOpacity,
+	ImageBackground,
+	KeyboardAvoidingView,
+	Image,
+	Text,
+} from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
+import { NotificationBox } from '../components/Notifications';
+import { PasswordInput, LoginInput } from '../components/Inputs.js';
+import { LoginButton, ExportButton } from '../components/Buttons.js';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as FileSystem from 'expo-file-system';
+
 
 export default function Login({ navigation }) {
   const Creq_lib = require("../clientRequests/Creq_lib");
 
   const [username, SetUsername] = useState("");
   const [password, SetPassword] = useState("");
+
   const [notificationVisibility, setNotificationVisibility] = useState(false);
   const [notificationContent, setNotificationContent] = useState({});
 
-  // do zrobienia
-  const ForgotPassword = () => {
-    console.log("do zrobienia");
-  };
+  useEffect(() => {
+	if(navigation.getParam('notification'))
+	  {
+		setNotificationContent(navigation.getParam('notification'));
+		setNotificationVisibility(true);    
+	  }
+  }, [navigation.getParam('notification')]);
 
-  const SendLoginData = () => {
-    // zapytanie do serwera aby sprawdził dane i wygenerował token
-    // do zrobienia token
-    Creq_lib.login(username, password).then((resolve) => {
-      setNotificationContent(resolve);
-      setNotificationVisibility(resolve.error != null);
-      if (resolve.error == null) {
-        SetUsername("");
-        SetPassword("");
-        // tymczasowo, aby łatwiej się poruszać
-        navigation.navigate("Home");
-      }
-    });
-  };
 
-  return (
-    <ScrollView
-      contentContainerStyle={{
-        flexGrow: 1,
-        minHeight: "100%",
-      }}
-    >
-      <KeyboardAvoidingView
-        style={{
-          flexGrow: 1,
-        }}
-      >
-        <View style={styles.wrapper}>
-          <NotificationBox
-            visibility={notificationVisibility}
-            content={notificationContent}
-            VisibilityHandler={() => setNotificationVisibility(false)}
-          ></NotificationBox>
-          <ImageBackground
-            source={require("../assets/loginPage/LoginBackground.png")}
-            style={styles.imageBackground}
-          >
-            <Container>
-              <View style={styles.topContainer}>
-                <Image
-                  style={styles.loginTitle}
-                  source={require("../assets/loginPage/LOGOWANIE.png")}
-                />
-                <View style={styles.inputContainer}>
-                  <View style={styles.Login}>
-                    <LoginInput />
-                  </View>
-                  <View style={styles.Login}>
-                    <PasswordInput />
-                  </View>
-                  {/* tutaj wstawić nowe inputy */}
-                </View>
-              </View>
-              <View style={styles.bottContainer}>
-                <Tray>
-                  <LoginButton />
-                </Tray>
-                <TouchableOpacity onPress={ForgotPassword}>
-                  <Text style={{ fontSize: 16, color: "#a2b9d4" }}>
-                    Zapomniałem(am) hasła
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </Container>
-          </ImageBackground>
-        </View>
-      </KeyboardAvoidingView>
-    </ScrollView>
-  );
+	// do zrobienia
+	const ForgotPassword = () => {
+		navigation.navigate("ResetPassword");
+	};
+
+
+	// Zapisuje pobrane dane(token i obiekt zalogowanego usera do urzadzenia)
+	const SendLoginData = () => {
+		Creq_lib.login(username, password).then(async (resolve) => {
+			console.log(resolve.message);
+			setNotificationContent(resolve);
+			setNotificationVisibility(resolve.error != false);
+			if (resolve.error == false) {
+				SetUsername(username);
+				SetPassword(password);				
+				await AsyncStorage.setItem("token", resolve.message[0].token);
+				await AsyncStorage.setItem("user", JSON.stringify(resolve.message[0]));
+				navigation.navigate('Home',{previousScreen: "Login"});
+			}
+		});
+	};
+
+
+
+	return (
+		<ScrollView
+			contentContainerStyle={{
+				flexGrow: 1,
+				minHeight: '100%',
+			}}
+		>
+			<KeyboardAvoidingView
+				style={{
+					flexGrow: 1,
+				}}
+			>
+				<View style={styles.wrapper}>
+					<NotificationBox
+						visibility={notificationVisibility}
+						content={notificationContent}
+						visibilityHandler={setNotificationVisibility}
+					/>
+					<ImageBackground
+						source={require('../assets/loginPage/LoginBackground.png')}
+						style={styles.imageBackground}
+					>
+						<View style={styles.topContainer}>
+							<Image
+								style={styles.loginTitle}
+								source={require('../assets/loginPage/LOGOWANIE.png')}
+							/>
+							<View style={styles.inputContainer}>
+								<View style={styles.Login}>
+									{/* Do pobierania danych z inputow */}
+									<LoginInput changeHandler={SetUsername}/>
+								</View>
+								<View style={styles.Login}>
+									{/* Do pobierania danych z inputow */}
+									<PasswordInput changeHandler={SetPassword}/>
+								</View>
+
+								{/* tutaj wstawić nowe inputy */}
+							</View>
+						</View>
+						<View style={styles.bottContainer}>
+							<LoginButton pressHandler={SendLoginData}/>
+							<TouchableOpacity onPress={ForgotPassword}>
+								<Text style={{ fontSize: 16, color: '#a2b9d4', marginTop: 20 }}>
+									Zapomniałem(am) hasła
+								</Text>
+							</TouchableOpacity>
+						</View>
+					</ImageBackground>
+				</View>
+			</KeyboardAvoidingView>
+		</ScrollView>
+	);
 }
 
 const styles = StyleSheet.create({
@@ -126,7 +141,7 @@ const styles = StyleSheet.create({
     marginTop: "10%",
   },
   bottContainer: {
-    marginTop: 200,
+    marginTop: 20,
     alignItems: "center",
   },
   button: {

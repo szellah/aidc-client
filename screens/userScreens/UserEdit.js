@@ -1,19 +1,19 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from 'react';
 import {
-  Button,
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  ImageBackground,
-  TextInput,
-  ScrollView,
-} from "react-native";
-import { Tray } from "../../components/Trays";
+	Button,
+	StyleSheet,
+	Text,
+	View,
+	Image,
+	ImageBackground,
+	TextInput,
+	ScrollView,
+} from 'react-native';
+import { Tray } from '../../components/Trays';
 import {
-  PasekNawigacyjny,
-  PasekNawigacyjnyInfo,
-} from "../../components/PasekNawigacyjny.js";
+	PasekNawigacyjny,
+	PasekNawigacyjnyInfo,
+} from '../../components/PasekNawigacyjny.js';
 import {
   UserFirstnameInput,
   UserEmailInput,
@@ -26,6 +26,11 @@ import { SaveButton, CancelButton } from "../../components/Buttons";
 import { Container } from "../../components/Containers";
 import { addNewUser, updateUserInfo } from "../../clientRequests/Creq_lib";
 import { NotificationBox } from "../../components/Notifications";
+import { RankSelect } from "../../components/Selects";
+
+import { MenuProvider } from "react-native-popup-menu";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 /**
@@ -48,6 +53,22 @@ export default function UserEdit({navigation}){
 
   const [notificationVisibility, setNotificationVisibility] = useState(false); 
   const [notificationContent, setNotificationContent] =useState({});
+
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
+
+  const rankOptions = [
+    { name: "Ranga administratorska", value: 1, id: 1 },
+    { name: "Ranga zwykła", value: 2, id: 2 },
+  ];
+
+ 
+  const [rankText, setRankText] = useState("");
+
+  const RankSelectHandler = (name, value) =>{
+    setRankText(name);
+    setRank(value);
+  }
 
 
 //wstawianie informacji jeżeli przyszły z innego ekranu
@@ -104,7 +125,7 @@ export default function UserEdit({navigation}){
         }
       updateUserInfo(
       {
-        UserId: 1, 
+        UserId: account.AccountId, 
         User: user
       })
       .then((notification)=>{
@@ -124,12 +145,12 @@ export default function UserEdit({navigation}){
         Surname: surname,
         Login: login,
         Email: email,
-        State: state,
+        State: 1,
         Rank: rank
       }
       addNewUser(
       {
-        UserId: 1, 
+        UserId: account.AccountId, 
         User: user
       })
       .then((notification)=>{
@@ -146,6 +167,18 @@ export default function UserEdit({navigation}){
   const Cancel = () => {
     navigation.goBack();
   };
+
+  if (!isReady) {
+    AsyncStorage.getItem("user").then(account => {setAccount(JSON.parse(account)); setReady(true);});
+}
+
+if (!isReady) {
+    return (
+        <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+            <Text>Przetwarzanie danych...</Text>
+        </View>
+    );
+}
 
 
   return (
@@ -165,6 +198,7 @@ export default function UserEdit({navigation}){
         visibilityHandler={setNotificationVisibility}
         content={notificationContent}
         />
+        <MenuProvider>
 
         <Container spread="top" composition="comapct">
           <UserFirstnameInput 
@@ -187,14 +221,17 @@ export default function UserEdit({navigation}){
           changeHandler={setEmail}
           />
 
-          <UserStateInput 
+          {/* <UserStateInput 
           placeholder={phState.toString()}
           changeHandler={setState}
-          />
+          /> */}
 
-          <UserRankInput 
-          placeholder={phRank.toString()}
-          changeHandler={setRank}
+
+          <RankSelect
+            text={rankText}
+            changeHandler={RankSelectHandler} 
+            placeholder={phRank === 1 ? "Ranga administratorska" : "Ranga zwykła"}
+            options={rankOptions} 
           />
 
           <Container composition="comact" spread="bottom">
@@ -204,21 +241,22 @@ export default function UserEdit({navigation}){
             </Tray>
           </Container>
         </Container>
+        </MenuProvider>
       </ImageBackground>
     </ScrollView>
   );
 }
 const styles = StyleSheet.create({
-  Tło: {
-    width: "100%",
-    height: "100%",
-  },
-  paseknagorze: {
-    width: "110%",
-    flexDirection: "row",
-  },
-  bezeksportu: {
-    width: "100%",
-    height: "80%",
-  },
+	Tło: {
+		width: '100%',
+		height: '100%',
+	},
+	paseknagorze: {
+		width: '110%',
+		flexDirection: 'row',
+	},
+	bezeksportu: {
+		width: '100%',
+		height: '80%',
+	},
 });

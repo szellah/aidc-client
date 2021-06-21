@@ -29,7 +29,10 @@ import {
 } from "../../components/Buttons";
 import { Container } from "../../components/Containers";
 import { NotificationBox } from "../../components/Notifications";
-import { deleteUser } from "../../clientRequests/Creq_lib";
+import { deleteUser, resetPassword } from "../../clientRequests/Creq_lib";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 
 /**
@@ -86,6 +89,26 @@ export default function UserInfo({navigation}){
   });
   
 
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
+
+  const ChangePassword = () => {
+
+
+    resetPassword(
+      {
+        UserId: userId 
+      })
+      .then((notification)=>{
+        setNotificationContent(notification);
+        setNotificationVisibility(true);
+      })
+      .catch((error)=>{
+        setNotificationContent(error);
+        setNotificationVisibility(true);
+      });
+  }
+
   const Edit = () => {
     navigation.navigate("UserEdit", {data: user, previousScreen: "UserInfo"});
   };
@@ -93,7 +116,7 @@ export default function UserInfo({navigation}){
   const Delete = () => {
     deleteUser(
     {
-      UserId: 1, 
+      UserId: account.AccountId, 
       UserToDelete: userId
     })
     .then((notification)=>{
@@ -105,6 +128,21 @@ export default function UserInfo({navigation}){
       setNotificationVisibility(true);
     });
 };
+
+
+
+if (!isReady) {
+  AsyncStorage.getItem("user").then(account => {setAccount(JSON.parse(account)); setReady(true);});
+}
+
+if (!isReady) {
+  return (
+      <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+          <Text>Przetwarzanie danych...</Text>
+      </View>
+  );
+}
+
 
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -124,6 +162,7 @@ export default function UserInfo({navigation}){
           />
 
 
+
         <Container spread="top" composition="comapct">
 
           <UserFirstnameInput text={name}/>
@@ -134,12 +173,12 @@ export default function UserInfo({navigation}){
 
           <UserEmailInput text={email}/>
 
-          <UserStateInput text={state.toString()}/>
+          <UserStateInput text={state === 1 ? "Stan aktywny" : "Stan nieaktywny"}/>
 
-          <UserRankInput text={rank.toString()}/>
+          <UserRankInput text={rank === 1 ? "Ranga administratorska" : "Ranga zwykła"}/>
 
-          <Tray spread="center" composition="loose">
-            <ChangePasswordButton />
+          { account.Rank === 1 && (<><Tray spread="center" composition="loose">
+            <ChangePasswordButton pressHandler={ChangePassword}/>
           </Tray>
 
           <Container composition="compact" spread="bottom">
@@ -147,7 +186,7 @@ export default function UserInfo({navigation}){
               <EditButton pressHandler={Edit} />
               <DeleteButton pressHandler={Delete} />
             </Tray>
-          </Container>
+          </Container></>)}
         </Container>
       </ImageBackground>
     </ScrollView>

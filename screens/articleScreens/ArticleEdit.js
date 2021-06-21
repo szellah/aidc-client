@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {
   ImageBackground,
   ScrollView,
+  View,
   Text
 } from "react-native";
 import {
@@ -19,6 +20,8 @@ import { PasekNawigacyjny } from "../../components/PasekNawigacyjny.js";
 import { Container } from "../../components/Containers.js";
 import { Tray } from "../../components/Trays.js";
 import { getArticleCategories, updateArticleInfo,  addNewArticle } from "../../clientRequests/Creq_lib";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 /**
  * Ekran edytowania towaru<br> 
  * posiada takie przyciski jak:<br>
@@ -115,6 +118,10 @@ export default function ArticleEdit({ navigation }) {
       setCategoryId(value);
     }
 
+    
+    const [account, setAccount] = useState({});
+    const [isReady, setReady] = useState(false);
+
   const Save = () => {
     console.log("siema");
     if(navigation.getParam("previousScreen") === "ArticleInfo")
@@ -128,7 +135,7 @@ export default function ArticleEdit({ navigation }) {
         }
       updateArticleInfo(
       {
-        UserId: 1, 
+        UserId: account.AccounId, 
         article: article
       })
       .then((notification)=>{
@@ -151,7 +158,7 @@ export default function ArticleEdit({ navigation }) {
       }
       addNewArticle(
       {
-        UserId: 1, 
+        UserId: account.AccounId, 
         article: article
       })
       .then((notification)=>{
@@ -168,6 +175,19 @@ export default function ArticleEdit({ navigation }) {
   const Cancel = () => {
     navigation.goBack();
   };
+
+
+  if (!isReady) {
+    AsyncStorage.getItem("user").then(account => {setAccount(JSON.parse(account)); setReady(true);});
+}
+
+if (!isReady) {
+    return (
+        <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+            <Text>Przetwarzanie danych...</Text>
+        </View>
+    );
+}
 
   return (
     // ScrollView to kontener, który pozwala przewijać ekran, gdy elementy nie mieszczą się na ekranie

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import { ImageBackground, StyleSheet } from "react-native";
+import { ImageBackground, StyleSheet, View, Text } from "react-native";
 import { Tray } from "../../components/Trays";
 import {
   AddArticleButton,
@@ -15,6 +15,9 @@ import { Container } from "../../components/Containers";
 import { ScrollView } from "react-native-gesture-handler";
 
 import {dislocateArticle, allocateArticle} from "../../clientRequests/Creq_lib";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 /**
  * Ekran menu towarów<br>
@@ -32,7 +35,8 @@ export default function ArticleMenu({ navigation }) {
 
   const [notificationVisibility, setNotificationVisibility] = useState(false); 
   const [notificationContent, setNotificationContent] =useState({});
-  
+
+ 
   useEffect(() => {
     if(navigation.getParam('notification'))
     {
@@ -41,11 +45,14 @@ export default function ArticleMenu({ navigation }) {
     }
   }, [navigation.getParam('notification')]);
 
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
+
   const dislocateHandler = ({code}) => {
     return new Promise((resolve, reject) => {
     dislocateArticle({
       ArticleId: code,
-      AccountId: 1
+      AccountId: account.AccountId
     })
     .then((notification)=>{
       resolve(notification);  
@@ -74,6 +81,20 @@ export default function ArticleMenu({ navigation }) {
   }
 
 
+
+  if (!isReady) {
+      AsyncStorage.getItem("user").then(account => {setAccount(JSON.parse(account)); setReady(true);});
+  }
+
+  if (!isReady) {
+      return (
+          <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+              <Text>Przetwarzanie danych...</Text>
+          </View>
+      );
+  }
+
+
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
       <Tray composition="compact">
@@ -96,7 +117,10 @@ export default function ArticleMenu({ navigation }) {
           {/* Przyciski w menu "Towar (Article)" nawigujące do nowych sekcji */}
           <Tray spread="center" composition="compact">
             <ManagmentButton navigation={navigation} />
-            <AddArticleButton navigation={navigation} />
+
+            { account.Rank === 1 && <AddArticleButton navigation={navigation} />}
+
+
           </Tray>
           <Tray spread="center" composition="compact">
             <RemoveStockedArticleButton navigation={navigation} handler={dislocateHandler} />

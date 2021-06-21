@@ -6,6 +6,9 @@ import { ScrollView } from "react-native-gesture-handler";
 import { getAccountReport, getAccountInfo } from "../../clientRequests/Creq_lib";
 import { NotificationBox } from "../../components/Notifications";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
 
 /**
  * Ekran tabeli użytkowników<br>
@@ -24,6 +27,12 @@ export default function UsersTable({ navigation }) {
 
   const [notificationVisibility, setNotificationVisibility] = useState(false); 
   const [notificationContent, setNotificationContent] =useState({});
+
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
+  
+
+  
 
   
   const rowHandler = (accountId) =>{
@@ -46,24 +55,36 @@ export default function UsersTable({ navigation }) {
 
 
 
- useEffect(() => {
-  getAccountReport()
-  .then((data) => {
-    if(data.error)
-    {
-      throw new Error(data.message)
-    }
-    else
-    {
-    setUsers([ header, ...data.message]);
-    }
+  useEffect(() => {
+    if(navigation.getParam('previousScreen'))
+      {
+        console.log(navigation.getParam('previousScreen'));
+      }
+  }, );
 
-  })
-  .catch((error) => {
-    setNotificationContent(error);
-    setNotificationVisibility(true);
-  });
- }, []);
+ useEffect(() => {
+   if(navigation.getParam('previousScreen')){
+    getAccountReport()
+    .then((data) => {
+      if(data.error)
+      {
+        throw new Error(data.message)
+      }
+      else
+      {
+        const table = data.message.filter((row)=>{
+          return row.id !== navigation.getParam('previousScreen').toString();
+        })
+      setUsers([ header, ...table]);
+      }
+   })
+    .catch((error) => {
+      setNotificationContent(error);
+      setNotificationVisibility(true);
+    });
+  }
+   
+ }, [navigation.getParam('notification'), navigation.getParam('data')], [navigation.getParam('previousScreen')]);
 
  useEffect(() => {
   if(navigation.getParam('notification'))
@@ -74,8 +95,24 @@ export default function UsersTable({ navigation }) {
 }, [navigation.getParam('notification')]);
 
 
+if (!isReady) {
+  AsyncStorage.getItem("user")
+  .then(account => {
+    setAccount(JSON.parse(account)); 
+    setReady(true);});
+}
+
+
+if (!isReady) {
   return (
-    <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+          <Text>Przetwarzanie danych...</Text>
+      </View>
+  );
+}
+
+
+  return (
       <ImageBackground
         source={require("../../assets/backgrounds/blue_quater.png")}
         style={{ flex: 1, justifyContent: "center" }}
@@ -100,7 +137,6 @@ export default function UsersTable({ navigation }) {
           />
         </Container>
       </ImageBackground>
-    </ScrollView>
   );
 }
 

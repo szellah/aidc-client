@@ -21,6 +21,9 @@ import { deleteLocation } from "../../clientRequests/Creq_lib.js";
 
 import { NotificationBox } from "../../components/Notifications";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
 
 /**
  * Ekran Informacji Lokalizacji<br>
@@ -72,10 +75,13 @@ export default function LocationInfo({navigation}){
     navigation.navigate("LocationEdit", {data: location, previousScreen: "LocationInfo"});
   };
 
+  const [account, setAccount] = useState({});
+  const [isReady, setReady] = useState(false);
+
   const Delete = () => {
       deleteLocation(
       {
-        AccountId: 1, 
+        AccountId: account.AccountId, 
         locationId: locationCode
       })
       .then((notification)=>{
@@ -87,6 +93,21 @@ export default function LocationInfo({navigation}){
         setNotificationVisibility(true);
       });
   };
+
+
+
+  if (!isReady) {
+      AsyncStorage.getItem("user").then(account => {setAccount(JSON.parse(account)); setReady(true);});
+  }
+
+  if (!isReady) {
+      return (
+          <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
+              <Text>Przetwarzanie danych...</Text>
+          </View>
+      );
+  }
+
 
   return (
     <KeyboardAvoidingView
@@ -117,12 +138,12 @@ export default function LocationInfo({navigation}){
             <RoomSelect text={room} />
             <LocationCodeInput text={locationCode}/>
 
-            <Container composition="loose" spread="bottom">
+            { account.Rank === 1 && <Container composition="loose" spread="bottom">
               <Tray composition="loose" spread="even">
                 <EditButton pressHandler={Edit} />
                 <DeleteButton pressHandler={Delete} />
               </Tray>
-            </Container>
+            </Container>}
           </Container>
         </ImageBackground>
       </ScrollView>
