@@ -1,8 +1,13 @@
 const axios = require('axios');
 const { serverURL } = require('./serverInfo');
 
-/** W przyszłości możliwe że dojdzie do standaryzacji Creq */
 
+/**
+ * Wysyła zapytanie http do servera i pyta korespondującą funkcję Sres o informacje o użytkowniku.
+ * @function Creq_getAccountInfo
+ * @param {object} reqId - ID użytkownika
+ * @category Creq
+ */
 function Creq_getAccountInfo (reqId){
 return new Promise((resolve, reject) => {
     if(parseInt(reqId)){

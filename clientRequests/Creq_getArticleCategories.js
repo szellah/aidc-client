@@ -4,6 +4,7 @@ const { serverURL } = require('./serverInfo');
 /**
  * Wysyła zapytanie http do servera i pyta korespondującą funkcję Sres o informacje o kategoriach artykułów.
  * @function Creq_getArticleCategories
+ * @category Creq
  */
 function Creq_getArticleCategories(){
 return new Promise((resolve, reject) => {

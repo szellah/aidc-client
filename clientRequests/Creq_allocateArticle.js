@@ -1,8 +1,14 @@
 const axios = require('axios');
 const { serverURL } = require('./serverInfo');
 
-/** W przyszłości możliwe że dojdzie do standaryzacji Creq */
 
+/**
+ * Wysyła zapytanie http do servera i pyta korespondującą funkcję Sres o zalogowanie się do apliakcji.
+ * @function Creq_allocateArticle
+ * @param {object} LocationId - ID lokalizacji
+ * @param {object} ArticleId - ID artykułu
+ * @category Creq
+ */
 function Creq_allocateArticle({LocationId, ArticleId}){
     return new Promise((resolve, reject) => {
         if(parseInt(LocationId) && parseInt(ArticleId)){

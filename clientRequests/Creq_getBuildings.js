@@ -4,6 +4,7 @@ const { serverURL } = require('./serverInfo');
 /**
  * Wysyła zapytanie http do servera i pyta korespondującą funkcję Sres o informacje o budynku.
  * @function Creq_getBuildings
+ * @category Creq
  */
 
 function Creq_getBuildings(){
