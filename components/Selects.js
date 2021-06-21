@@ -184,6 +184,56 @@ export default function Select({changeHandler, placeholder, text, options, src, 
         />
     );
   }
+
+    /**
+ * Select do wybrania Rangi użytkownika
+ * -ranga administratorska
+ * -ranga zwykła
+ * 
+ * @function 
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
+     export const RankSelect = ({changeHandler, options, placeholder, text}) => {
+      return (
+        <Select 
+          changeHandler={changeHandler}
+          placeholder={ placeholder ? placeholder : "Ranga użytkownika"}
+          options={options}
+          text={text}
+          color="yellow"
+          src={require("../assets/raportPage/iconSporzRaportu.png")}
+          />
+      );
+    }
+
+      /**
+ * Select do wybrania stanu użytkownika
+ * -aktywny
+ * -nieaktywny
+ * 
+ * @function
+ * 
+ * @returns {JSX} zwraca input jako element JSX
+ * 
+ * @category Selects
+ * 
+ */
+   export const StateSelect = ({changeHandler, options, placeholder, text}) => {
+    return (
+      <Select 
+        changeHandler={changeHandler}
+        placeholder={ placeholder ? placeholder : "Stan użytkownika"}
+        options={options}
+        text={text}
+        color="yellow"
+        src={require("../assets/raportPage/iconSporzRaportu.png")}
+        />
+    );
+  }
   
 
   const styles = StyleSheet.create({

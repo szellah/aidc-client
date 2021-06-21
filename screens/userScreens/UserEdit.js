@@ -26,6 +26,9 @@ import { SaveButton, CancelButton } from "../../components/Buttons";
 import { Container } from "../../components/Containers";
 import { addNewUser, updateUserInfo } from "../../clientRequests/Creq_lib";
 import { NotificationBox } from "../../components/Notifications";
+import { RankSelect } from "../../components/Selects";
+
+import { MenuProvider } from "react-native-popup-menu";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -53,6 +56,19 @@ export default function UserEdit({navigation}){
 
   const [account, setAccount] = useState({});
   const [isReady, setReady] = useState(false);
+
+  const rankOptions = [
+    { name: "Ranga administratorska", value: 1, id: 1 },
+    { name: "Ranga zwykła", value: 2, id: 2 },
+  ];
+
+ 
+  const [rankText, setRankText] = useState("");
+
+  const RankSelectHandler = (name, value) =>{
+    setRankText(name);
+    setRank(value);
+  }
 
 
 //wstawianie informacji jeżeli przyszły z innego ekranu
@@ -129,7 +145,7 @@ export default function UserEdit({navigation}){
         Surname: surname,
         Login: login,
         Email: email,
-        State: state,
+        State: 1,
         Rank: rank
       }
       addNewUser(
@@ -182,6 +198,7 @@ if (!isReady) {
         visibilityHandler={setNotificationVisibility}
         content={notificationContent}
         />
+        <MenuProvider>
 
         <Container spread="top" composition="comapct">
           <UserFirstnameInput 
@@ -204,14 +221,17 @@ if (!isReady) {
           changeHandler={setEmail}
           />
 
-          <UserStateInput 
+          {/* <UserStateInput 
           placeholder={phState.toString()}
           changeHandler={setState}
-          />
+          /> */}
 
-          <UserRankInput 
-          placeholder={phRank.toString()}
-          changeHandler={setRank}
+
+          <RankSelect
+            text={rankText}
+            changeHandler={RankSelectHandler} 
+            placeholder={phRank === 1 ? "Ranga administratorska" : "Ranga zwykła"}
+            options={rankOptions} 
           />
 
           <Container composition="comact" spread="bottom">
@@ -221,6 +241,7 @@ if (!isReady) {
             </Tray>
           </Container>
         </Container>
+        </MenuProvider>
       </ImageBackground>
     </ScrollView>
   );

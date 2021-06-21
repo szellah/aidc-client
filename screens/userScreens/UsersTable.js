@@ -30,6 +30,7 @@ export default function UsersTable({ navigation }) {
 
   const [account, setAccount] = useState({});
   const [isReady, setReady] = useState(false);
+  
 
   
 
@@ -54,7 +55,15 @@ export default function UsersTable({ navigation }) {
 
 
 
+  useEffect(() => {
+    if(navigation.getParam('previousScreen'))
+      {
+        console.log(navigation.getParam('previousScreen'));
+      }
+  }, );
+
  useEffect(() => {
+   if(navigation.getParam('previousScreen')){
     getAccountReport()
     .then((data) => {
       if(data.error)
@@ -63,16 +72,19 @@ export default function UsersTable({ navigation }) {
       }
       else
       {
-      setUsers([ header, ...data.message]);
+        const table = data.message.filter((row)=>{
+          return row.id !== navigation.getParam('previousScreen').toString();
+        })
+      setUsers([ header, ...table]);
       }
-  
-    })
+   })
     .catch((error) => {
       setNotificationContent(error);
       setNotificationVisibility(true);
     });
+  }
    
- }, [navigation.getParam('notification'), navigation.getParam('data')]);
+ }, [navigation.getParam('notification'), navigation.getParam('data')], [navigation.getParam('previousScreen')]);
 
  useEffect(() => {
   if(navigation.getParam('notification'))
@@ -89,6 +101,7 @@ if (!isReady) {
     setAccount(JSON.parse(account)); 
     setReady(true);});
 }
+
 
 if (!isReady) {
   return (
@@ -111,7 +124,6 @@ if (!isReady) {
         content={notificationContent}
         />
 
-      <Text>{account.AccountId}</Text>
 
         <Container>
           <View style={styles.titleBox}>

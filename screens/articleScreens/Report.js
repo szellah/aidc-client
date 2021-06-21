@@ -42,7 +42,7 @@ export default function Report({navigation}) {
   const [notificationVisibility, setNotificationVisibility] = useState(false); 
   const [notificationContent, setNotificationContent] =useState({});
 
-  const [title, setTitle] = useState("RAPORTT");
+  const [title, setTitle] = useState("RAPORT");
 
   useEffect(()=>{
     if(navigation.getParam('title'))
@@ -57,7 +57,25 @@ export default function Report({navigation}) {
 
 
 const Export = () => {
-
+  let error = null;
+  const { saveFile } = require('../../handlers/saveFileToCSV');
+  try{
+    const d = new Date();
+    const fileName = `raport-${d.getFullYear()}-${d.getMonth()+1}-${d.getDate()}-${d.getHours()}-${d.getMinutes()}-${d.getSeconds()}`;
+    saveFile(fileName, report);
+  }
+  catch(e){
+    error = e;
+  }
+  if(error){
+    setNotificationContent({error: true, message: "Nie udało się pobrać raportu"});
+    setNotificationVisibility(true);
+  }
+  else{
+    setNotificationContent({error: false, message: "Pobrano raport"});
+    setNotificationVisibility(true);
+  }
+  
 }
 
 

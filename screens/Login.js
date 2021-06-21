@@ -57,21 +57,6 @@ export default function Login({ navigation }) {
 		});
 	};
 
-	const Export = () =>{
-		FileSystem.downloadAsync(
-			'http://techslides.com/demos/sample-videos/small.mp4',
-			FileSystem.documentDirectory + 'small.mp4'
-		  )
-			.then(({ uri }) => {
-			  console.log('Finished downloading to ', uri);
-			})
-			.catch(error => {
-			  console.error(error);
-			});
-	}
-
-
-
 
 
 	return (
@@ -109,11 +94,8 @@ export default function Login({ navigation }) {
 								<View style={styles.Login}>
 									{/* Do pobierania danych z inputow */}
 									<PasswordInput changeHandler={SetPassword}/>
-									<ExportButton pressHandler={Export}/>
 								</View>
-								<Text>
-          {FileSystem.documentDirectory}
-        </Text>
+
 								{/* tutaj wstawić nowe inputy */}
 							</View>
 						</View>

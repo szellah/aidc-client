@@ -161,7 +161,6 @@ if (!isReady) {
           content={notificationContent}
           />
 
-<Text>{navigation.getParam('previousScreen')}</Text>
 
 
         <Container spread="top" composition="comapct">
@@ -174,9 +173,9 @@ if (!isReady) {
 
           <UserEmailInput text={email}/>
 
-          <UserStateInput text={state.toString()}/>
+          <UserStateInput text={state === 1 ? "Stan aktywny" : "Stan nieaktywny"}/>
 
-          <UserRankInput text={rank.toString()}/>
+          <UserRankInput text={rank === 1 ? "Ranga administratorska" : "Ranga zwykła"}/>
 
           { account.Rank === 1 && (<><Tray spread="center" composition="loose">
             <ChangePasswordButton pressHandler={ChangePassword}/>

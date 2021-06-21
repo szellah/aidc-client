@@ -42,23 +42,10 @@ export default function Home({navigation}){
     //goback do poprawy
     const [previousScreen, setPreviousScreen] = useState("")
 
-    useEffect(() => {
-        if(navigation.getParam('previousScreen'))
-          {
-            setPreviousScreen(navigation.getParam('previousScreen'));
-          }
-      });
+  
     
     // Blokuje przycisk cofania na urzadzeniu; blokuje przejscie z ekranu uzytkownika do ekranu logowania
     BackHandler.addEventListener("hardwareBackPress", () => {
-        if(previousScreen === "Login")
-        {
-            
-        }
-        else
-        {
-            navigation.goBack();
-        }
         return true;
     })
 

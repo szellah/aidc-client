@@ -5,7 +5,7 @@ import {
   UsersInfoButton,
   UserAddNewButton,
 } from "../../components/RoundButtons";
-import { PasekNawigacyjnyArticleMenu } from "../../components/PasekNawigacyjny.js";
+import { PasekNawigacyjnyArticleMenu, PasekNawigacyjnyInfo } from "../../components/PasekNawigacyjny.js";
 import { Container } from "../../components/Containers";
 import { ScrollView } from "react-native-gesture-handler";
 
@@ -55,9 +55,13 @@ export default function UsersMenu({ navigation }) {
 
   return (
     <ScrollView contentContainerStyle={{ flex: 1 }}>
-      <Tray composition="compact">
+      {/* <Tray composition="compact"> */}
         {/* Pasek nawigujący do sekcji "Home" */}
-        <PasekNawigacyjnyArticleMenu navigation={navigation} />
+        {/* <PasekNawigacyjnyArticleMenu navigation={navigation} />
+      </Tray> */}
+            <Tray composition="compact">
+        {/* Pasek nawigujący do sekcji */}
+        <PasekNawigacyjnyInfo navigation={navigation} />
       </Tray>
       <ImageBackground
         source={require("../../assets/tlo_dodawanie.png")}
@@ -74,7 +78,7 @@ export default function UsersMenu({ navigation }) {
 
         <Container spread="center" composition="compact">
           <Tray spread="center" composition="compact">
-            <UsersInfoButton navigation={navigation} />
+            <UsersInfoButton navigation={navigation} previousScreen={account.AccountId}/>
           </Tray>
 
           { account.Rank === 1 && <Tray spread="center" composition="compact">
