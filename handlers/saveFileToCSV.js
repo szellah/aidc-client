@@ -2,6 +2,13 @@ import * as MediaLibrary from 'expo-media-library';
 import * as FileSystem from 'expo-file-system';
 import * as Permissions from 'expo-permissions'; 
 
+/**
+ * @function
+ * Funkcja zapisująca tablice JSON do pliku CSV.
+ * @param {object} fileName - nazwa pliku
+ * @param {object} table - tablica JSON która zostanie zmieniona na plik CSV
+ */
+
 saveFile = async (fileName, table) => {
 
     let fileUri = FileSystem.documentDirectory + fileName +".csv";
