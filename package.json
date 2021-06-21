@@ -34,7 +34,8 @@
     "react-native-triangle": "0.0.9",
     "react-native-web": "^0.16.2",
     "react-navigation": "^4.4.4",
-    "react-navigation-stack": "^2.10.4"
+    "react-navigation-stack": "^2.10.4",
+    "expo-file-system": "~9.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
