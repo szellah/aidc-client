@@ -1,1 +1,21 @@
 # Przygotowali
+- Sebastian Zellah
+- Daniel Nasser
+- Mateusz Rudko
+- Karol Brejtfus
+- Łukasz Lemański
+- Jakub Borsuk
+- Cezary Czarnogłowski
+- Cezary Olender
+- Patryk Śliński
+- Mateusz Borawski
+- Kinga Domańska
+- Małgorzata Wachnicka
+- Marek Baczewski
+- Damian Piotrowski
+- Aleksandra Janusz
+- Kamil Prasuła
+- Jakub Szuper
+- Radosław Kisiel
+- Bartłomiej Ocypa
+- Damian Cuper
