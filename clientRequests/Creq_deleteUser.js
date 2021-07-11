@@ -1,8 +1,13 @@
 const axios = require('axios');
 const { serverURL } = require('./serverInfo');
 
-/** W przyszłości możliwe że dojdzie do standaryzacji Creq */
 
+/**
+ * Wysyła zapytanie http do servera i pyta korespondującą funkcję Sres o usunięcie użytkownika.
+ * @function Creq_deleteUser
+ * @param {object} params Zbiór parametrów w postaci obiektu.
+ * @category Creq
+ */
 function Creq_deleteUser(params){
 return new Promise((resolve, reject) => {
     axios.post(`${serverURL}/deleteUser`, params)

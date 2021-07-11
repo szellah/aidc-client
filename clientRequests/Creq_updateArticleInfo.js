@@ -1,8 +1,13 @@
 const axios = require('axios');
 const { serverURL } = require('./serverInfo');
 
-/** W przyszłości możliwe że dojdzie do standaryzacji Creq */
 
+/**
+ * Wysyła zapytanie http do servera i pyta korespondującą funkcję Sres o aktualizacje informacji o artykule.
+ * @function Creq_updateArticleInfo
+ * @param {object} params Zbiór parametrów w postaci obiektu.
+ * @category Creq
+ */
 function Creq_updateArticleInfo(params){
 return new Promise((resolve, reject) => {
     axios.post(`${serverURL}/updateArticleInfo`, params)

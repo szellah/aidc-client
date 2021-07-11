@@ -1,7 +1,13 @@
 const axios = require('axios');
 const { serverURL } = require('./serverInfo');
 
-/** W przyszłości możliwe że dojdzie do standaryzacji Creq */
+
+/**
+ * Wysyła zapytanie http do servera i pyta korespondującą funkcję Sres o dodanie nowego użytkownika.
+ * @function Creq_addNewUser
+ * @param {object} params Zbiór parametrów w postaci obiektu.
+ * @category Creq
+ */
 
 function Creq_addNewUser(params) {
 	return new Promise((resolve, reject) => {

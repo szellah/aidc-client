@@ -1,8 +1,13 @@
 const axios = require('axios');
 const { serverURL } = require('./serverInfo');
 
-/** W przyszłości możliwe że dojdzie do standaryzacji Creq */
 
+/**
+ * Wysyła zapytanie http do servera i pyta korespondującą funkcję Sres o informacje o lokalizacji.
+ * @function Creq_getLocationInfo
+ * @param {object} reqId - ID lokalizacji
+ * @category Creq
+ */
 function Creq_getLocationInfo(reqId) {
 	return new Promise((resolve, reject) => {
 		if (parseInt(reqId)) {

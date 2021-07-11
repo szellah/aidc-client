@@ -8,6 +8,7 @@ const SHA256 = require("crypto-js/sha256");
  * @function Creq_login
  * @param {object} username - nazwa użytownika
  * @param {object} password - hasło użytkownika
+ * @category Creq
  */
 
 function Creq_login(username, password) {

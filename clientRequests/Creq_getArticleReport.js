@@ -6,11 +6,12 @@ const { serverURL } = require('./serverInfo');
  * Wysyła zapytanie http do servera i pyta korespondującą funkcję Sres o informacje o raporcie artykułów.
  * @function Creq_getArticleReport
  * @param {object} params Zbiór parametrów w postaci obiektu.
- * @param {string} reportChoice Informacja względem czego ma zostać stworzony raport
+ * @param {string} reportChoice - Informacja względem czego ma zostać stworzony raport
  * @param {object} building - Wybrany budynek
  * @param {object} floor -Wybrane piętro
  * @param {object} room - Wybrany pokój
  * @param {object} category - Kategoria dla której ma zostać stworzony raport
+ * @category Creq
  */
 function Creq_getArticleReport(params){
 return new Promise((resolve, reject) => {
