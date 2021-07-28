@@ -15,43 +15,40 @@ import {
  * z czterech ikon na ekranie po zalogowaniu<br>
  * pozwala na swobodny dostęp do ekranu głównego,
  * wracanie na poprzedni ekran aplikacji
- * 
- * 
- * @param {object} navigation 
+ *
+ *
+ * @param {object} navigation
  * Umożliwia przenoszenie się między ekranami
  * @category Components
  * @returns {JSX}
- *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci 
+ *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci
  * elementu JSX
  */
 
+// Pasek nawigacyjny
 
+// Dodanie go do ekranu w App.js:
+//  <Stack.Screen
+// options={{headerTitle: () => <PasekNawigacyjny/>}}>
+//  </Stack.Screen>
 
-// Pasek nawigacyjny 
-
-// Dodanie go do ekranu w App.js: 
-      //  <Stack.Screen 
-       // options={{headerTitle: () => <PasekNawigacyjny/>}}>
-      //  </Stack.Screen>
-
-
-export const PasekNawigacyjny = ({ navigation } /* Obiekt do nawigacji*/ ) => {
+export const PasekNawigacyjny = ({ navigation } /* Obiekt do nawigacji*/) => {
   return (
     <View style={styles.header}>
       <TouchableOpacity
       /* Nawigacja onPress={() => navigation.navigate("ekran")} */
       >
-        <Image source={require("../assets/homeIcon.png")} style={styles.home} />
+        <Image
+          source={require("../assets/DomekEkran2.png")}
+          style={styles.home}
+        />
       </TouchableOpacity>
       <TouchableOpacity
       /* Nawigacja onPress={() => navigation.navigate("ekran")} */
       >
         <Image source={require("../assets/itemIcon.png")} style={styles.item} />
       </TouchableOpacity>
-      <Image
-        source={require("../assets/pusty2Icon.png")}
-        style={styles.pusty}
-      />
+      <Image source={require("../assets/pustyNav.png")} style={styles.pusty} />
     </View>
   );
 };
@@ -62,13 +59,13 @@ export const PasekNawigacyjny = ({ navigation } /* Obiekt do nawigacji*/ ) => {
  * pozwala na swobodny dostęp do ekranu głównego,
  * wracanie na poprzedni ekran aplikacji<br>
  * składa się  z ikonki domku ( powrót do ekranu głównego) i ikonki towaru
- * 
- * 
- * @param {object} navigation 
+ *
+ *
+ * @param {object} navigation
  * Umożliwia przenoszenie się między ekranami
  * @category Components
  * @returns {JSX}
- *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci 
+ *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci
  * elementu JSX
  */
 // Pasek nawigacyjny w menu "Towar (ArticleMenu)"
@@ -89,7 +86,7 @@ export const PasekNawigacyjnyArticleMenu = (
         onPress={() => navigation.navigate("Home")}
       >
         <Image
-          source={require("../assets/homeIcon.png")}
+          source={require("../assets/DomekEkran2.png")}
           style={{ maxHeight: "100%", width: 50 }}
         />
         <Image
@@ -102,8 +99,7 @@ export const PasekNawigacyjnyArticleMenu = (
       </Text>
     </ImageBackground>
   );
-
-}
+};
 /**
  * Pasek Nawigacyjny w Menu Lokalizacji <br>
  * Wyświetla się na każdym kolejnym ekranie po wybraniu ikonki Lokalizacja
@@ -111,116 +107,158 @@ export const PasekNawigacyjnyArticleMenu = (
  * pozwala na swobodny dostęp do ekranu głównego,
  * wracanie na poprzedni ekran aplikacji<br>
  *  składa się  z ikonki domku ( powrót do ekranu głównego) i ikonki lokalizacji
- * 
- * @param {object} navigation 
+ *
+ * @param {object} navigation
  * Umożliwia przenoszenie się między ekranami
  * @category Components
  * @returns {JSX}
- *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci 
+ *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci
  * elementu JSX
  */
-export const PasekNawigacyjnyMenuLokalizacji = ({navigation} /* Obiekt do nawigacji */) => {
-    return (
-      <View style={styles.header}>
-          <TouchableOpacity
-              /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-              <Image source={require("../assets/domektest3.png")} style={styles.homelocalization}/>
-          </TouchableOpacity>
-          <TouchableOpacity
-              /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-              <Image source={require("../assets/lokalizacjapasek.png")} style={styles.localization}/>
-          </TouchableOpacity>
-          <Image source={require("../assets/Lokalizacja3.png")} style={styles.pusty}/>
-          
-      </View>
-    );
-  }
-    /**
+export const PasekNawigacyjnyMenuLokalizacji = (
+  { navigation } /* Obiekt do nawigacji */
+) => {
+  return (
+    <View style={styles.header}>
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image
+          source={require("../assets/DomekEkran2.png")}
+          style={styles.homelocalization}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image
+          source={require("../assets/lokalizacja.png")}
+          style={styles.localization}
+        />
+      </TouchableOpacity>
+      <Image
+        source={require("../assets/Lokalizacja3.png")}
+        style={styles.pusty}
+      />
+    </View>
+  );
+};
+/**
  * Pasek Nawigacyjny w Menu Lokalizacji Edytuj i Usuń <br>
  * Wyświetla się na ekranie po wybraniu ikonki Lokalizacja i edycji bądź usunięcia lokalizacji do/ z  raportu
  *  na ekranie po zalogowaniu<br>
  * pozwala na swobodny dostęp do ekranu głównego,
  * wracanie na poprzedni ekran aplikacji<br>
  *  składa się  z ikonki domku ( powrót do ekranu głównego) i ikonki lokalizacji, ikonki informacyjnej
- * 
- * @param {object} navigation 
+ *
+ * @param {object} navigation
  * Umożliwia przenoszenie się między ekranami
- * @category Components 
+ * @category Components
  * @returns {JSX}
- *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci 
+ *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci
  * elementu JSX
  */
-  export const PanelLokalizacjiEdytujUsun = ({navigation} /* Obiekt do nawigacji */) => {
-    return (
-      <View style={styles.header}>
-          <TouchableOpacity
-              /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-              <Image source={require("../assets/DomekEkran2.png")} style={styles.homelocalization}/>
-          </TouchableOpacity>
-          <TouchableOpacity
-              /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-              <Image source={require("../assets/LokalizacjaEkran2.png")} style={styles.localization}/>
-          </TouchableOpacity>
-          <TouchableOpacity
-              /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-              <Image source={require("../assets/infoIcon.png")} style={styles.localization}/>
-          </TouchableOpacity>
-          <Image source={require("../assets/Informacje.png")} style={styles.infoekran2}/>
-          
-      </View>
-    );
-  }
-  /**
+export const PanelLokalizacjiEdytujUsun = (
+  { navigation } /* Obiekt do nawigacji */
+) => {
+  return (
+    <View style={styles.header}>
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image
+          source={require("../assets/DomekEkran2.png")}
+          style={styles.homelocalization}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image
+          source={require("../assets/lokalizacja.png")}
+          style={styles.localization}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image
+          source={require("../assets/infoIcon.png")}
+          style={styles.localization}
+        />
+      </TouchableOpacity>
+      <Image
+        source={require("../assets/Informacje.png")}
+        style={styles.infoekran2}
+      />
+    </View>
+  );
+};
+/**
  * Pasek Nawigacyjny w Menu Lokalizacji Zapisz i Anuluj <br>
  * Wyświetla się na ekranie po wybraniu ikonki Lokalizacja i dodania lokalizacji do raportu
  *  na ekranie po zalogowaniu<br>
  * pozwala na swobodny dostęp do ekranu głównego,
  * wracanie na poprzedni ekran aplikacji<br>
  *  składa się  z ikonki domku ( powrót do ekranu głównego) i ikonki lokalizacji,napisu dodaj i plusika
- * 
- * @param {object} navigation 
+ *
+ * @param {object} navigation
  * Umożliwia przenoszenie się między ekranami
  * @category Components
  * @returns {JSX}
- *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci 
+ *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci
  * elementu JSX
  */
-  export const PanelLokalizacjiZapiszAnuluj = ({navigation} /* Obiekt do nawigacji */) => {
-    return (
-      <View style={styles.header}>
-          <TouchableOpacity
-              /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-              <Image source={require("../assets/DomekEkran2.png")} style={styles.homelocalization}/>
-          </TouchableOpacity>
-          <TouchableOpacity
-              /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-              <Image source={require("../assets/LokalizacjaEkran2.png")} style={styles.localization}/>
-          </TouchableOpacity>
-          <TouchableOpacity
-              /* Nawigacja onPress={() => navigation.navigate("ekran")} */>
-              <Image source={require("../assets/PlusikEkran3.png")} style={styles.localization}/>
-          </TouchableOpacity>
-          <Image source={require("../assets/DodajEkran3.png")} style={styles.infoekran2}/>
-          
-      </View>
-    );
-  
-
+export const PanelLokalizacjiZapiszAnuluj = (
+  { navigation } /* Obiekt do nawigacji */
+) => {
+  return (
+    <View style={styles.header}>
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image
+          source={require("../assets/DomekEkran2.png")}
+          style={styles.homelocalization}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image
+          source={require("../assets/lokalizacja.png")}
+          style={styles.localization}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+      /* Nawigacja onPress={() => navigation.navigate("ekran")} */
+      >
+        <Image
+          source={require("../assets/PlusikEkran3.png")}
+          style={styles.localization}
+        />
+      </TouchableOpacity>
+      <Image
+        source={require("../assets/DodajEkran3.png")}
+        style={styles.infoekran2}
+      />
+    </View>
+  );
 };
 
-  /**
+/**
  * Pasek Nawigacyjny Informacyjny <br>
  * Wyświetla się na ekranie po wybraniu ikonki Informacje
  *  na ekranie po zalogowaniu<br>
  * pozwala na swobodny dostęp do ekranu głównego,
  * wracanie na poprzedni ekran aplikacji<br>
- *  składa się  z ikonki domku ( powrót do ekranu głównego) i ikonki informacyjnej 
+ *  składa się  z ikonki domku ( powrót do ekranu głównego) i ikonki informacyjnej
  *np
- * @param {object} navigation 
+ * @param {object} navigation
  * Umożliwia przenoszenie się między ekranami
  * @category Components
  * @returns {JSX}
- *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci 
+ *  Zwraca pasek nawigacyjny znajdjący na górze ekranu w postaci
  * elementu JSX
  */
 export const PasekNawigacyjnyInfo = (
@@ -231,7 +269,10 @@ export const PasekNawigacyjnyInfo = (
       <TouchableOpacity
       /* Nawigacja onPress={() => navigation.navigate("ekran")} */
       >
-        <Image source={require("../assets/homeIcon.png")} style={styles.home} />
+        <Image
+          source={require("../assets/DomekEkran2.png")}
+          style={styles.home}
+        />
       </TouchableOpacity>
       <TouchableOpacity
       /* Nawigacja onPress={() => navigation.navigate("ekran")} */
@@ -280,13 +321,12 @@ const styles = StyleSheet.create({
     width: width * 0.15,
     height: height * 0.065,
   },
-  homelocalization:{
+  homelocalization: {
     width: width * 0.15,
     height: height * 0.065,
   },
-  infoekran2:{
+  infoekran2: {
     width: width * 0.55,
     height: height * 0.065,
   },
-
 });
